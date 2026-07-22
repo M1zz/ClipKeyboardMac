@@ -206,6 +206,16 @@ struct MenuBarPopoverView: View {
                 NSApp.activate(ignoringOtherApps: true)
                 dismiss()
             }
+            // 메모 목록 창 — 드래그로 단축어 순서를 바꿀 수 있는 유일한 화면.
+            quickButton(
+                title: NSLocalizedString("Memo List", comment: "Menu: memo list"),
+                symbol: "list.bullet",
+                shortcut: "L"
+            ) {
+                NotificationCenter.default.post(name: .showMemoList, object: nil)
+                NSApp.activate(ignoringOtherApps: true)
+                dismiss()
+            }
             Spacer()
             quickButton(
                 title: NSLocalizedString("Preferences", comment: "Settings window title"),
