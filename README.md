@@ -50,15 +50,19 @@ iOS 앱과 **버전이 독립**입니다 (별개 App Store 앱).
 
 특히 `MemoSyncCore/Engine` 은 iOS와 Mac 사이 동기화 프로토콜이라, 한쪽만 바뀌면 동기화가 조용히 깨집니다.
 
-**권장 후속 작업**: 이 7개 파일을 공유 Swift 패키지(`LeeoKit`)로 올려 **단일 출처**로 만들면 드리프트가 근본적으로 사라집니다. (iOS 프로젝트도 함께 `import LeeoKit` 로 전환 필요 — 별도 작업)
+### 드리프트 자동 방지 (drift-guard)
 
-두 사본을 동기 상태로 유지하려면:
+**매 배포 전** `scripts/check_shared_drift.sh` 가 자동 실행되어(`fastlane/.env` 의 `PREDEPLOY_SCRIPT`), 7개 공유 파일이 iOS 원본과 다르면 **배포를 중단**합니다. 동기화 파일(MemoSyncCore/Engine)까지 전부 보호됩니다.
 
 ```bash
-# iOS → Mac 로 공유 파일 재복사 (iOS 를 원본으로 취급)
-SRC=~/Documents/workspace/클립키보드/ClipKeyboard
-DST=~/Documents/workspace/탭클립키보드/Shared
-for f in AppGroup AppSymbol DefaultsKey AppNotification StorageFile Service/MemoSyncCore Service/MemoSyncEngine; do
-  cp "$SRC/$f.swift" "$DST/$(basename $f).swift"
-done
+sh scripts/check_shared_drift.sh   # 일치 검사 (배포 게이트, exit 1 = 드리프트)
+sh scripts/sync_shared.sh          # 드리프트 시 iOS(원본)→Mac 재복사로 복구
 ```
+
+매핑 정의는 `scripts/shared_files.sh` 한 곳에 있습니다. iOS 리포 경로는 기본
+`~/Documents/workspace/Auto/클립키보드` (환경변수 `IOS_REPO` 로 변경 가능).
+
+**근본 해결(선택)**: 상수 5개(AppGroup·AppSymbol·DefaultsKey·AppNotification·StorageFile)는
+`LeeoKit` 패키지로 올려 단일 출처화할 수 있으나 ~40개 파일에 `import LeeoKit`+public 전환이 필요.
+동기화 2개(MemoSyncCore/Engine)는 iOS/Mac 각자의 `Memo`·`MemoStore` 타입에 바인딩돼 있어,
+데이터 모델을 먼저 통합해야 LeeoKit 이동이 가능합니다(별도 대형 작업). 그전까진 위 drift-guard 로 보호.
