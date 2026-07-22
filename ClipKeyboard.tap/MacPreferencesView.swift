@@ -14,11 +14,15 @@ struct MacPreferencesView: View {
     @AppStorage("macMenuBarIconStyle") private var iconStyle: String = "symbol"
     @AppStorage("macAutoPaste") private var autoPaste: Bool = false
     @State private var hasAccessibility: Bool = DirectPasteHelper.hasAccessibilityPermission()
+    @State private var orderedMemos: [Memo] = []
 
     var body: some View {
         TabView {
             generalTab
                 .tabItem { Label(NSLocalizedString("General", comment: "Prefs: general"), systemImage: AppSymbol.gear) }
+
+            reorderTab
+                .tabItem { Label(NSLocalizedString("Order", comment: "Prefs: reorder"), systemImage: "arrow.up.arrow.down") }
 
             shortcutsTab
                 .tabItem { Label(NSLocalizedString("Shortcuts", comment: "Prefs: shortcuts"), systemImage: AppSymbol.command) }
@@ -83,6 +87,106 @@ struct MacPreferencesView: View {
             }
         }
         .formStyle(.grouped)
+    }
+
+    // MARK: - Order (단축어 순서)
+
+    /// 단축어 순서 변경 탭 — 위/아래 버튼(드래그 실패해도 확실히 동작) + 드래그 둘 다 지원.
+    /// 지정한 순서는 MacMemoOrder 를 통해 App Group 에 저장돼 아이폰·키보드까지 동기화된다.
+    private var reorderTab: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(NSLocalizedString("Snippet order", comment: "Prefs: snippet order header"))
+                .font(.headline)
+            Text(NSLocalizedString("여기서 정한 순서는 아이폰·키보드까지 동기화됩니다.", comment: "Prefs: order sync hint"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            if orderedMemos.isEmpty {
+                Spacer()
+                Text(NSLocalizedString("단축어 없음", comment: "No memos"))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity)
+                Spacer()
+            } else {
+                List {
+                    ForEach(Array(orderedMemos.enumerated()), id: \.element.id) { index, memo in
+                        HStack(spacing: 8) {
+                            Text("\(index + 1)")
+                                .font(.caption.monospacedDigit())
+                                .foregroundStyle(.secondary)
+                                .frame(width: 26, alignment: .trailing)
+
+                            Image(systemName: memo.contentType == .image ? "photo" :
+                                    memo.isFavorite ? "star.fill" :
+                                    memo.isSecure ? "lock.fill" : "doc.text")
+                                .font(.caption)
+                                .foregroundStyle(memo.contentType == .image ? .purple :
+                                    memo.isFavorite ? .yellow : .blue)
+
+                            Text(memo.title)
+                                .font(.body)
+                                .lineLimit(1)
+
+                            Spacer()
+
+                            Button {
+                                move(memo, by: -1)
+                            } label: {
+                                Image(systemName: "chevron.up")
+                            }
+                            .buttonStyle(.borderless)
+                            .disabled(index == 0)
+                            .help(NSLocalizedString("Move up", comment: "Reorder: move up"))
+
+                            Button {
+                                move(memo, by: 1)
+                            } label: {
+                                Image(systemName: "chevron.down")
+                            }
+                            .buttonStyle(.borderless)
+                            .disabled(index == orderedMemos.count - 1)
+                            .help(NSLocalizedString("Move down", comment: "Reorder: move down"))
+                        }
+                        .padding(.vertical, 2)
+                    }
+                    .onMove(perform: moveViaDrag)
+                }
+                .listStyle(.inset)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .onAppear(perform: loadOrderedMemos)
+        .onReceive(NotificationCenter.default.publisher(for: .dataRestored)) { _ in
+            loadOrderedMemos()
+        }
+    }
+
+    private func loadOrderedMemos() {
+        let all = (try? MemoStore.shared.load(type: .memo)) ?? []
+        orderedMemos = MacMemoOrder.sorted(all)
+    }
+
+    /// 위/아래 버튼 이동 — delta -1(위) / +1(아래).
+    private func move(_ memo: Memo, by delta: Int) {
+        guard let idx = orderedMemos.firstIndex(where: { $0.id == memo.id }) else { return }
+        let target = idx + delta
+        guard target >= 0, target < orderedMemos.count else { return }
+        orderedMemos.swapAt(idx, target)
+        persistOrder()
+    }
+
+    /// 드래그 이동.
+    private func moveViaDrag(from source: IndexSet, to destination: Int) {
+        orderedMemos.move(fromOffsets: source, toOffset: destination)
+        persistOrder()
+    }
+
+    /// 현재 순서를 App Group 에 저장하고, 열려 있는 다른 화면(메인 창 등)도 갱신되도록 알린다.
+    private func persistOrder() {
+        MacMemoOrder.commit(reordered: orderedMemos, within: orderedMemos)
+        NotificationCenter.default.post(name: .dataRestored, object: nil)
     }
 
     private var shortcutsTab: some View {

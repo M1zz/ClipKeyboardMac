@@ -1,0 +1,48 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Order" : {
+      "comment" : "Prefs: reorder",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Order" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "순서" } }
+      }
+    },
+    "Snippet order" : {
+      "comment" : "Prefs: snippet order header",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Snippet order" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "단축어 순서" } }
+      }
+    },
+    "여기서 정한 순서는 아이폰·키보드까지 동기화됩니다." : {
+      "comment" : "Prefs: order sync hint",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The order you set here syncs to your iPhone and keyboard." } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "여기서 정한 순서는 아이폰·키보드까지 동기화됩니다." } }
+      }
+    },
+    "단축어 없음" : {
+      "comment" : "No memos",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No snippets" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "단축어 없음" } }
+      }
+    },
+    "Move up" : {
+      "comment" : "Reorder: move up",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move up" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "위로" } }
+      }
+    },
+    "Move down" : {
+      "comment" : "Reorder: move down",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move down" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "아래로" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}
