@@ -309,6 +309,9 @@ struct CompactMemoItemRow: View {
     @State private var isHovering = false
 
     var body: some View {
+        // Button(.plain)으로 감싸야 macOS List의 드래그 순서변경(.onMove)과 클릭-복사가
+        // 공존한다. .onTapGesture 는 List의 reorder 드래그 제스처를 가로채 드래그가 안 먹는다.
+        Button(action: onCopy) {
         HStack(spacing: 6) {
             // 아이콘
             Image(systemName: memo.contentType == .image ? "photo" :
@@ -381,11 +384,11 @@ struct CompactMemoItemRow: View {
         .padding(.horizontal, 6)
         .background(isHovering ? Color.blue.opacity(0.1) : Color.clear)
         .cornerRadius(MacRadius.xs)
+        .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
         .onHover { hovering in
             isHovering = hovering
-        }
-        .onTapGesture {
-            onCopy()
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)
