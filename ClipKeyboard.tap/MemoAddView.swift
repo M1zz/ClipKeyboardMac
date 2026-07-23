@@ -129,9 +129,12 @@ struct MemoAddView: View {
                             Button {
                                 pasteImageFromClipboard()
                             } label: {
+                                // 아이콘만 표시 — 접근성/툴팁은 라벨 텍스트 유지.
                                 Label(NSLocalizedString("클립보드에서 붙여넣기", comment: "Paste from clipboard"), systemImage: AppSymbol.docOnClipboard)
+                                    .labelStyle(.iconOnly)
                             }
                             .buttonStyle(.bordered)
+                            .help(NSLocalizedString("클립보드에서 붙여넣기", comment: "Paste from clipboard"))
                         }
 
                         // 첨부된 이미지들
