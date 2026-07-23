@@ -15,6 +15,8 @@ struct MemoListView: View {
     @State private var isViewActive: Bool = true
     /// 커스텀 플레이스홀더 값 채우기 시트 대상 메모.
     @State private var fillMemo: Memo?
+    /// 여러 값(콤보) 중 하나를 골라 복사하는 시트 대상 메모.
+    @State private var comboPickMemo: Memo?
 
     var categories: [String] {
         var cats = Set(memos.map { $0.category })
@@ -83,6 +85,11 @@ struct MemoListView: View {
                         DirectPasteHelper.pasteToFrontmostApp()
                     }
                 }
+            }
+        }
+        .sheet(item: $comboPickMemo) { memo in
+            MacComboValuePicker(memo: memo) { value in
+                copyToClipboard(value)
             }
         }
         .onAppear {
@@ -234,6 +241,9 @@ struct MemoListView: View {
             MacSecureAccess.resolveForPaste(memo) { resolved in
                 if let resolved { copyToClipboard(resolved) }
             }
+        } else if memo.isCombo && !memo.comboValues.isEmpty {
+            // 여러 값(콤보) — 값 하나를 골라 복사하는 시트.
+            comboPickMemo = memo
         } else if memo.hasCustomPlaceholders {
             fillMemo = memo
         } else {
@@ -301,6 +311,67 @@ struct MemoListView: View {
 }
 
 // MARK: - Compact Memo Item Row
+
+// MARK: - Combo Value Picker (여러 값 중 하나 골라 복사)
+
+/// 콤보(여러 값) 메모 탭 시 뜨는 값 선택 시트 — 값 하나를 눌러 복사한다.
+private struct MacComboValuePicker: View {
+    let memo: Memo
+    let onPick: (String) -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    private var values: [String] {
+        memo.comboValues.isEmpty ? [memo.value] : memo.comboValues
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 8) {
+                Image(systemName: "square.stack.3d.up.fill")
+                    .foregroundStyle(.secondary)
+                Text(memo.title)
+                    .font(.headline)
+                    .lineLimit(1)
+                Spacer()
+            }
+            Text(NSLocalizedString("값을 눌러 복사하세요", comment: "Combo preview: tap a value to copy"))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            ScrollView {
+                VStack(spacing: 8) {
+                    ForEach(Array(values.enumerated()), id: \.offset) { idx, value in
+                        Button {
+                            onPick(value)
+                            dismiss()
+                        } label: {
+                            HStack(spacing: 10) {
+                                Text("\(idx + 1)")
+                                    .font(.caption.weight(.bold))
+                                    .foregroundStyle(.white)
+                                    .frame(width: 22, height: 22)
+                                    .background(Circle().fill(Color.accentColor))
+                                Text(value.isEmpty ? "—" : value)
+                                    .lineLimit(2)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Image(systemName: "doc.on.doc")
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(8)
+                            .background(Color.gray.opacity(0.08))
+                            .cornerRadius(MacRadius.sm)
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(value.isEmpty)
+                    }
+                }
+            }
+        }
+        .padding(16)
+        .frame(width: 360, height: 380)
+    }
+}
 
 struct CompactMemoItemRow: View {
     let memo: Memo
