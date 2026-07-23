@@ -3,7 +3,7 @@
 // fastlane bump 레인이 CURRENT_PROJECT_VERSION 을 +1 합니다.
 
 // 마케팅 버전 (App Store에 표시되는 버전)
-MARKETING_VERSION = 4.4.0
+MARKETING_VERSION = 4.4.1
 
 // 빌드 번호 (내부 버전)
 CURRENT_PROJECT_VERSION = 11
