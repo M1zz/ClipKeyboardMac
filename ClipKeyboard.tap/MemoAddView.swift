@@ -26,7 +26,7 @@ struct MemoAddView: View {
                 HStack {
                     Image(systemName: AppSymbol.squareAndPencil)
                         .font(.system(size: 32))
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.secondary)
 
                     Text(NSLocalizedString("새 단축어", comment: "Add memo title"))
                         .font(.title2)
@@ -74,7 +74,7 @@ struct MemoAddView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
                             Image(systemName: AppSymbol.textAlignleft)
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(.secondary)
                             Text(NSLocalizedString("내용", comment: "Content section header"))
                                 .font(.headline)
                         }
@@ -85,6 +85,17 @@ struct MemoAddView: View {
                             .padding(8)
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(MacRadius.sm)
+                            .overlay(alignment: .topLeading) {
+                                // 빈 상태 힌트 — 단축어에 보일 내용을 입력하라는 안내.
+                                if textContent.isEmpty {
+                                    Text(NSLocalizedString("단축어에 보일 내용을 입력하세요", comment: "Content placeholder"))
+                                        .font(.body)
+                                        .foregroundStyle(.secondary)
+                                        .padding(.horizontal, 13)
+                                        .padding(.vertical, 16)
+                                        .allowsHitTesting(false)
+                                }
+                            }
 
                         // 자동 변수 삽입 + 커스텀 플레이스홀더 안내
                         templateVariableBar
@@ -104,7 +115,7 @@ struct MemoAddView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
                             Image(systemName: AppSymbol.photo)
-                                .foregroundStyle(.purple)
+                                .foregroundStyle(.secondary)
                             Text(NSLocalizedString("이미지 첨부", comment: "Image attachment section header"))
                                 .font(.headline)
 
@@ -123,8 +134,10 @@ struct MemoAddView: View {
                                 selectImageFromFile()
                             } label: {
                                 Label(NSLocalizedString("파일에서 선택", comment: "Pick from file"), systemImage: AppSymbol.folder)
+                                    .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(.bordered)
+                            .controlSize(.large)
 
                             Button {
                                 pasteImageFromClipboard()
@@ -132,8 +145,10 @@ struct MemoAddView: View {
                                 // 아이콘만 표시 — 접근성/툴팁은 라벨 텍스트 유지.
                                 Label(NSLocalizedString("클립보드에서 붙여넣기", comment: "Paste from clipboard"), systemImage: AppSymbol.docOnClipboard)
                                     .labelStyle(.iconOnly)
+                                    .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(.bordered)
+                            .controlSize(.large)
                             .help(NSLocalizedString("클립보드에서 붙여넣기", comment: "Paste from clipboard"))
                         }
 
