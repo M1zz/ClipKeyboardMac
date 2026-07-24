@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LeeoKit
 
 @main
 struct ClipKeyboard_macApp: App {
@@ -75,6 +76,9 @@ struct ClipKeyboard_macApp: App {
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("🚀 [APP] ClipKeyboard 시작")
+
+        // LeeoKit 사용량 트래커 — 리뷰 요청 게이팅에 쓰인다.
+        _ = LeeoEngagement.shared.registerLaunch()
 
         // 기본 창 숨기기 (메뉴바 앱으로 동작)
         NSApp.setActivationPolicy(.accessory)

@@ -30,11 +30,13 @@
 		946889E62AA6E639157A30A8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E417E7EB435189A393C2C0 /* OnboardingView.swift */; };
 		94EDDBBF5EBB94610CE902E3 /* ClipboardMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74D5379D27F6F7AB84A227 /* ClipboardMonitorService.swift */; };
 		978F52CCFC2F9B07F26B3629 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3358EE221E408AB025F1BF04 /* Cocoa.framework */; };
+		AAD91F0825BBE26588073ABE /* ClipKeyboardTapSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */; };
 		BD2A0EE0816091EC84002DB3 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7F8F61DA1F45856006E0D6 /* WindowManager.swift */; };
 		C572F383D90B7F7D7BF3ED50 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EF282126415A431418587379 /* Localizable.xcstrings */; };
 		C6DC7281371022A682A44A7E /* CloudKitBackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1693B0D87C921C0A31612F63 /* CloudKitBackupService.swift */; };
 		C8F43A667B85EDD352FA00E2 /* MacAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B582B78619B4D53228F182 /* MacAccessibility.swift */; };
 		D8206FB63739AFB31882706A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F30E7D05060B1C42D48E /* ContentView.swift */; };
+		DF2935B8B734E7B7134A62C4 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = C13ECA2339D9B7376D4D6960 /* LeeoKit */; };
 		DF31A3D6B52A5BE814942C51 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87D1CE6CB6C35EE73A1D01D6 /* InfoPlist.strings */; };
 		E38A0D1010E36B6B8F378C7F /* ClipKeyboard_macApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D314A4F6B4E1F7BA131DE8C0 /* ClipKeyboard_macApp.swift */; };
 		E7851F0E9174773B47F44BEC /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56921D9870F1EAFC9E15E557 /* Models.swift */; };
@@ -64,6 +66,7 @@
 		70498394D673D364C09E4E57 /* MacPreferencesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPreferencesView.swift; sourceTree = "<group>"; };
 		7271F30E7D05060B1C42D48E /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8C81B85D608D7A57A5D8739F /* MemoSyncEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoSyncEngine.swift; sourceTree = "<group>"; };
+		9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClipKeyboardTapSpec.swift; sourceTree = "<group>"; };
 		A1C26372726AFC85F4249E6A /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
 		ABBBEDB8FF82221F95A69EBF /* AppNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
 		BB64F64A0C9C27556BDCA2EA /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				978F52CCFC2F9B07F26B3629 /* Cocoa.framework in Frameworks */,
+				DF2935B8B734E7B7134A62C4 /* LeeoKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +182,7 @@
 				87D1CE6CB6C35EE73A1D01D6 /* InfoPlist.strings */,
 				28BD1F084A2AED7850F8CDF5 /* ClipKeyboard.tap.entitlements */,
 				EF282126415A431418587379 /* Localizable.xcstrings */,
+				9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */,
 			);
 			path = ClipKeyboard.tap;
 			sourceTree = "<group>";
@@ -198,6 +203,9 @@
 			dependencies = (
 			);
 			name = ClipKeyboard.tap;
+			packageProductDependencies = (
+				C13ECA2339D9B7376D4D6960 /* LeeoKit */,
+			);
 			productName = ClipKeyboard.tap;
 			productReference = C4F285814F5EB1E2AF40C00A /* ClipKeyboard.tap.app */;
 			productType = "com.apple.product-type.application";
@@ -227,6 +235,9 @@
 				ko,
 			);
 			mainGroup = B22CD1D09E8092BFABB6702E;
+			packageReferences = (
+				6FD43DE5CADB64A7A2FE6684 /* XCLocalSwiftPackageReference "LeeoKit" */,
+			);
 			productRefGroup = 08B42A58BC6F78EDCC3BCABB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -285,6 +296,7 @@
 				507DA8E449F93E5487B4175B /* MemoSyncCore.swift in Sources */,
 				F8E9771F8BD145C6D3131B37 /* MemoSyncEngine.swift in Sources */,
 				17DC93EED0FD5E5F5FEE0B22 /* StorageFile.swift in Sources */,
+				AAD91F0825BBE26588073ABE /* ClipKeyboardTapSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +534,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		6FD43DE5CADB64A7A2FE6684 /* XCLocalSwiftPackageReference "LeeoKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LeeoKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C13ECA2339D9B7376D4D6960 /* LeeoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FD43DE5CADB64A7A2FE6684 /* XCLocalSwiftPackageReference "LeeoKit" */;
+			productName = LeeoKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6D69BE48811B6A0647189C4A /* Project object */;
 }

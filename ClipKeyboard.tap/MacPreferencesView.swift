@@ -7,6 +7,7 @@
 
 import ServiceManagement
 import SwiftUI
+import LeeoKit
 
 struct MacPreferencesView: View {
     @AppStorage("macLaunchAtLogin") private var launchAtLogin: Bool = false
@@ -84,6 +85,13 @@ struct MacPreferencesView: View {
                 Text(NSLocalizedString("When on, pressing Enter in the menu bar popover copies AND pastes to the frontmost app. Otherwise, Enter only copies (use ⌥Enter to paste).", comment: "Prefs: paste behavior note"))
                     .font(.caption)
                     .foregroundColor(.secondary)
+            }
+
+            Section {
+                LeeoSupportSection<ClipKeyboardTapSpec>()
+            } header: {
+                Text(NSLocalizedString("Feedback & Review", comment: "Prefs section: feedback"))
+                    .font(.headline)
             }
         }
         .formStyle(.grouped)
