@@ -31,6 +31,7 @@
 		94EDDBBF5EBB94610CE902E3 /* ClipboardMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74D5379D27F6F7AB84A227 /* ClipboardMonitorService.swift */; };
 		978F52CCFC2F9B07F26B3629 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3358EE221E408AB025F1BF04 /* Cocoa.framework */; };
 		AAD91F0825BBE26588073ABE /* ClipKeyboardTapSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */; };
+		AD0A1F1AC7E33C7CCF57C7EA /* SampleMemoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB37FAC03ED87F334754B /* SampleMemoStorage.swift */; };
 		BD2A0EE0816091EC84002DB3 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7F8F61DA1F45856006E0D6 /* WindowManager.swift */; };
 		C572F383D90B7F7D7BF3ED50 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EF282126415A431418587379 /* Localizable.xcstrings */; };
 		C6DC7281371022A682A44A7E /* CloudKitBackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1693B0D87C921C0A31612F63 /* CloudKitBackupService.swift */; };
@@ -86,6 +87,7 @@
 		E713F8E698A6C5C5008D21C9 /* DirectPasteHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DirectPasteHelper.swift; sourceTree = "<group>"; };
 		EF282126415A431418587379 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		F0D4886ABBFEB6EA3CE6D4E5 /* MenuBarPopoverView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuBarPopoverView.swift; sourceTree = "<group>"; };
+		F82FB37FAC03ED87F334754B /* SampleMemoStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SampleMemoStorage.swift; sourceTree = "<group>"; };
 		FA460ABA273DDE92E8E0C9B8 /* DefaultsKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultsKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 				4D8BE9C3A32B044F895D2F73 /* MemoSyncCore.swift */,
 				8C81B85D608D7A57A5D8739F /* MemoSyncEngine.swift */,
 				5824F38E3712AFC7E28C423C /* StorageFile.swift */,
+				F82FB37FAC03ED87F334754B /* SampleMemoStorage.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -236,7 +239,7 @@
 			);
 			mainGroup = B22CD1D09E8092BFABB6702E;
 			packageReferences = (
-				6FD43DE5CADB64A7A2FE6684 /* XCLocalSwiftPackageReference "LeeoKit" */,
+				EDFD8E691BE78BA6C638A86C /* XCRemoteSwiftPackageReference "LeeoKit" */,
 			);
 			productRefGroup = 08B42A58BC6F78EDCC3BCABB /* Products */;
 			projectDirPath = "";
@@ -297,6 +300,7 @@
 				F8E9771F8BD145C6D3131B37 /* MemoSyncEngine.swift in Sources */,
 				17DC93EED0FD5E5F5FEE0B22 /* StorageFile.swift in Sources */,
 				AAD91F0825BBE26588073ABE /* ClipKeyboardTapSpec.swift in Sources */,
+				AD0A1F1AC7E33C7CCF57C7EA /* SampleMemoStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,17 +539,21 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		6FD43DE5CADB64A7A2FE6684 /* XCLocalSwiftPackageReference "LeeoKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../LeeoKit;
+/* Begin XCRemoteSwiftPackageReference section */
+		EDFD8E691BE78BA6C638A86C /* XCRemoteSwiftPackageReference "LeeoKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/M1zz/LeeoKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		C13ECA2339D9B7376D4D6960 /* LeeoKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6FD43DE5CADB64A7A2FE6684 /* XCLocalSwiftPackageReference "LeeoKit" */;
+			package = EDFD8E691BE78BA6C638A86C /* XCRemoteSwiftPackageReference "LeeoKit" */;
 			productName = LeeoKit;
 		};
 /* End XCSwiftPackageProductDependency section */

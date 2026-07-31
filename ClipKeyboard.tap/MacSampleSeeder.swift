@@ -29,6 +29,10 @@ enum MacSampleSeeder {
         let samples = makeSamples(isKorean: isKorean)
         do {
             try MemoStore.shared.save(memos: samples, type: .memo)
+            // 어떤 메모가 시드인지 기억해 둔다 — 동기화에서 제외하기 위해서.
+            // 샘플은 기기 언어를 따라 새 UUID 로 심기므로, 표식이 없으면 아이폰의 샘플과
+            // 서로 다른 사용자 메모로 취급돼 양쪽에 섞인다.
+            SampleMemoStorage.save(ids: samples.map { $0.id })
             UserDefaults.standard.set(true, forKey: seededKey)
             NotificationCenter.default.post(name: .dataRestored, object: nil)
             print("✅ [MacSampleSeeder] 더미 메모 \(samples.count)개 시드 완료")

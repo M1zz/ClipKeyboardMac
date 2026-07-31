@@ -107,9 +107,25 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         enqueueLocalChanges()
     }
 
+    /// 동기화 대상 메모 — **시드 샘플은 제외한다.**
+    ///
+    /// ⚠️ 샘플은 기기 언어에 맞춰(`MacSampleSeeder`의 isKorean) **새 UUID로** 심긴다.
+    ///    그대로 올리면 동기화가 아이폰의 샘플과 서로 다른 메모로 보고 양쪽에 퍼뜨려서,
+    ///    맥·아이폰을 함께 쓰면 "모르는 단축어가 섞여" 보인다.
+    ///    샘플은 첫 실행 장식이지 사용자 데이터가 아니다.
+    ///
+    /// ⚠️ **병합(applyFetched)의 기준 목록에는 쓰지 말 것.** 거기서 샘플을 빼면
+    ///    병합 결과를 저장할 때 로컬 샘플이 통째로 지워진다. 업로드 산출에만 쓴다.
+    private func syncableMemos() -> [Memo] {
+        let all = (try? MemoStore.shared.load(type: .memo)) ?? []
+        let sampleIDs = SampleMemoStorage.load()
+        guard !sampleIDs.isEmpty else { return all }
+        return all.filter { !sampleIDs.contains($0.id) }
+    }
+
     private func enqueueLocalChanges() {
         guard let engine else { return }
-        let current = (try? MemoStore.shared.load(type: .memo)) ?? []
+        let current = syncableMemos()
         let changes = MemoSyncCore.localChanges(
             current: current, shadow: loadShadow(),
             knownTombstones: loadTombstones(), now: Date())
@@ -153,7 +169,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                                    syncEngine: CKSyncEngine) async -> CKSyncEngine.RecordZoneChangeBatch? {
         let scope = context.options.scope
         let pending = syncEngine.state.pendingRecordZoneChanges.filter { scope.contains($0) }
-        let current = (try? MemoStore.shared.load(type: .memo)) ?? []
+        let current = syncableMemos()
         let byId = Dictionary(uniqueKeysWithValues: current.map { ($0.id, $0) })
         let tombstones = loadTombstones()
 
