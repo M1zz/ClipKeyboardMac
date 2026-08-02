@@ -99,6 +99,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 클립보드 모니터링 시작
         ClipboardMonitorService.shared.startMonitoring()
 
+        // 원격 킬스위치 갱신 — 플래그 캐시는 **기기별**(App Group)이라 맥도 직접 받아와야 한다.
+        // 안 부르면 맥은 영원히 기본값(전부 켬)이라, 아이폰만 꺼지고 맥은 계속 올린다.
+        // 실패해도 조용히 넘어가고 캐시로 계속 동작한다(가용성 우선).
+        Task { @MainActor in RemoteFlagsService.shared.refreshInBackground() }
+
         // iCloud 자동 복원: 로컬이 비어있으면 아이폰 백업을 시작 시 가져온다.
         // (덮어쓸 로컬 데이터가 없을 때만 동작 — 사용자 데이터 보호)
         // 복원이 끝난 뒤에도 여전히 비어있으면(맥 단독 신규 유저) 더미를 시드한다.

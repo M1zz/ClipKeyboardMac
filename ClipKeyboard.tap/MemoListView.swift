@@ -18,10 +18,22 @@ struct MemoListView: View {
     /// 여러 값(콤보) 중 하나를 골라 복사하는 시트 대상 메모.
     @State private var comboPickMemo: Memo?
 
+    /// 아이폰에서 넘어온 카테고리 설정(순서·아이콘·숨김).
+    /// `MemoSyncEngine` 이 `CategorySettings` 레코드를 받아 App Group 에 적용하고,
+    /// 여기서 다시 읽어 탭에 반영한다 — 그래야 "아이폰과 같은 탭 구성"이 된다.
+    @State private var categorySettings: CategorySnapshot = CategorySnapshotStore.current()
+
     var categories: [String] {
-        var cats = Set(memos.map { $0.category })
-        cats.insert("전체")
-        return Array(cats).sorted()
+        let present = Set(memos.map { $0.category }).subtracting([""])
+        // 지금 보고 있는 탭은 숨김이어도 남긴다 — 선택이 사라지면 Picker 가 빈칸이 된다.
+        let hidden = Set(categorySettings.hiddenTabs).subtracting([selectedCategory])
+
+        // 1) 아이폰이 정해 준 탭 순서를 그대로 따른다 (실제 메모가 있는 것만).
+        var ordered = categorySettings.categories.filter { present.contains($0) && !hidden.contains($0) }
+        // 2) 설정에 없는 카테고리(맥에서 새로 만든 것 등)는 뒤에 이름순으로 붙인다.
+        ordered += present.subtracting(ordered).subtracting(hidden).sorted()
+
+        return ["전체"] + ordered
     }
 
     private var isFreeUser: Bool { !MacProManager.isPro }
@@ -148,12 +160,22 @@ struct MemoListView: View {
     }
 
     /// Picker 항목 라벨 — 중첩 삼항/옵셔널 체인을 헬퍼로 분리해 타입체커 부담을 낮춘다.
-    private func categoryLabel(_ category: String) -> Text {
-        if category == "전체" {
-            return Text(NSLocalizedString("전체", comment: "All categories"))
+    /// 아이콘은 아이폰에서 지정한 것을 그대로 쓴다(없으면 텍스트만).
+    @ViewBuilder
+    private func categoryLabel(_ category: String) -> some View {
+        let text = categoryTitle(category)
+        if let symbol = categorySettings.icons[category] {
+            Label(text, systemImage: symbol)
+        } else {
+            Text(text)
         }
-        let localized = ClipboardItemType(rawValue: category)?.localizedName ?? category
-        return Text(localized)
+    }
+
+    private func categoryTitle(_ category: String) -> String {
+        if category == "전체" {
+            return NSLocalizedString("전체", comment: "All categories")
+        }
+        return ClipboardItemType(rawValue: category)?.localizedName ?? category
     }
 
     /// 컴팩트 검색 바
@@ -281,6 +303,9 @@ struct MemoListView: View {
 
     private func loadMemos() {
         print("📂 [MemoListView] loadMemos - 메모 로드 시작")
+        // 메모와 카테고리 설정은 같은 동기화(.dataRestored)로 함께 갱신된다 —
+        // 따로 읽으면 새 탭의 메모는 왔는데 탭 순서·아이콘은 옛것인 상태가 생긴다.
+        categorySettings = CategorySnapshotStore.current()
         do {
             memos = try MemoStore.shared.load(type: .memo)
             print("✅ [MemoListView] loadMemos - \(memos.count)개 메모 로드 완료")

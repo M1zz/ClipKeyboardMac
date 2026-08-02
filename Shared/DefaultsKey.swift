@@ -26,6 +26,8 @@ enum DefaultsKey {
     static let hiddenCategoryTabsV1 = "hiddenCategoryTabs_v1"
     static let kbBeaconLastUse = "kb.beacon.lastUse"
     static let kbBeaconPendingCount = "kb.beacon.pendingCount"
+    /// 키보드 비콘 누적 사용 횟수 (App Group) — flush 때마다 pendingCount를 더한다. 사용 통계 지표용.
+    static let kbBeaconTotalCount = "kb.beacon.totalCount"
     static let keyboardExtensionDidLoad = "keyboard_extension_did_load"
     static let keyboardKoreanEnabled = "keyboardKoreanEnabled"
     static let keyboardPasteCount = "keyboard_paste_count"
@@ -78,6 +80,10 @@ enum DefaultsKey {
     /// 마스터(개발자) 모드 — 설정 > 앱 정보의 버전 행 7번 탭으로 토글 (standard UD)
     static let masterModeEnabled = "masterModeEnabled"
 
+    // MARK: - 익명 사용 통계 (FeedbackHub 전송, 항상 켜짐)
+    /// 이벤트 이름별 마지막 전송 시각 키 접두사 — `usage.event.lastSent.<이름>` (standard UD)
+    static let usageEventLastSentPrefix = "usage.event.lastSent."
+
     // MARK: - 피드백 넛지
     /// 피드백 넛지 "다시 보지 않기" — 구버전 영구 옵트아웃 Bool(마이그레이션용으로만 읽음, standard UD)
     static let feedbackNudgeOptOut = "feedbackNudgeOptOut"
@@ -99,6 +105,20 @@ enum DefaultsKey {
     static let syncEngineState = "sync.engine.state"
     static let syncShadow = "sync.shadow"
     static let syncTombstones = "sync.tombstones"
+    /// 마지막으로 원격 변경을 이 기기에 적용한 시각과 건수 (App Group) — 동기화 상태 화면 표시용
+    static let syncLastPullAt = "sync.lastPullAt"
+    static let syncLastPullCount = "sync.lastPullCount"
+    /// 마지막으로 이 기기 변경을 올린 시각과 건수 (App Group)
+    static let syncLastPushAt = "sync.lastPushAt"
+    static let syncLastPushCount = "sync.lastPushCount"
+    /// 마지막으로 원격 확인(fetch)을 마친 시각 — 받을 게 없어도 갱신된다 (App Group)
+    static let syncLastCheckAt = "sync.lastCheckAt"
+    /// 마지막 동기화 오류 메시지와 시각 (App Group)
+    static let syncLastError = "sync.lastError"
+    static let syncLastErrorAt = "sync.lastErrorAt"
+    /// 동기화 사용 권한 — iOS가 `ProFeatureManager.hasFullAccess`(결제·그랜드파더·체험 전부)를
+    /// 이 키에 미러링한다. 공유 엔진은 iOS 전용 타입에 의존할 수 없어 이 키로 판단한다.
+    static let syncEntitled = "clipkeyboard_sync_entitled"
 
     // MARK: - 리스트 배경 이미지
     /// 선택된 배경 이미지 에셋 이름 (빈 문자열 = 배경 없음, App Group) — 모든 탭 기본값

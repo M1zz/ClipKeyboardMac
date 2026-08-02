@@ -24,3 +24,17 @@ for pair in "${SHARED_MAP[@]}"; do
 done
 
 [ "$changed" -eq 0 ] && echo "✅ 이미 모두 일치 — 변경 없음" || echo "✅ 동기화 완료 — 변경사항을 커밋하세요"
+
+# 블록 단위 공유분은 자동 복사 대상이 아니다 — iOS 원본이 큰 파일 안에 있어
+# 통째로 덮어쓰면 Mac 파일이 망가진다. 어긋났을 때만 알려 주고 손으로 맞추게 한다.
+for triple in "${EMBEDDED_MAP[@]}"; do
+  mac_rel="${triple%%|*}"
+  rest="${triple#*|}"
+  ios_rel="${rest%%|*}"
+  pattern="${rest#*|}"
+
+  if [ "$(extract_block "$IOS_REPO/$ios_rel" "$pattern")" \
+     != "$(extract_block "$MAC_REPO/$mac_rel" "$pattern")" ]; then
+    echo "⚠️  수동 조정 필요: $mac_rel 의 '$pattern' 이 iOS $ios_rel 와 다릅니다(자동 복사 불가)."
+  fi
+done

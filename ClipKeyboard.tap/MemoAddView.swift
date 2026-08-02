@@ -345,9 +345,13 @@ struct MemoAddView: View {
                 contentType = .text
             }
 
-            // 템플릿 감지: 본문에 {토큰}이 있으면 템플릿으로 저장
+            // 템플릿 감지: 본문에 {토큰}이 있으면 템플릿으로 저장.
+            // ⚠️ 기준은 `contains("{")` 가 아니라 **추출된 토큰이 있는지**다.
+            //    iOS 는 `isTemplate` 을 `!templateVariables.isEmpty` 로 계산하므로,
+            //    `{` 만 있고 유효 토큰이 없는 본문을 맥만 템플릿으로 보면 같은 메모가
+            //    기기마다 다르게 동작한다(맥은 채우기 시트, 아이폰은 그냥 붙여넣기).
             let customTokens = textContent.extractTemplatePlaceholders()
-            let isTemplate = textContent.contains("{")
+            let isTemplate = !customTokens.isEmpty
 
             let newMemo = Memo(
                 title: title,

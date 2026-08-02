@@ -208,7 +208,14 @@ struct Memo: Identifiable, Codable {
     /// ⚠️ CodingKeys에서 빠지면 맥에서 저장할 때 iOS가 쓴 힌트가 영구 소실된다.
     var hint: String?
 
-    init(id: UUID = UUID(), title: String, value: String, isChecked: Bool = false, lastEdited: Date = Date(), isFavorite: Bool = false, category: String = "기본", isSecure: Bool = false, isTemplate: Bool = false, templateVariables: [String] = [], shortcut: String? = nil, placeholderValues: [String: [String]] = [:], imageFileName: String? = nil, imageFileNames: [String] = [], contentType: ClipboardContentType = .text, hint: String? = nil) {
+    /// 힌트를 아이폰 키보드에 띄울지 (iOS 전용 UI 설정 — 맥에는 대응 화면이 없다).
+    /// ⚠️ 맥이 쓰지 않는다고 빼면 안 된다. `payload` 는 로컬 `Memo` 의 JSON 통짜라,
+    ///    맥이 이 메모를 한 번 수정해 올리는 순간 필드가 사라져 아이폰에서 기본값(true)으로
+    ///    되살아난다 → 사용자가 꺼 둔 "키보드에 힌트 표시"가 저절로 켜진다.
+    ///    맥은 값을 읽지도 쓰지도 않고 **그대로 실어 나르기만** 한다.
+    var hintShownOnKeyboard: Bool = true
+
+    init(id: UUID = UUID(), title: String, value: String, isChecked: Bool = false, lastEdited: Date = Date(), isFavorite: Bool = false, category: String = "기본", isSecure: Bool = false, isTemplate: Bool = false, templateVariables: [String] = [], shortcut: String? = nil, placeholderValues: [String: [String]] = [:], imageFileName: String? = nil, imageFileNames: [String] = [], contentType: ClipboardContentType = .text, hint: String? = nil, hintShownOnKeyboard: Bool = true) {
         self.id = id
         self.title = title
         self.value = value
@@ -225,6 +232,7 @@ struct Memo: Identifiable, Codable {
         self.imageFileNames = imageFileNames
         self.contentType = contentType
         self.hint = hint
+        self.hintShownOnKeyboard = hintShownOnKeyboard
     }
 
     /// 구버전(1.x) 포맷 마이그레이션 — iOS의 Memo(from: OldMemo)와 동일.
@@ -244,7 +252,7 @@ struct Memo: Identifiable, Codable {
         case lastUsedAt, isCombo, comboValues, currentComboIndex, autoDetectedType
         case childMemoIds, comboInterval
         case imageFileName, imageFileNames, contentType
-        case hint
+        case hint, hintShownOnKeyboard
     }
 
     /// 관용 디코더 — 누락 키를 모두 기본값으로 허용한다. ⚠️ 하위호환 필수:
@@ -276,6 +284,7 @@ struct Memo: Identifiable, Codable {
         self.imageFileNames = try c.decodeIfPresent([String].self, forKey: .imageFileNames) ?? []
         self.contentType = try c.decodeIfPresent(ClipboardContentType.self, forKey: .contentType) ?? .text
         self.hint = try c.decodeIfPresent(String.self, forKey: .hint)
+        self.hintShownOnKeyboard = try c.decodeIfPresent(Bool.self, forKey: .hintShownOnKeyboard) ?? true
     }
 }
 
@@ -655,12 +664,32 @@ class MemoStore: ObservableObject {
 struct MacProManager {
     static let proStatusKey = DefaultsKey.proStatus
 
+    /// 전체 접근 권한을 인정하는 키들 — **결제 하나만 보면 안 된다.**
+    ///
+    /// ⚠️ 이 앱은 결제 외 경로로도 권한을 준다: v4.0 이전 유료 구매자(`wasProAtV3`),
+    ///    v3.x 기존 사용자(`existingFreeUser`), TestFlight/체험(`syncEntitled` 로 미러링).
+    ///    `proStatus` 만 보던 탓에 **아이폰에선 Pro인 사용자가 맥에선 무료로 취급**돼
+    ///    메모가 10개까지만 보였다. iOS `ProFeatureManager.hasFullAccess` 와 같은 집합이고,
+    ///    `MemoSyncEngine.isProUser` 도 동일한 키 목록을 쓴다 — **셋을 항상 같이 고칠 것.**
+    ///
+    /// 기기 간 전달은 iCloud KV 가 담당한다(App Group 은 기기 안에서만 공유된다).
+    static let fullAccessKeys = [
+        DefaultsKey.proStatus,
+        DefaultsKey.wasProAtV3,
+        DefaultsKey.existingFreeUser,
+        DefaultsKey.syncEntitled,
+    ]
+
     static let freeMemoLimit = 10
     static let freeClipboardLimit = 50
 
     static var isPro: Bool {
-        if NSUbiquitousKeyValueStore.default.bool(forKey: proStatusKey) { return true }
-        return UserDefaults(suiteName: AppGroup.identifier)?.bool(forKey: proStatusKey) ?? false
+        let group = UserDefaults(suiteName: AppGroup.identifier)
+        for key in fullAccessKeys {
+            if NSUbiquitousKeyValueStore.default.bool(forKey: key) { return true }
+            if group?.bool(forKey: key) == true { return true }
+        }
+        return false
     }
 
     static var isCloudBackupAvailable: Bool {

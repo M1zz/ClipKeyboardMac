@@ -32,6 +32,7 @@ enum AppSymbol {
     static let checkmarkCircleFill = "checkmark.circle.fill"
     static let checkmarkSealFill = "checkmark.seal.fill"
     static let checkmarkShieldFill = "checkmark.shield.fill"
+    static let chartBarXaxis = "chart.bar.xaxis"
     static let chevronDown = "chevron.down"
     static let chevronForward = "chevron.forward"
     static let chevronRight = "chevron.right"
