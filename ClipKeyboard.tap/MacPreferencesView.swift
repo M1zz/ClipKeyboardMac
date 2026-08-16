@@ -15,6 +15,8 @@ struct MacPreferencesView: View {
     @AppStorage("macMenuBarIconStyle") private var iconStyle: String = "symbol"
     @AppStorage("macAutoPaste") private var autoPaste: Bool = false
     @State private var hasAccessibility: Bool = DirectPasteHelper.hasAccessibilityPermission()
+    /// 카테고리 탭을 아이폰 구성으로 따를지 — 배너로 물어본 뒤에도 여기서 언제든 바꿀 수 있다.
+    @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
     @State private var orderedMemos: [Memo] = []
 
     var body: some View {
@@ -82,6 +84,19 @@ struct MacPreferencesView: View {
                     .font(MacFont.sectionTitle)
             } footer: {
                 Text(NSLocalizedString("When on, pressing Enter in the menu bar popover copies AND pastes to the frontmost app. Otherwise, Enter only copies (use ⌥Enter to paste).", comment: "Prefs: paste behavior note"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+            }
+
+            Section {
+                Toggle(NSLocalizedString("아이폰에서 설정한 카테고리 따르기", comment: "Prefs: follow phone category tabs"),
+                       isOn: Binding(get: { tabPreference.followsPhone },
+                                     set: { tabPreference.setFollowsPhone($0) }))
+            } header: {
+                Text(NSLocalizedString("Categories", comment: "Prefs section: categories"))
+                    .font(MacFont.sectionTitle)
+            } footer: {
+                Text(NSLocalizedString("켜면 기본·즐겨찾기 같은 탭까지 아이폰과 똑같이 보입니다. 끄면 단축어가 들어 있는 카테고리만 '전체' 탭과 함께 보입니다.", comment: "Prefs: category parity note"))
                     .font(MacFont.secondary)
                     .foregroundStyle(.secondary)
             }

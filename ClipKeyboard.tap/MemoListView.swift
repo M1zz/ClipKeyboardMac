@@ -11,8 +11,10 @@ import AppKit
 struct MemoListView: View {
     @State private var memos: [Memo] = []
     @State private var searchText: String = ""
-    /// 선택된 카테고리 탭 — 아이폰과 같은 구성(기본·즐겨찾기·기본제공·사용자). "전체" 탭은 없다.
-    @State private var selectedTab: CategoryTab = .basic
+    /// 선택된 카테고리 탭. 첫 탭은 구성에 따라 다르다(아이폰 구성=기본 / 예전 구성=전체).
+    @State private var selectedTab: CategoryTab = .all
+    /// 아이폰 구성을 따를지 — 기존 사용자에겐 배너로 묻고, 승낙 전까진 예전 구성을 유지한다.
+    @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
     @State private var isViewActive: Bool = true
     /// 커스텀 플레이스홀더 값 채우기 시트 대상 메모.
     @State private var fillMemo: Memo?
@@ -24,8 +26,13 @@ struct MemoListView: View {
     /// 여기서 다시 읽어 탭에 반영한다 — 그래야 "아이폰과 같은 탭 구성"이 된다.
     @State private var categorySettings: CategorySnapshot = CategorySnapshotStore.current()
 
-    /// 탭 목록 — 아이폰 설정 그대로. 비어 있으면(카테고리 기능 꺼짐) 탭 없이 전체 한 장.
-    var tabs: [CategoryTab] { MacCategoryTabs.tabs(from: categorySettings) }
+    /// 탭 목록 — 아이폰 구성을 따르기로 했으면 아이폰 그대로, 아니면 4.4.6 까지의 구성.
+    /// 비어 있으면(카테고리 기능 꺼짐) 탭 없이 전체 한 장.
+    var tabs: [CategoryTab] {
+        MacCategoryTabs.tabs(memos: memos,
+                             snapshot: categorySettings,
+                             followsPhone: tabPreference.followsPhone)
+    }
 
     private var isFreeUser: Bool { !MacProManager.isPro }
     private var hiddenMemoCount: Int {
@@ -76,6 +83,10 @@ struct MemoListView: View {
         VStack(spacing: 0) {
             headerSection
             Divider()
+            if tabPreference.needsAsk {
+                MacCategoryAdoptBanner(preference: tabPreference)
+                Divider()
+            }
             lockedBanner
             listSection
         }
@@ -103,6 +114,10 @@ struct MemoListView: View {
         .onReceive(NotificationCenter.default.publisher(for: .dataRestored)) { _ in
             // iCloud 자동/수동 복원 직후 목록 갱신.
             loadMemos()
+        }
+        .onChange(of: tabPreference.followsPhone) { _ in
+            // 배너·환경설정에서 구성을 바꾸면 탭 목록이 통째로 달라진다 — 첫 탭으로 옮긴다.
+            selectedTab = tabs.first ?? .all
         }
         .onDisappear {
             print("⚠️ [MemoListView] onDisappear - 뷰 비활성화 시작")
@@ -274,16 +289,21 @@ struct MemoListView: View {
         // 메모와 카테고리 설정은 같은 동기화(.dataRestored)로 함께 갱신된다 —
         // 따로 읽으면 새 탭의 메모는 왔는데 탭 순서·아이콘은 옛것인 상태가 생긴다.
         categorySettings = CategorySnapshotStore.current()
-        // 아이폰에서 카테고리를 끄거나 숨기면 보고 있던 탭이 사라진다 — 기본 탭으로 되돌린다.
-        let available = tabs
-        if !available.isEmpty && !available.contains(selectedTab) {
-            selectedTab = .basic
-        }
         do {
             memos = try MemoStore.shared.load(type: .memo)
             print("✅ [MemoListView] loadMemos - \(memos.count)개 메모 로드 완료")
         } catch {
             print("❌ [MemoListView] loadMemos - 메모 로드 실패: \(error)")
+        }
+
+        // 기존 사용자에게 "아이폰 구성으로 맞출까요?"를 물어봐야 하는 상황인지 판단한다.
+        tabPreference.evaluate(memos: memos, snapshot: categorySettings)
+
+        // 구성이 바뀌거나(승낙) 아이폰에서 카테고리를 숨기면 보고 있던 탭이 사라진다 —
+        // 그 자리에 서 있는 첫 탭으로 되돌린다(빈 화면에 갇히지 않게).
+        let available = tabs
+        if !available.isEmpty && !available.contains(selectedTab) {
+            selectedTab = available[0]
         }
     }
 

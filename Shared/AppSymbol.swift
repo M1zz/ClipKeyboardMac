@@ -2,7 +2,7 @@
 //  AppSymbol.swift
 //  ClipKeyboard
 //
-//  자동 생성 가능 — 정적 SF Symbol 이름 단일 출처(Single Source of Truth).
+//  자동 생성 가능 - 정적 SF Symbol 이름 단일 출처(Single Source of Truth).
 //  메인앱·키보드(ClipKeyboardExtension)·macOS(.tap) 3개 타겟이 공유한다.
 //  하드코딩 리터럴 대신 항상 이 상수를 사용할 것.
 //
@@ -26,6 +26,7 @@ enum AppSymbol {
     static let arrowUpForwardApp = "arrow.up.forward.app"
     static let arrowUpForwardAppFill = "arrow.up.forward.app.fill"
     static let arrowUturnBackward = "arrow.uturn.backward"
+    static let birdFill = "bird.fill"
     static let bookClosed = "book.closed"
     static let calendar = "calendar"
     static let checkmark = "checkmark"
@@ -37,6 +38,9 @@ enum AppSymbol {
     static let chevronForward = "chevron.forward"
     static let chevronRight = "chevron.right"
     static let chevronRightCircleFill = "chevron.right.circle.fill"
+    /// 단축어 마트 - 차려 둔 것에서 골라 담는 자리.
+    static let bagFill = "bag.fill"
+    static let circle = "circle"
     static let circleFill = "circle.fill"
     static let clock = "clock"
     static let clockArrowCirclepath = "clock.arrow.circlepath"
@@ -90,6 +94,7 @@ enum AppSymbol {
     static let listBullet = "list.bullet"
     static let listBulletRectangle = "list.bullet.rectangle"
     static let lockFill = "lock.fill"
+    static let lockOpenFill = "lock.open.fill"
     static let lockShield = "lock.shield"
     static let lockShieldFill = "lock.shield.fill"
     static let macbook = "macbook"
@@ -98,11 +103,13 @@ enum AppSymbol {
     static let minusCircleFill = "minus.circle.fill"
     static let number = "number"
     static let paperplaneFill = "paperplane.fill"
+    static let pawprintFill = "pawprint.fill"
     static let pencil = "pencil"
     static let pencilCircleFill = "pencil.circle.fill"
     static let pencilTip = "pencil.tip"
     static let personCropCircleBadgeCheckmark = "person.crop.circle.badge.checkmark"
     static let photo = "photo"
+    static let photoFill = "photo.fill"
     static let photoBadgePlus = "photo.badge.plus"
     static let photoOnRectangleAngled = "photo.on.rectangle.angled"
     static let plus = "plus"
@@ -129,6 +136,9 @@ enum AppSymbol {
     static let tag = "tag"
     static let tagFill = "tag.fill"
     static let textAlignleft = "text.alignleft"
+    /// 사진 속 글자를 읽어 값으로 넣는 자리에 쓴다(일괄 가져오기·단축어 내용).
+    static let textViewfinder = "text.viewfinder"
+    static let cameraViewfinder = "camera.viewfinder"
     static let trash = "trash"
     static let trashCircleFill = "trash.circle.fill"
     static let trashFill = "trash.fill"

@@ -17,14 +17,18 @@ final class PopoverViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var memos: [Memo] = []
     @Published var selectedIndex: Int = 0
-    /// 선택된 카테고리 탭 — 아이폰과 같은 구성. 탭이 없으면(기능 꺼짐) 쓰이지 않는다.
-    @Published var selectedTab: CategoryTab = .basic
+    /// 선택된 카테고리 탭. 첫 탭은 구성에 따라 다르다(아이폰 구성=기본 / 예전 구성=전체).
+    @Published var selectedTab: CategoryTab = .all
 
     /// 아이폰에서 넘어온 카테고리 설정(순서·아이콘·숨김·기본제공) — 메모 목록 창과 같은 구성을 쓴다.
     private(set) var categorySettings: CategorySnapshot = CategorySnapshotStore.current()
 
-    /// 표시할 탭 목록 — 아이폰이 설정한 그대로(메모가 없는 카테고리도 탭으로 선다).
-    var tabs: [CategoryTab] { MacCategoryTabs.tabs(from: categorySettings) }
+    /// 표시할 탭 목록 — 아이폰 구성을 따르기로 했으면 아이폰 그대로, 아니면 4.4.6 까지의 구성.
+    var tabs: [CategoryTab] {
+        MacCategoryTabs.tabs(memos: memos,
+                             snapshot: categorySettings,
+                             followsPhone: MacCategoryTabPreference.shared.followsPhone)
+    }
 
     var filtered: [Memo] {
         var result = memos
@@ -55,9 +59,12 @@ final class PopoverViewModel: ObservableObject {
             let loaded = try MemoStore.shared.load(type: .memo)
             // 사용자가 지정한 수동 순서(있으면) → 없으면 즐겨찾기 먼저, 최근순. iOS와 순서 공유.
             memos = MacMemoOrder.sorted(loaded)
-            // 아이폰에서 카테고리를 끄거나 숨기면 보고 있던 탭이 사라진다 — 기본 탭으로 되돌린다.
+            // 기존 사용자에게 "아이폰 구성으로 맞출까요?"를 물어봐야 하는 상황인지 판단한다.
+            MacCategoryTabPreference.shared.evaluate(memos: memos, snapshot: categorySettings)
+            // 구성이 바뀌거나 아이폰에서 카테고리를 숨기면 보고 있던 탭이 사라진다 —
+            // 그 자리에 서 있는 첫 탭으로 되돌린다.
             let available = tabs
-            if !available.isEmpty && !available.contains(selectedTab) { selectedTab = .basic }
+            if !available.isEmpty && !available.contains(selectedTab) { selectedTab = available[0] }
             if selectedIndex >= filtered.count { selectedIndex = max(0, filtered.count - 1) }
         } catch {
             print("⚠️ [Popover] 메모 로드 실패: \(error)")
@@ -83,6 +90,7 @@ final class PopoverViewModel: ObservableObject {
 
 struct MenuBarPopoverView: View {
     @StateObject private var viewModel = PopoverViewModel()
+    @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
     @FocusState private var searchFocused: Bool
 
     /// 팝오버를 닫는 콜백 (MenuBarManager에서 주입).
@@ -93,6 +101,10 @@ struct MenuBarPopoverView: View {
     var body: some View {
         VStack(spacing: 0) {
             searchBar
+            if tabPreference.needsAsk {
+                Divider()
+                MacCategoryAdoptBanner(preference: tabPreference)
+            }
             categoryTabs
             Divider()
 
@@ -109,6 +121,11 @@ struct MenuBarPopoverView: View {
         .onAppear {
             viewModel.reload()
             DispatchQueue.main.async { searchFocused = true }
+        }
+        .onChange(of: tabPreference.followsPhone) { _ in
+            // 구성이 바뀌면 탭 목록이 통째로 달라진다 — 첫 탭으로 옮기고 선택도 초기화.
+            viewModel.selectedTab = viewModel.tabs.first ?? .all
+            viewModel.selectedIndex = 0
         }
     }
 

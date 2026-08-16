@@ -2,11 +2,11 @@
 //  RemoteFlagsService.swift
 //  ClipKeyboard
 //
-//  원격 킬스위치 — 심사 없이 문제 기능을 끌 수 있는 최소 장치.
+//  원격 킬스위치 - 심사 없이 문제 기능을 끌 수 있는 최소 장치.
 //
 //  왜 필요한가: 지금은 기능 하나가 사고를 내면 고쳐서 심사를 통과할 때까지(며칠)
 //  손쓸 방법이 없다. 피드백/통계용 CloudKit 공개 DB가 이미 있으므로 레코드 하나만
-//  더 두면 된다 — 새 인프라 비용이 사실상 0이다.
+//  더 두면 된다 - 새 인프라 비용이 사실상 0이다.
 //
 //  설계 원칙
 //   ⚠️ **가용성 우선**: 조회에 실패하면 전부 "켬"으로 둔다. 네트워크가 없다고 앱
@@ -24,7 +24,7 @@
 
 import Foundation
 import CloudKit
-import Combine   // ObservableObject — 맥 타겟엔 SwiftUI 경유 암묵 임포트가 없어 명시한다.
+import Combine   // ObservableObject - 맥 타겟엔 SwiftUI 경유 암묵 임포트가 없어 명시한다.
 
 @MainActor
 final class RemoteFlagsService: ObservableObject {
@@ -32,7 +32,7 @@ final class RemoteFlagsService: ObservableObject {
     static let shared = RemoteFlagsService()
 
     /// 원격에서 끌 수 있는 기능 목록.
-    /// ⚠️ 새 플래그를 추가할 땐 반드시 기본값을 `true`(켬)로 둘 것 —
+    /// ⚠️ 새 플래그를 추가할 땐 반드시 기본값을 `true`(켬)로 둘 것
     ///    Dashboard에 필드를 안 만든 상태에서 기능이 꺼져버리면 안 된다.
     enum Flag: String, CaseIterable {
         /// 기기 간 단축어 동기화(베타). 사고 시 1순위 차단 대상.
@@ -45,7 +45,7 @@ final class RemoteFlagsService: ObservableObject {
 
     private static let recordType = "RemoteFlags"
 
-    /// 킬스위치 레코드가 사는 공용 허브 컨테이너 — 피드백·통계와 동일.
+    /// 킬스위치 레코드가 사는 공용 허브 컨테이너 - 피드백·통계와 동일.
     /// ⚠️ 앱의 `LeeoAppSpec`(iOS `ClipKeyboardSpec` / 맥 `ClipKeyboardTapSpec`)을 참조하지 않는다.
     ///    타입 이름이 타겟마다 달라, 참조하면 이 파일을 두 앱이 공유할 수 없다.
     private static let flagsContainerID = "iCloud.com.Ysoup.FeedbackHub"
@@ -62,13 +62,13 @@ final class RemoteFlagsService: ObservableObject {
     private static let refreshInterval: TimeInterval = 6 * 3600
     private static let lastFetchKey = "remote.flags.lastFetchAt"
 
-    private var defaults: UserDefaults? { UserDefaults(suiteName: AppGroup.identifier) }
+    private var defaults: UserDefaults? { AppGroup.defaults }
 
     private init() {}
 
     // MARK: - 조회
 
-    /// 플래그 값. **네트워크를 타지 않는다** — 캐시에 없으면 켬으로 본다.
+    /// 플래그 값. **네트워크를 타지 않는다** - 캐시에 없으면 켬으로 본다.
     /// 호출부는 이 값을 그냥 읽으면 되고, 갱신은 `refreshInBackground()`가 담당한다.
     func isEnabled(_ flag: Flag) -> Bool {
         guard let defaults,
@@ -78,10 +78,10 @@ final class RemoteFlagsService: ObservableObject {
         return defaults.bool(forKey: Self.cachePrefix + flag.rawValue)
     }
 
-    /// nonisolated 편의 접근자 — 키보드 익스텐션·백그라운드 코드에서 쓴다.
+    /// nonisolated 편의 접근자 - 키보드 익스텐션·백그라운드 코드에서 쓴다.
     /// (익스텐션에는 이 서비스가 없으므로 App Group 캐시만 직접 읽는다.)
     nonisolated static func cachedValue(_ flag: Flag) -> Bool {
-        guard let defaults = UserDefaults(suiteName: AppGroup.identifier),
+        guard let defaults = AppGroup.defaults,
               defaults.object(forKey: cachePrefix + flag.rawValue) != nil else { return true }
         return defaults.bool(forKey: cachePrefix + flag.rawValue)
     }
@@ -89,7 +89,7 @@ final class RemoteFlagsService: ObservableObject {
     // MARK: - 갱신
 
     /// 앱 실행 시 호출. 쓰로틀 간격 안이면 아무것도 안 한다.
-    /// 실패해도 조용히 넘어간다 — 캐시(또는 기본값 켬)로 계속 동작한다.
+    /// 실패해도 조용히 넘어간다 - 캐시(또는 기본값 켬)로 계속 동작한다.
     func refreshInBackground() {
         let last = defaults?.double(forKey: Self.lastFetchKey) ?? 0
         let elapsed = Date().timeIntervalSince1970 - last
@@ -107,18 +107,18 @@ final class RemoteFlagsService: ObservableObject {
         do {
             let record = try await database.record(for: CKRecord.ID(recordName: Self.flagsRecordName))
             for flag in Flag.allCases {
-                // 필드가 없으면 건드리지 않는다 — 기존 캐시(또는 기본 켬)를 유지.
+                // 필드가 없으면 건드리지 않는다 - 기존 캐시(또는 기본 켬)를 유지.
                 guard let raw = record[flag.rawValue] as? Int64 else { continue }
                 defaults?.set(raw != 0, forKey: Self.cachePrefix + flag.rawValue)
             }
             defaults?.set(Date().timeIntervalSince1970, forKey: Self.lastFetchKey)
             AppLog.info(.flags, "🎛 [RemoteFlagsService.fetch] 플래그 갱신 완료")
         } catch let error as CKError where error.code == .unknownItem {
-            // 레코드를 아직 안 만든 정상 상태 — 전부 켬으로 두고 다음 주기까지 조용히 지낸다.
+            // 레코드를 아직 안 만든 정상 상태 - 전부 켬으로 두고 다음 주기까지 조용히 지낸다.
             defaults?.set(Date().timeIntervalSince1970, forKey: Self.lastFetchKey)
-            AppLog.info(.flags, "🎛 [RemoteFlagsService.fetch] 플래그 레코드 없음 — 전부 켬으로 동작")
+            AppLog.info(.flags, "🎛 [RemoteFlagsService.fetch] 플래그 레코드 없음. 전부 켬으로 동작")
         } catch {
-            // 네트워크·권한 실패. **캐시를 건드리지 않는다** — 마지막으로 알던 값을 유지.
+            // 네트워크·권한 실패. **캐시를 건드리지 않는다** - 마지막으로 알던 값을 유지.
             AppLog.warning(.flags, "⚠️ [RemoteFlagsService.fetch] 갱신 실패(기존 값 유지): \(error.localizedDescription)")
         }
     }

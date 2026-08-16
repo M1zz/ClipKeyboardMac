@@ -2,7 +2,7 @@
 //  MemoSyncEngine.swift
 //  ClipKeyboard
 //
-//  메모 실시간 동기화(iPhone ↔ Mac) — CKSyncEngine 기반 레코드 단위 동기화.
+//  메모 실시간 동기화(iPhone ↔ Mac) - CKSyncEngine 기반 레코드 단위 동기화.
 //  로컬 JSON 저장소(MemoStore)는 그대로 두고, 그 위에서 CloudKit 프라이빗 DB의
 //  커스텀 존을 동기화한다. 충돌은 id 단위 최신 우선 + 툼스톤(소프트 삭제)으로 해결.
 //  순수 로직은 MemoSyncCore(단위 테스트 완비), 여기서는 CloudKit 연결만 담당한다.
@@ -13,21 +13,21 @@
 
 import Foundation
 import CloudKit
-import CryptoKit   // 카테고리 스냅샷 지문(SHA256) — 실행 간 안정적인 해시가 필요하다
+import CryptoKit   // 카테고리 스냅샷 지문(SHA256) - 실행 간 안정적인 해시가 필요하다
 import os
 
 enum MemoSyncFlags {
     /// 마스터 스위치. 실기기 2대(iCloud)에서 검증 전까지 OFF로 출시 안전성 확보.
-    /// App Group(기기별) 또는 iCloud KV(기기 간 동기)에 켜져 있으면 활성 —
+    /// App Group(기기별) 또는 iCloud KV(기기 간 동기)에 켜져 있으면 활성
     /// 한 기기에서 켜면 KV를 통해 다른 기기에도 전파된다(Pro 상태와 동일 방식).
     static var enabled: Bool {
-        if UserDefaults(suiteName: AppGroup.identifier)?.bool(forKey: DefaultsKey.memoSyncEnabled) == true { return true }
+        if AppGroup.defaults?.bool(forKey: DefaultsKey.memoSyncEnabled) == true { return true }
         return NSUbiquitousKeyValueStore.default.bool(forKey: DefaultsKey.memoSyncEnabled)
     }
 
-    /// 토글 시 양쪽(App Group + iCloud KV)에 기록 — 다른 기기로 전파.
+    /// 토글 시 양쪽(App Group + iCloud KV)에 기록 - 다른 기기로 전파.
     static func setEnabled(_ on: Bool) {
-        UserDefaults(suiteName: AppGroup.identifier)?.set(on, forKey: DefaultsKey.memoSyncEnabled)
+        AppGroup.defaults?.set(on, forKey: DefaultsKey.memoSyncEnabled)
         NSUbiquitousKeyValueStore.default.set(on, forKey: DefaultsKey.memoSyncEnabled)
         NSUbiquitousKeyValueStore.default.synchronize()
     }
@@ -38,19 +38,19 @@ enum MemoSyncFlags {
 /// 마지막 수신/전송/확인/오류는 App Group에 남겨 앱을 다시 켜도 유지되고,
 /// 엔진 실행 여부만 프로세스 메모리에 둔다(실행 때마다 새로 시작하므로).
 enum MemoSyncStatus {
-    private static var defaults: UserDefaults? { UserDefaults(suiteName: AppGroup.identifier) }
+    private static var defaults: UserDefaults? { AppGroup.defaults }
 
-    /// 이번 실행에서 엔진이 시작됐는지 — false면 게이트(플래그/Pro)에 막혀 아예 안 돌고 있는 것.
+    /// 이번 실행에서 엔진이 시작됐는지 - false면 게이트(플래그/Pro)에 막혀 아예 안 돌고 있는 것.
     nonisolated(unsafe) private static var running = false
     static var isRunning: Bool { running }
 
-    /// 마지막으로 원격 변경을 이 기기에 적용한 시각과 건수 — "받아오고 있다"의 직접 증거.
+    /// 마지막으로 원격 변경을 이 기기에 적용한 시각과 건수 - "받아오고 있다"의 직접 증거.
     static var lastPullAt: Date? { defaults?.object(forKey: DefaultsKey.syncLastPullAt) as? Date }
     static var lastPullCount: Int { defaults?.integer(forKey: DefaultsKey.syncLastPullCount) ?? 0 }
     /// 마지막으로 이 기기 변경을 올린 시각과 건수.
     static var lastPushAt: Date? { defaults?.object(forKey: DefaultsKey.syncLastPushAt) as? Date }
     static var lastPushCount: Int { defaults?.integer(forKey: DefaultsKey.syncLastPushCount) ?? 0 }
-    /// 받을 게 없어도 갱신되는 마지막 확인 시각 — 연결이 살아있다는 근거.
+    /// 받을 게 없어도 갱신되는 마지막 확인 시각 - 연결이 살아있다는 근거.
     static var lastCheckAt: Date? { defaults?.object(forKey: DefaultsKey.syncLastCheckAt) as? Date }
     /// 마지막 오류(성공하면 지워진다).
     static var lastError: String? { defaults?.string(forKey: DefaultsKey.syncLastError) }
@@ -101,17 +101,17 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     // 싱글톤 직렬 사용(메인 흐름 + CKSyncEngine 콜백). Sendable 경고 의도적 수용.
     nonisolated(unsafe) private var engine: CKSyncEngine?
     nonisolated(unsafe) private var started = false
-    /// 원격 변경을 로컬에 적용하는 동안 true — 이 사이의 .memoDataChanged는 무시(에코 루프 차단).
+    /// 원격 변경을 로컬에 적용하는 동안 true - 이 사이의 .memoDataChanged는 무시(에코 루프 차단).
     nonisolated(unsafe) private var isApplyingRemoteChanges = false
 
-    private var defaults: UserDefaults? { UserDefaults(suiteName: AppGroup.identifier) }
+    private var defaults: UserDefaults? { AppGroup.defaults }
 
     // MARK: - Lifecycle
 
     /// Pro + 플래그가 켜져 있을 때만 동기화를 시작한다. 멱등.
     func startIfEnabled() {
         guard MemoSyncFlags.enabled else { log.info("sync disabled by flag"); return }
-        // 원격 킬스위치 — 동기화가 사고를 냈을 때 심사 없이 끌 수 있는 경로.
+        // 원격 킬스위치 - 동기화가 사고를 냈을 때 심사 없이 끌 수 있는 경로.
         // 조회 실패 시엔 true(켬)라 네트워크가 없다고 동기화가 막히지는 않는다.
         guard RemoteFlagsService.cachedValue(.syncEnabled) else {
             log.info("sync disabled by remote flag"); return
@@ -128,7 +128,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         )
         let engine = CKSyncEngine(config)
         self.engine = engine
-        // 존 생성(이미 있으면 무시됨) — CKSyncEngine이 처리.
+        // 존 생성(이미 있으면 무시됨) - CKSyncEngine이 처리.
         engine.state.add(pendingDatabaseChanges: [.saveZone(CKRecordZone(zoneID: zoneID))])
 
         NotificationCenter.default.addObserver(
@@ -141,7 +141,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         Task { try? await engine.fetchChanges() }
     }
 
-    /// Pro 여부 — ProFeatureManager의 키를 직접 읽어 양 타겟(맥은 자체 매니저) 의존을 피한다.
+    /// Pro 여부 - ProFeatureManager의 키를 직접 읽어 양 타겟(맥은 자체 매니저) 의존을 피한다.
     ///
     /// ⚠️ 결제 키(`proStatus`) 하나만 보면 안 된다. 이 앱은 **결제 외 경로**로도 전체 접근 권한을 준다:
     /// v4.0 이전 유료 구매자(`wasProAtV3`) · v3.x 기존 사용자(`existingFreeUser`) · TestFlight/체험
@@ -176,12 +176,12 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         enqueueLocalChanges()
     }
 
-    /// 동기화 대상 메모 — **시드 샘플은 제외한다.**
+    /// 동기화 대상 메모 - **시드 샘플은 제외한다.**
     ///
     /// ⚠️ 샘플은 기기마다 **새 UUID로** 심기고 내용이 기기 언어를 따른다(영어 폰은 영어 샘플,
     ///    한국어 폰은 한국어 샘플). 그대로 올리면 동기화가 서로 다른 메모로 보고 양쪽에
     ///    퍼뜨려서, 폰 2대를 쓰거나 맥·아이폰을 함께 쓰면 "모르는 단축어가 섞여" 보인다.
-    ///    샘플은 온보딩 장식이지 사용자 데이터가 아니다 — 백업도 이미 실데이터에서 제외한다.
+    ///    샘플은 온보딩 장식이지 사용자 데이터가 아니다 - 백업도 이미 실데이터에서 제외한다.
     ///
     /// ⚠️ **병합(applyFetched)의 기준 목록에는 쓰지 말 것.** 거기서 샘플을 빼면
     ///    병합 결과를 저장할 때 로컬 샘플이 통째로 지워진다. 업로드 산출에만 쓴다.
@@ -211,7 +211,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         for id in changes.newTombstones.keys { pending.append(.saveRecord(recordID(id))) }
         engine.state.add(pendingRecordZoneChanges: pending)
 
-        // ⚠️ 여기서 섀도를 갱신하지 않는다 — 서버 저장이 확정된 뒤(confirmSent)에만 기록한다.
+        // ⚠️ 여기서 섀도를 갱신하지 않는다 - 서버 저장이 확정된 뒤(confirmSent)에만 기록한다.
         // 예전엔 큐에 넣자마자 갱신해서, 전송 전에 앱이 종료되면 큐는 사라지고 섀도는 "보냄"으로
         // 남아 그 변경이 **영영 재전송되지 않았다**(메모를 다시 고치기 전까지 조용히 누락).
         log.info("enqueued \(changes.upserts.count) upserts, \(changes.newTombstones.count) deletes")
@@ -238,14 +238,14 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             // 서버 저장이 확정된 것만 섀도에 반영한다.
             if !e.savedRecords.isEmpty { confirmSent(e.savedRecords) }
         case .sentDatabaseChanges(let e):
-            // 존(MemosZone) 생성 실패가 여기로 온다 — Production 스키마 미배포처럼
+            // 존(MemosZone) 생성 실패가 여기로 온다 - Production 스키마 미배포처럼
             // "아무것도 못 올리는" 상황의 유일한 단서라 반드시 기록한다.
             if let failure = e.failedZoneSaves.first {
                 log.error("failed zone save: \(failure.error.localizedDescription)")
                 MemoSyncStatus.recordError(failure.error.localizedDescription)
             }
         case .didFetchRecordZoneChanges(let e):
-            // 존 단위 fetch 결과 — 성공하면 이전 오류를 지워 상태 화면이 낡은 오류를 보여주지 않게 한다.
+            // 존 단위 fetch 결과 - 성공하면 이전 오류를 지워 상태 화면이 낡은 오류를 보여주지 않게 한다.
             if let error = e.error {
                 log.error("fetch zone changes failed: \(error.localizedDescription)")
                 MemoSyncStatus.recordError(error.localizedDescription)
@@ -253,7 +253,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                 MemoSyncStatus.clearError()
             }
         case .didFetchChanges:
-            // 받을 변경이 없어도 도달한다 — "언제 마지막으로 확인했는지"의 근거.
+            // 받을 변경이 없어도 도달한다 - "언제 마지막으로 확인했는지"의 근거.
             MemoSyncStatus.recordCheck()
         case .accountChange(let e):
             handleAccountChange(e)
@@ -282,22 +282,22 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             } else if let at = tombstones[id] {
                 return self.makeRecord(id: recordID, memo: nil, deletedAt: at)
             } else {
-                // 양쪽에서 사라짐 — 보낼 게 없으니 큐에서 제거.
+                // 양쪽에서 사라짐 - 보낼 게 없으니 큐에서 제거.
                 syncEngine.state.remove(pendingRecordZoneChanges: [.saveRecord(recordID)])
                 return nil
             }
         }
     }
 
-    /// 서버 저장이 확정된 레코드만 섀도에 기록한다 — 확정 전에는 계속 "보낼 것"으로 남겨 재시도되게 한다.
+    /// 서버 저장이 확정된 레코드만 섀도에 기록한다 - 확정 전에는 계속 "보낼 것"으로 남겨 재시도되게 한다.
     private func confirmSent(_ records: [CKRecord]) {
         let current = syncableMemos()
         let byId = Dictionary(uniqueKeysWithValues: current.map { ($0.id, $0) })
         var shadow = loadShadow()
         for record in records {
-            // 카테고리 설정 업로드 확정 — 지문을 기록해 같은 내용이 다시 올라가지 않게 한다.
+            // 카테고리 설정 업로드 확정 - 지문을 기록해 같은 내용이 다시 올라가지 않게 한다.
             if record.recordID.recordName == Self.categoryRecordName {
-                UserDefaults(suiteName: AppGroup.identifier)?
+                AppGroup.defaults?
                     .set(categoryFingerprint(currentSyncableCategories()), forKey: Self.categoryShadowKey)
                 continue
             }
@@ -305,7 +305,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             if let memo = byId[id] {
                 shadow[id] = MemoSyncCore.fingerprint(memo)
             } else {
-                shadow.removeValue(forKey: id)   // 툼스톤 확정 — 살아있는 목록에 없음
+                shadow.removeValue(forKey: id)   // 툼스톤 확정 - 살아있는 목록에 없음
             }
         }
         saveShadow(shadow)
@@ -332,7 +332,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                 remotes.append(RemoteMemo(id: id, memo: memo, lastEdited: memo.lastEdited))
             }
         }
-        // 하드 삭제(존재 시) — deletedAt 정보가 없으므로 distantFuture로 처리해 삭제 우선.
+        // 하드 삭제(존재 시) - deletedAt 정보가 없으므로 distantFuture로 처리해 삭제 우선.
         for id in deletionIDs.compactMap({ UUID(uuidString: $0.recordName) }) {
             remotes.append(RemoteMemo(id: id, memo: nil, lastEdited: Date()))
         }
@@ -350,7 +350,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         do {
             try MemoStore.shared.save(memos: result.memos, type: .memo)
         } catch {
-            log.error("원격 병합 결과 저장 실패 — 섀도 갱신을 건너뛰고 다음 동기화에서 재시도: \(error.localizedDescription, privacy: .public)")
+            log.error("원격 병합 결과 저장 실패, 섀도 갱신을 건너뛰고 다음 동기화에서 재시도: \(error.localizedDescription, privacy: .public)")
             return
         }
         saveTombstones(result.tombstones)
@@ -402,10 +402,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
     static let categoryRecordType = "CategorySettings"
     private static let categoryRecordName = "category-settings"
-    /// 마지막으로 올린 스냅샷 지문 — 안 바뀌었으면 다시 올리지 않는다(불필요한 쓰기 방지).
+    /// 마지막으로 올린 스냅샷 지문 - 안 바뀌었으면 다시 올리지 않는다(불필요한 쓰기 방지).
     private static let categoryShadowKey = "memo.sync.categoryShadow"
 
-    /// 동기화에 실을 카테고리 — 실제 쓰이는 것만(페르소나 시드·언어별 중복 방지).
+    /// 동기화에 실을 카테고리 - 실제 쓰이는 것만(페르소나 시드·언어별 중복 방지).
     private func currentSyncableCategories() -> CategorySnapshot {
         CategorySnapshotStore.syncable(memos: (try? MemoStore.shared.load(type: .memo)) ?? [],
                                        sampleIDs: SampleMemoStorage.load())
@@ -416,13 +416,13 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     }
 
     private func categoryFingerprint(_ snapshot: CategorySnapshot) -> String {
-        // updatedAt 은 매번 달라지므로 지문에서 뺀다 — 넣으면 내용이 같아도 계속 올라간다.
+        // updatedAt 은 매번 달라지므로 지문에서 뺀다 - 넣으면 내용이 같아도 계속 올라간다.
         var stable = snapshot
         stable.updatedAt = .distantPast
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]   // 딕셔너리 키 순서까지 결정적으로
         let data = (try? encoder.encode(stable)) ?? Data()
-        // ⚠️ `hashValue` 를 쓰면 안 된다 — Swift 의 Hasher 는 프로세스마다 시드가 달라
+        // ⚠️ `hashValue` 를 쓰면 안 된다 - Swift 의 Hasher 는 프로세스마다 시드가 달라
         //    실행할 때마다 값이 바뀌고, 그러면 내용이 그대로여도 매 실행 재업로드된다.
         return SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
     }
@@ -434,7 +434,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         guard !snapshot.isEmpty else { return }
 
         let fingerprint = categoryFingerprint(snapshot)
-        let defaults = UserDefaults(suiteName: AppGroup.identifier)
+        let defaults = AppGroup.defaults
         guard defaults?.string(forKey: Self.categoryShadowKey) != fingerprint else { return }
 
         engine.state.add(pendingRecordZoneChanges: [.saveRecord(categoryRecordID)])
@@ -455,7 +455,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     }
 
     /// 원격 카테고리 설정을 로컬에 반영한다.
-    /// ⚠️ 병합(merge) 전략을 쓴다 — 이 기기에만 있는 카테고리를 원격이 지우면 안 된다.
+    /// ⚠️ 병합(merge) 전략을 쓴다 - 이 기기에만 있는 카테고리를 원격이 지우면 안 된다.
     ///    다른 기기에서 지운 카테고리는 여기서 되살아날 수 있지만, **지워지는 것보다
     ///    남는 쪽이 안전하다**(이름만 남을 뿐 메모는 그대로다).
     private func applyRemoteCategories(_ record: CKRecord) {
@@ -463,8 +463,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
               let snapshot = try? JSONDecoder().decode(CategorySnapshot.self, from: payload) else { return }
 
         CategorySnapshotStore.apply(snapshot, strategy: .merge)
-        // 방금 받은 상태를 그대로 섀도에 기록 — 받자마자 되올리는 핑퐁을 막는다.
-        UserDefaults(suiteName: AppGroup.identifier)?
+        // 방금 받은 상태를 그대로 섀도에 기록 - 받자마자 되올리는 핑퐁을 막는다.
+        AppGroup.defaults?
             .set(categoryFingerprint(currentSyncableCategories()), forKey: Self.categoryShadowKey)
         log.info("remote category settings applied")
     }

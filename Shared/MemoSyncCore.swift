@@ -26,7 +26,7 @@ enum MemoSyncCore {
 
     // MARK: - Fingerprint
 
-    /// 동기화 지문 — 순수 사용량 필드(clipCount/lastUsedAt)는 제외하고 결정적으로 인코딩해
+    /// 동기화 지문 - 순수 사용량 필드(clipCount/lastUsedAt)는 제외하고 결정적으로 인코딩해
     /// 해시한다. 같은 내용이면 항상 같은 값 → 복사할 때마다 불필요하게 재전송하지 않는다.
     static func fingerprint(_ memo: Memo) -> String {
         var normalized = memo
@@ -48,7 +48,7 @@ enum MemoSyncCore {
 
     // MARK: - Conflict order
 
-    /// 최신 우선 비교 — lastEdited가 크면 우선, 동률이면 id 사전순으로 결정(결정성 보장).
+    /// 최신 우선 비교 - lastEdited가 크면 우선, 동률이면 id 사전순으로 결정(결정성 보장).
     static func isNewer(_ lhs: Date, idLhs: UUID, than rhs: Date, idRhs: UUID) -> Bool {
         if lhs != rhs { return lhs > rhs }
         return idLhs.uuidString > idRhs.uuidString

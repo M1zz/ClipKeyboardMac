@@ -11,7 +11,7 @@
 //
 //  ⚠️ 여기 담기는 건 **설정**이지 사용자 콘텐츠가 아니다. 이름·아이콘·순서·숨김뿐이고
 //     메모 내용은 들어가지 않는다.
-//  ⚠️ 필드를 추가할 땐 전부 옵셔널/기본값으로 — 구버전이 만든 스냅샷을 신버전이,
+//  ⚠️ 필드를 추가할 땐 전부 옵셔널/기본값으로 - 구버전이 만든 스냅샷을 신버전이,
 //     신버전이 만든 걸 구버전이 읽어도 깨지지 않아야 한다(다운그레이드 대비).
 //
 
@@ -19,7 +19,7 @@ import Foundation
 
 struct CategorySnapshot: Codable, Equatable {
 
-    /// 사용자 정의 카테고리 — **순서가 곧 탭 순서**라 배열로 둔다.
+    /// 사용자 정의 카테고리 - **순서가 곧 탭 순서**라 배열로 둔다.
     var categories: [String] = []
     /// [카테고리명: SF Symbol 이름]
     var icons: [String: String] = [:]
@@ -29,7 +29,7 @@ struct CategorySnapshot: Codable, Equatable {
     var enabledBuiltIns: [String] = []
     /// 카테고리 기능 자체를 켰는지.
     var featureEnabled: Bool = false
-    /// 이 스냅샷을 만든 시각 — 동기화 충돌 시 최신 우선 판단에 쓴다.
+    /// 이 스냅샷을 만든 시각 - 동기화 충돌 시 최신 우선 판단에 쓴다.
     var updatedAt: Date = Date()
 
     var isEmpty: Bool {
@@ -50,7 +50,7 @@ struct CategorySnapshot: Codable, Equatable {
         self.updatedAt = updatedAt
     }
 
-    /// 관용 디코더 — 누락 키를 전부 기본값으로 허용한다(하위·상위 호환).
+    /// 관용 디코더 - 누락 키를 전부 기본값으로 허용한다(하위·상위 호환).
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         self.categories = try c.decodeIfPresent([String].self, forKey: .categories) ?? []
@@ -74,9 +74,9 @@ enum CategorySnapshotStore {
     static let enabledBuiltInsKey = "enabledBuiltInCategories_v1"
     static let featureEnabledKey = "category.feature.enabled.v1"
 
-    private static var defaults: UserDefaults? { UserDefaults(suiteName: AppGroup.identifier) }
+    private static var defaults: UserDefaults? { AppGroup.defaults }
 
-    /// 기기 간 **동기화용** 스냅샷 — 실제로 쓰이는 카테고리만 담는다.
+    /// 기기 간 **동기화용** 스냅샷 - 실제로 쓰이는 카테고리만 담는다.
     ///
     /// ⚠️ 왜 거르나: 첫 실행 온보딩에서 고른 페르소나에 따라 카테고리가 자동으로 심기는데,
     ///    **그 이름이 기기 언어별로 다르다**(회사 이메일 / Work Email / Email Kantor).
@@ -85,7 +85,7 @@ enum CategorySnapshotStore {
     ///
     /// 기준: **비샘플 메모가 하나라도 붙어 있는 카테고리**만 동기화한다.
     /// 사용자가 실제로 쓰기 시작한 것만 다른 기기로 넘어간다.
-    /// (백업은 `current()` 로 전부 담는다 — 백업은 "이 기기 상태를 그대로 되살리기"라
+    /// (백업은 `current()` 로 전부 담는다 - 백업은 "이 기기 상태를 그대로 되살리기"라
     ///  아직 안 쓴 카테고리도 남아 있어야 한다.)
     static func syncable(memos: [Memo], sampleIDs: Set<UUID>) -> CategorySnapshot {
         var snapshot = current()
@@ -100,7 +100,7 @@ enum CategorySnapshotStore {
         return snapshot
     }
 
-    /// 현재 기기의 카테고리 설정을 읽어 스냅샷으로 만든다. (백업용 — 전부 담는다)
+    /// 현재 기기의 카테고리 설정을 읽어 스냅샷으로 만든다. (백업용 - 전부 담는다)
     static func current() -> CategorySnapshot {
         guard let d = defaults else { return CategorySnapshot() }
         return CategorySnapshot(
@@ -132,7 +132,7 @@ enum CategorySnapshotStore {
             d.set(merged, forKey: categoriesKey)
         }
 
-        // 아이콘·숨김은 합집합 — 한쪽에만 있는 설정이 사라지지 않게.
+        // 아이콘·숨김은 합집합 - 한쪽에만 있는 설정이 사라지지 않게.
         var icons = (d.dictionary(forKey: iconsKey) as? [String: String]) ?? [:]
         for (name, symbol) in snapshot.icons where icons[name] == nil { icons[name] = symbol }
         if !icons.isEmpty { d.set(icons, forKey: iconsKey) }
@@ -145,7 +145,7 @@ enum CategorySnapshotStore {
             let builtIns = Set(d.stringArray(forKey: enabledBuiltInsKey) ?? []).union(snapshot.enabledBuiltIns)
             d.set(Array(builtIns), forKey: enabledBuiltInsKey)
         }
-        // 카테고리가 하나라도 생기면 기능은 켜 준다 — 복원했는데 기능이 꺼져 있어
+        // 카테고리가 하나라도 생기면 기능은 켜 준다 - 복원했는데 기능이 꺼져 있어
         // 탭이 안 보이면 사용자는 "복원 실패"로 받아들인다.
         if snapshot.featureEnabled || !snapshot.categories.isEmpty {
             d.set(true, forKey: featureEnabledKey)
@@ -164,7 +164,7 @@ enum CategorySnapshotStore {
     /// 카테고리 메타가 없는 **옛 백업**을 복원했을 때, 메모들의 `category` 값에서
     /// 카테고리 목록을 되살린다.
     ///
-    /// ⚠️ 이름만 복구된다 — 아이콘·숨김·순서는 원래 스냅샷에만 있으므로 알 수 없다.
+    /// ⚠️ 이름만 복구된다 - 아이콘·숨김·순서는 원래 스냅샷에만 있으므로 알 수 없다.
     ///    그래도 탭이 통째로 사라지는 것보다는 낫다.
     /// - Returns: 새로 추가된 카테고리 이름들.
     @discardableResult
@@ -176,7 +176,7 @@ enum CategorySnapshotStore {
         let derived = memos
             .map(\.category)
             .filter { !$0.isEmpty && $0 != "기본" }
-        // 등장 순서를 유지하면서 중복 제거 — 사용자가 많이 쓴 순서에 가깝다.
+        // 등장 순서를 유지하면서 중복 제거 - 사용자가 많이 쓴 순서에 가깝다.
         var seen = Set(existing)
         var added: [String] = []
         for name in derived where !seen.contains(name) {

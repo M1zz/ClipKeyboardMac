@@ -2,19 +2,19 @@
 //  AppLog.swift
 //  ClipKeyboard
 //
-//  구조적 로깅 — `print` 대신 OSLog로 남긴다.
+//  구조적 로깅 - `print` 대신 OSLog로 남긴다.
 //
 //  왜 바꾸나: `print` 는 Xcode 콘솔에만 뜨고 **사용자 기기에는 아무것도 안 남는다.**
 //  "동기화가 가끔 실패한다"는 제보를 받아도 재현 전까지 손을 못 댄다.
 //  OSLog 는 `.error` 이상이 시스템 로그에 보존돼 sysdiagnose 로 사후 추적이 된다.
 //
-//  ⚠️ 이모지 컨벤션(📁 ✅ ❌ 🔄 ⚠️)은 그대로 유지한다 — CLAUDE.md 의 디버깅 팁
+//  ⚠️ 이모지 컨벤션(📁 ✅ ❌ 🔄 ⚠️)은 그대로 유지한다 - CLAUDE.md 의 디버깅 팁
 //     (`grep "📁 \[MemoStore"`)이 계속 동작해야 한다.
 //
 //  ⚠️ 메시지를 `String` 으로 받아 `privacy: .public` 으로 남긴다.
 //     이유: Logger 의 문자열 보간은 동적 값을 기본적으로 `<private>` 로 가려서,
 //     그대로 두면 정작 필요한 개수·에러 사유가 로그에서 안 보인다.
-//     대신 **PII를 절대 넘기지 말 것** — 메모 내용·이메일은 로그에 넣지 않는다.
+//     대신 **PII를 절대 넘기지 말 것** - 메모 내용·이메일은 로그에 넣지 않는다.
 //     (넘기는 값은 개수·상태·에러 설명뿐이라는 전제)
 //
 //  ⚠️ 대가: String 이 항상 만들어진다(OSLog 의 지연 포매팅을 못 쓴다).
@@ -26,7 +26,7 @@ import os
 
 enum AppLog {
 
-    /// 로그 분류 — Console.app 에서 category 로 필터할 수 있다.
+    /// 로그 분류 - Console.app 에서 category 로 필터할 수 있다.
     enum Category: String {
         case store = "MemoStore"
         case backup = "Backup"
@@ -35,6 +35,7 @@ enum AppLog {
         case diagnostics = "Diagnostics"
         case flags = "RemoteFlags"
         case wipe = "DataWipe"
+        case launch = "Launch"
     }
 
     private static let subsystem = "com.Ysoup.TokenMemo"

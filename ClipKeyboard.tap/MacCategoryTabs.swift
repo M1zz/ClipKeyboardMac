@@ -139,11 +139,38 @@ enum CategoryTab: Hashable, Equatable {
 
 enum MacCategoryTabs {
 
+    /// 지금 화면에 세울 탭 목록.
+    ///
+    /// 아이폰 구성을 따르기로 한 사용자는 `phoneTabs`, 아직 아니면 4.4.6 까지의 구성(`legacyTabs`).
+    /// ⚠️ 기존 사용자를 말 없이 갈아타게 하지 않는다 — 전환은 `MacCategoryTabPreference` 가
+    ///    물어보고 승낙을 받은 뒤에만 일어난다.
+    static func tabs(memos: [Memo],
+                     snapshot: CategorySnapshot,
+                     followsPhone: Bool) -> [CategoryTab] {
+        followsPhone ? phoneTabs(from: snapshot) : legacyTabs(memos: memos, snapshot: snapshot)
+    }
+
+    /// 4.4.6 까지의 맥 탭 구성 — "전체" + **단축어가 실제로 들어 있는** 카테고리만.
+    ///
+    /// 아이폰과 다른 규칙이지만(기본 제공 카테고리 없음·빈 카테고리 안 보임), 이미 이 화면에
+    /// 익숙한 사용자를 위해 남겨 둔다. 승낙 전까지는 이쪽이 보인다.
+    static func legacyTabs(memos: [Memo], snapshot: CategorySnapshot) -> [CategoryTab] {
+        let present = Set(memos.map { $0.category }).subtracting([""])
+        let hidden = Set(snapshot.hiddenTabs)
+
+        // 1) 아이폰이 정해 준 순서를 먼저 따르고 (단축어가 있는 것만)
+        var ordered = snapshot.categories.filter { present.contains($0) && !hidden.contains($0) }
+        // 2) 설정에 없는 카테고리(맥에서만 쓰던 것 등)는 뒤에 이름순으로 붙인다.
+        ordered += present.subtracting(ordered).subtracting(hidden).sorted()
+
+        return [.all] + ordered.map { CategoryTab.custom($0) }
+    }
+
     /// 아이폰에서 설정한 카테고리 구성 그대로 탭 목록을 만든다.
     ///
     /// - Returns: 카테고리 기능이 꺼져 있으면 **빈 배열** — 탭 없이 전체 목록 한 장을 보여준다
     ///   (iOS 에서 기능이 꺼졌을 때의 `.all` 단일 페이지와 같은 상태).
-    static func tabs(from snapshot: CategorySnapshot) -> [CategoryTab] {
+    static func phoneTabs(from snapshot: CategorySnapshot) -> [CategoryTab] {
         guard snapshot.featureEnabled else { return [] }
 
         var tabs: [CategoryTab] = [.basic]

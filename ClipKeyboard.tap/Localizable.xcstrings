@@ -4,6 +4,125 @@
     "" : {
 
     },
+    "아이폰에서 설정한 카테고리로 맞출까요?" : {
+      "comment" : "Category parity prompt title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match the categories you set on iPhone?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 설정한 카테고리로 맞출까요?"
+          }
+        }
+      }
+    },
+    "기본·즐겨찾기 같은 탭이 아이폰과 같아집니다. 단축어는 그대로 있어요." : {
+      "comment" : "Category parity prompt detail",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabs like General and Favorites will look just like they do on iPhone. Your snippets stay exactly where they are."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본·즐겨찾기 같은 탭이 아이폰과 같아집니다. 단축어는 그대로 있어요."
+          }
+        }
+      }
+    },
+    "맞추기" : {
+      "comment" : "Category parity: adopt",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "맞추기"
+          }
+        }
+      }
+    },
+    "지금은 그대로" : {
+      "comment" : "Category parity: keep current",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep as is"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금은 그대로"
+          }
+        }
+      }
+    },
+    "아이폰에서 설정한 카테고리 따르기" : {
+      "comment" : "Prefs: follow phone category tabs",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow iPhone category setup"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 설정한 카테고리 따르기"
+          }
+        }
+      }
+    },
+    "Categories" : {
+      "comment" : "Prefs section: categories",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categories"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카테고리"
+          }
+        }
+      }
+    },
+    "켜면 기본·즐겨찾기 같은 탭까지 아이폰과 똑같이 보입니다. 끄면 단축어가 들어 있는 카테고리만 '전체' 탭과 함께 보입니다." : {
+      "comment" : "Prefs: category parity note",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When on, tabs like General and Favorites mirror your iPhone exactly. When off, you see only categories that already contain snippets, along with an All tab."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "켜면 기본·즐겨찾기 같은 탭까지 아이폰과 똑같이 보입니다. 끄면 단축어가 들어 있는 카테고리만 '전체' 탭과 함께 보입니다."
+          }
+        }
+      }
+    },
     "기본" : {
       "comment" : "Category tab: default/basic",
       "localizations" : {
