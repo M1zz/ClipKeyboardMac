@@ -4,6 +4,40 @@
     "" : {
 
     },
+    "기본" : {
+      "comment" : "Category tab: default/basic",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본"
+          }
+        }
+      }
+    },
+    "단축어+템플릿" : {
+      "comment" : "Built-in category: text memos and templates",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snippets + Templates"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축어+템플릿"
+          }
+        }
+      }
+    },
     "'%@'와 일치하는 항목이 없습니다" : {
       "comment" : "No results for search query",
       "localizations" : {
@@ -66,6 +100,9 @@
           }
         }
       }
+    },
+    "%1$@ — %2$@ (⌃⇧V)" : {
+      "comment" : "Menu bar tooltip: app name — quick paste panel"
     },
     "%d개" : {
       "comment" : "Item count",
@@ -3048,23 +3085,6 @@
         }
       }
     },
-    "저장" : {
-      "comment" : "Save button",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "저장"
-          }
-        }
-      }
-    },
     "저장 실패: %@" : {
       "comment" : "Toast: save failed with reason",
       "localizations" : {
@@ -3095,6 +3115,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "전"
+          }
+        }
+      }
+    },
+    "저장" : {
+      "comment" : "Save button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
           }
         }
       }

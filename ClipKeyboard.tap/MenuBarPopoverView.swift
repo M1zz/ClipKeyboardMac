@@ -14,36 +14,24 @@ import SwiftUI
 
 @MainActor
 final class PopoverViewModel: ObservableObject {
-    /// 카테고리 탭에서 "전체"를 뜻하는 표식 — 저장된 카테고리 이름과 겹치지 않는다.
-    static let allCategory = "전체"
-
     @Published var searchText: String = ""
     @Published var memos: [Memo] = []
     @Published var selectedIndex: Int = 0
-    /// 선택된 카테고리 탭 ("전체"면 필터 없음).
-    @Published var selectedCategory: String = PopoverViewModel.allCategory
+    /// 선택된 카테고리 탭 — 아이폰과 같은 구성. 탭이 없으면(기능 꺼짐) 쓰이지 않는다.
+    @Published var selectedTab: CategoryTab = .basic
 
-    /// 아이폰에서 넘어온 카테고리 설정(순서·아이콘·숨김) — 메모 목록 창과 같은 탭 구성을 쓴다.
+    /// 아이폰에서 넘어온 카테고리 설정(순서·아이콘·숨김·기본제공) — 메모 목록 창과 같은 구성을 쓴다.
     private(set) var categorySettings: CategorySnapshot = CategorySnapshotStore.current()
 
-    /// 표시할 탭 목록 — 메모가 실제로 있는 카테고리만, 아이폰이 정한 순서대로.
-    var categories: [String] {
-        let present = Set(memos.map { $0.category }).subtracting([""])
-        // 지금 보고 있는 탭은 숨김이어도 남긴다 — 선택이 사라지면 탭이 빈칸이 된다.
-        let hidden = Set(categorySettings.hiddenTabs).subtracting([selectedCategory])
-
-        var ordered = categorySettings.categories.filter { present.contains($0) && !hidden.contains($0) }
-        ordered += present.subtracting(ordered).subtracting(hidden).sorted()
-
-        return [Self.allCategory] + ordered
-    }
+    /// 표시할 탭 목록 — 아이폰이 설정한 그대로(메모가 없는 카테고리도 탭으로 선다).
+    var tabs: [CategoryTab] { MacCategoryTabs.tabs(from: categorySettings) }
 
     var filtered: [Memo] {
         var result = memos
 
-        // 1) 카테고리 탭
-        if selectedCategory != Self.allCategory {
-            result = result.filter { $0.category == selectedCategory }
+        // 1) 카테고리 탭 — 탭이 없으면 필터도 없다.
+        if !tabs.isEmpty {
+            result = MacCategoryTabs.memos(result, for: selectedTab, in: categorySettings)
         }
 
         // 2) 검색어
@@ -67,20 +55,13 @@ final class PopoverViewModel: ObservableObject {
             let loaded = try MemoStore.shared.load(type: .memo)
             // 사용자가 지정한 수동 순서(있으면) → 없으면 즐겨찾기 먼저, 최근순. iOS와 순서 공유.
             memos = MacMemoOrder.sorted(loaded)
-            // 선택해 둔 탭의 메모가 모두 사라졌으면 "전체"로 되돌린다.
-            if !categories.contains(selectedCategory) { selectedCategory = Self.allCategory }
+            // 아이폰에서 카테고리를 끄거나 숨기면 보고 있던 탭이 사라진다 — 기본 탭으로 되돌린다.
+            let available = tabs
+            if !available.isEmpty && !available.contains(selectedTab) { selectedTab = .basic }
             if selectedIndex >= filtered.count { selectedIndex = max(0, filtered.count - 1) }
         } catch {
             print("⚠️ [Popover] 메모 로드 실패: \(error)")
         }
-    }
-
-    /// 탭 라벨 — 내장 카테고리는 지역화된 이름으로.
-    func title(for category: String) -> String {
-        if category == Self.allCategory {
-            return NSLocalizedString("전체", comment: "All categories")
-        }
-        return ClipboardItemType(rawValue: category)?.localizedName ?? category
     }
 
     /// 간이 fuzzy — 순서대로 문자가 등장하면 매치 (공백은 무시).
@@ -174,15 +155,16 @@ struct MenuBarPopoverView: View {
         ))
     }
 
-    /// 카테고리 탭 — 아이폰과 같은 순서·아이콘. 카테고리가 하나뿐이면 감춘다.
+    /// 카테고리 탭 — 아이폰이 설정한 목록·순서·이름·아이콘 그대로.
+    /// 카테고리 기능이 꺼져 있으면(탭 없음) 줄 자체가 사라진다.
     @ViewBuilder
     private var categoryTabs: some View {
-        let categories = viewModel.categories
-        if categories.count > 1 {
+        let tabs = viewModel.tabs
+        if tabs.count > 1 {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: MacSpacing.sm) {
-                    ForEach(categories, id: \.self) { category in
-                        categoryChip(category)
+                    ForEach(tabs, id: \.self) { tab in
+                        categoryChip(tab)
                     }
                 }
                 .padding(.horizontal, MacSpacing.lg)
@@ -191,17 +173,15 @@ struct MenuBarPopoverView: View {
         }
     }
 
-    private func categoryChip(_ category: String) -> some View {
-        let isSelected = viewModel.selectedCategory == category
+    private func categoryChip(_ tab: CategoryTab) -> some View {
+        let isSelected = viewModel.selectedTab == tab
         return Button {
-            viewModel.selectedCategory = category
+            viewModel.selectedTab = tab
             viewModel.selectedIndex = 0
         } label: {
             HStack(spacing: MacSpacing.xs) {
-                if let symbol = viewModel.categorySettings.icons[category] {
-                    Image(systemName: symbol)
-                }
-                Text(viewModel.title(for: category))
+                Image(systemName: tab.icon)
+                Text(tab.displayName)
                     .lineLimit(1)
             }
             .font(MacFont.body)

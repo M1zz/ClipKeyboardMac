@@ -18,6 +18,7 @@ SHARED_MAP=(
   "Shared/AppNotification.swift|ClipKeyboard/AppNotification.swift"
   "Shared/StorageFile.swift|ClipKeyboard/StorageFile.swift"
   "Shared/CategorySnapshot.swift|ClipKeyboard/Service/CategorySnapshot.swift"
+  "Shared/CategoryBucketRule.swift|ClipKeyboard/CategoryBucketRule.swift"
   "Shared/RemoteFlagsService.swift|ClipKeyboard/Service/RemoteFlagsService.swift"
   "Shared/MemoSyncCore.swift|ClipKeyboard/Service/MemoSyncCore.swift"
   "Shared/MemoSyncEngine.swift|ClipKeyboard/Service/MemoSyncEngine.swift"
@@ -34,6 +35,10 @@ SHARED_MAP=(
 # 형식: "Mac상대경로|iOS상대경로|시작패턴"
 EMBEDDED_MAP=(
   "Shared/SampleMemoStorage.swift|ClipKeyboard/Tips.swift|enum SampleMemoStorage {"
+  # 카테고리 탭 구성 — 맥이 아이폰과 "같은 탭"을 보여주려면 이 두 선언이 같아야 한다.
+  # 어긋나면 같은 계정인데 기기마다 탭 목록·순서·소속이 달라진다(사용자에겐 단축어가 사라진 것으로 보인다).
+  "ClipKeyboard.tap/MacCategoryTabs.swift|ClipKeyboard/Presentation/ClipKeyboardList/ClipKeyboardListViewModel.swift|enum BuiltInCategory: String, CaseIterable, Hashable {"
+  "ClipKeyboard.tap/MacCategoryTabs.swift|ClipKeyboard/Presentation/ClipKeyboardList/ClipKeyboardListViewModel.swift|enum CategoryTab: Hashable, Equatable {"
 )
 
 # 선언 블록만 뽑아 stdout 으로 낸다.  $1=파일  $2=시작패턴

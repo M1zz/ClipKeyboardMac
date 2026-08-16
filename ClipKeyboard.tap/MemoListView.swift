@@ -11,7 +11,8 @@ import AppKit
 struct MemoListView: View {
     @State private var memos: [Memo] = []
     @State private var searchText: String = ""
-    @State private var selectedCategory: String = "전체"
+    /// 선택된 카테고리 탭 — 아이폰과 같은 구성(기본·즐겨찾기·기본제공·사용자). "전체" 탭은 없다.
+    @State private var selectedTab: CategoryTab = .basic
     @State private var isViewActive: Bool = true
     /// 커스텀 플레이스홀더 값 채우기 시트 대상 메모.
     @State private var fillMemo: Memo?
@@ -23,18 +24,8 @@ struct MemoListView: View {
     /// 여기서 다시 읽어 탭에 반영한다 — 그래야 "아이폰과 같은 탭 구성"이 된다.
     @State private var categorySettings: CategorySnapshot = CategorySnapshotStore.current()
 
-    var categories: [String] {
-        let present = Set(memos.map { $0.category }).subtracting([""])
-        // 지금 보고 있는 탭은 숨김이어도 남긴다 — 선택이 사라지면 Picker 가 빈칸이 된다.
-        let hidden = Set(categorySettings.hiddenTabs).subtracting([selectedCategory])
-
-        // 1) 아이폰이 정해 준 탭 순서를 그대로 따른다 (실제 메모가 있는 것만).
-        var ordered = categorySettings.categories.filter { present.contains($0) && !hidden.contains($0) }
-        // 2) 설정에 없는 카테고리(맥에서 새로 만든 것 등)는 뒤에 이름순으로 붙인다.
-        ordered += present.subtracting(ordered).subtracting(hidden).sorted()
-
-        return ["전체"] + ordered
-    }
+    /// 탭 목록 — 아이폰 설정 그대로. 비어 있으면(카테고리 기능 꺼짐) 탭 없이 전체 한 장.
+    var tabs: [CategoryTab] { MacCategoryTabs.tabs(from: categorySettings) }
 
     private var isFreeUser: Bool { !MacProManager.isPro }
     private var hiddenMemoCount: Int {
@@ -51,9 +42,9 @@ struct MemoListView: View {
             filtered = Array(filtered.prefix(MacProManager.freeMemoLimit))
         }
 
-        // 카테고리 필터
-        if selectedCategory != "전체" {
-            filtered = filtered.filter { $0.category == selectedCategory }
+        // 카테고리 탭 — 탭이 없으면(기능 꺼짐) 필터도 없다.
+        if !tabs.isEmpty {
+            filtered = MacCategoryTabs.memos(filtered, for: selectedTab, in: categorySettings)
         }
 
         // 검색 필터 — 보안 메모는 제목으로만(값은 암호문이라 검색 제외).
@@ -143,34 +134,18 @@ struct MemoListView: View {
         .padding(MacSpacing.md)
     }
 
-    /// 카테고리 선택 Picker
-    private var categoryPicker: some View {
-        Picker("", selection: $selectedCategory) {
-            ForEach(categories, id: \.self) { category in
-                categoryLabel(category).tag(category)
-            }
-        }
-        .labelsHidden()
-        .frame(width: 120)
-    }
-
-    /// Picker 항목 라벨 — 중첩 삼항/옵셔널 체인을 헬퍼로 분리해 타입체커 부담을 낮춘다.
-    /// 아이콘은 아이폰에서 지정한 것을 그대로 쓴다(없으면 텍스트만).
+    /// 카테고리 선택 Picker — 탭 구성·이름·아이콘 모두 아이폰과 같다.
     @ViewBuilder
-    private func categoryLabel(_ category: String) -> some View {
-        let text = categoryTitle(category)
-        if let symbol = categorySettings.icons[category] {
-            Label(text, systemImage: symbol)
-        } else {
-            Text(text)
+    private var categoryPicker: some View {
+        if !tabs.isEmpty {
+            Picker("", selection: $selectedTab) {
+                ForEach(tabs, id: \.self) { tab in
+                    Label(tab.displayName, systemImage: tab.icon).tag(tab)
+                }
+            }
+            .labelsHidden()
+            .frame(width: 150)
         }
-    }
-
-    private func categoryTitle(_ category: String) -> String {
-        if category == "전체" {
-            return NSLocalizedString("전체", comment: "All categories")
-        }
-        return ClipboardItemType(rawValue: category)?.localizedName ?? category
     }
 
     /// 컴팩트 검색 바
@@ -299,6 +274,11 @@ struct MemoListView: View {
         // 메모와 카테고리 설정은 같은 동기화(.dataRestored)로 함께 갱신된다 —
         // 따로 읽으면 새 탭의 메모는 왔는데 탭 순서·아이콘은 옛것인 상태가 생긴다.
         categorySettings = CategorySnapshotStore.current()
+        // 아이폰에서 카테고리를 끄거나 숨기면 보고 있던 탭이 사라진다 — 기본 탭으로 되돌린다.
+        let available = tabs
+        if !available.isEmpty && !available.contains(selectedTab) {
+            selectedTab = .basic
+        }
         do {
             memos = try MemoStore.shared.load(type: .memo)
             print("✅ [MemoListView] loadMemos - \(memos.count)개 메모 로드 완료")
