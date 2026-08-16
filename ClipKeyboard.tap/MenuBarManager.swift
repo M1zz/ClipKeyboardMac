@@ -40,6 +40,13 @@ class MenuBarManager: NSObject {
             button.title = "🛶"
         }
 
+        // 호버 툴팁으로도 전역 단축키를 알린다 — 메뉴바를 누르지 않아도 쓸 수 있다는 정보.
+        button.toolTip = String(
+            format: NSLocalizedString("%1$@ — %2$@ (⌃⇧V)", comment: "Menu bar tooltip: app name — quick paste panel"),
+            NSLocalizedString("ClipKeyboard", comment: "App menu name"),
+            NSLocalizedString("Quick Paste Panel", comment: "Shortcut: quick paste")
+        )
+
         // 클릭 이벤트 — 팝오버 토글 vs 우클릭 컨텍스트 메뉴.
         button.action = #selector(handleStatusItemClick(_:))
         button.target = self
@@ -55,7 +62,7 @@ class MenuBarManager: NSObject {
         let popover = NSPopover()
         popover.behavior = .transient
         popover.animates = true
-        popover.contentSize = NSSize(width: 360, height: 480)
+        popover.contentSize = NSSize(width: 400, height: 500)
         popover.contentViewController = makePopoverContentController()
         self.popover = popover
     }
@@ -127,6 +134,12 @@ class MenuBarManager: NSObject {
     /// 우클릭 시 표시되는 경량 메뉴 (팝오버 대신 간단 액션만 노출).
     private func showContextMenu() {
         let menu = NSMenu()
+        // 전역 단축키 안내 겸 실행 — 메뉴에 ⌃⇧V가 그대로 보여 단축키를 익히게 된다.
+        let quickPaste = NSMenuItem(title: NSLocalizedString("Quick Paste Panel", comment: "Shortcut: quick paste"),
+                                    action: #selector(quickPasteAction), keyEquivalent: "v")
+        quickPaste.keyEquivalentModifierMask = [.control, .shift]
+        menu.addItem(quickPaste)
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(withTitle: NSLocalizedString("New Memo", comment: "Menu: new memo"),
                      action: #selector(newMemoAction), keyEquivalent: "n")
         menu.addItem(withTitle: NSLocalizedString("Clipboard History", comment: "Menu: clipboard history"),
@@ -150,6 +163,11 @@ class MenuBarManager: NSObject {
                       at: NSPoint(x: 0, y: button.bounds.height + 4),
                       in: button)
         }
+    }
+
+    @objc private func quickPasteAction() {
+        // 전경 앱 포커스를 뺏지 않는 패널이므로 activateApp()은 하지 않는다.
+        MemoFloatingPanelController.shared.show()
     }
 
     @objc private func newMemoAction() {

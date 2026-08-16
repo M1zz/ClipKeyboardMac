@@ -12,53 +12,34 @@ struct OnboardingView: View {
     let onComplete: () -> Void
 
     var body: some View {
-        ZStack {
-            // Gradient background
-            LinearGradient(
-                colors: [
-                    Color.blue.opacity(0.6),
-                    Color.purple.opacity(0.6)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-
-            // ScrollView로 감싸 어떤 창 크기에도 콘텐츠가 잘리지 않도록 보장.
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 28) {
+        // 배경은 시스템 창 색 그대로 — 그라디언트 없이 담백하게.
+        // ScrollView로 감싸 어떤 창 크기에도 콘텐츠가 잘리지 않도록 보장.
+        ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: MacSpacing.xl) {
                     // App Icon
-                    ZStack {
-                        Circle()
-                            .fill(Color.white.opacity(0.2))
-                            .frame(width: 100, height: 100)
-
-                        Image(systemName: AppSymbol.docOnClipboardFill)
-                            .font(.system(size: 50))
-                            .foregroundColor(.white)
-                    }
-                    .shadow(color: .black.opacity(0.1), radius: 20, y: 10)
-                    .padding(.top, 32)
+                    Image(systemName: AppSymbol.docOnClipboardFill)
+                        .font(.system(size: MacIcon.hero))
+                        .foregroundStyle(.tint)
+                        .padding(.top, MacSpacing.xl)
 
                     // Welcome Text — fixedSize로 길이에 관계없이 세로 확장
-                    VStack(spacing: 10) {
+                    VStack(spacing: MacSpacing.sm) {
                         Text(NSLocalizedString("ClipKeyboard에 오신 것을 환영합니다", comment: "Welcome title"))
-                            .font(.system(.title).weight(.bold))
-                            .foregroundColor(.white)
+                            .font(MacFont.screenTitle)
                             .multilineTextAlignment(.center)
                             .fixedSize(horizontal: false, vertical: true)
 
                         Text(NSLocalizedString("macOS에서 가장 빠르고 편리한\n단축어 및 클립보드 관리 앱", comment: "Welcome subtitle"))
-                            .font(.system(.body))
-                            .foregroundColor(.white.opacity(0.9))
+                            .font(MacFont.secondary)
+                            .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
                             .lineSpacing(4)
                             .fixedSize(horizontal: false, vertical: true)
                     }
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, MacSpacing.xl)
 
                     // Features
-                    VStack(spacing: 14) {
+                    VStack(spacing: MacSpacing.lg) {
                         MacFeatureRow(
                             icon: "square.and.pencil",
                             title: NSLocalizedString("단축어", comment: "Snippet feature"),
@@ -83,34 +64,26 @@ struct OnboardingView: View {
                             description: NSLocalizedString("모든 기기에서 데이터 동기화", comment: "iCloud sync description")
                         )
                     }
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, MacSpacing.xl)
 
                     // Get Started Button
-                    Button(action: {
+                    Button {
                         completeOnboarding()
-                    }) {
-                        HStack(spacing: 10) {
-                            Text(NSLocalizedString("시작하기", comment: "Get started button"))
-                                .font(.system(.body).weight(.semibold))
-                            Image(systemName: AppSymbol.arrowRight)
-                                .font(.system(.callout).weight(.semibold))
-                        }
-                        .foregroundColor(.blue)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 44)
-                        .background(Color.white)
-                        .cornerRadius(MacRadius.md)
-                        .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
+                    } label: {
+                        Text(NSLocalizedString("시작하기", comment: "Get started button"))
+                            .font(MacFont.body)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, MacSpacing.xs)
                     }
-                    .buttonStyle(.plain)
-                    .padding(.horizontal, 40)
-                    .padding(.top, 6)
-                    .padding(.bottom, 32)
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .keyboardShortcut(.defaultAction)
+                    .padding(.horizontal, MacSpacing.xl)
+                    .padding(.bottom, MacSpacing.xl)
                 }
                 .frame(maxWidth: .infinity)
-            }
         }
-        .frame(minWidth: 520, minHeight: 620)
+        .frame(minWidth: 520, minHeight: 600)
     }
 
     private func completeOnboarding() {
@@ -126,30 +99,25 @@ struct MacFeatureRow: View {
     let description: String
 
     var body: some View {
-        HStack(spacing: 14) {
+        HStack(spacing: MacSpacing.lg) {
             // Icon
-            ZStack {
-                RoundedRectangle(cornerRadius: MacRadius.sm)
-                    .fill(Color.white.opacity(0.2))
-                    .frame(width: 44, height: 44)
-
-                Image(systemName: icon)
-                    .font(.system(.title3))
-                    .foregroundColor(.white)
-            }
+            Image(systemName: icon)
+                .font(.title3)
+                .foregroundStyle(.tint)
+                .frame(width: 32)
 
             // Text
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: MacSpacing.xs / 2) {
                 Text(title)
-                    .font(.system(.callout).weight(.semibold))
-                    .foregroundColor(.white)
+                    .font(MacFont.rowTitle)
 
                 Text(description)
-                    .font(.system(.footnote))
-                    .foregroundColor(.white.opacity(0.8))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
-            Spacer()
+            Spacer(minLength: 0)
         }
     }
 }

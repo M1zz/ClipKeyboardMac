@@ -25,36 +25,28 @@ struct ClipboardHistoryView: View {
         ZStack {
             VStack(spacing: 0) {
                 // 헤더
-                VStack(spacing: 12) {
-                    HStack {
-                        Image(systemName: AppSymbol.clockArrowCirclepath)
-                            .font(.system(size: 40))
-                            .foregroundStyle(.blue)
-
-                        VStack(alignment: .leading, spacing: 4) {
+                VStack(spacing: MacSpacing.md) {
+                    HStack(spacing: MacSpacing.md) {
+                        VStack(alignment: .leading, spacing: MacSpacing.xs) {
                             Text(NSLocalizedString("클립보드 히스토리", comment: "Clipboard history title"))
-                                .font(.title)
-                                .bold()
+                                .font(MacFont.screenTitle)
 
                             Text(String(format: NSLocalizedString("%d개의 항목", comment: "Item count"), clipboardHistory.count))
-                                .font(.subheadline)
+                                .font(MacFont.secondary)
                                 .foregroundStyle(.secondary)
                         }
 
                         Spacer()
 
-                        Button {
+                        Button(NSLocalizedString("전체 삭제", comment: "Clear all")) {
                             clearAll()
-                        } label: {
-                            Label(NSLocalizedString("전체 삭제", comment: "Clear all"), systemImage: AppSymbol.trash)
                         }
-                        .buttonStyle(.bordered)
                         .tint(.red)
                         .disabled(clipboardHistory.isEmpty)
                     }
 
                     // 검색 바
-                    HStack {
+                    HStack(spacing: MacSpacing.sm) {
                         Image(systemName: AppSymbol.magnifyingglass)
                             .foregroundStyle(.secondary)
 
@@ -71,11 +63,12 @@ struct ClipboardHistoryView: View {
                             .buttonStyle(.plain)
                         }
                     }
-                    .padding(8)
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(MacRadius.sm)
+                    .padding(.horizontal, MacSpacing.md)
+                    .padding(.vertical, MacSpacing.sm)
+                    .macSurface()
                 }
-                .padding()
+                .font(MacFont.body)
+                .padding(MacSpacing.xl)
 
                 Divider()
 
@@ -112,11 +105,12 @@ struct ClipboardHistoryView: View {
                 Spacer()
                 if showToast {
                     Text(toastMessage)
-                        .padding()
-                        .background(Color.black.opacity(0.8))
-                        .foregroundColor(.white)
-                        .cornerRadius(MacRadius.sm)
-                        .padding(.bottom, 20)
+                        .font(MacFont.body)
+                        .padding(.horizontal, MacSpacing.lg)
+                        .padding(.vertical, MacSpacing.md)
+                        .background(.black.opacity(0.8), in: Capsule())
+                        .foregroundStyle(.white)
+                        .padding(.bottom, MacSpacing.xl)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                         .onTapGesture {
                             showToast = false
@@ -134,19 +128,18 @@ struct ClipboardHistoryView: View {
     // MARK: - Empty View
 
     private var EmptyListView: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: MacSpacing.md) {
             Image(systemName: searchText.isEmpty ? "doc.on.clipboard" : "magnifyingglass")
-                .font(.system(size: 60))
-                .foregroundStyle(.secondary)
+                .font(.system(size: MacIcon.hero))
+                .foregroundStyle(.tertiary)
 
             Text(searchText.isEmpty ? NSLocalizedString("클립보드 히스토리 없음", comment: "No clipboard history") : NSLocalizedString("검색 결과 없음", comment: "No search results"))
-                .font(.title2)
-                .bold()
+                .font(MacFont.sectionTitle)
 
             Text(searchText.isEmpty ?
                  NSLocalizedString("복사한 내용이 자동으로 여기에 저장됩니다\n(최대 100개, 7일간 유지)", comment: "Clipboard history empty description") :
                  String(format: NSLocalizedString("'%@'와 일치하는 항목이 없습니다", comment: "No results for search query"), searchText))
-                .font(.subheadline)
+                .font(MacFont.secondary)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
         }
@@ -248,9 +241,9 @@ struct ClipboardItemRow: View {
     @State private var isHovering = false
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: MacSpacing.md) {
             // 콘텐츠
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: MacSpacing.sm) {
                 if item.contentType == .image {
                     // 이미지 표시
                     if let imageFileName = item.imageFileName,
@@ -261,61 +254,51 @@ struct ClipboardItemRow: View {
                             .frame(maxWidth: 200, maxHeight: 150)
                             .cornerRadius(MacRadius.sm)
                     } else {
-                        HStack(spacing: 8) {
+                        HStack(spacing: MacSpacing.sm) {
                             Image(systemName: AppSymbol.photo)
-                                .foregroundStyle(.secondary)
                             Text(NSLocalizedString("이미지를 불러올 수 없습니다", comment: "Image load error"))
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
                         }
+                        .font(MacFont.secondary)
+                        .foregroundStyle(.secondary)
                     }
                 } else {
                     // 텍스트 표시
                     Text(item.content)
-                        .font(.system(.callout))
+                        .font(MacFont.body)
                         .lineLimit(3)
-                        .foregroundStyle(.primary)
                 }
 
-                HStack(spacing: 12) {
-                    HStack(spacing: 4) {
-                        Image(systemName: AppSymbol.clock)
-                            .font(.caption)
-                        Text(formatDate(item.copiedAt))
-                            .font(.caption)
-                    }
-                    .foregroundStyle(.secondary)
+                HStack(spacing: MacSpacing.md) {
+                    Text(formatDate(item.copiedAt))
 
                     if item.isTemporary {
                         Text(NSLocalizedString("임시", comment: "Temporary tag"))
-                            .font(.caption)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(Color.orange.opacity(0.2))
-                            .cornerRadius(MacRadius.xs)
+                            .padding(.horizontal, MacSpacing.sm)
+                            .padding(.vertical, 1)
+                            .background(Color.orange.opacity(0.15), in: Capsule())
                     }
 
                     if item.contentType == .image {
                         Text(NSLocalizedString("이미지", comment: "Image tag"))
-                            .font(.caption)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(Color.blue.opacity(0.2))
-                            .cornerRadius(MacRadius.xs)
+                            .padding(.horizontal, MacSpacing.sm)
+                            .padding(.vertical, 1)
+                            .background(MacColor.surface, in: Capsule())
                     }
                 }
+                .font(MacFont.secondary)
+                .foregroundStyle(.secondary)
             }
 
             Spacer()
 
             // 액션 버튼들 (hover 시에만 표시)
             if isHovering {
-                HStack(spacing: 8) {
+                HStack(spacing: MacSpacing.md) {
                     Button {
                         onSave()
                     } label: {
                         Image(systemName: AppSymbol.squareAndArrowDown)
-                            .foregroundStyle(.green)
+                            .foregroundStyle(.secondary)
                     }
                     .buttonStyle(.plain)
                     .help(NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip"))
@@ -324,7 +307,7 @@ struct ClipboardItemRow: View {
                         onCopy()
                     } label: {
                         Image(systemName: AppSymbol.docOnDoc)
-                            .foregroundStyle(.blue)
+                            .foregroundStyle(.tint)
                     }
                     .buttonStyle(.plain)
                     .help(NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"))
@@ -338,11 +321,12 @@ struct ClipboardItemRow: View {
                     .buttonStyle(.plain)
                     .help(NSLocalizedString("삭제", comment: "Delete tooltip"))
                 }
+                .font(MacFont.body)
             }
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal, 12)
-        .background(isHovering ? Color.gray.opacity(0.1) : Color.clear)
+        .padding(.vertical, MacSpacing.md)
+        .padding(.horizontal, MacSpacing.md)
+        .background(isHovering ? MacColor.hover : Color.clear)
         .cornerRadius(MacRadius.sm)
         .onHover { hovering in
             isHovering = hovering

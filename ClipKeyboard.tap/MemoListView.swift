@@ -124,28 +124,23 @@ struct MemoListView: View {
 
     /// 컴팩트 헤더 (타이틀·개수·카테고리 Picker + 검색 바)
     private var headerSection: some View {
-        VStack(spacing: 6) {
-            HStack {
-                Image(systemName: AppSymbol.docOnClipboardFill)
-                    .font(.system(.body))
-                    .foregroundStyle(.blue)
-
+        VStack(spacing: MacSpacing.sm) {
+            HStack(spacing: MacSpacing.sm) {
                 Text(NSLocalizedString("단축어", comment: "Snippets section header"))
-                    .font(.headline)
-                    .bold()
-
-                Spacer()
+                    .font(MacFont.sectionTitle)
 
                 Text("\(filteredMemos.count)")
-                    .font(.caption)
+                    .font(MacFont.secondary)
                     .foregroundStyle(.secondary)
+
+                Spacer()
 
                 categoryPicker
             }
 
             searchBar
         }
-        .padding(8)
+        .padding(MacSpacing.md)
     }
 
     /// 카테고리 선택 Picker
@@ -155,8 +150,8 @@ struct MemoListView: View {
                 categoryLabel(category).tag(category)
             }
         }
-        .frame(width: 80)
-        .controlSize(.small)
+        .labelsHidden()
+        .frame(width: 120)
     }
 
     /// Picker 항목 라벨 — 중첩 삼항/옵셔널 체인을 헬퍼로 분리해 타입체커 부담을 낮춘다.
@@ -180,46 +175,45 @@ struct MemoListView: View {
 
     /// 컴팩트 검색 바
     private var searchBar: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: MacSpacing.sm) {
             Image(systemName: AppSymbol.magnifyingglass)
-                .font(.caption)
                 .foregroundStyle(.secondary)
 
             TextField(NSLocalizedString("검색", comment: "Search placeholder"), text: $searchText)
                 .textFieldStyle(.plain)
-                .font(.caption)
 
             if !searchText.isEmpty {
                 Button {
                     searchText = ""
                 } label: {
                     Image(systemName: AppSymbol.xmarkCircleFill)
-                        .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 .buttonStyle(.plain)
             }
         }
-        .padding(4)
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(MacRadius.xs)
+        .font(MacFont.body)
+        .padding(.horizontal, MacSpacing.sm)
+        .padding(.vertical, MacSpacing.xs + 2)
+        .macSurface(MacRadius.xs)
     }
 
     /// 무료 유저: 숨겨진 메모 잠금 배너 (조건 미충족 시 빈 뷰)
     @ViewBuilder
     private var lockedBanner: some View {
         if isFreeUser && hiddenMemoCount > 0 {
-            HStack(spacing: 6) {
+            HStack(spacing: MacSpacing.sm) {
                 Image(systemName: AppSymbol.lockFill)
-                    .font(.system(.caption))
                 Text(String(format: NSLocalizedString("%d개 단축어 잠김 — iOS에서 Pro 구매 시 동기화됩니다", comment: "Locked memos banner"), hiddenMemoCount))
-                    .font(.system(.caption))
-                Spacer()
+                    .fixedSize(horizontal: false, vertical: true)
+                Spacer(minLength: 0)
             }
-            .foregroundColor(.white)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 5)
-            .background(Color.orange.opacity(0.85))
+            .font(MacFont.body)
+            .foregroundStyle(.orange)
+            .padding(.horizontal, MacSpacing.md)
+            .padding(.vertical, MacSpacing.sm)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.orange.opacity(0.12))
         }
     }
 
@@ -242,14 +236,14 @@ struct MemoListView: View {
 
             // 순서 변경 안내 — 검색 중이 아닐 때만.
             if canReorder && filteredMemos.count > 1 {
-                HStack(spacing: 4) {
+                HStack(spacing: MacSpacing.xs) {
                     Image(systemName: AppSymbol.arrowUpAndDownAndArrowLeftAndRight)
                     Text(NSLocalizedString("드래그하여 순서를 바꿀 수 있어요", comment: "Mac reorder hint"))
                 }
-                .font(.caption2)
+                .font(MacFont.secondary)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 5)
+                .padding(.vertical, MacSpacing.sm)
             }
         }
     }
@@ -276,14 +270,13 @@ struct MemoListView: View {
     // MARK: - Empty View
 
     private var CompactEmptyListView: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: MacSpacing.md) {
             Image(systemName: searchText.isEmpty ? "doc.text.magnifyingglass" : "magnifyingglass")
-                .font(.system(size: 32))
-                .foregroundStyle(.secondary)
+                .font(.system(size: MacIcon.hero))
+                .foregroundStyle(.tertiary)
 
             Text(searchText.isEmpty ? NSLocalizedString("단축어 없음", comment: "No memos") : NSLocalizedString("검색 결과 없음", comment: "No search results"))
-                .font(.caption)
-                .bold()
+                .font(MacFont.body)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -350,41 +343,37 @@ private struct MacComboValuePicker: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 8) {
-                Image(systemName: "square.stack.3d.up.fill")
-                    .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: MacSpacing.md) {
+            VStack(alignment: .leading, spacing: MacSpacing.xs) {
                 Text(memo.title)
-                    .font(.headline)
+                    .font(MacFont.sectionTitle)
                     .lineLimit(1)
-                Spacer()
+                Text(NSLocalizedString("값을 눌러 복사하세요", comment: "Combo preview: tap a value to copy"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
             }
-            Text(NSLocalizedString("값을 눌러 복사하세요", comment: "Combo preview: tap a value to copy"))
-                .font(.caption)
-                .foregroundStyle(.secondary)
 
             ScrollView {
-                VStack(spacing: 8) {
+                VStack(spacing: MacSpacing.sm) {
                     ForEach(Array(values.enumerated()), id: \.offset) { idx, value in
                         Button {
                             onPick(value)
                             dismiss()
                         } label: {
-                            HStack(spacing: 10) {
+                            HStack(spacing: MacSpacing.md) {
                                 Text("\(idx + 1)")
-                                    .font(.caption.weight(.bold))
-                                    .foregroundStyle(.white)
-                                    .frame(width: 22, height: 22)
-                                    .background(Circle().fill(Color.accentColor))
+                                    .font(MacFont.mono)
+                                    .foregroundStyle(.secondary)
+                                    .frame(width: 20, alignment: .trailing)
                                 Text(value.isEmpty ? "—" : value)
+                                    .font(MacFont.body)
                                     .lineLimit(2)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Image(systemName: "doc.on.doc")
                                     .foregroundStyle(.secondary)
                             }
-                            .padding(8)
-                            .background(Color.gray.opacity(0.08))
-                            .cornerRadius(MacRadius.sm)
+                            .padding(MacSpacing.md)
+                            .macSurface()
                             .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
@@ -393,8 +382,8 @@ private struct MacComboValuePicker: View {
                 }
             }
         }
-        .padding(16)
-        .frame(width: 360, height: 380)
+        .padding(MacSpacing.xl)
+        .frame(width: 380, height: 400)
     }
 }
 
@@ -408,30 +397,28 @@ struct CompactMemoItemRow: View {
         // Button(.plain)으로 감싸야 macOS List의 드래그 순서변경(.onMove)과 클릭-복사가
         // 공존한다. .onTapGesture 는 List의 reorder 드래그 제스처를 가로채 드래그가 안 먹는다.
         Button(action: onCopy) {
-        HStack(spacing: 6) {
-            // 아이콘
+        HStack(spacing: MacSpacing.md) {
+            // 아이콘 — 즐겨찾기만 색으로 강조하고 나머지는 무채색으로 통일.
             Image(systemName: memo.contentType == .image ? "photo" :
                   memo.isFavorite ? "star.fill" :
                   memo.isSecure ? "lock.fill" : "doc.text")
-                .foregroundStyle(memo.contentType == .image ? .purple :
-                                memo.isFavorite ? .yellow : .blue)
-                .font(.caption)
-                .frame(width: 16)
+                .foregroundStyle(memo.isFavorite ? AnyShapeStyle(Color.yellow) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
+                .font(MacFont.body)
+                .frame(width: MacIcon.glyph)
 
             // 콘텐츠
-            VStack(alignment: .leading, spacing: 2) {
-                HStack(spacing: 4) {
+            VStack(alignment: .leading, spacing: MacSpacing.xs / 2) {
+                HStack(spacing: MacSpacing.xs) {
                     Text(memo.title)
-                        .font(.caption)
-                        .fontWeight(.semibold)
+                        .font(MacFont.rowTitle)
                         .lineLimit(1)
 
                     Spacer()
 
                     if isHovering {
                         Image(systemName: memo.contentType == .image ? "photo" : "doc.on.doc")
-                            .font(.caption2)
-                            .foregroundStyle(.blue)
+                            .font(MacFont.body)
+                            .foregroundStyle(.tint)
                     }
                 }
 
@@ -442,13 +429,13 @@ struct CompactMemoItemRow: View {
                         : memo.imageFileNames
 
                     if !imageFileNames.isEmpty {
-                        HStack(spacing: 4) {
+                        HStack(spacing: MacSpacing.xs) {
                             ForEach(Array(imageFileNames.prefix(3).enumerated()), id: \.offset) { _, fileName in
                                 if let image = MemoStore.shared.loadImage(fileName: fileName) {
                                     Image(nsImage: image)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
-                                        .frame(width: 30, height: 30)
+                                        .frame(width: 32, height: 32)
                                         .clipped()
                                         .cornerRadius(MacRadius.xs)
                                 }
@@ -456,7 +443,7 @@ struct CompactMemoItemRow: View {
 
                             if imageFileNames.count > 3 {
                                 Text("+\(imageFileNames.count - 3)")
-                                    .font(.system(.caption2))
+                                    .font(MacFont.secondary)
                                     .foregroundStyle(.secondary)
                             }
                         }
@@ -464,21 +451,21 @@ struct CompactMemoItemRow: View {
 
                     if memo.contentType == .mixed && !memo.value.isEmpty {
                         Text(memo.isSecure ? AttributedString(MacSecureAccess.maskedPreview(memo)) : memo.value.templateChipAttributed())
-                            .font(.system(.caption))
+                            .font(MacFont.secondary)
                             .lineLimit(1)
                             .foregroundStyle(.secondary)
                     }
                 } else {
                     Text(memo.isSecure ? AttributedString(MacSecureAccess.maskedPreview(memo)) : memo.value.templateChipAttributed())
-                        .font(.system(.caption))
+                        .font(MacFont.secondary)
                         .lineLimit(1)
                         .foregroundStyle(.secondary)
                 }
             }
         }
-        .padding(.vertical, 4)
-        .padding(.horizontal, 6)
-        .background(isHovering ? Color.blue.opacity(0.1) : Color.clear)
+        .padding(.vertical, MacSpacing.sm)
+        .padding(.horizontal, MacSpacing.sm)
+        .background(isHovering ? MacColor.hover : Color.clear)
         .cornerRadius(MacRadius.xs)
         .contentShape(Rectangle())
         }

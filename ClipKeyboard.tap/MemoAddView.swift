@@ -22,15 +22,10 @@ struct MemoAddView: View {
     var body: some View {
         VStack(spacing: 0) {
             // 헤더
-            VStack(spacing: 12) {
+            VStack(spacing: MacSpacing.md) {
                 HStack {
-                    Image(systemName: AppSymbol.squareAndPencil)
-                        .font(.system(size: 32))
-                        .foregroundStyle(.secondary)
-
                     Text(NSLocalizedString("새 단축어", comment: "Add memo title"))
-                        .font(.title2)
-                        .bold()
+                        .font(MacFont.screenTitle)
 
                     Spacer()
 
@@ -47,49 +42,45 @@ struct MemoAddView: View {
                 // 제목 입력
                 TextField(NSLocalizedString("제목", comment: "Title placeholder"), text: $title)
                     .textFieldStyle(.roundedBorder)
-                    .font(.headline)
+                    .font(MacFont.body)
 
                 // 카테고리 선택
-                HStack {
+                HStack(spacing: MacSpacing.sm) {
                     Text(NSLocalizedString("Category Label", comment: "Category inline label (with colon)"))
-                        .font(.caption)
+                        .font(MacFont.secondary)
                         .foregroundStyle(.secondary)
 
                     TextField(NSLocalizedString("카테고리", comment: "Category placeholder"), text: $category)
                         .textFieldStyle(.roundedBorder)
-                        .font(.caption)
-                        .frame(width: 100)
+                        .font(MacFont.body)
+                        .frame(width: 160)
 
                     Spacer()
                 }
             }
-            .padding()
+            .padding(MacSpacing.xl)
 
             Divider()
 
             // 컨텐츠 입력 영역
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: MacSpacing.xl) {
                     // 텍스트 입력
-                    VStack(alignment: .leading, spacing: 8) {
-                        HStack {
-                            Image(systemName: AppSymbol.textAlignleft)
-                                .foregroundStyle(.secondary)
-                            Text(NSLocalizedString("내용", comment: "Content section header"))
-                                .font(.headline)
-                        }
+                    VStack(alignment: .leading, spacing: MacSpacing.sm) {
+                        Text(NSLocalizedString("내용", comment: "Content section header"))
+                            .font(MacFont.sectionTitle)
 
                         TextEditor(text: $textContent)
-                            .font(.body)
+                            .font(MacFont.body)
+                            .scrollContentBackground(.hidden)
                             .frame(minHeight: 150)
-                            .padding(8)
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(MacRadius.sm)
+                            .padding(MacSpacing.sm)
+                            .macSurface()
                             .overlay(alignment: .topLeading) {
                                 // 빈 상태 힌트 — 단축어에 보일 내용을 입력하라는 안내.
                                 if textContent.isEmpty {
                                     Text(NSLocalizedString("단축어에 보일 내용을 입력하세요", comment: "Content placeholder"))
-                                        .font(.body)
+                                        .font(MacFont.body)
                                         .foregroundStyle(.secondary)
                                         .padding(.horizontal, 13)
                                         .padding(.vertical, 16)
@@ -103,33 +94,30 @@ struct MemoAddView: View {
                         // 내용에 {토큰}이 있으면 칩 미리보기
                         if textContent.contains("{") {
                             Text(textContent.templateChipAttributed())
-                                .font(.callout)
+                                .font(MacFont.body)
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(8)
-                                .background(Color.accentColor.opacity(0.06))
-                                .clipShape(RoundedRectangle(cornerRadius: MacRadius.sm))
+                                .padding(MacSpacing.md)
+                                .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: MacRadius.sm))
                         }
                     }
 
                     // 이미지 첨부 영역
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: MacSpacing.sm) {
                         HStack {
-                            Image(systemName: AppSymbol.photo)
-                                .foregroundStyle(.secondary)
                             Text(NSLocalizedString("이미지 첨부", comment: "Image attachment section header"))
-                                .font(.headline)
+                                .font(MacFont.sectionTitle)
 
                             Spacer()
 
                             if !attachedImages.isEmpty {
                                 Text(String(format: NSLocalizedString("%d개", comment: "Item count"), attachedImages.count))
-                                    .font(.caption)
+                                    .font(MacFont.secondary)
                                     .foregroundStyle(.secondary)
                             }
                         }
 
                         // 이미지 추가 버튼
-                        HStack(spacing: 12) {
+                        HStack(spacing: MacSpacing.md) {
                             Button {
                                 selectImageFromFile()
                             } label: {
@@ -165,37 +153,32 @@ struct MemoAddView: View {
                             }
                             .padding(.top, 8)
                         } else {
-                            HStack {
-                                Spacer()
-                                VStack(spacing: 8) {
-                                    Image(systemName: AppSymbol.photoOnRectangleAngled)
-                                        .font(.system(size: 40))
-                                        .foregroundStyle(.secondary)
-                                    Text(NSLocalizedString("이미지를 추가해보세요", comment: "Empty image hint"))
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                }
-                                .padding(.vertical, 20)
-                                Spacer()
+                            VStack(spacing: MacSpacing.md) {
+                                Image(systemName: AppSymbol.photoOnRectangleAngled)
+                                    .font(.system(size: MacIcon.hero))
+                                    .foregroundStyle(.tertiary)
+                                Text(NSLocalizedString("이미지를 추가해보세요", comment: "Empty image hint"))
+                                    .font(MacFont.secondary)
+                                    .foregroundStyle(.secondary)
                             }
-                            .background(Color.gray.opacity(0.05))
-                            .cornerRadius(MacRadius.sm)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, MacSpacing.xl)
+                            .macSurface()
                         }
                     }
                 }
-                .padding()
+                .padding(MacSpacing.xl)
             }
 
             Divider()
 
             // 하단 버튼
-            HStack(spacing: 12) {
+            HStack(spacing: MacSpacing.md) {
                 Spacer()
 
                 Button(NSLocalizedString("취소", comment: "Cancel button")) {
                     closeWindow()
                 }
-                .buttonStyle(.bordered)
                 .keyboardShortcut(.cancelAction)
 
                 Button(NSLocalizedString("저장", comment: "Save button")) {
@@ -205,22 +188,23 @@ struct MemoAddView: View {
                 .keyboardShortcut(.defaultAction)
                 .disabled(!canSave)
             }
-            .padding(.horizontal)
-            .padding(.top, -20)
-            .padding(.bottom)
+            .controlSize(.large)
+            .padding(MacSpacing.lg)
         }
-        .frame(minWidth: 480, minHeight: 560)
+        .font(MacFont.body)
+        .frame(minWidth: 520, minHeight: 600)
         .overlay(
             // Toast 메시지
             VStack {
                 Spacer()
                 if showToast {
                     Text(toastMessage)
-                        .padding()
-                        .background(Color.black.opacity(0.8))
-                        .foregroundColor(.white)
-                        .cornerRadius(MacRadius.sm)
-                        .padding(.bottom, 20)
+                        .font(MacFont.body)
+                        .padding(.horizontal, MacSpacing.lg)
+                        .padding(.vertical, MacSpacing.md)
+                        .background(.black.opacity(0.8), in: Capsule())
+                        .foregroundStyle(.white)
+                        .padding(.bottom, MacSpacing.xl)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
@@ -245,32 +229,32 @@ struct MemoAddView: View {
     ]
 
     private var templateVariableBar: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: MacSpacing.sm) {
             Text(NSLocalizedString("자동으로 채워지는 값", comment: "Auto-fill variables hint"))
-                .font(.caption)
+                .font(MacFont.secondary)
                 .foregroundStyle(.secondary)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 6) {
+                HStack(spacing: MacSpacing.sm) {
                     ForEach(autoVars, id: \.token) { item in
                         Button {
                             insertToken(item.token)
                         } label: {
                             Text(NSLocalizedString(item.labelKey, comment: "Auto template variable"))
-                                .font(.caption)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 5)
-                                .background(Color.accentColor.opacity(0.12))
-                                .foregroundColor(.accentColor)
-                                .clipShape(Capsule())
+                                .font(MacFont.body)
+                                .padding(.horizontal, MacSpacing.md)
+                                .padding(.vertical, MacSpacing.xs + 2)
+                                .background(Color.accentColor.opacity(0.12), in: Capsule())
+                                .foregroundStyle(.tint)
                         }
                         .buttonStyle(.plain)
                     }
                 }
+                .padding(.vertical, 1)
             }
 
             Text(NSLocalizedString("{ }로 감싸면 입력할 때 채우는 칸이 됩니다", comment: "Custom placeholder hint"))
-                .font(.caption2)
+                .font(MacFont.secondary)
                 .foregroundStyle(.secondary)
         }
     }

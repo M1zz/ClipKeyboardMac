@@ -14,14 +14,42 @@ import SwiftUI
 
 @MainActor
 final class PopoverViewModel: ObservableObject {
+    /// 카테고리 탭에서 "전체"를 뜻하는 표식 — 저장된 카테고리 이름과 겹치지 않는다.
+    static let allCategory = "전체"
+
     @Published var searchText: String = ""
     @Published var memos: [Memo] = []
     @Published var selectedIndex: Int = 0
+    /// 선택된 카테고리 탭 ("전체"면 필터 없음).
+    @Published var selectedCategory: String = PopoverViewModel.allCategory
+
+    /// 아이폰에서 넘어온 카테고리 설정(순서·아이콘·숨김) — 메모 목록 창과 같은 탭 구성을 쓴다.
+    private(set) var categorySettings: CategorySnapshot = CategorySnapshotStore.current()
+
+    /// 표시할 탭 목록 — 메모가 실제로 있는 카테고리만, 아이폰이 정한 순서대로.
+    var categories: [String] {
+        let present = Set(memos.map { $0.category }).subtracting([""])
+        // 지금 보고 있는 탭은 숨김이어도 남긴다 — 선택이 사라지면 탭이 빈칸이 된다.
+        let hidden = Set(categorySettings.hiddenTabs).subtracting([selectedCategory])
+
+        var ordered = categorySettings.categories.filter { present.contains($0) && !hidden.contains($0) }
+        ordered += present.subtracting(ordered).subtracting(hidden).sorted()
+
+        return [Self.allCategory] + ordered
+    }
 
     var filtered: [Memo] {
-        guard !searchText.isEmpty else { return memos }
+        var result = memos
+
+        // 1) 카테고리 탭
+        if selectedCategory != Self.allCategory {
+            result = result.filter { $0.category == selectedCategory }
+        }
+
+        // 2) 검색어
+        guard !searchText.isEmpty else { return result }
         let q = searchText.lowercased()
-        return memos.filter { memo in
+        return result.filter { memo in
             if memo.title.lowercased().contains(q) { return true }
             // 보안 메모는 값(암호문)으로 검색하지 않음 — 제목으로만 매칭.
             if memo.isSecure { return false }
@@ -33,13 +61,26 @@ final class PopoverViewModel: ObservableObject {
 
     func reload() {
         do {
+            // 메모와 카테고리 설정은 같은 동기화로 함께 갱신된다 — 따로 읽으면
+            // 새 탭의 메모는 왔는데 탭 순서·아이콘은 옛것인 상태가 생긴다.
+            categorySettings = CategorySnapshotStore.current()
             let loaded = try MemoStore.shared.load(type: .memo)
             // 사용자가 지정한 수동 순서(있으면) → 없으면 즐겨찾기 먼저, 최근순. iOS와 순서 공유.
             memos = MacMemoOrder.sorted(loaded)
+            // 선택해 둔 탭의 메모가 모두 사라졌으면 "전체"로 되돌린다.
+            if !categories.contains(selectedCategory) { selectedCategory = Self.allCategory }
             if selectedIndex >= filtered.count { selectedIndex = max(0, filtered.count - 1) }
         } catch {
             print("⚠️ [Popover] 메모 로드 실패: \(error)")
         }
+    }
+
+    /// 탭 라벨 — 내장 카테고리는 지역화된 이름으로.
+    func title(for category: String) -> String {
+        if category == Self.allCategory {
+            return NSLocalizedString("전체", comment: "All categories")
+        }
+        return ClipboardItemType(rawValue: category)?.localizedName ?? category
     }
 
     /// 간이 fuzzy — 순서대로 문자가 등장하면 매치 (공백은 무시).
@@ -71,6 +112,7 @@ struct MenuBarPopoverView: View {
     var body: some View {
         VStack(spacing: 0) {
             searchBar
+            categoryTabs
             Divider()
 
             if viewModel.filtered.isEmpty {
@@ -82,7 +124,7 @@ struct MenuBarPopoverView: View {
             Divider()
             bottomToolbar
         }
-        .frame(width: 360, height: 480)
+        .frame(width: 400, height: 500)
         .onAppear {
             viewModel.reload()
             DispatchQueue.main.async { searchFocused = true }
@@ -92,10 +134,9 @@ struct MenuBarPopoverView: View {
     // MARK: - Sections
 
     private var searchBar: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: MacSpacing.sm) {
             Image(systemName: AppSymbol.magnifyingglass)
-                .foregroundColor(.secondary)
-                .font(.system(.subheadline))
+                .foregroundStyle(.secondary)
 
             TextField(
                 NSLocalizedString("Search memos", comment: "Popover search placeholder"),
@@ -116,14 +157,14 @@ struct MenuBarPopoverView: View {
                     viewModel.searchText = ""
                 } label: {
                     Image(systemName: AppSymbol.xmarkCircleFill)
-                        .foregroundColor(.secondary)
-                        .font(.system(.subheadline))
+                        .foregroundStyle(.secondary)
                 }
                 .buttonStyle(.plain)
             }
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
+        .font(MacFont.body)
+        .padding(.horizontal, MacSpacing.lg)
+        .padding(.vertical, MacSpacing.md)
         .background(KeyboardShortcutCapture(
             onArrowUp: { moveSelection(by: -1) },
             onArrowDown: { moveSelection(by: 1) },
@@ -131,6 +172,46 @@ struct MenuBarPopoverView: View {
             onReturn: { activateSelected() },
             onOptionReturn: { activateSelected(forcePaste: !autoPaste) }
         ))
+    }
+
+    /// 카테고리 탭 — 아이폰과 같은 순서·아이콘. 카테고리가 하나뿐이면 감춘다.
+    @ViewBuilder
+    private var categoryTabs: some View {
+        let categories = viewModel.categories
+        if categories.count > 1 {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: MacSpacing.sm) {
+                    ForEach(categories, id: \.self) { category in
+                        categoryChip(category)
+                    }
+                }
+                .padding(.horizontal, MacSpacing.lg)
+                .padding(.bottom, MacSpacing.sm)
+            }
+        }
+    }
+
+    private func categoryChip(_ category: String) -> some View {
+        let isSelected = viewModel.selectedCategory == category
+        return Button {
+            viewModel.selectedCategory = category
+            viewModel.selectedIndex = 0
+        } label: {
+            HStack(spacing: MacSpacing.xs) {
+                if let symbol = viewModel.categorySettings.icons[category] {
+                    Image(systemName: symbol)
+                }
+                Text(viewModel.title(for: category))
+                    .lineLimit(1)
+            }
+            .font(MacFont.body)
+            .foregroundStyle(isSelected ? AnyShapeStyle(Color.accentColor) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
+            .padding(.horizontal, MacSpacing.md)
+            .padding(.vertical, MacSpacing.xs)
+            .background(isSelected ? MacColor.selection : MacColor.surface, in: Capsule())
+            .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
     }
 
     private var memoList: some View {
@@ -170,20 +251,20 @@ struct MenuBarPopoverView: View {
     }
 
     private var emptyState: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: MacSpacing.md) {
             Image(systemName: AppSymbol.docOnClipboard)
-                .font(.system(size: 28))
-                .foregroundColor(.secondary)
+                .font(.system(size: MacIcon.hero))
+                .foregroundStyle(.tertiary)
             Text(
                 viewModel.searchText.isEmpty
                 ? NSLocalizedString("No memos yet", comment: "Popover empty state")
                 : NSLocalizedString("No matches", comment: "Popover empty state (searching)")
             )
-            .font(.subheadline)
-            .foregroundColor(.secondary)
+            .font(MacFont.body)
+            .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.vertical, 40)
+        .padding(.vertical, MacSpacing.xl)
     }
 
     private var bottomToolbar: some View {
@@ -217,6 +298,10 @@ struct MenuBarPopoverView: View {
                 dismiss()
             }
             Spacer()
+
+            // 전역 단축키 안내 — 메뉴바를 열지 않아도 어디서나 패널을 띄울 수 있다는 정보.
+            quickPasteHint
+
             quickButton(
                 title: NSLocalizedString("Preferences", comment: "Settings window title"),
                 symbol: "gearshape",
@@ -227,26 +312,46 @@ struct MenuBarPopoverView: View {
                 dismiss()
             }
         }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 6)
+        .padding(.horizontal, MacSpacing.md)
+        .padding(.vertical, MacSpacing.sm)
     }
 
-    private func quickButton(title: String, symbol: String, shortcut: Character, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack(spacing: 4) {
-                Image(systemName: symbol)
-                    .font(.system(.footnote))
-                Text(title)
-                    .font(.caption)
+    /// "⌃⇧V 빠른 붙여넣기 패널" 안내 — 눌러도 패널이 열려, 안내이면서 버튼이다.
+    private var quickPasteHint: some View {
+        Button {
+            dismiss()
+            MemoFloatingPanelController.shared.show()
+        } label: {
+            HStack(spacing: MacSpacing.xs) {
+                Text(verbatim: "⌃⇧V")
+                    .font(MacFont.mono)
+                    .padding(.horizontal, MacSpacing.xs + 2)
+                    .padding(.vertical, 1)
+                    .background(MacColor.surface, in: RoundedRectangle(cornerRadius: MacRadius.xs))
+
+                Text(NSLocalizedString("Quick Paste Panel", comment: "Shortcut: quick paste"))
+                    .font(MacFont.body)
                     .lineLimit(1)
             }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 5)
+            .foregroundStyle(.secondary)
             .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .help(NSLocalizedString("The quick paste panel (⌃⇧V) stays over your current app — click a memo and the text is pasted directly into the text field you were typing in, without losing focus.", comment: "Quick paste explainer (3-key)"))
+    }
+
+    /// 하단 툴바 버튼 — 글자를 줄여 넣는 대신 기호만 두고 이름은 툴팁(⌘단축키 포함)으로 안내한다.
+    private func quickButton(title: String, symbol: String, shortcut: Character, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: symbol)
+                .font(MacFont.body)
+                .frame(width: 28, height: 24)
+                .contentShape(Rectangle())
         }
         .buttonStyle(.borderless)
         .keyboardShortcut(KeyEquivalent(shortcut), modifiers: .command)
-        .help(title)
+        .help("\(title) (⌘\(String(shortcut).uppercased()))")
+        .accessibilityLabel(title)
     }
 
     // MARK: - Actions
@@ -295,27 +400,25 @@ private struct PopoverRow: View {
 
     var body: some View {
         Button(action: onTap) {
-            HStack(spacing: 10) {
+            HStack(spacing: MacSpacing.md) {
                 // 즐겨찾기 하트 / 인덱스 배지
                 if memo.isFavorite {
                     Image(systemName: AppSymbol.heartFill)
-                        .foregroundColor(.pink)
-                        .font(.system(.caption))
-                        .frame(width: 16, height: 16)
+                        .foregroundStyle(.pink)
+                        .font(MacFont.body)
+                        .frame(width: 28, alignment: .center)
                 } else if showShortcut {
                     Text("⌘\(index + 1)")
-                        .font(.system(.caption2, design: .monospaced).weight(.medium))
-                        .foregroundColor(.secondary)
-                        .frame(width: 20, height: 16)
-                        .background(Color.secondary.opacity(0.15))
-                        .clipShape(RoundedRectangle(cornerRadius: MacRadius.xs))
+                        .font(MacFont.mono)
+                        .foregroundStyle(.secondary)
+                        .frame(width: 28, alignment: .center)
                 } else {
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 28)
                 }
 
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: MacSpacing.xs / 2) {
                     Text(memo.title)
-                        .font(.system(.subheadline).weight(.medium))
+                        .font(MacFont.rowTitle)
                         .lineLimit(1)
                     // 보안 메모는 값을 마스킹(인증 전 노출 금지).
                     let preview = MacSecureAccess.maskedPreview(memo)
@@ -323,18 +426,18 @@ private struct PopoverRow: View {
                         .trimmingCharacters(in: .whitespaces)
                     if !preview.isEmpty {
                         Text(memo.isSecure ? AttributedString(preview) : preview.templateChipAttributed())
-                            .font(.system(.caption))
-                            .foregroundColor(.secondary)
+                            .font(MacFont.secondary)
+                            .foregroundStyle(.secondary)
                             .lineLimit(1)
                     }
                 }
                 Spacer(minLength: 0)
             }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
+            .padding(.horizontal, MacSpacing.lg)
+            .padding(.vertical, MacSpacing.sm)
             .background(
                 isSelected
-                    ? Color.accentColor.opacity(0.18)
+                    ? MacColor.selection
                     : Color.clear
             )
             .contentShape(Rectangle())

@@ -16,58 +16,48 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                Image(systemName: AppSymbol.docOnClipboard)
-                    .font(.system(size: 60))
-                    .foregroundStyle(.blue)
+            VStack(spacing: MacSpacing.xl) {
+                VStack(spacing: MacSpacing.sm) {
+                    Image(systemName: AppSymbol.docOnClipboard)
+                        .font(.system(size: MacIcon.hero))
+                        .foregroundStyle(.tint)
 
-                Text(NSLocalizedString("클립키보드", comment: "App name"))
-                    .font(.largeTitle)
-                    .bold()
+                    Text(NSLocalizedString("클립키보드", comment: "App name"))
+                        .font(MacFont.screenTitle)
 
-                Text(NSLocalizedString("macOS 전용 단축어 앱", comment: "App tagline"))
-                    .font(.title3)
-                    .foregroundStyle(.secondary)
-
-                Divider()
-                    .padding(.vertical)
-
-                VStack(alignment: .leading, spacing: 12) {
-                    HStack {
-                        Image(systemName: AppSymbol.keyboard)
-                        Text(NSLocalizedString("전역 단축키: ⌃⌥K", comment: "Global hotkey description"))
-                        Spacer()
-                        Text(NSLocalizedString("단축어 목록 표시", comment: "Show memo list label"))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    HStack {
-                        Image(systemName: AppSymbol.menubarRectangle)
-                        Text(NSLocalizedString("메뉴바 아이콘: 🛶", comment: "Menu bar icon description"))
-                        Spacer()
-                        Text(NSLocalizedString("언제든지 접근 가능", comment: "Always accessible label"))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    HStack {
-                        Image(systemName: AppSymbol.command)
-                        Text(NSLocalizedString("앱 메뉴: 클립키보드", comment: "App menu description"))
-                        Spacer()
-                        Text(NSLocalizedString("모든 기능 사용", comment: "All features label"))
-                            .foregroundStyle(.secondary)
-                    }
+                    Text(NSLocalizedString("macOS 전용 단축어 앱", comment: "App tagline"))
+                        .font(MacFont.secondary)
+                        .foregroundStyle(.secondary)
                 }
-                .padding()
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(MacRadius.sm)
+
+                VStack(alignment: .leading, spacing: MacSpacing.md) {
+                    infoRow(
+                        symbol: AppSymbol.keyboard,
+                        title: NSLocalizedString("전역 단축키: ⌃⌥K", comment: "Global hotkey description"),
+                        detail: NSLocalizedString("단축어 목록 표시", comment: "Show memo list label")
+                    )
+                    infoRow(
+                        symbol: AppSymbol.menubarRectangle,
+                        title: NSLocalizedString("메뉴바 아이콘: 🛶", comment: "Menu bar icon description"),
+                        detail: NSLocalizedString("언제든지 접근 가능", comment: "Always accessible label")
+                    )
+                    infoRow(
+                        symbol: AppSymbol.command,
+                        title: NSLocalizedString("앱 메뉴: 클립키보드", comment: "App menu description"),
+                        detail: NSLocalizedString("모든 기능 사용", comment: "All features label")
+                    )
+                }
+                .padding(MacSpacing.lg)
+                .macSurface()
 
                 Spacer()
 
                 Text(NSLocalizedString("창을 닫아도 앱은 백그라운드에서 계속 실행됩니다", comment: "Background run hint"))
-                    .font(.caption)
+                    .font(MacFont.secondary)
                     .foregroundStyle(.secondary)
             }
-            .padding(40)
+            .font(MacFont.body)
+            .padding(MacSpacing.xl)
             .frame(minWidth: 500, minHeight: 400)
             .navigationTitle(NSLocalizedString("클립키보드", comment: "App name"))
         }
@@ -91,6 +81,19 @@ struct ContentView: View {
         .onDisappear {
             observerTokens.forEach { NotificationCenter.default.removeObserver($0) }
             observerTokens.removeAll()
+        }
+    }
+
+    /// 기능 안내 한 줄 — 기호 + 설명 + 오른쪽 보조 문구.
+    private func infoRow(symbol: String, title: String, detail: String) -> some View {
+        HStack(spacing: MacSpacing.sm) {
+            Image(systemName: symbol)
+                .foregroundStyle(.secondary)
+                .frame(width: MacIcon.glyph)
+            Text(title)
+            Spacer()
+            Text(detail)
+                .foregroundStyle(.secondary)
         }
     }
 

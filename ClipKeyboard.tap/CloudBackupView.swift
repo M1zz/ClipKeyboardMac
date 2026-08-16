@@ -29,16 +29,18 @@ struct CloudBackupView: View {
     }
 
     private var macProGateView: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: MacSpacing.md) {
             Spacer()
             Image(systemName: AppSymbol.icloudFill)
-                .font(.system(size: 48))
-                .foregroundStyle(.secondary)
+                .font(.system(size: MacIcon.hero))
+                .foregroundStyle(.tertiary)
             Text(NSLocalizedString("iCloud 백업은 Pro 기능입니다", comment: "Cloud backup pro"))
-                .font(.title3).fontWeight(.medium)
+                .font(MacFont.screenTitle)
             Text(NSLocalizedString("iOS 앱에서 Pro를 구매하면 macOS에서도 자동으로 활성화됩니다.", comment: "Mac Pro sync hint"))
-                .font(.subheadline).foregroundStyle(.secondary)
-                .multilineTextAlignment(.center).padding(.horizontal, 32)
+                .font(MacFont.secondary)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, MacSpacing.xl)
             Spacer()
         }
         .frame(minWidth: 500, minHeight: 420)
@@ -46,91 +48,67 @@ struct CloudBackupView: View {
 
     private var backupContentView: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 24) {
+            VStack(spacing: MacSpacing.xl) {
             // 헤더
-            VStack(spacing: 8) {
-                Image(systemName: AppSymbol.icloudAndArrowUpFill)
-                    .font(.system(size: 50))
-                    .foregroundStyle(.blue)
-
+            VStack(spacing: MacSpacing.sm) {
                 Text(NSLocalizedString("iCloud 백업 및 복구", comment: "iCloud backup and restore title"))
-                    .font(.title)
-                    .bold()
+                    .font(MacFont.screenTitle)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
 
                 Text(NSLocalizedString("데이터를 iCloud에 안전하게 백업하세요", comment: "Backup description"))
-                    .font(.subheadline)
+                    .font(MacFont.secondary)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .padding(.top, 20)
 
-            Divider()
+            // iCloud 상태 · 마지막 백업 — 한 장의 카드로 묶는다.
+            VStack(spacing: MacSpacing.md) {
+                HStack(spacing: MacSpacing.sm) {
+                    Image(systemName: cloudService.isAuthenticated ? "checkmark.circle.fill" : "xmark.circle.fill")
+                        .foregroundStyle(cloudService.isAuthenticated ? .green : .red)
 
-            // iCloud 상태
-            HStack {
-                Image(systemName: cloudService.isAuthenticated ? "checkmark.circle.fill" : "xmark.circle.fill")
-                    .foregroundStyle(cloudService.isAuthenticated ? .green : .red)
-
-                Text(NSLocalizedString("iCloud 상태:", comment: "iCloud status label"))
-                    .font(.headline)
-
-                Text(cloudService.isAuthenticated ? NSLocalizedString("연결됨", comment: "Connected status") : NSLocalizedString("연결 안 됨", comment: "Disconnected status"))
-                    .foregroundStyle(cloudService.isAuthenticated ? .green : .red)
-
-                Spacer()
-
-                Button(NSLocalizedString("상태 확인", comment: "Check status button")) {
-                    cloudService.checkAccountStatus()
-                }
-                .buttonStyle(.bordered)
-            }
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(MacRadius.sm)
-
-            // 마지막 백업 정보
-            if let lastBackupDate = cloudService.lastBackupDate {
-                HStack {
-                    Image(systemName: AppSymbol.clockFill)
-                        .foregroundStyle(.blue)
-
-                    Text(NSLocalizedString("마지막 백업:", comment: "Last backup label"))
-                        .font(.headline)
-
-                    Text(lastBackupDate, style: .relative)
+                    Text(NSLocalizedString("iCloud 상태:", comment: "iCloud status label"))
                         .foregroundStyle(.secondary)
 
-                    Text(NSLocalizedString("전", comment: "ago"))
-                        .foregroundStyle(.secondary)
+                    Text(cloudService.isAuthenticated ? NSLocalizedString("연결됨", comment: "Connected status") : NSLocalizedString("연결 안 됨", comment: "Disconnected status"))
 
                     Spacer()
-                }
-                .padding()
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(MacRadius.sm)
-            }
 
-            Spacer()
+                    Button(NSLocalizedString("상태 확인", comment: "Check status button")) {
+                        cloudService.checkAccountStatus()
+                    }
+                }
+
+                if let lastBackupDate = cloudService.lastBackupDate {
+                    Divider()
+                    HStack(spacing: MacSpacing.sm) {
+                        Text(NSLocalizedString("마지막 백업:", comment: "Last backup label"))
+                            .foregroundStyle(.secondary)
+
+                        Text(lastBackupDate, style: .relative)
+
+                        Text(NSLocalizedString("전", comment: "ago"))
+
+                        Spacer()
+                    }
+                }
+            }
+            .font(MacFont.body)
+            .padding(MacSpacing.lg)
+            .macSurface()
 
             // 액션 버튼들
-            VStack(spacing: 16) {
+            VStack(spacing: MacSpacing.md) {
                 Button {
                     performBackup()
                 } label: {
-                    HStack {
-                        if cloudService.isBackingUp {
-                            ProgressView()
-                                .scaleEffect(0.8)
-                        } else {
-                            Image(systemName: AppSymbol.icloudAndArrowUp)
-                        }
-                        Text(cloudService.isBackingUp ? NSLocalizedString("백업 중...", comment: "Backing up status") : NSLocalizedString("백업하기", comment: "Backup button"))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44)
+                    actionLabel(
+                        symbol: AppSymbol.icloudAndArrowUp,
+                        title: cloudService.isBackingUp ? NSLocalizedString("백업 중...", comment: "Backing up status") : NSLocalizedString("백업하기", comment: "Backup button"),
+                        isBusy: cloudService.isBackingUp
+                    )
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(!cloudService.isAuthenticated || cloudService.isBackingUp)
@@ -138,84 +116,60 @@ struct CloudBackupView: View {
                 Button {
                     performRestore()
                 } label: {
-                    HStack {
-                        if cloudService.isRestoring {
-                            ProgressView()
-                                .scaleEffect(0.8)
-                        } else {
-                            Image(systemName: AppSymbol.icloudAndArrowDown)
-                        }
-                        Text(cloudService.isRestoring ? NSLocalizedString("복구 중...", comment: "Restoring status") : NSLocalizedString("복구하기", comment: "Restore button"))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44)
+                    actionLabel(
+                        symbol: AppSymbol.icloudAndArrowDown,
+                        title: cloudService.isRestoring ? NSLocalizedString("복구 중...", comment: "Restoring status") : NSLocalizedString("복구하기", comment: "Restore button"),
+                        isBusy: cloudService.isRestoring
+                    )
                 }
-                .buttonStyle(.bordered)
                 .disabled(!cloudService.isAuthenticated || cloudService.isRestoring)
 
                 Button {
                     performDelete()
                 } label: {
-                    HStack {
-                        Image(systemName: AppSymbol.trash)
-                        Text(NSLocalizedString("백업 삭제", comment: "Delete backup button"))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44)
+                    actionLabel(symbol: AppSymbol.trash, title: NSLocalizedString("백업 삭제", comment: "Delete backup button"))
                 }
-                .buttonStyle(.bordered)
                 .tint(.red)
                 .disabled(!cloudService.isAuthenticated || cloudService.lastBackupDate == nil)
 
-                Divider()
-                    .padding(.vertical, 4)
+                Text(NSLocalizedString("⚠️ 복구 시 현재 데이터가 백업 데이터로 교체됩니다", comment: "Restore warning"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, MacSpacing.xs)
+            }
 
-                // 파일 백업 — iCloud가 막혀도 데이터를 기기 파일로 직접 빼낼 수 있는 최후의 보루
+            Divider()
+
+            // 파일 백업 — iCloud가 막혀도 데이터를 기기 파일로 직접 빼낼 수 있는 최후의 보루
+            VStack(spacing: MacSpacing.md) {
                 Button {
                     performExportToFile()
                 } label: {
-                    HStack {
-                        Image(systemName: AppSymbol.arrowUpDocFill)
-                        Text(NSLocalizedString("파일로 내보내기", comment: "Export to file button"))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44)
+                    actionLabel(symbol: AppSymbol.arrowUpDocFill, title: NSLocalizedString("파일로 내보내기", comment: "Export to file button"))
                 }
-                .buttonStyle(.bordered)
-                .tint(.purple)
 
                 Button {
                     showImporter = true
                 } label: {
-                    HStack {
-                        Image(systemName: AppSymbol.arrowDownDocFill)
-                        Text(NSLocalizedString("파일에서 가져오기", comment: "Import from file button"))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44)
+                    actionLabel(symbol: AppSymbol.arrowDownDocFill, title: NSLocalizedString("파일에서 가져오기", comment: "Import from file button"))
                 }
-                .buttonStyle(.bordered)
-                .tint(.purple)
-            }
 
-            Text(NSLocalizedString("📁 파일 백업은 iCloud와 별개로 데이터를 파일로 보관하는 가장 확실한 방법입니다. 가져오기는 현재 데이터를 지우지 않고 합칩니다.", comment: "File backup info"))
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.bottom, 4)
-
-            Text(NSLocalizedString("⚠️ 복구 시 현재 데이터가 백업 데이터로 교체됩니다", comment: "Restore warning"))
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.bottom)
+                Text(NSLocalizedString("📁 파일 백업은 iCloud와 별개로 데이터를 파일로 보관하는 가장 확실한 방법입니다. 가져오기는 현재 데이터를 지우지 않고 합칩니다.", comment: "File backup info"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, MacSpacing.xs)
             }
-            .padding(30)
+            }
+            .controlSize(.large)
+            .padding(MacSpacing.xl)
             .frame(maxWidth: .infinity)
         }
-        .frame(minWidth: 500, minHeight: 420)
+        .frame(minWidth: 500, minHeight: 460)
         .fileExporter(
             isPresented: $showExporter,
             document: exportDocument,
@@ -244,6 +198,21 @@ struct CloudBackupView: View {
         } message: {
             Text(alertMessage)
         }
+    }
+
+    /// 백업/복구/내보내기 버튼의 공통 라벨 — 폭·높이·글자 크기를 하나로 맞춘다.
+    private func actionLabel(symbol: String, title: String, isBusy: Bool = false) -> some View {
+        HStack(spacing: MacSpacing.sm) {
+            if isBusy {
+                ProgressView().controlSize(.small)
+            } else {
+                Image(systemName: symbol)
+            }
+            Text(title)
+        }
+        .font(MacFont.body)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, MacSpacing.xs)
     }
 
     // MARK: - Actions

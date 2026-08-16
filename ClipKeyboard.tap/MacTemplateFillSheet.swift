@@ -35,66 +35,54 @@ struct MacTemplateFillSheet: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: MacSpacing.lg) {
             // 헤더
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: MacSpacing.xs) {
                 Text(NSLocalizedString("값 채우기", comment: "Mac template fill sheet title"))
-                    .font(.headline)
+                    .font(MacFont.screenTitle)
                 Text(memo.title)
-                    .font(.subheadline)
+                    .font(MacFont.secondary)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
             }
 
             // 원본 템플릿 (칩 미리보기)
             Text(memo.value.templateChipAttributed())
-                .font(.callout)
+                .font(MacFont.body)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(10)
-                .background(Color(nsColor: .textBackgroundColor))
-                .clipShape(RoundedRectangle(cornerRadius: MacRadius.sm))
-                .overlay(
-                    RoundedRectangle(cornerRadius: MacRadius.sm)
-                        .strokeBorder(Color.secondary.opacity(0.2), lineWidth: 1)
-                )
+                .padding(MacSpacing.md)
+                .macSurface()
 
             // 입력 필드
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: MacSpacing.md) {
                 ForEach(placeholders, id: \.self) { token in
                     let name = token.trimmingCharacters(in: CharacterSet(charactersIn: "{} "))
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(alignment: .leading, spacing: MacSpacing.xs) {
                         Text(name)
-                            .font(.caption)
+                            .font(MacFont.secondary)
                             .foregroundStyle(.secondary)
                         TextField(name, text: binding(for: token))
-                            .textFieldStyle(.plain)
-                            .padding(8)
-                            .background(Color(nsColor: .controlBackgroundColor))
-                            .clipShape(RoundedRectangle(cornerRadius: MacRadius.sm))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: MacRadius.sm)
-                                    .strokeBorder(Color.secondary.opacity(0.25), lineWidth: 1)
-                            )
+                            .textFieldStyle(.roundedBorder)
+                            .font(MacFont.body)
                     }
                 }
             }
 
             // 결과 미리보기
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: MacSpacing.xs) {
                 Text(NSLocalizedString("미리보기", comment: "Preview label"))
-                    .font(.caption)
+                    .font(MacFont.secondary)
                     .foregroundStyle(.secondary)
                 Text(resolved.isEmpty ? " " : resolved)
-                    .font(.callout)
+                    .font(MacFont.body)
                     .textSelection(.enabled)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(10)
-                    .background(Color.accentColor.opacity(0.08))
-                    .clipShape(RoundedRectangle(cornerRadius: MacRadius.sm))
+                    .padding(MacSpacing.md)
+                    .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: MacRadius.sm))
             }
 
             // 액션
-            HStack {
+            HStack(spacing: MacSpacing.sm) {
                 Button(NSLocalizedString("취소", comment: "Cancel button")) { dismiss() }
                     .keyboardShortcut(.cancelAction)
                 Spacer()
@@ -106,11 +94,13 @@ struct MacTemplateFillSheet: View {
                     onComplete(resolved, true)
                     dismiss()
                 }
+                .buttonStyle(.borderedProminent)
                 .keyboardShortcut(.defaultAction)
             }
+            .controlSize(.large)
         }
-        .padding(20)
-        .frame(width: 400)
+        .padding(MacSpacing.xl)
+        .frame(width: 420)
     }
 
     private func binding(for token: String) -> Binding<String> {

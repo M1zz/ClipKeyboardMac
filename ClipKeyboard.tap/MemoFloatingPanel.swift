@@ -72,7 +72,7 @@ final class MemoFloatingPanelController: NSObject {
 
     private func buildPanel() -> MemoFloatingPanel {
         let panel = MemoFloatingPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 380, height: 460),
+            contentRect: NSRect(x: 0, y: 0, width: 400, height: 480),
             styleMask: [.nonactivatingPanel, .titled, .closable, .resizable, .fullSizeContentView],
             backing: .buffered,
             defer: false
@@ -154,7 +154,7 @@ struct MemoFloatingPanelView: View {
             RoundedRectangle(cornerRadius: MacRadius.md)
                 .stroke(Color.primary.opacity(0.08), lineWidth: 0.5)
         )
-        .frame(minWidth: 340, minHeight: 380)
+        .frame(minWidth: 380, minHeight: 400)
         .onAppear {
             viewModel.reload()
         }
@@ -163,28 +163,24 @@ struct MemoFloatingPanelView: View {
     // MARK: Parts
 
     private var header: some View {
-        HStack(spacing: 8) {
-            Image(systemName: AppSymbol.docOnClipboardFill)
-                .foregroundColor(.accentColor)
-                .font(.system(.subheadline).weight(.semibold))
+        HStack(spacing: MacSpacing.sm) {
             Text(NSLocalizedString("ClipKeyboard", comment: "App menu name"))
-                .font(.system(.subheadline).weight(.semibold))
-                .foregroundColor(.primary)
+                .font(MacFont.sectionTitle)
             Spacer()
             Text(NSLocalizedString("Click to paste", comment: "Panel hint"))
-                .font(.caption2)
-                .foregroundColor(.secondary)
+                .font(MacFont.secondary)
+                .foregroundStyle(.secondary)
             Button {
                 onDismiss()
             } label: {
                 Image(systemName: AppSymbol.xmarkCircleFill)
-                    .font(.system(.subheadline))
-                    .foregroundColor(.secondary)
+                    .font(MacFont.body)
+                    .foregroundStyle(.secondary)
             }
             .buttonStyle(.plain)
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
+        .padding(.horizontal, MacSpacing.lg)
+        .padding(.vertical, MacSpacing.md)
     }
 
     @ViewBuilder
@@ -223,16 +219,16 @@ struct MemoFloatingPanelView: View {
     }
 
     private var emptyState: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: MacSpacing.md) {
             Image(systemName: AppSymbol.docOnClipboard)
-                .font(.system(size: 28))
-                .foregroundColor(.secondary)
+                .font(.system(size: MacIcon.hero))
+                .foregroundStyle(.tertiary)
             Text(NSLocalizedString("No memos yet", comment: "Popover empty state"))
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+                .font(MacFont.body)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.vertical, 40)
+        .padding(.vertical, MacSpacing.xl)
     }
 }
 
@@ -247,42 +243,42 @@ private struct FloatingMemoRow: View {
 
     var body: some View {
         Button(action: onTap) {
-            HStack(spacing: 10) {
+            HStack(spacing: MacSpacing.md) {
                 if memo.isFavorite {
                     Image(systemName: AppSymbol.heartFill)
-                        .foregroundColor(.pink)
-                        .font(.system(.caption))
-                        .frame(width: 16, height: 16)
+                        .foregroundStyle(.pink)
+                        .font(MacFont.body)
+                        .frame(width: 24, alignment: .center)
                 } else if index < 9 {
                     Text("\(index + 1)")
-                        .font(.system(.caption, design: .monospaced).weight(.medium))
-                        .foregroundColor(.secondary)
-                        .frame(width: 16, height: 16)
+                        .font(MacFont.mono)
+                        .foregroundStyle(.secondary)
+                        .frame(width: 24, alignment: .center)
                 } else {
-                    Spacer().frame(width: 16)
+                    Spacer().frame(width: 24)
                 }
 
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: MacSpacing.xs / 2) {
                     Text(memo.title)
-                        .font(.system(.subheadline).weight(.medium))
+                        .font(MacFont.rowTitle)
                         .lineLimit(1)
                     let preview = MacSecureAccess.maskedPreview(memo)
                         .replacingOccurrences(of: "\n", with: " ")
                         .trimmingCharacters(in: .whitespaces)
                     if !preview.isEmpty {
                         Text(memo.isSecure ? AttributedString(preview) : preview.templateChipAttributed())
-                            .font(.system(.caption))
-                            .foregroundColor(.secondary)
+                            .font(MacFont.secondary)
+                            .foregroundStyle(.secondary)
                             .lineLimit(1)
                     }
                 }
                 Spacer(minLength: 0)
             }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
+            .padding(.horizontal, MacSpacing.lg)
+            .padding(.vertical, MacSpacing.sm)
             .background(
                 isHovering
-                    ? Color.accentColor.opacity(0.18)
+                    ? MacColor.selection
                     : Color.clear
             )
             .contentShape(Rectangle())

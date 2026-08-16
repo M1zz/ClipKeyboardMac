@@ -34,8 +34,8 @@ struct MacPreferencesView: View {
             aboutTab
                 .tabItem { Label(NSLocalizedString("About", comment: "Prefs: about"), systemImage: AppSymbol.infoCircle) }
         }
-        .frame(minWidth: 520, minHeight: 400)
-        .padding()
+        .frame(minWidth: 580, minHeight: 460)
+        .padding(MacSpacing.lg)
         .onAppear { MacProManager.refreshFromCloud() }
     }
 
@@ -51,20 +51,20 @@ struct MacPreferencesView: View {
                 Toggle(NSLocalizedString("Monitor clipboard in background", comment: "Prefs: clipboard monitoring"), isOn: $clipboardMonitoring)
             } header: {
                 Text(NSLocalizedString("Startup", comment: "Prefs section: startup"))
-                    .font(.headline)
+                    .font(MacFont.sectionTitle)
             }
 
             Section {
                 Toggle(NSLocalizedString("Paste directly after selecting", comment: "Prefs: auto paste"), isOn: $autoPaste)
                 if autoPaste {
-                    HStack(alignment: .center, spacing: 8) {
+                    HStack(alignment: .center, spacing: MacSpacing.sm) {
                         Image(systemName: hasAccessibility ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
-                            .foregroundColor(hasAccessibility ? .green : .orange)
+                            .foregroundStyle(hasAccessibility ? .green : .orange)
                         Text(hasAccessibility
                              ? NSLocalizedString("Accessibility permission granted", comment: "Prefs: a11y granted")
                              : NSLocalizedString("Accessibility permission required for direct paste.", comment: "Prefs: a11y needed"))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                        .font(MacFont.secondary)
+                        .foregroundStyle(.secondary)
                         Spacer()
                         if !hasAccessibility {
                             Button(NSLocalizedString("Grant Access…", comment: "Prefs: grant access")) {
@@ -74,24 +74,23 @@ struct MacPreferencesView: View {
                                     hasAccessibility = DirectPasteHelper.hasAccessibilityPermission()
                                 }
                             }
-                            .controlSize(.small)
                         }
                     }
                 }
             } header: {
                 Text(NSLocalizedString("Paste behavior", comment: "Prefs section: paste"))
-                    .font(.headline)
+                    .font(MacFont.sectionTitle)
             } footer: {
                 Text(NSLocalizedString("When on, pressing Enter in the menu bar popover copies AND pastes to the frontmost app. Otherwise, Enter only copies (use ⌥Enter to paste).", comment: "Prefs: paste behavior note"))
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
             }
 
             Section {
                 LeeoSupportSection<ClipKeyboardTapSpec>()
             } header: {
                 Text(NSLocalizedString("Feedback & Review", comment: "Prefs section: feedback"))
-                    .font(.headline)
+                    .font(MacFont.sectionTitle)
             }
         }
         .formStyle(.grouped)
@@ -102,38 +101,38 @@ struct MacPreferencesView: View {
     /// 단축어 순서 변경 탭 — 위/아래 버튼(드래그 실패해도 확실히 동작) + 드래그 둘 다 지원.
     /// 지정한 순서는 MacMemoOrder 를 통해 App Group 에 저장돼 아이폰·키보드까지 동기화된다.
     private var reorderTab: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: MacSpacing.sm) {
             Text(NSLocalizedString("Snippet order", comment: "Prefs: snippet order header"))
-                .font(.headline)
+                .font(MacFont.sectionTitle)
             Text(NSLocalizedString("여기서 정한 순서는 아이폰·키보드까지 동기화됩니다.", comment: "Prefs: order sync hint"))
-                .font(.caption)
+                .font(MacFont.secondary)
                 .foregroundStyle(.secondary)
 
             if orderedMemos.isEmpty {
                 Spacer()
                 Text(NSLocalizedString("단축어 없음", comment: "No memos"))
-                    .font(.callout)
+                    .font(MacFont.body)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
                 Spacer()
             } else {
                 List {
                     ForEach(Array(orderedMemos.enumerated()), id: \.element.id) { index, memo in
-                        HStack(spacing: 8) {
+                        HStack(spacing: MacSpacing.md) {
                             Text("\(index + 1)")
-                                .font(.caption.monospacedDigit())
+                                .font(MacFont.mono)
                                 .foregroundStyle(.secondary)
-                                .frame(width: 26, alignment: .trailing)
+                                .frame(width: 28, alignment: .trailing)
 
                             Image(systemName: memo.contentType == .image ? "photo" :
                                     memo.isFavorite ? "star.fill" :
                                     memo.isSecure ? "lock.fill" : "doc.text")
-                                .font(.caption)
-                                .foregroundStyle(memo.contentType == .image ? .purple :
-                                    memo.isFavorite ? .yellow : .blue)
+                                .font(MacFont.body)
+                                .foregroundStyle(memo.isFavorite ? AnyShapeStyle(Color.yellow) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
+                                .frame(width: MacIcon.glyph)
 
                             Text(memo.title)
-                                .font(.body)
+                                .font(MacFont.body)
                                 .lineLimit(1)
 
                             Spacer()
@@ -156,14 +155,14 @@ struct MacPreferencesView: View {
                             .disabled(index == orderedMemos.count - 1)
                             .help(NSLocalizedString("Move down", comment: "Reorder: move down"))
                         }
-                        .padding(.vertical, 2)
+                        .padding(.vertical, MacSpacing.xs / 2)
                     }
                     .onMove(perform: moveViaDrag)
                 }
                 .listStyle(.inset)
             }
         }
-        .padding()
+        .padding(MacSpacing.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .onAppear(perform: loadOrderedMemos)
         .onReceive(NotificationCenter.default.publisher(for: .dataRestored)) { _ in
@@ -208,46 +207,44 @@ struct MacPreferencesView: View {
                 shortcutRow(NSLocalizedString("Preferences", comment: "Shortcut: preferences"), keys: "⌘,")
             } header: {
                 Text(NSLocalizedString("Global Shortcuts", comment: "Prefs section: global shortcuts"))
-                    .font(.headline)
+                    .font(MacFont.sectionTitle)
             } footer: {
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: MacSpacing.sm) {
                     Text(NSLocalizedString("ClipKeyboard needs Accessibility permission to register global shortcuts. Grant access in System Settings → Privacy & Security → Accessibility.", comment: "Accessibility note"))
                     Text(NSLocalizedString("The quick paste panel (⌃⇧V) stays over your current app — click a memo and the text is pasted directly into the text field you were typing in, without losing focus.", comment: "Quick paste explainer (3-key)"))
                 }
-                .font(.caption)
-                .foregroundColor(.secondary)
+                .font(MacFont.secondary)
+                .foregroundStyle(.secondary)
             }
         }
         .formStyle(.grouped)
     }
 
     private var proTab: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: MacSpacing.xl) {
             // 현재 상태
-            HStack(spacing: 12) {
+            HStack(spacing: MacSpacing.md) {
                 Image(systemName: MacProManager.isPro ? "checkmark.seal.fill" : "star.circle")
-                    .font(.system(size: 36))
-                    .foregroundStyle(MacProManager.isPro ? .yellow : .secondary)
-                VStack(alignment: .leading, spacing: 4) {
+                    .font(.system(size: MacIcon.hero))
+                    .foregroundStyle(MacProManager.isPro ? AnyShapeStyle(Color.yellow) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
+                VStack(alignment: .leading, spacing: MacSpacing.xs) {
                     Text(MacProManager.isPro
                          ? NSLocalizedString("Pro 활성화됨", comment: "Pro active")
                          : NSLocalizedString("무료 플랜", comment: "Free plan"))
-                        .font(.title3).fontWeight(.semibold)
+                        .font(MacFont.sectionTitle)
                     Text(MacProManager.isPro
                          ? NSLocalizedString("모든 기능을 사용할 수 있습니다.", comment: "All features unlocked")
                          : NSLocalizedString("단축어 5개 · 클립보드 20개 제한", comment: "Free limits"))
-                        .font(.subheadline).foregroundStyle(.secondary)
+                        .font(MacFont.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 Spacer()
             }
-            .padding()
-            .background(MacProManager.isPro ? Color.yellow.opacity(0.1) : Color.secondary.opacity(0.08))
-            .cornerRadius(MacRadius.sm)
-
-            Divider()
+            .padding(MacSpacing.lg)
+            .macSurface()
 
             // 기능 비교
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: MacSpacing.md) {
                 featureRow(NSLocalizedString("단축어", comment: "Feature: snippets"),
                            free: NSLocalizedString("최대 5개", comment: "Free memo limit"),
                            pro: NSLocalizedString("무제한", comment: "Unlimited"))
@@ -264,17 +261,17 @@ struct MacPreferencesView: View {
 
             if !MacProManager.isPro {
                 Text(NSLocalizedString("iOS 앱에서 Pro를 구매하면 이 Mac에서도 자동으로 활성화됩니다.", comment: "iOS purchase hint"))
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
 
                 Button(NSLocalizedString("상태 새로고침", comment: "Refresh Pro status")) {
                     MacProManager.refreshFromCloud()
                 }
-                .controlSize(.regular)
             }
         }
-        .padding()
-        .formStyle(.grouped)
+        .font(MacFont.body)
+        .padding(MacSpacing.xl)
     }
 
     private func featureRow(_ name: String, free: String, pro: String) -> some View {
@@ -283,33 +280,26 @@ struct MacPreferencesView: View {
             Text(free).foregroundStyle(.secondary).frame(width: 90, alignment: .center)
             Text(pro).foregroundStyle(MacProManager.isPro ? .primary : .secondary).frame(width: 90, alignment: .center)
         }
-        .font(.subheadline)
+        .font(MacFont.body)
     }
 
     private var aboutTab: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: MacSpacing.md) {
+            Spacer()
+
             Image(systemName: AppSymbol.docOnClipboardFill)
-                .font(.system(size: 48))
+                .font(.system(size: MacIcon.hero))
                 .foregroundStyle(.tint)
-                .padding(.top, 12)
 
             Text("ClipKeyboard")
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(MacFont.screenTitle)
 
-            Text(NSLocalizedString("Version %@", comment: "Version label format"))
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .overlay(alignment: .center) {
-                    let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—"
-                    Text(String(format: NSLocalizedString("Version %@", comment: "Version label format"), version))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
+            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—"
+            Text(String(format: NSLocalizedString("Version %@", comment: "Version label format"), version))
+                .font(MacFont.secondary)
+                .foregroundStyle(.secondary)
 
-            Divider().padding(.vertical, 8)
-
-            VStack(spacing: 8) {
+            VStack(spacing: MacSpacing.sm) {
                 Link(NSLocalizedString("View User Guide", comment: "About: user guide"),
                      destination: URL(string: "https://m1zz.github.io/ClipKeyboard/tutorial.html")!)
 
@@ -319,12 +309,13 @@ struct MacPreferencesView: View {
                 Link(NSLocalizedString("Instagram DM (@lee25_ios)", comment: "About: instagram DM"),
                      destination: URL(string: "https://instagram.com/lee25_ios")!)
             }
-            .font(.subheadline)
+            .font(MacFont.body)
+            .padding(.top, MacSpacing.sm)
 
             Spacer()
         }
         .frame(maxWidth: .infinity)
-        .padding()
+        .padding(MacSpacing.xl)
     }
 
     // MARK: - Helpers
@@ -332,13 +323,13 @@ struct MacPreferencesView: View {
     private func shortcutRow(_ label: String, keys: String) -> some View {
         HStack {
             Text(label)
+                .font(MacFont.body)
             Spacer()
             Text(keys)
-                .font(.system(.body, design: .monospaced))
-                .padding(.horizontal, 8)
-                .padding(.vertical, 3)
-                .background(Color.secondary.opacity(0.15))
-                .clipShape(RoundedRectangle(cornerRadius: MacRadius.xs))
+                .font(MacFont.mono)
+                .padding(.horizontal, MacSpacing.sm)
+                .padding(.vertical, MacSpacing.xs / 2)
+                .background(MacColor.surface, in: RoundedRectangle(cornerRadius: MacRadius.xs))
         }
     }
 
