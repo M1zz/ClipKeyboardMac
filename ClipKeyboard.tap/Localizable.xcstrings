@@ -4,159 +4,6 @@
     "" : {
 
     },
-    "아이폰에서 설정한 카테고리로 맞출까요?" : {
-      "comment" : "Category parity prompt title",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Match the categories you set on iPhone?"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "아이폰에서 설정한 카테고리로 맞출까요?"
-          }
-        }
-      }
-    },
-    "기본·즐겨찾기 같은 탭이 아이폰과 같아집니다. 단축어는 그대로 있어요." : {
-      "comment" : "Category parity prompt detail",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tabs like General and Favorites will look just like they do on iPhone. Your snippets stay exactly where they are."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기본·즐겨찾기 같은 탭이 아이폰과 같아집니다. 단축어는 그대로 있어요."
-          }
-        }
-      }
-    },
-    "맞추기" : {
-      "comment" : "Category parity: adopt",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Match"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "맞추기"
-          }
-        }
-      }
-    },
-    "지금은 그대로" : {
-      "comment" : "Category parity: keep current",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keep as is"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "지금은 그대로"
-          }
-        }
-      }
-    },
-    "아이폰에서 설정한 카테고리 따르기" : {
-      "comment" : "Prefs: follow phone category tabs",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Follow iPhone category setup"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "아이폰에서 설정한 카테고리 따르기"
-          }
-        }
-      }
-    },
-    "Categories" : {
-      "comment" : "Prefs section: categories",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Categories"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "카테고리"
-          }
-        }
-      }
-    },
-    "켜면 기본·즐겨찾기 같은 탭까지 아이폰과 똑같이 보입니다. 끄면 단축어가 들어 있는 카테고리만 '전체' 탭과 함께 보입니다." : {
-      "comment" : "Prefs: category parity note",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "When on, tabs like General and Favorites mirror your iPhone exactly. When off, you see only categories that already contain snippets, along with an All tab."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "켜면 기본·즐겨찾기 같은 탭까지 아이폰과 똑같이 보입니다. 끄면 단축어가 들어 있는 카테고리만 '전체' 탭과 함께 보입니다."
-          }
-        }
-      }
-    },
-    "기본" : {
-      "comment" : "Category tab: default/basic",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "General"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기본"
-          }
-        }
-      }
-    },
-    "단축어+템플릿" : {
-      "comment" : "Built-in category: text memos and templates",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Snippets + Templates"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "단축어+템플릿"
-          }
-        }
-      }
-    },
     "'%@'와 일치하는 항목이 없습니다" : {
       "comment" : "No results for search query",
       "localizations" : {
@@ -426,6 +273,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "직접 붙여넣기를 하려면 손쉬운 사용 권한이 필요합니다."
+          }
+        }
+      }
+    },
+    "Categories" : {
+      "comment" : "Prefs section: categories",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categories"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카테고리"
           }
         }
       }
@@ -1742,6 +1606,40 @@
         }
       }
     },
+    "기본" : {
+      "comment" : "Category tab: default/basic",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본"
+          }
+        }
+      }
+    },
+    "기본·즐겨찾기 같은 탭이 아이폰과 같아집니다. 단축어는 그대로 있어요." : {
+      "comment" : "Category parity prompt detail",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabs like General and Favorites will look just like they do on iPhone. Your snippets stay exactly where they are."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본·즐겨찾기 같은 탭이 아이폰과 같아집니다. 단축어는 그대로 있어요."
+          }
+        }
+      }
+    },
     "기존 데이터가 있습니다. 복원하면 현재 데이터가 모두 삭제됩니다. 계속하시겠습니까?" : {
       "comment" : "Restore confirmation message",
       "localizations" : {
@@ -1946,6 +1844,23 @@
         }
       }
     },
+    "단축어+템플릿" : {
+      "comment" : "Built-in category: text memos and templates",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snippets + Templates"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축어+템플릿"
+          }
+        }
+      }
+    },
     "단축어가 저장되었습니다" : {
       "comment" : "Toast: memo saved",
       "localizations" : {
@@ -2112,6 +2027,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "마지막 백업:"
+          }
+        }
+      }
+    },
+    "맞추기" : {
+      "comment" : "Category parity: adopt",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "맞추기"
           }
         }
       }
@@ -2830,6 +2762,40 @@
         }
       }
     },
+    "아이폰에서 설정한 카테고리 따르기" : {
+      "comment" : "Prefs: follow phone category tabs",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow iPhone category setup"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 설정한 카테고리 따르기"
+          }
+        }
+      }
+    },
+    "아이폰에서 설정한 카테고리로 맞출까요?" : {
+      "comment" : "Category parity prompt title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match the categories you set on iPhone?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 설정한 카테고리로 맞출까요?"
+          }
+        }
+      }
+    },
     "암호 입력" : {
       "comment" : "Password fallback",
       "localizations" : {
@@ -3069,7 +3035,7 @@
       }
     },
     "이미지 단축어" : {
-      "comment" : "VoiceOver: image memo badge",
+      "comment" : "Built-in category: image memos only\nVoiceOver: image memo badge",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3204,6 +3170,23 @@
         }
       }
     },
+    "저장" : {
+      "comment" : "Save button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
+          }
+        }
+      }
+    },
     "저장 실패: %@" : {
       "comment" : "Toast: save failed with reason",
       "localizations" : {
@@ -3234,23 +3217,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "전"
-          }
-        }
-      }
-    },
-    "저장" : {
-      "comment" : "Save button",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "저장"
           }
         }
       }
@@ -3324,7 +3290,7 @@
       }
     },
     "전체" : {
-      "comment" : "All categories",
+      "comment" : "Category tab: all",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3426,7 +3392,7 @@
       }
     },
     "즐겨찾기" : {
-      "comment" : "Favorites",
+      "comment" : "Category tab: favorites\nFavorites",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3438,6 +3404,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "즐겨찾기"
+          }
+        }
+      }
+    },
+    "지금은 그대로" : {
+      "comment" : "Category parity: keep current",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep as is"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금은 그대로"
           }
         }
       }
@@ -3595,8 +3578,25 @@
         }
       }
     },
+    "켜면 기본·즐겨찾기 같은 탭까지 아이폰과 똑같이 보입니다. 끄면 단축어가 들어 있는 카테고리만 '전체' 탭과 함께 보입니다." : {
+      "comment" : "Prefs: category parity note",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When on, tabs like General and Favorites mirror your iPhone exactly. When off, you see only categories that already contain snippets, along with an All tab."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "켜면 기본·즐겨찾기 같은 탭까지 아이폰과 똑같이 보입니다. 끄면 단축어가 들어 있는 카테고리만 '전체' 탭과 함께 보입니다."
+          }
+        }
+      }
+    },
     "콤보" : {
-      "comment" : "VoiceOver: combo badge",
+      "comment" : "Built-in category: combos only\nVoiceOver: combo badge",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3783,7 +3783,7 @@
       }
     },
     "템플릿" : {
-      "comment" : "Template\nVoiceOver: template badge",
+      "comment" : "Built-in category: templates only\nTemplate\nVoiceOver: template badge",
       "localizations" : {
         "en" : {
           "stringUnit" : {
