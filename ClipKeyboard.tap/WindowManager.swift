@@ -184,6 +184,22 @@ class WindowManager {
         )
     }
 
+    /// 단축어 수정 창 — 메뉴바 팝오버처럼 시트를 띄울 수 없는 곳에서 연다.
+    /// 단축어마다 창 키가 달라, 서로 다른 단축어를 동시에 열어도 섞이지 않는다.
+    func openEditMemoWindow(_ memo: Memo) {
+        let key = "edit-memo-\(memo.id.uuidString)"
+        openWindow(
+            key: key,
+            title: NSLocalizedString("단축어 수정", comment: "Edit memo title"),
+            size: NSSize(width: 560, height: 660),
+            minSize: NSSize(width: 480, height: 540),
+            content: MemoEditView(memo: memo) { [weak self] in
+                // close() 는 델리게이트를 거치지 않아 참조가 남는다 — performClose 로 정리까지 태운다.
+                self?.windows[key]?.performClose(nil)
+            }
+        )
+    }
+
     func openClipboardHistoryWindow() {
         openWindow(
             key: "clipboard-history",

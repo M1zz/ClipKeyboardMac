@@ -92,6 +92,8 @@ struct MenuBarPopoverView: View {
     @StateObject private var viewModel = PopoverViewModel()
     @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
     @FocusState private var searchFocused: Bool
+    /// 삭제 확인을 기다리는 단축어 — 되돌릴 수 없는 동작이라 한 번 묻는다.
+    @State private var deleteCandidate: Memo?
 
     /// 팝오버를 닫는 콜백 (MenuBarManager에서 주입).
     let dismiss: () -> Void
@@ -126,6 +128,25 @@ struct MenuBarPopoverView: View {
             // 구성이 바뀌면 탭 목록이 통째로 달라진다 — 첫 탭으로 옮기고 선택도 초기화.
             viewModel.selectedTab = viewModel.tabs.first ?? .all
             viewModel.selectedIndex = 0
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .dataRestored)) { _ in
+            // 다른 창에서 고치거나 지운 결과를 팝오버도 바로 반영한다.
+            viewModel.reload()
+        }
+        .alert(
+            NSLocalizedString("이 단축어를 삭제할까요?", comment: "Delete confirm title"),
+            isPresented: Binding(get: { deleteCandidate != nil },
+                                 set: { if !$0 { deleteCandidate = nil } }),
+            presenting: deleteCandidate
+        ) { memo in
+            Button(NSLocalizedString("삭제", comment: "Delete button"), role: .destructive) {
+                MacMemoActions.delete(memo)
+                viewModel.reload()
+            }
+            Button(NSLocalizedString("취소", comment: "Cancel button"), role: .cancel) {}
+        } message: { memo in
+            Text(String(format: NSLocalizedString("'%@'이(가) 이 맥과 동기화된 기기에서 사라집니다.",
+                                                  comment: "Delete confirm message"), memo.title))
         }
     }
 
@@ -234,6 +255,17 @@ struct MenuBarPopoverView: View {
                                 copyMemo(memo, paste: true)
                             }
                             .keyboardShortcut(.return, modifiers: .option)
+                            Divider()
+                            Button(NSLocalizedString("수정…", comment: "Context: edit")) {
+                                // 팝오버 안에는 시트를 띄울 자리가 없다 — 창으로 연다.
+                                dismiss()
+                                WindowManager.shared.openEditMemoWindow(memo)
+                                NSApp.activate(ignoringOtherApps: true)
+                            }
+                            Button(NSLocalizedString("삭제…", comment: "Context: delete with confirm"),
+                                   role: .destructive) {
+                                deleteCandidate = memo
+                            }
                         }
                     }
                 }

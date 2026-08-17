@@ -204,6 +204,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
         var tombstones = loadTombstones()
         for (id, at) in changes.newTombstones { tombstones[id] = at }
+        // 살아있는 단축어의 툼스톤은 남아 있으면 안 된다 - 남으면 그 id 로 오는 원격 메모를
+        // "이미 지운 것"으로 보고 계속 무시한다(되살린 단축어가 다른 기기에서 안 보이는 원인).
+        let aliveIDs = Set(((try? MemoStore.shared.load(type: .memo)) ?? []).map(\.id))
+        tombstones = tombstones.filter { !aliveIDs.contains($0.key) }
         saveTombstones(tombstones)
 
         var pending: [CKSyncEngine.PendingRecordZoneChange] = []
@@ -232,9 +236,12 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                 if let first = e.failedRecordSaves.first {
                     MemoSyncStatus.recordError(first.error.localizedDescription)
                 }
+                handleFailedSaves(e.failedRecordSaves, syncEngine: syncEngine)
             }
             let sent = e.savedRecords.count + e.deletedRecordIDs.count
             if sent > 0 { MemoSyncStatus.recordPush(count: sent) }
+            // 서버가 돌려준 레코드의 변경 태그를 기억해 둔다 - 다음 수정·삭제가 거절당하지 않으려면 필수.
+            cacheRecordMetas(e.savedRecords)
             // 서버 저장이 확정된 것만 섀도에 반영한다.
             if !e.savedRecords.isEmpty { confirmSent(e.savedRecords) }
         case .sentDatabaseChanges(let e):
@@ -315,6 +322,9 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
     private func applyFetched(modifications: [CKRecord], deletionIDs: [CKRecord.ID]) async {
         guard !modifications.isEmpty || !deletionIDs.isEmpty else { return }
+        // 서버 버전을 기억해 둔다 - 이 기기가 나중에 이 레코드를 고치거나 지울 때 필요하다.
+        cacheRecordMetas(modifications)
+
         var remotes: [RemoteMemo] = []
         for record in modifications {
             // 카테고리 설정 레코드는 메모가 아니므로 따로 처리하고 넘어간다.
@@ -333,7 +343,9 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             }
         }
         // 하드 삭제(존재 시) - deletedAt 정보가 없으므로 distantFuture로 처리해 삭제 우선.
-        for id in deletionIDs.compactMap({ UUID(uuidString: $0.recordName) }) {
+        for recordID in deletionIDs {
+            forgetRecordMeta(recordID)   // 서버에서 사라진 레코드의 태그는 들고 있으면 안 된다
+            guard let id = UUID(uuidString: recordID.recordName) else { continue }
             remotes.append(RemoteMemo(id: id, memo: nil, lastEdited: Date()))
         }
 
@@ -341,7 +353,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         let result = MemoSyncCore.merge(local: local, localTombstones: loadTombstones(), remote: remotes)
 
         isApplyingRemoteChanges = true
-        defer { isApplyingRemoteChanges = false }
+        // ⚠️ 저장이 보내는 .memoDataChanged 는 **메인 큐에 예약**돼 이 함수가 끝난 뒤 도착한다.
+        //    여기서 곧바로 false 로 되돌리면 그 알림이 "로컬 변경"으로 오해돼 방금 받은 것을
+        //    되올린다(에코). 예약된 알림이 다 지나간 뒤에 풀어 준다.
+        defer { DispatchQueue.main.async { self.isApplyingRemoteChanges = false } }
 
         // ⚠️ 저장에 실패하면 **섀도/툼스톤을 갱신하면 안 된다.**
         //    갱신해 버리면 "이미 반영했다"고 기록되어 다음 동기화에서 이 원격 변경을
@@ -354,7 +369,11 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             return
         }
         saveTombstones(result.tombstones)
-        saveShadow(MemoSyncCore.buildShadow(result.memos))
+        // ⚠️ 섀도는 **올릴 대상과 같은 목록**(시드 샘플 제외)으로 만들어야 한다.
+        //    전체로 만들면 다음 비교에서 샘플이 "사라진 단축어"로 잡혀 엉뚱한 툼스톤이 올라간다.
+        let sampleIDs = SampleMemoStorage.load()
+        let syncable = sampleIDs.isEmpty ? result.memos : result.memos.filter { !sampleIDs.contains($0.id) }
+        saveShadow(MemoSyncCore.buildShadow(syncable))
 
         // 로컬이 이긴 항목(원격 삭제를 로컬 최신편집이 덮음)은 다시 올린다.
         if let engine, !result.toReupload.isEmpty {
@@ -379,19 +398,138 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
     /// memo가 있으면 살아있는 레코드, nil이면 툼스톤(deletedAt 설정, payload 없음).
     /// 첨부 이미지(PNG)는 메모 레코드에 CKAsset 배열로 함께 올린다(메모와 원자적으로 이동).
+    ///
+    /// ⚠️ **반드시 서버가 준 레코드(변경 태그) 위에 얹어 올린다.** 태그 없는 새 CKRecord 로
+    ///    이미 있는 레코드를 저장하면 CloudKit 이 `serverRecordChanged` 로 거절한다.
+    ///    예전엔 매번 새 레코드를 만들었던 탓에 **첫 업로드만 성공하고, 그 뒤의 수정·삭제는
+    ///    조용히 버려졌다** — 아이폰에서 지운 단축어가 맥에서 영영 안 사라지고,
+    ///    고친 내용도 반대편에 반영되지 않았다(사용자 눈엔 "추가만 되는 동기화").
     private func makeRecord(id: CKRecord.ID, memo: Memo?, deletedAt: Date?) -> CKRecord? {
-        let record = CKRecord(recordType: Self.recordType, recordID: id)
+        let record = cachedRecord(for: id) ?? CKRecord(recordType: Self.recordType, recordID: id)
         if let memo, let payload = try? JSONEncoder().encode(memo) {
             record["payload"] = payload as CKRecordValue
             record["lastEdited"] = memo.lastEdited as CKRecordValue
+            record["deletedAt"] = nil          // 되살린 경우 - 툼스톤 표시를 지운다
             attachImages(of: memo, to: record)
         } else if let deletedAt {
             record["deletedAt"] = deletedAt as CKRecordValue
             record["lastEdited"] = deletedAt as CKRecordValue
+            // 툼스톤엔 본문·이미지를 남기지 않는다(용량 + 실수로 되살아나는 것 방지).
+            record["payload"] = nil
+            record["images"] = nil
+            record["imageNames"] = nil
         } else {
             return nil
         }
         return record
+    }
+
+    // MARK: - 서버 레코드 메타(변경 태그) 캐시
+    //
+    // CloudKit 은 "내가 알고 있는 서버 버전" 위에서만 덮어쓰기를 허용한다. 그 버전을 알려면
+    // 서버가 준 레코드의 **시스템 필드**(recordID·타입·변경 태그)를 보관했다가 재사용해야 한다.
+    // 값 필드는 담기지 않으므로(암호화된 payload 포함) 여기 저장해도 내용이 새지 않는다.
+
+    private static let recordMetaKey = "memo.sync.recordMeta"
+    /// serverRecordChanged 재시도 횟수 - 서버와 계속 어긋날 때 무한 재전송을 막는다.
+    nonisolated(unsafe) private var conflictRetries: [String: Int] = [:]
+    private static let maxConflictRetries = 3
+
+    /// 디스크(App Group)에 있는 것과 같은 내용의 메모리 사본.
+    /// 배치 전송은 레코드마다 조회하므로, 매번 디스크에서 통째로 디코드하면 건수² 로 느려진다.
+    nonisolated(unsafe) private var recordMetaCache: [String: Data]?
+
+    private func loadRecordMeta() -> [String: Data] {
+        if let recordMetaCache { return recordMetaCache }
+        let raw: [String: Data]
+        if let data = defaults?.data(forKey: Self.recordMetaKey),
+           let decoded = try? JSONDecoder().decode([String: Data].self, from: data) {
+            raw = decoded
+        } else {
+            raw = [:]
+        }
+        recordMetaCache = raw
+        return raw
+    }
+
+    private func saveRecordMeta(_ meta: [String: Data]) {
+        recordMetaCache = meta
+        defaults?.set(try? JSONEncoder().encode(meta), forKey: Self.recordMetaKey)
+    }
+
+    /// 서버가 준 레코드의 시스템 필드만 저장한다.
+    private func cacheRecordMeta(_ record: CKRecord) {
+        cacheRecordMetas([record])
+    }
+
+    /// 여러 건을 한 번에 - 첫 동기화처럼 수백 건이 몰릴 때 건건이 전체 사전을 다시 쓰지 않도록.
+    private func cacheRecordMetas(_ records: [CKRecord]) {
+        guard !records.isEmpty else { return }
+        var meta = loadRecordMeta()
+        for record in records {
+            let coder = NSKeyedArchiver(requiringSecureCoding: true)
+            record.encodeSystemFields(with: coder)
+            coder.finishEncoding()
+            meta[record.recordID.recordName] = coder.encodedData
+        }
+        saveRecordMeta(meta)
+    }
+
+    private func forgetRecordMeta(_ recordID: CKRecord.ID) {
+        var meta = loadRecordMeta()
+        guard meta.removeValue(forKey: recordID.recordName) != nil else { return }
+        saveRecordMeta(meta)
+    }
+
+    /// 캐시된 시스템 필드로 되살린 빈 레코드(값 필드는 비어 있다).
+    private func cachedRecord(for recordID: CKRecord.ID) -> CKRecord? {
+        guard let data = loadRecordMeta()[recordID.recordName],
+              let coder = try? NSKeyedUnarchiver(forReadingFrom: data) else { return nil }
+        coder.requiresSecureCoding = true
+        let record = CKRecord(coder: coder)
+        coder.finishDecoding()
+        return record
+    }
+
+    /// 저장 실패 처리 - 특히 `serverRecordChanged` 는 **버리면 안 되는** 실패다.
+    /// 서버 레코드를 받아 태그를 갱신하고, 내 변경이 더 최신일 때만 다시 올린다.
+    private func handleFailedSaves(_ failures: [CKSyncEngine.Event.SentRecordZoneChanges.FailedRecordSave],
+                                   syncEngine: CKSyncEngine) {
+        var retry: [CKSyncEngine.PendingRecordZoneChange] = []
+        for failure in failures {
+            let recordID = failure.record.recordID
+            let name = recordID.recordName
+            switch failure.error.code {
+            case .serverRecordChanged:
+                guard let serverRecord = failure.error.serverRecord else { continue }
+                cacheRecordMeta(serverRecord)
+                // 서버 쪽이 더 최신이면 내 변경은 접는다 - 다음 fetch 가 서버 값을 가져온다.
+                let serverEdited = serverRecord["lastEdited"] as? Date ?? .distantPast
+                let mineEdited = failure.record["lastEdited"] as? Date ?? .distantPast
+                guard mineEdited >= serverEdited else {
+                    conflictRetries[name] = nil
+                    continue
+                }
+                let count = (conflictRetries[name] ?? 0) + 1
+                guard count <= Self.maxConflictRetries else {
+                    log.error("conflict retry limit reached: \(name, privacy: .public)")
+                    conflictRetries[name] = nil
+                    continue
+                }
+                conflictRetries[name] = count
+                retry.append(.saveRecord(recordID))
+            case .unknownItem:
+                // 들고 있던 태그가 가리키는 레코드가 서버에 없다(존 삭제·계정 전환 등).
+                // 태그를 버리고 새 레코드로 다시 올린다.
+                forgetRecordMeta(recordID)
+                retry.append(.saveRecord(recordID))
+            default:
+                break
+            }
+        }
+        guard !retry.isEmpty else { return }
+        syncEngine.state.add(pendingRecordZoneChanges: retry)
+        log.info("re-queued \(retry.count) records after save conflict")
     }
 
     // MARK: - 카테고리 설정 동기화
@@ -448,7 +586,9 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         snapshot.updatedAt = Date()
         guard let payload = try? JSONEncoder().encode(snapshot) else { return nil }
 
-        let record = CKRecord(recordType: Self.categoryRecordType, recordID: categoryRecordID)
+        // 메모 레코드와 같은 이유로 서버 버전 위에 얹는다(태그 없이 올리면 두 번째부터 거절당한다).
+        let record = cachedRecord(for: categoryRecordID)
+            ?? CKRecord(recordType: Self.categoryRecordType, recordID: categoryRecordID)
         record["payload"] = payload as CKRecordValue
         record["updatedAt"] = snapshot.updatedAt as CKRecordValue
         return record

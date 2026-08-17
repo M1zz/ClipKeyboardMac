@@ -150,6 +150,34 @@ enum MemoSyncCore {
             }
         }
 
-        return MergeResult(memos: Array(alive.values), tombstones: tombstones, toReupload: toReupload)
+        return MergeResult(memos: ordered(alive, like: local),
+                           tombstones: tombstones,
+                           toReupload: toReupload)
+    }
+
+    /// 병합 결과를 **결정적인 순서**로 편다.
+    ///
+    /// ⚠️ 예전엔 `Array(alive.values)` 를 그대로 돌려줬다. 딕셔너리 순서는 실행마다 달라서
+    ///    동기화를 받을 때마다 저장 파일의 줄 순서가 통째로 뒤집혔고, 순서를 파일 순서로
+    ///    읽는 화면에서는 단축어가 이유 없이 뛰어다녔다.
+    ///    → 기존 로컬 순서를 그대로 두고, 새로 온 것만 최신순으로 뒤에 붙인다.
+    private static func ordered(_ alive: [UUID: Memo], like local: [Memo]) -> [Memo] {
+        var result: [Memo] = []
+        result.reserveCapacity(alive.count)
+        var placed = Set<UUID>()
+        for memo in local {
+            if let kept = alive[memo.id] {
+                result.append(kept)
+                placed.insert(memo.id)
+            }
+        }
+        let incoming = alive.keys.filter { !placed.contains($0) }
+            .compactMap { alive[$0] }
+            .sorted { lhs, rhs in
+                if lhs.lastEdited != rhs.lastEdited { return lhs.lastEdited > rhs.lastEdited }
+                return lhs.id.uuidString < rhs.id.uuidString
+            }
+        result.append(contentsOf: incoming)
+        return result
     }
 }

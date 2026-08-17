@@ -20,6 +20,12 @@ struct MemoListView: View {
     @State private var fillMemo: Memo?
     /// 여러 값(콤보) 중 하나를 골라 복사하는 시트 대상 메모.
     @State private var comboPickMemo: Memo?
+    /// 수정 시트 대상 메모.
+    @State private var editMemo: Memo?
+    /// 삭제 확인을 기다리는 메모 — 확인 없이 지우면 되돌릴 방법이 없다(휴지통이 없다).
+    @State private var deleteCandidate: Memo?
+    /// 중복 정리 확인 시트 표시 여부.
+    @State private var showDuplicateCleanup: Bool = false
 
     /// 아이폰에서 넘어온 카테고리 설정(순서·아이콘·숨김).
     /// `MemoSyncEngine` 이 `CategorySettings` 레코드를 받아 App Group 에 적용하고,
@@ -106,6 +112,43 @@ struct MemoListView: View {
                 copyToClipboard(value)
             }
         }
+        .sheet(item: $editMemo) { memo in
+            MemoEditView(memo: memo) {
+                editMemo = nil
+                loadMemos()
+            }
+        }
+        .alert(
+            NSLocalizedString("이 단축어를 삭제할까요?", comment: "Delete confirm title"),
+            isPresented: Binding(get: { deleteCandidate != nil },
+                                 set: { if !$0 { deleteCandidate = nil } }),
+            presenting: deleteCandidate
+        ) { memo in
+            Button(NSLocalizedString("삭제", comment: "Delete button"), role: .destructive) {
+                MacMemoActions.delete(memo)
+                loadMemos()
+            }
+            Button(NSLocalizedString("취소", comment: "Cancel button"), role: .cancel) {}
+        } message: { memo in
+            Text(String(format: NSLocalizedString("'%@'이(가) 이 맥과 동기화된 기기에서 사라집니다.",
+                                                  comment: "Delete confirm message"), memo.title))
+        }
+        .confirmationDialog(
+            NSLocalizedString("중복된 단축어를 정리할까요?", comment: "Dedupe confirm title"),
+            isPresented: $showDuplicateCleanup,
+            titleVisibility: .visible
+        ) {
+            Button(String(format: NSLocalizedString("%d개 삭제", comment: "Dedupe delete button"), duplicateExtraCount),
+                   role: .destructive) {
+                let removed = MacMemoActions.removeDuplicates()
+                print("🧹 [MemoListView] 중복 \(removed)개 정리")
+                loadMemos()
+            }
+            Button(NSLocalizedString("취소", comment: "Cancel button"), role: .cancel) {}
+        } message: {
+            Text(NSLocalizedString("제목과 내용이 똑같은 단축어를 하나만 남기고 지웁니다. 즐겨찾기·많이 쓴 단축어가 남습니다.",
+                                   comment: "Dedupe confirm message"))
+        }
         .onAppear {
             print("✅ [MemoListView] onAppear - 뷰 활성화")
             isViewActive = true
@@ -141,12 +184,35 @@ struct MemoListView: View {
 
                 Spacer()
 
+                duplicateCleanupButton
                 categoryPicker
             }
 
             searchBar
         }
         .padding(MacSpacing.md)
+    }
+
+    /// 중복 정리 버튼 — 똑같은 단축어가 두 벌 이상 있을 때만 나타난다.
+    /// 동기화가 어긋나 같은 단축어가 쌓였을 때 한 번에 걷어내는 길.
+    @ViewBuilder
+    private var duplicateCleanupButton: some View {
+        if duplicateExtraCount > 0 {
+            Button {
+                showDuplicateCleanup = true
+            } label: {
+                Label(String(format: NSLocalizedString("중복 %d개", comment: "Duplicate count badge"), duplicateExtraCount),
+                      systemImage: "wand.and.sparkles")
+                    .font(MacFont.secondary)
+            }
+            .buttonStyle(.borderless)
+            .help(NSLocalizedString("똑같은 단축어를 하나만 남기고 정리합니다", comment: "Dedupe button help"))
+        }
+    }
+
+    /// 지울 수 있는 중복 개수(묶음마다 하나는 남긴다).
+    private var duplicateExtraCount: Int {
+        MacMemoActions.duplicateGroups(in: memos).reduce(0) { $0 + $1.count - 1 }
     }
 
     /// 카테고리 선택 Picker — 탭 구성·이름·아이콘 모두 아이폰과 같다.
@@ -215,9 +281,16 @@ struct MemoListView: View {
         } else {
             List {
                 ForEach(filteredMemos) { memo in
-                    CompactMemoItemRow(memo: memo) {
-                        handleMemoTap(memo)
-                    }
+                    CompactMemoItemRow(
+                        memo: memo,
+                        onCopy: { handleMemoTap(memo) },
+                        onEdit: { editMemo = memo },
+                        onDelete: { deleteCandidate = memo },
+                        onToggleFavorite: {
+                            MacMemoActions.toggleFavorite(memo)
+                            loadMemos()
+                        }
+                    )
                 }
                 // 드래그로 순서 변경 — 지정한 순서는 App Group을 통해 iOS·키보드와 공유된다.
                 .onMove(perform: reorderHandler)
@@ -390,10 +463,63 @@ private struct MacComboValuePicker: View {
 struct CompactMemoItemRow: View {
     let memo: Memo
     let onCopy: () -> Void
+    let onEdit: () -> Void
+    let onDelete: () -> Void
+    let onToggleFavorite: () -> Void
 
     @State private var isHovering = false
 
     var body: some View {
+        HStack(spacing: MacSpacing.xs) {
+            copyButton
+            // 수정·삭제는 복사 버튼 **바깥**에 둔다 — 버튼 안에 버튼을 넣으면
+            // macOS 에서 바깥 버튼이 클릭을 먼저 먹어 눌리지 않는다.
+            if isHovering {
+                rowActions
+            }
+        }
+        .onHover { hovering in
+            isHovering = hovering
+        }
+        .contextMenu {
+            Button(NSLocalizedString("복사", comment: "Context: copy")) { onCopy() }
+            Button(NSLocalizedString("수정…", comment: "Context: edit")) { onEdit() }
+            Button(memo.isFavorite
+                   ? NSLocalizedString("즐겨찾기 해제", comment: "Context: unfavorite")
+                   : NSLocalizedString("즐겨찾기", comment: "Favorite toggle")) { onToggleFavorite() }
+            Divider()
+            Button(NSLocalizedString("삭제", comment: "Delete button"), role: .destructive) { onDelete() }
+        }
+    }
+
+    /// 수정·삭제 버튼 — 마우스를 올렸을 때만 나타나 평소 목록을 조용하게 둔다.
+    private var rowActions: some View {
+        HStack(spacing: MacSpacing.xs) {
+            Button(action: onEdit) {
+                Image(systemName: "pencil")
+                    .font(MacFont.body)
+                    .frame(width: 22, height: 22)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.borderless)
+            .help(NSLocalizedString("수정…", comment: "Context: edit"))
+            .accessibilityLabel(NSLocalizedString("수정…", comment: "Context: edit"))
+
+            Button(action: onDelete) {
+                Image(systemName: "trash")
+                    .font(MacFont.body)
+                    .foregroundStyle(.red)
+                    .frame(width: 22, height: 22)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.borderless)
+            .help(NSLocalizedString("삭제", comment: "Delete button"))
+            .accessibilityLabel(NSLocalizedString("삭제", comment: "Delete button"))
+        }
+        .padding(.trailing, MacSpacing.xs)
+    }
+
+    private var copyButton: some View {
         // Button(.plain)으로 감싸야 macOS List의 드래그 순서변경(.onMove)과 클릭-복사가
         // 공존한다. .onTapGesture 는 List의 reorder 드래그 제스처를 가로채 드래그가 안 먹는다.
         Button(action: onCopy) {
@@ -470,9 +596,6 @@ struct CompactMemoItemRow: View {
         .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .onHover { hovering in
-            isHovering = hovering
-        }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(memo.macAccessibilityLabel)

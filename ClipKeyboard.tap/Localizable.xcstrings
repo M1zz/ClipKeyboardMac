@@ -3900,6 +3900,244 @@
           }
         }
       }
+    },
+    "단축어 수정" : {
+      "comment" : "Edit memo title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Snippet"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축어 수정"
+          }
+        }
+      }
+    },
+    "즐겨찾기 해제" : {
+      "comment" : "Context: unfavorite",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from Favorites"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "즐겨찾기 해제"
+          }
+        }
+      }
+    },
+    "수정…" : {
+      "comment" : "Context: edit",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정…"
+          }
+        }
+      }
+    },
+    "삭제…" : {
+      "comment" : "Context: delete with confirm",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제…"
+          }
+        }
+      }
+    },
+    "이 단축어를 삭제할까요?" : {
+      "comment" : "Delete confirm title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete this snippet?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 단축어를 삭제할까요?"
+          }
+        }
+      }
+    },
+    "'%@'이(가) 이 맥과 동기화된 기기에서 사라집니다." : {
+      "comment" : "Delete confirm message",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%@' will be removed from this Mac and every synced device."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%@'이(가) 이 맥과 동기화된 기기에서 사라집니다."
+          }
+        }
+      }
+    },
+    "중복된 단축어를 정리할까요?" : {
+      "comment" : "Dedupe confirm title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clean up duplicate snippets?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중복된 단축어를 정리할까요?"
+          }
+        }
+      }
+    },
+    "%d개 삭제" : {
+      "comment" : "Dedupe delete button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete %d"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d개 삭제"
+          }
+        }
+      }
+    },
+    "제목과 내용이 똑같은 단축어를 하나만 남기고 지웁니다. 즐겨찾기·많이 쓴 단축어가 남습니다." : {
+      "comment" : "Dedupe confirm message",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keeps a single copy of each snippet with identical title and content — favorites and frequently used ones are the ones kept."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제목과 내용이 똑같은 단축어를 하나만 남기고 지웁니다. 즐겨찾기·많이 쓴 단축어가 남습니다."
+          }
+        }
+      }
+    },
+    "중복 %d개" : {
+      "comment" : "Duplicate count badge",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d duplicates"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중복 %d개"
+          }
+        }
+      }
+    },
+    "똑같은 단축어를 하나만 남기고 정리합니다" : {
+      "comment" : "Dedupe button help",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep only one copy of each identical snippet"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "똑같은 단축어를 하나만 남기고 정리합니다"
+          }
+        }
+      }
+    },
+    "보안 단축어의 내용은 아이폰에서만 바꿀 수 있습니다. 여기서는 제목·카테고리만 수정돼요." : {
+      "comment" : "Secure memo edit notice",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The contents of a secure snippet can only be changed on iPhone. Here you can edit the title and category."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보안 단축어의 내용은 아이폰에서만 바꿀 수 있습니다. 여기서는 제목·카테고리만 수정돼요."
+          }
+        }
+      }
+    },
+    "여러 값이 담긴 단축어입니다. 값 목록은 아이폰에서 바꿀 수 있어요." : {
+      "comment" : "Combo memo edit notice",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This snippet holds several values. The list of values can be edited on iPhone."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러 값이 담긴 단축어입니다. 값 목록은 아이폰에서 바꿀 수 있어요."
+          }
+        }
+      }
+    },
+    "저장 실패: 단축어를 찾을 수 없습니다" : {
+      "comment" : "Toast: memo missing on save",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't save — snippet not found"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장 실패: 단축어를 찾을 수 없습니다"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"
