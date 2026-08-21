@@ -17,19 +17,58 @@ import CryptoKit   // 카테고리 스냅샷 지문(SHA256) - 실행 간 안정�
 import os
 
 enum MemoSyncFlags {
-    /// 마스터 스위치. 실기기 2대(iCloud)에서 검증 전까지 OFF로 출시 안전성 확보.
-    /// App Group(기기별) 또는 iCloud KV(기기 간 동기)에 켜져 있으면 활성
-    /// 한 기기에서 켜면 KV를 통해 다른 기기에도 전파된다(Pro 상태와 동일 방식).
+    /// 마스터 스위치. **이 기기의 값만** 본다(App Group).
+    ///
+    /// ⚠️ 예전에는 iCloud KV 값도 함께 봤다. 그런데 KV 는 **앱을 지워도 남고 계정을 따라
+    ///    다닌다.** 그래서 앱을 지웠다 깐 사람, 새 기기를 켠 사람의 **첫 실행**에 이미
+    ///    켜져 있었고, 런치가 끝나기도 전에 엔진이 원격을 통째로 당겨왔다.
+    ///    "기존 단축어를 불러올까요"에 **나중에**를 눌러도 이미 들어와 있던 이유가 이것이다.
+    ///    (설정의 토글은 App Group 값을 그리므로 화면에는 꺼짐으로 보였다. 보이는 것과
+    ///     도는 것이 어긋난 셈이다.)
+    ///
+    /// ⚠️ 남의 데이터를 이 기기로 당겨오는 일은 **이 기기에서 예라고 한 뒤**에만 한다.
+    ///    다른 기기의 설정은 "이 기능을 원한다"는 뜻이지, 아직 아무것도 담기지 않은
+    ///    기기가 계정 전체를 내려받아도 좋다는 뜻이 아니다.
+    ///
+    /// ⚠️ 아이폰 쪽 `ClipKeyboard/Service/MemoSyncEngine.swift` 와 **같은 파일이다.**
+    ///    한쪽만 고치면 두 앱이 다른 규칙으로 남의 데이터를 당긴다.
     static var enabled: Bool {
-        if AppGroup.defaults?.bool(forKey: DefaultsKey.memoSyncEnabled) == true { return true }
-        return NSUbiquitousKeyValueStore.default.bool(forKey: DefaultsKey.memoSyncEnabled)
+        AppGroup.defaults?.bool(forKey: DefaultsKey.memoSyncEnabled) == true
     }
 
     /// 토글 시 양쪽(App Group + iCloud KV)에 기록 - 다른 기기로 전파.
     static func setEnabled(_ on: Bool) {
         AppGroup.defaults?.set(on, forKey: DefaultsKey.memoSyncEnabled)
+        // 사람이 이 기기에서 직접 골랐다 - 아래 승계 판정이 이 선택을 덮지 않도록 못박는다.
+        AppGroup.defaults?.set(true, forKey: DefaultsKey.memoSyncCloudAdoptedV1)
         NSUbiquitousKeyValueStore.default.set(on, forKey: DefaultsKey.memoSyncEnabled)
         NSUbiquitousKeyValueStore.default.synchronize()
+    }
+
+    /// iCloud KV 에 켜져 있는 설정을 **이 기기가 이어받을지** 한 번만 판정한다.
+    ///
+    /// 이어받는 경우는 하나뿐이다: **이 기기가 이미 동기화를 돌린 적이 있다.**
+    /// 그 표식(마지막 수신·전송 시각)이 남아 있다면 이 기기에는 이미 계정 데이터가 있고,
+    /// 더 받아온다고 놀랄 일이 없다. 켜 둔 채로 업데이트한 사람의 동기화가 이 변경으로
+    /// 조용히 멎지 않게 하는 것이 이 함수의 몫이다.
+    ///
+    /// 갓 설치한 기기에는 그 표식이 없다 - 그래서 아무것도 이어받지 않고, 사람이
+    /// 설정에서 직접 켤 때까지 엔진은 잠들어 있다.
+    static func adoptCloudPreferenceIfNeeded() {
+        guard let defaults = AppGroup.defaults else { return }
+        guard !defaults.bool(forKey: DefaultsKey.memoSyncCloudAdoptedV1) else { return }
+        defaults.set(true, forKey: DefaultsKey.memoSyncCloudAdoptedV1)
+
+        guard NSUbiquitousKeyValueStore.default.bool(forKey: DefaultsKey.memoSyncEnabled) else { return }
+
+        let hasSyncedHere = defaults.object(forKey: DefaultsKey.syncLastPullAt) != nil
+            || defaults.object(forKey: DefaultsKey.syncLastPushAt) != nil
+        guard hasSyncedHere else {
+            print("🔒 [MemoSync] iCloud 설정은 켜져 있지만 이 기기는 처음이다. 사람이 켤 때까지 쉰다")
+            return
+        }
+        defaults.set(true, forKey: DefaultsKey.memoSyncEnabled)
+        print("🔄 [MemoSync] 이미 동기화하던 기기, iCloud 설정 승계")
     }
 }
 
@@ -110,6 +149,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
     /// Pro + 플래그가 켜져 있을 때만 동기화를 시작한다. 멱등.
     func startIfEnabled() {
+        // 켜 둔 채로 업데이트한 기기를 먼저 건져낸다 - 게이트를 보기 전에 한 번만 돈다.
+        MemoSyncFlags.adoptCloudPreferenceIfNeeded()
         guard MemoSyncFlags.enabled else { log.info("sync disabled by flag"); return }
         // 원격 킬스위치 - 동기화가 사고를 냈을 때 심사 없이 끌 수 있는 경로.
         // 조회 실패 시엔 true(켬)라 네트워크가 없다고 동기화가 막히지는 않는다.

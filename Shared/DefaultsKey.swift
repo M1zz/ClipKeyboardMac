@@ -166,6 +166,9 @@ enum DefaultsKey {
 
     // MARK: - 메모 실시간 동기화 (CKSyncEngine)
     static let memoSyncEnabled = "memoSyncEnabled"
+    /// iCloud KV 에 켜져 있던 동기화 설정을 **이 기기가 받아들일지** 한 번 판정했는가 (App Group).
+    /// 판정 자체를 한 번만 하기 위한 표식이라, 결과(켬/끔)는 `memoSyncEnabled` 에 남는다.
+    static let memoSyncCloudAdoptedV1 = "memoSync.cloudAdopted.v1"
     static let syncEngineState = "sync.engine.state"
     static let syncShadow = "sync.shadow"
     static let syncTombstones = "sync.tombstones"
