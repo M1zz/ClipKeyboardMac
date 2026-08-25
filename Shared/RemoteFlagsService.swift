@@ -102,7 +102,7 @@ final class RemoteFlagsService: ObservableObject {
 
     /// 실제 조회. 성공한 필드만 캐시에 반영한다(부분 성공 허용).
     func fetch() async {
-        let database = CKContainer(identifier: Self.flagsContainerID).publicCloudDatabase
+        let database = await CloudKitContainer.publicDatabase(Self.flagsContainerID)
 
         do {
             let record = try await database.record(for: CKRecord.ID(recordName: Self.flagsRecordName))

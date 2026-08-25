@@ -38,6 +38,7 @@ enum AppSymbol {
     static let chevronForward = "chevron.forward"
     static let chevronRight = "chevron.right"
     static let chevronRightCircleFill = "chevron.right.circle.fill"
+    static let chevronUp = "chevron.up"
     /// 단축어 마트 - 차려 둔 것에서 골라 담는 자리.
     static let bagFill = "bag.fill"
     static let circle = "circle"
@@ -57,10 +58,14 @@ enum AppSymbol {
     static let docOnClipboardFill = "doc.on.clipboard.fill"
     static let docOnDoc = "doc.on.doc"
     static let docOnDocFill = "doc.on.doc.fill"
+    static let docPlaintext = "doc.plaintext"
     static let docText = "doc.text"
     static let docTextMagnifyingglass = "doc.text.magnifyingglass"
     static let ellipsisCircle = "ellipsis.circle"
     static let envelopeBadge = "envelope.badge"
+    /// 문질러 담기 - 잘못 담은 글자를 빼는 지우개.
+    static let eraser = "eraser"
+    static let eraserFill = "eraser.fill"
     static let exclamationmarkCircleFill = "exclamationmark.circle.fill"
     static let exclamationmarkTriangleFill = "exclamationmark.triangle.fill"
     static let eyeFill = "eye.fill"
@@ -74,6 +79,8 @@ enum AppSymbol {
     static let giftFill = "gift.fill"
     static let globe = "globe"
     static let globeAsiaAustraliaFill = "globe.asia.australia.fill"
+    /// 문질러 담기 - 사진을 끌어 옮기는 손.
+    static let handDraw = "hand.draw"
     static let handTap = "hand.tap"
     static let heartFill = "heart.fill"
     static let heartSlash = "heart.slash"
@@ -93,6 +100,8 @@ enum AppSymbol {
     static let link = "link"
     static let listBullet = "list.bullet"
     static let listBulletRectangle = "list.bullet.rectangle"
+    /// 배운 캐럿 자리 스위치(단축어 편집).
+    static let textCursor = "text.cursor"
     static let lockFill = "lock.fill"
     static let lockOpenFill = "lock.open.fill"
     static let lockShield = "lock.shield"
@@ -136,6 +145,8 @@ enum AppSymbol {
     static let tag = "tag"
     static let tagFill = "tag.fill"
     static let textAlignleft = "text.alignleft"
+    /// 문질러 담기 - 줄이 바뀐 자리를 줄바꿈으로 살릴지.
+    static let textJustify = "text.justify"
     /// 사진 속 글자를 읽어 값으로 넣는 자리에 쓴다(일괄 가져오기·단축어 내용).
     static let textViewfinder = "text.viewfinder"
     static let cameraViewfinder = "camera.viewfinder"
@@ -151,3 +162,4 @@ enum AppSymbol {
     static let xmarkCircle = "xmark.circle"
     static let xmarkCircleFill = "xmark.circle.fill"
 }
+

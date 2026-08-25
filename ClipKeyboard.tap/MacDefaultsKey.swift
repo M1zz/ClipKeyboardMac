@@ -12,9 +12,10 @@
 
 import Foundation
 
-extension DefaultsKey {
-    /// 맥 온보딩을 한 번이라도 끝냈는지.
-    /// 지금은 기록만 하고 읽는 곳이 없다 — 온보딩은 Help 메뉴에서 수동으로만 연다
-    /// (`WindowManager.openOnboardingWindow`). 나중에 자동 표시를 붙일 때 쓰려고 남겨 둔다.
-    static let hasCompletedOnboarding = "hasCompletedOnboarding"
-}
+// ⚠️ 지금은 비어 있다. `hasCompletedOnboarding` 이 여기 있었는데, 아이폰 쪽
+//    `DefaultsKey` 가 같은 이름을 갖게 되면서 공유 파일과 **이름이 겹쳐 빌드가 깨졌다.**
+//    같은 값을 두 곳에 적어 둘 이유가 없어 공유 파일 쪽을 남겼다.
+//
+//    맥에만 필요한 키가 생기면 아래에 확장으로 다시 열 것. 그때 아이폰 쪽에 같은 이름이
+//    없는지 먼저 볼 것 - 공유 파일은 iOS 를 원본으로 통째로 덮어써진다
+//    (`scripts/sync_shared.sh`).

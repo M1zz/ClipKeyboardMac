@@ -20,6 +20,10 @@ SHARED_MAP=(
   "Shared/CategorySnapshot.swift|ClipKeyboard/Service/CategorySnapshot.swift"
   "Shared/CategoryBucketRule.swift|ClipKeyboard/CategoryBucketRule.swift"
   "Shared/RemoteFlagsService.swift|ClipKeyboard/Service/RemoteFlagsService.swift"
+  # CloudKit 컨테이너를 메인 스레드 밖에서 만드는 관문. 위 두 파일이 이걸 부른다.
+  # ⚠️ 빠뜨리면 맥만 `CKContainer(identifier:)` 를 메인에서 직접 불러 4.4.6 과 같은
+  #    자리에서 멈춘다(iOS: docs/postmortem/LAUNCH_WATCHDOG_4_4_6.md).
+  "Shared/CloudKitContainerGate.swift|ClipKeyboard/Service/CloudKitContainerGate.swift"
   "Shared/MemoSyncCore.swift|ClipKeyboard/Service/MemoSyncCore.swift"
   "Shared/MemoSyncEngine.swift|ClipKeyboard/Service/MemoSyncEngine.swift"
 )

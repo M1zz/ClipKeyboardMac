@@ -53,6 +53,7 @@
 		ECEA821DBD7F783F2A3CCD66 /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBBEDB8FF82221F95A69EBF /* AppNotification.swift */; };
 		F442D56543A806BE084AA493 /* CloudBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18105C29D13C26218DF64528 /* CloudBackupView.swift */; };
 		F8E9771F8BD145C6D3131B37 /* MemoSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81B85D608D7A57A5D8739F /* MemoSyncEngine.swift */; };
+		CKG00012F0000000000000001 /* CloudKitContainerGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CKG00022F0000000000000002 /* CloudKitContainerGate.swift */; };
 		FB238DF017EB5E5013AADF4C /* DirectPasteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713F8E698A6C5C5008D21C9 /* DirectPasteHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		70498394D673D364C09E4E57 /* MacPreferencesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPreferencesView.swift; sourceTree = "<group>"; };
 		7271F30E7D05060B1C42D48E /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8C81B85D608D7A57A5D8739F /* MemoSyncEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoSyncEngine.swift; sourceTree = "<group>"; };
+		CKG00022F0000000000000002 /* CloudKitContainerGate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudKitContainerGate.swift; sourceTree = "<group>"; };
 		8E307EF1A65000000000F003 /* RemoteFlagsService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteFlagsService.swift; sourceTree = "<group>"; };
 		9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClipKeyboardTapSpec.swift; sourceTree = "<group>"; };
 		A11L0G0000000000000000F1 /* AppLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				FA460ABA273DDE92E8E0C9B8 /* DefaultsKey.swift */,
 				4D8BE9C3A32B044F895D2F73 /* MemoSyncCore.swift */,
 				8C81B85D608D7A57A5D8739F /* MemoSyncEngine.swift */,
+				CKG00022F0000000000000002 /* CloudKitContainerGate.swift */,
 				5824F38E3712AFC7E28C423C /* StorageFile.swift */,
 				F82FB37FAC03ED87F334754B /* SampleMemoStorage.swift */,
 				A11L0G0000000000000000F1 /* AppLog.swift */,
@@ -327,6 +330,7 @@
 				80F55198E028391E59C3D134 /* DefaultsKey.swift in Sources */,
 				507DA8E449F93E5487B4175B /* MemoSyncCore.swift in Sources */,
 				F8E9771F8BD145C6D3131B37 /* MemoSyncEngine.swift in Sources */,
+				CKG00012F0000000000000001 /* CloudKitContainerGate.swift in Sources */,
 				17DC93EED0FD5E5F5FEE0B22 /* StorageFile.swift in Sources */,
 				AAD91F0825BBE26588073ABE /* ClipKeyboardTapSpec.swift in Sources */,
 				AD0A1F1AC7E33C7CCF57C7EA /* SampleMemoStorage.swift in Sources */,
