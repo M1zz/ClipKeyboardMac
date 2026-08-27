@@ -219,7 +219,7 @@ struct MenuBarPopoverView: View {
         } label: {
             HStack(spacing: MacSpacing.xs) {
                 Image(systemName: tab.icon)
-                Text(tab.displayName)
+                Text(MacCategoryName.display(tab.displayName))
                     .lineLimit(1)
             }
             .font(MacFont.body)

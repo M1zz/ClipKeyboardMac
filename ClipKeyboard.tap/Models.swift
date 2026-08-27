@@ -554,7 +554,10 @@ class MemoStore: ObservableObject {
     // 이미지 저장
     func saveImage(_ image: NSImage, fileName: String) throws {
         guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AppGroup.identifier) else {
-            throw NSError(domain: "MemoStore", code: 1, userInfo: [NSLocalizedDescriptionKey: "App Group 컨테이너를 찾을 수 없음"])
+            throw NSError(domain: "MemoStore", code: 1, userInfo: [
+                NSLocalizedDescriptionKey: NSLocalizedString("앱 공용 저장소를 찾을 수 없습니다.",
+                                                             comment: "Error: App Group container missing")
+            ])
         }
 
         let imagesDirectory = containerURL.appendingPathComponent("Images", isDirectory: true)
@@ -570,7 +573,10 @@ class MemoStore: ObservableObject {
         guard let tiffData = image.tiffRepresentation,
               let bitmapImage = NSBitmapImageRep(data: tiffData),
               let pngData = bitmapImage.representation(using: .png, properties: [:]) else {
-            throw NSError(domain: "MemoStore", code: 2, userInfo: [NSLocalizedDescriptionKey: "이미지를 PNG로 변환할 수 없음"])
+            throw NSError(domain: "MemoStore", code: 2, userInfo: [
+                NSLocalizedDescriptionKey: NSLocalizedString("이미지를 PNG로 변환할 수 없습니다.",
+                                                             comment: "Error: image to PNG conversion failed")
+            ])
         }
 
         try pngData.write(to: fileURL, options: .atomic)

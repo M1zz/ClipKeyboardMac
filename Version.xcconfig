@@ -3,11 +3,12 @@
 // fastlane bump 레인이 CURRENT_PROJECT_VERSION 을 +1 합니다.
 
 // 마케팅 버전 (App Store에 표시되는 버전)
-MARKETING_VERSION = 5.0.3
+MARKETING_VERSION = 5.0.4
 
 // 빌드 번호 (내부 버전)
 // ⚠️ 전역 단조 증가. 마케팅 버전이 올라가도 리셋하면 안 된다.
 //    4.4.7(1)로 리셋했다가 "must contain a higher version than [13]"으로 업로드 거절됨.
 //    그래서 4.4.8 도 (1)이 아니라 14 다음인 15 로 갔고, 5.0.3 은 그다음인 16 이다.
 //    (마케팅 버전을 4.4.8 에서 5.0.3 으로 건너뛴 것은 아이폰 앱과 번호를 맞추기 위해서다)
-CURRENT_PROJECT_VERSION = 16
+//    5.0.4 도 같은 규칙 — 16 다음인 17 이다.
+CURRENT_PROJECT_VERSION = 17

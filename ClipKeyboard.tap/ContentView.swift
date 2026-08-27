@@ -33,7 +33,7 @@ struct ContentView: View {
                 VStack(alignment: .leading, spacing: MacSpacing.md) {
                     infoRow(
                         symbol: AppSymbol.keyboard,
-                        title: NSLocalizedString("전역 단축키: ⌃⌥K", comment: "Global hotkey description"),
+                        title: NSLocalizedString("전역 단축키: ⌃⇧V", comment: "Global hotkey description"),
                         detail: NSLocalizedString("단축어 목록 표시", comment: "Show memo list label")
                     )
                     infoRow(

@@ -55,7 +55,7 @@ struct OnboardingView: View {
                         MacFeatureRow(
                             icon: "keyboard",
                             title: NSLocalizedString("전역 단축키", comment: "Global shortcuts feature"),
-                            description: NSLocalizedString("⌃⌥K로 어디서나 빠르게 접근", comment: "Global shortcuts description")
+                            description: NSLocalizedString("⌃⇧V로 어디서나 빠르게 접근", comment: "Global shortcuts description")
                         )
 
                         MacFeatureRow(

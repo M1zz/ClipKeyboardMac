@@ -78,14 +78,34 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
+            "value" : "%1$@ (⌘%2$@)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "%1$@ (⌘%2$@)"
           }
         }
       }
     },
     "%1$@ — %2$@ (⌃⇧V)" : {
-      "comment" : "Menu bar tooltip: app name — quick paste panel"
+      "comment" : "Menu bar tooltip: app name — quick paste panel",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ — %2$@ (⌃⇧V)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ — %2$@ (⌃⇧V)"
+          }
+        }
+      }
     },
     "%d개" : {
       "comment" : "Item count",
@@ -187,23 +207,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "+%lld"
-          }
-        }
-      }
-    },
-    "⌃⌥K로 어디서나 빠르게 접근" : {
-      "comment" : "Global shortcuts description",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quick access anywhere with ⌃⌥K"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "⌃⌥K로 어디서나 빠르게 접근"
           }
         }
       }
@@ -516,7 +519,21 @@
       }
     },
     "Feedback & Review" : {
-      "comment" : "Prefs section: feedback"
+      "comment" : "Prefs section: feedback",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback & Review"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "피드백 · 리뷰"
+          }
+        }
+      }
     },
     "General" : {
       "comment" : "Prefs: general",
@@ -660,7 +677,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please make sure iCloud Drive is enabled. Go to Settings > [your name] > iCloud > iCloud Drive and turn it on."
+            "value" : "Please make sure iCloud Drive is enabled: System Settings > [your name] > iCloud > iCloud Drive."
           }
         },
         "ko" : {
@@ -779,7 +796,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your iCloud storage is full. Check Settings > [your name] > iCloud > Manage Storage."
+            "value" : "Your iCloud storage is full. Check System Settings > [your name] > iCloud > Manage."
           }
         },
         "ko" : {
@@ -796,7 +813,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You're not signed in to iCloud. Sign in at Settings > [your name] > iCloud."
+            "value" : "You're not signed in to iCloud. Sign in at System Settings > [your name] > iCloud."
           }
         },
         "ko" : {
@@ -1708,6 +1725,23 @@
         }
       }
     },
+    "날짜" : {
+      "comment" : "Auto template variable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜"
+          }
+        }
+      }
+    },
     "내보내기 실패" : {
       "comment" : "Export failed",
       "localizations" : {
@@ -2044,6 +2078,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "데이터를 파일로 저장했습니다. 안전한 곳에 보관하세요."
+          }
+        }
+      }
+    },
+    "도시" : {
+      "comment" : "Auto template variable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "City"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도시"
           }
         }
       }
@@ -2847,6 +2898,23 @@
         }
       }
     },
+    "시간" : {
+      "comment" : "Auto template variable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시간"
+          }
+        }
+      }
+    },
     "시스템 설정 열기" : {
       "comment" : "Button: open system settings\nOpen system settings button",
       "localizations" : {
@@ -2928,6 +2996,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "암호 입력"
+          }
+        }
+      }
+    },
+    "앱 공용 저장소를 찾을 수 없습니다." : {
+      "comment" : "Error: App Group container missing",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't find the app's shared storage."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 공용 저장소를 찾을 수 없습니다."
           }
         }
       }
@@ -3221,6 +3306,23 @@
         }
       }
     },
+    "이미지를 PNG로 변환할 수 없습니다." : {
+      "comment" : "Error: image to PNG conversion failed",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't convert the image to PNG."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이미지를 PNG로 변환할 수 없습니다."
+          }
+        }
+      }
+    },
     "이미지를 불러올 수 없습니다" : {
       "comment" : "Image load error",
       "localizations" : {
@@ -3268,6 +3370,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이미지를 추가해보세요"
+          }
+        }
+      }
+    },
+    "인사" : {
+      "comment" : "Auto template variable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Greeting"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인사"
           }
         }
       }
@@ -3323,6 +3442,23 @@
         }
       }
     },
+    "전" : {
+      "comment" : "ago",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ago"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전"
+          }
+        }
+      }
+    },
     "저장" : {
       "comment" : "Save button",
       "localizations" : {
@@ -3353,23 +3489,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "저장 실패: %@"
-          }
-        }
-      }
-    },
-    "전" : {
-      "comment" : "ago",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ago"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "전"
           }
         }
       }
@@ -3421,23 +3540,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "전역 단축키"
-          }
-        }
-      }
-    },
-    "전역 단축키: ⌃⌥K" : {
-      "comment" : "Global hotkey description",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Global shortcut: ⌃⌥K"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "전역 단축키: ⌃⌥K"
           }
         }
       }
@@ -3986,6 +4088,23 @@
         }
       }
     },
+    "타임존" : {
+      "comment" : "Auto template variable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time Zone"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "타임존"
+          }
+        }
+      }
+    },
     "탭하면 복사" : {
       "comment" : "Tap to copy hint",
       "localizations" : {
@@ -4050,6 +4169,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "통관번호"
+          }
+        }
+      }
+    },
+    "통화" : {
+      "comment" : "Auto template variable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currency"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "통화"
           }
         }
       }
@@ -4135,6 +4271,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "회원번호"
+          }
+        }
+      }
+    },
+    "⌃⇧V로 어디서나 빠르게 접근" : {
+      "comment" : "Global shortcuts description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick access anywhere with ⌃⇧V"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌃⇧V로 어디서나 빠르게 접근"
+          }
+        }
+      }
+    },
+    "전역 단축키: ⌃⇧V" : {
+      "comment" : "Global hotkey description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Global shortcut: ⌃⇧V"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전역 단축키: ⌃⇧V"
           }
         }
       }

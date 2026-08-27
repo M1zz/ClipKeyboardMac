@@ -35,7 +35,7 @@ struct MemoEditView: View {
         self.onFinish = onFinish
         _title = State(initialValue: memo.title)
         _textContent = State(initialValue: memo.isSecure ? "" : memo.value)
-        _category = State(initialValue: memo.category)
+        _category = State(initialValue: MacCategoryName.display(memo.category))
         _isFavorite = State(initialValue: memo.isFavorite)
         var names = memo.imageFileNames
         if let single = memo.imageFileName, !single.isEmpty, !names.contains(single) {
@@ -313,9 +313,8 @@ struct MemoEditView: View {
     private func save() {
         var updated = memo
         updated.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        updated.category = category.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            ? memo.category
-            : category.trimmingCharacters(in: .whitespacesAndNewlines)
+        let typedCategory = category.trimmingCharacters(in: .whitespacesAndNewlines)
+        updated.category = typedCategory.isEmpty ? memo.category : MacCategoryName.stored(typedCategory)
         updated.isFavorite = isFavorite
 
         // 새로 붙인 이미지를 먼저 파일로 남긴다 — 본문보다 늦으면 깨진 참조가 생긴다.

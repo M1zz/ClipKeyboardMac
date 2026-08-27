@@ -135,6 +135,42 @@ enum CategoryTab: Hashable, Equatable {
     }
 }
 
+// MARK: - 카테고리 이름: 저장값 ↔ 표시값 (드리프트 감시 대상 아님)
+
+/// `"기본"` 은 번역어가 아니라 **아이폰과 주고받는 저장 센티널**이다.
+/// `Memo.category` 의 기본값이 이것이고, `CategorySnapshot` 은 이 값을 사용자
+/// 카테고리 목록에서 빼는 기준으로 쓴다. 그래서 저장값 자체는 절대 번역하지 않는다.
+///
+/// 문제는 이 값이 **화면까지 그대로 새어 나왔다는 것**이다. 영어로 앱을 쓰는 사람이
+/// 단축어를 하나 만들면 카테고리 칸에 `기본` 이 한글로 찍히고, 탭 바에도 `기본` 탭이
+/// 섰다. 앱이 아무리 영어로 번역돼 있어도 그 한 글자에서 "이건 한국 앱이네"가 된다.
+///
+/// → **저장은 센티널로, 표시는 현지화된 이름으로** 가르는 곳이 여기다.
+enum MacCategoryName {
+    /// 저장·동기화되는 기본 카테고리 값. ⚠️ 번역 금지 — 아이폰과의 계약이다.
+    static let basicSentinel = "기본"
+
+    /// 지금 언어에서 기본 카테고리를 부르는 이름 ("General" / "기본").
+    /// 탭 이름과 어긋나지 않도록 `CategoryTab.basic` 에서 그대로 가져온다.
+    static var localizedBasic: String { CategoryTab.basic.displayName }
+
+    /// 저장값 → 화면에 내보낼 이름.
+    static func display(_ stored: String) -> String {
+        stored == basicSentinel ? localizedBasic : stored
+    }
+
+    /// 사람이 입력한 이름 → 저장값.
+    /// 빈 칸과 현지화된 기본 이름("General")은 센티널로 되돌려, 영어로 만든 단축어도
+    /// 아이폰에서 같은 기본 칸에 들어가게 한다.
+    static func stored(_ typed: String) -> String {
+        let trimmed = typed.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return basicSentinel }
+        if trimmed == basicSentinel { return basicSentinel }
+        if trimmed.caseInsensitiveCompare(localizedBasic) == .orderedSame { return basicSentinel }
+        return trimmed
+    }
+}
+
 // MARK: - 맥 전용 조립부 (iOS ViewModel 의 allCategoryTabs / memos(for:) 를 맥 데이터로 옮긴 것)
 
 enum MacCategoryTabs {

@@ -221,7 +221,7 @@ struct MemoListView: View {
         if !tabs.isEmpty {
             Picker("", selection: $selectedTab) {
                 ForEach(tabs, id: \.self) { tab in
-                    Label(tab.displayName, systemImage: tab.icon).tag(tab)
+                    Label(MacCategoryName.display(tab.displayName), systemImage: tab.icon).tag(tab)
                 }
             }
             .labelsHidden()

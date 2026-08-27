@@ -14,7 +14,7 @@ struct MemoAddView: View {
 
     @State private var title: String = ""
     @State private var textContent: String = ""
-    @State private var category: String = "기본"
+    @State private var category: String = MacCategoryName.localizedBasic
     @State private var attachedImages: [NSImage] = []
     @State private var showToast: Bool = false
     @State private var toastMessage: String = ""
@@ -219,13 +219,13 @@ struct MemoAddView: View {
     // MARK: - Template Variable Bar
 
     /// 탭하면 본문에 삽입되는 자동 변수들. iOS의 자동 변수 토큰과 동일.
-    private let autoVars: [(token: String, labelKey: String)] = [
-        ("{date}", "날짜"),
-        ("{time}", "시간"),
-        ("{timezone}", "타임존"),
-        ("{currency}", "통화"),
-        ("{greeting_time}", "인사"),
-        ("{city}", "도시")
+    private let autoVars: [(token: String, label: String)] = [
+        ("{date}", NSLocalizedString("날짜", comment: "Auto template variable")),
+        ("{time}", NSLocalizedString("시간", comment: "Auto template variable")),
+        ("{timezone}", NSLocalizedString("타임존", comment: "Auto template variable")),
+        ("{currency}", NSLocalizedString("통화", comment: "Auto template variable")),
+        ("{greeting_time}", NSLocalizedString("인사", comment: "Auto template variable")),
+        ("{city}", NSLocalizedString("도시", comment: "Auto template variable"))
     ]
 
     private var templateVariableBar: some View {
@@ -240,7 +240,7 @@ struct MemoAddView: View {
                         Button {
                             insertToken(item.token)
                         } label: {
-                            Text(NSLocalizedString(item.labelKey, comment: "Auto template variable"))
+                            Text(item.label)
                                 .font(MacFont.body)
                                 .padding(.horizontal, MacSpacing.md)
                                 .padding(.vertical, MacSpacing.xs + 2)
@@ -340,7 +340,7 @@ struct MemoAddView: View {
             let newMemo = Memo(
                 title: title,
                 value: textContent,
-                category: category,
+                category: MacCategoryName.stored(category),
                 isTemplate: isTemplate,
                 templateVariables: customTokens,
                 imageFileNames: savedImageFileNames,
