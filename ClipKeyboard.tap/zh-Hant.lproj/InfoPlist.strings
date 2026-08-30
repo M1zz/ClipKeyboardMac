@@ -1,0 +1,7 @@
+/*
+  InfoPlist.strings
+  ClipKeyboard.tap (Traditional Chinese)
+*/
+
+/* App display name */
+"CFBundleDisplayName" = "剪貼鍵盤";

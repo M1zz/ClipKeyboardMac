@@ -2,8 +2,8 @@
 //  MacTemplateFillSheet.swift
 //  ClipKeyboard.tap
 //
-//  템플릿 메모에 사용자 정의 플레이스홀더({이름} 등)가 있을 때, 값을 채운 뒤
-//  복사/붙여넣기하도록 안내하는 시트. iOS의 PlaceholderSelectorView 흐름과
+//  템플릿 메모에 사용자 정의 플레이스홀더({이름} 등)가 있을 때, 값을 채워
+//  클립보드에 복사하는 시트. iOS의 PlaceholderSelectorView 흐름과
 //  같은 결(칩 미리보기 + 라벨 입력 + 실시간 결과)을 맥에서 재현한다.
 //
 
@@ -12,8 +12,8 @@ import AppKit
 
 struct MacTemplateFillSheet: View {
     let memo: Memo
-    /// (치환 완료 문자열, 붙여넣기 여부)
-    let onComplete: (String, Bool) -> Void
+    /// 치환 완료 문자열
+    let onComplete: (String) -> Void
 
     @Environment(\.dismiss) private var dismiss
     @State private var inputs: [String: String] = [:]
@@ -87,11 +87,7 @@ struct MacTemplateFillSheet: View {
                     .keyboardShortcut(.cancelAction)
                 Spacer()
                 Button(NSLocalizedString("복사", comment: "Copy")) {
-                    onComplete(resolved, false)
-                    dismiss()
-                }
-                Button(NSLocalizedString("복사 후 붙여넣기", comment: "Copy then paste")) {
-                    onComplete(resolved, true)
+                    onComplete(resolved)
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)

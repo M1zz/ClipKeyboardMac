@@ -2,10 +2,11 @@
 //  MemoFloatingPanel.swift
 //  ClipKeyboard.tap
 //
-//  전역 단축키 ⌃⌥⇧V로 띄우는 non-activating 플로팅 패널.
+//  전역 단축키 ⌃⇧V로 띄우는 non-activating 플로팅 패널.
 //  macOS의 Character Viewer (⌃⌘Space) 와 비슷한 UX — 사용자가
 //  다른 앱 TextField에 커서를 둔 상태 그대로, 패널을 클릭해
-//  메모를 선택하면 원래 앱에 자동 붙여넣기.
+//  메모를 고르면 클립보드에 담기고 패널이 닫힌다. 포커스를 뺏지 않으므로
+//  그 자리에서 ⌘V로 바로 붙여넣을 수 있다.
 //
 
 import AppKit
@@ -114,18 +115,9 @@ final class MemoFloatingPanelController: NSObject {
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(resolved, forType: .string)
             print("📋 [FloatingPanel] 메모 복사: \(memo.title)")
-            self.finishInsert()
-        }
-    }
-
-    private func finishInsert() {
-        // 2) 패널 닫기 (원래 전경 앱은 포커스 잃은 적 없음)
-        close()
-
-        // 3) CGEvent로 ⌘V 주입 — 전경 앱의 현재 커서에 바로 붙여넣기.
-        //    약간의 지연으로 panel close 후 이벤트 큐 정리 시간 확보.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
-            DirectPasteHelper.pasteToFrontmostApp()
+            // 2) 패널 닫기. 이 패널은 non-activating이라 전경 앱이 포커스를 잃은 적이
+            //    없으므로, 닫는 즉시 원래 커서 자리에서 ⌘V로 붙여넣을 수 있다.
+            self.close()
         }
     }
 }
@@ -167,7 +159,7 @@ struct MemoFloatingPanelView: View {
             Text(NSLocalizedString("ClipKeyboard", comment: "App menu name"))
                 .font(MacFont.sectionTitle)
             Spacer()
-            Text(NSLocalizedString("Click to paste", comment: "Panel hint"))
+            Text(NSLocalizedString("Click to copy", comment: "Panel hint"))
                 .font(MacFont.secondary)
                 .foregroundStyle(.secondary)
             Button {
@@ -207,9 +199,6 @@ struct MemoFloatingPanelView: View {
                                 NSPasteboard.general.setString(resolved, forType: .string)
                                 onDismiss()
                             }
-                        }
-                        Button(NSLocalizedString("Copy and Paste", comment: "Popover context: copy + paste")) {
-                            onSelect(memo)
                         }
                     }
                 }

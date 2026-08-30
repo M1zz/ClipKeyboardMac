@@ -54,7 +54,6 @@
 		F442D56543A806BE084AA493 /* CloudBackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18105C29D13C26218DF64528 /* CloudBackupView.swift */; };
 		F8E9771F8BD145C6D3131B37 /* MemoSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81B85D608D7A57A5D8739F /* MemoSyncEngine.swift */; };
 		CKG00012F0000000000000001 /* CloudKitContainerGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CKG00022F0000000000000002 /* CloudKitContainerGate.swift */; };
-		FB238DF017EB5E5013AADF4C /* DirectPasteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713F8E698A6C5C5008D21C9 /* DirectPasteHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,10 +100,11 @@
 		D314A4F6B4E1F7BA131DE8C0 /* ClipKeyboard_macApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClipKeyboard_macApp.swift; sourceTree = "<group>"; };
 		D6E417E7EB435189A393C2C0 /* OnboardingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DEE4A6195BC3B986E7EB5233 /* ko */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DEE4A6195BC3B986E7EB5234 /* zh-Hans */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		DEE4A6195BC3B986E7EB5235 /* zh-Hant */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E22C7148DD0D10FD7FCB6CBC /* MacTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacTheme.swift; sourceTree = "<group>"; };
 		E33E4737F122ACE032FFE1F1 /* MacSampleSeeder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSampleSeeder.swift; sourceTree = "<group>"; };
 		E5031D7725342984C32E5191 /* MacTemplateSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacTemplateSupport.swift; sourceTree = "<group>"; };
-		E713F8E698A6C5C5008D21C9 /* DirectPasteHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DirectPasteHelper.swift; sourceTree = "<group>"; };
 		EF282126415A431418587379 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		F0D4886ABBFEB6EA3CE6D4E5 /* MenuBarPopoverView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuBarPopoverView.swift; sourceTree = "<group>"; };
 		F82FB37FAC03ED87F334754B /* SampleMemoStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SampleMemoStorage.swift; sourceTree = "<group>"; };
@@ -188,7 +188,6 @@
 				18105C29D13C26218DF64528 /* CloudBackupView.swift */,
 				1693B0D87C921C0A31612F63 /* CloudKitBackupService.swift */,
 				7271F30E7D05060B1C42D48E /* ContentView.swift */,
-				E713F8E698A6C5C5008D21C9 /* DirectPasteHelper.swift */,
 				A1C26372726AFC85F4249E6A /* GlobalHotkeyManager.swift */,
 				68B582B78619B4D53228F182 /* MacAccessibility.swift */,
 				70498394D673D364C09E4E57 /* MacPreferencesView.swift */,
@@ -266,6 +265,8 @@
 				en,
 				Base,
 				ko,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = B22CD1D09E8092BFABB6702E;
 			packageReferences = (
@@ -304,7 +305,6 @@
 				F442D56543A806BE084AA493 /* CloudBackupView.swift in Sources */,
 				C6DC7281371022A682A44A7E /* CloudKitBackupService.swift in Sources */,
 				D8206FB63739AFB31882706A /* ContentView.swift in Sources */,
-				FB238DF017EB5E5013AADF4C /* DirectPasteHelper.swift in Sources */,
 				49F90EA9F13435C44575F117 /* GlobalHotkeyManager.swift in Sources */,
 				C8F43A667B85EDD352FA00E2 /* MacAccessibility.swift in Sources */,
 				440FB5EB7F1AF97C5D000781 /* MacPreferencesView.swift in Sources */,
@@ -352,6 +352,8 @@
 			children = (
 				BB64F64A0C9C27556BDCA2EA /* en */,
 				DEE4A6195BC3B986E7EB5233 /* ko */,
+				DEE4A6195BC3B986E7EB5234 /* zh-Hans */,
+				DEE4A6195BC3B986E7EB5235 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

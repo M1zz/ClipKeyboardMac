@@ -98,13 +98,8 @@ struct MemoListView: View {
         }
         .frame(minWidth: 360, minHeight: 420)
         .sheet(item: $fillMemo) { memo in
-            MacTemplateFillSheet(memo: memo) { resolved, paste in
+            MacTemplateFillSheet(memo: memo) { resolved in
                 copyToClipboard(resolved)
-                if paste {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
-                        DirectPasteHelper.pasteToFrontmostApp()
-                    }
-                }
             }
         }
         .sheet(item: $comboPickMemo) { memo in

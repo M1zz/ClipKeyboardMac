@@ -16,36 +16,10 @@ class GlobalHotkeyManager {
 
     private init() {}
 
-    private func checkAccessibilityPermission() {
-        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true]
-        let accessEnabled = AXIsProcessTrustedWithOptions(options)
-
-        if accessEnabled {
-            print("✅ [Global Hotkey] 접근성 권한이 허용되어 있습니다")
-        } else {
-            print("⚠️ [Global Hotkey] 접근성 권한이 필요합니다!")
-            print("💡 시스템 설정 > 개인 정보 보호 및 보안 > 손쉬운 사용 에서 ClipKeyboard를 활성화하세요")
-
-            // 접근성 설정 열기
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let alert = NSAlert()
-                alert.messageText = NSLocalizedString("접근성 권한 필요", comment: "Accessibility permission alert title")
-                alert.informativeText = NSLocalizedString("전역 단축키를 사용하려면 접근성 권한이 필요합니다.\n\n시스템 설정 > 개인 정보 보호 및 보안 > 손쉬운 사용 에서 ClipKeyboard를 활성화하세요.", comment: "Accessibility permission alert body")
-                alert.alertStyle = .warning
-                alert.addButton(withTitle: NSLocalizedString("시스템 설정 열기", comment: "Open system settings button"))
-                alert.addButton(withTitle: NSLocalizedString("나중에", comment: "Later button"))
-
-                if alert.runModal() == .alertFirstButtonReturn {
-                    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
-                        NSWorkspace.shared.open(url)
-                    }
-                }
-            }
-        }
-    }
-
     func registerGlobalHotkey() {
-        checkAccessibilityPermission()
+        // Carbon RegisterEventHotKey 는 손쉬운 사용 권한 없이 동작한다.
+        // (권한이 필요한 건 다른 앱에 키 이벤트를 '주입'할 때뿐이고,
+        //  이 앱은 그런 동작을 하지 않는다.)
 
         // v4.2: ⌃⇧V (3-key 조합). Mac에서 Control+Shift 계열은 표준
         // 단축키가 거의 없어 BetterTouchTool/Raycast/Maccy/Alfred 등과
@@ -133,8 +107,8 @@ class GlobalHotkeyManager {
 
     private func activateApp() {
         // v4.2: non-activating 플로팅 패널로 띄워 포커스를 뺏지 않음.
-        // 사용자가 다른 앱에서 텍스트 입력 중이더라도 커서·포커스 유지.
-        // 메모 클릭 시 CGEvent ⌘V로 원래 앱에 바로 주입.
+        // 사용자가 다른 앱에서 텍스트 입력 중이더라도 커서·포커스 유지 —
+        // 메모를 고르면 클립보드에 담기고, 커서가 그대로이므로 ⌘V로 바로 붙여넣는다.
         DispatchQueue.main.async {
             MemoFloatingPanelController.shared.toggle()
         }

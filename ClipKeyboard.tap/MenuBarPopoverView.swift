@@ -97,8 +97,6 @@ struct MenuBarPopoverView: View {
 
     /// 팝오버를 닫는 콜백 (MenuBarManager에서 주입).
     let dismiss: () -> Void
-    /// 선택 시 바로 붙여넣기할지 — Preferences 토글 결정.
-    @AppStorage("macAutoPaste") private var autoPaste: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -188,8 +186,7 @@ struct MenuBarPopoverView: View {
             onArrowUp: { moveSelection(by: -1) },
             onArrowDown: { moveSelection(by: 1) },
             onEscape: { dismiss() },
-            onReturn: { activateSelected() },
-            onOptionReturn: { activateSelected(forcePaste: !autoPaste) }
+            onReturn: { activateSelected() }
         ))
     }
 
@@ -249,12 +246,8 @@ struct MenuBarPopoverView: View {
                         .id(index)
                         .contextMenu {
                             Button(NSLocalizedString("Copy", comment: "Popover context: copy")) {
-                                copyMemo(memo, paste: false)
+                                copyMemo(memo)
                             }
-                            Button(NSLocalizedString("Copy and Paste", comment: "Popover context: copy + paste")) {
-                                copyMemo(memo, paste: true)
-                            }
-                            .keyboardShortcut(.return, modifiers: .option)
                             Divider()
                             Button(NSLocalizedString("수정…", comment: "Context: edit")) {
                                 // 팝오버 안에는 시트를 띄울 자리가 없다 — 창으로 연다.
@@ -366,7 +359,7 @@ struct MenuBarPopoverView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .help(NSLocalizedString("The quick paste panel (⌃⇧V) stays over your current app — click a memo and the text is pasted directly into the text field you were typing in, without losing focus.", comment: "Quick paste explainer (3-key)"))
+        .help(NSLocalizedString("The quick paste panel (⌃⇧V) stays over your current app without stealing focus — click a memo to copy it, then press ⌘V right where your cursor was.", comment: "Quick paste explainer (3-key)"))
     }
 
     /// 하단 툴바 버튼 — 글자를 줄여 넣는 대신 기호만 두고 이름은 툴팁(⌘단축키 포함)으로 안내한다.
@@ -392,15 +385,13 @@ struct MenuBarPopoverView: View {
         viewModel.selectedIndex = next
     }
 
-    private func activateSelected(forcePaste: Bool? = nil) {
+    private func activateSelected() {
         let items = viewModel.filtered
         guard viewModel.selectedIndex >= 0, viewModel.selectedIndex < items.count else { return }
-        let memo = items[viewModel.selectedIndex]
-        let paste = forcePaste ?? autoPaste
-        copyMemo(memo, paste: paste)
+        copyMemo(items[viewModel.selectedIndex])
     }
 
-    private func copyMemo(_ memo: Memo, paste: Bool) {
+    private func copyMemo(_ memo: Memo) {
         // 보안 메모면 Touch ID 인증 + 복호화 후 복사. 일반 메모는 즉시.
         MacSecureAccess.resolveForPaste(memo) { resolved in
             guard let resolved else { return } // 인증 취소/실패/키 미동기화
@@ -408,12 +399,6 @@ struct MenuBarPopoverView: View {
             NSPasteboard.general.setString(resolved, forType: .string)
             print("✅ [Popover] 복사: \(memo.title)")
             dismiss()
-            if paste {
-                // 팝오버 닫힌 뒤 짧은 지연 후 ⌘V 자동 주입.
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
-                    DirectPasteHelper.pasteToFrontmostApp()
-                }
-            }
         }
     }
 }
@@ -491,7 +476,6 @@ private struct KeyboardShortcutCapture: NSViewRepresentable {
     let onArrowDown: () -> Void
     let onEscape: () -> Void
     let onReturn: () -> Void
-    let onOptionReturn: () -> Void
 
     func makeNSView(context: Context) -> NSView {
         let view = KeyHandlerView()
@@ -499,7 +483,6 @@ private struct KeyboardShortcutCapture: NSViewRepresentable {
         view.onArrowDown = onArrowDown
         view.onEscape = onEscape
         view.onReturn = onReturn
-        view.onOptionReturn = onOptionReturn
         return view
     }
 
@@ -510,7 +493,6 @@ private struct KeyboardShortcutCapture: NSViewRepresentable {
         var onArrowDown: (() -> Void)?
         var onEscape: (() -> Void)?
         var onReturn: (() -> Void)?
-        var onOptionReturn: (() -> Void)?
 
         override var acceptsFirstResponder: Bool { true }
 
@@ -530,11 +512,7 @@ private struct KeyboardShortcutCapture: NSViewRepresentable {
                     self.onEscape?()
                     return nil
                 case 36, 76: // return / keypad enter
-                    if event.modifierFlags.contains(.option) {
-                        self.onOptionReturn?()
-                    } else {
-                        self.onReturn?()
-                    }
+                    self.onReturn?()
                     return nil
                 default:
                     return event

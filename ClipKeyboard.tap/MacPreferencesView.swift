@@ -13,8 +13,6 @@ struct MacPreferencesView: View {
     @AppStorage("macLaunchAtLogin") private var launchAtLogin: Bool = false
     @AppStorage("macClipboardMonitoring") private var clipboardMonitoring: Bool = true
     @AppStorage("macMenuBarIconStyle") private var iconStyle: String = "symbol"
-    @AppStorage("macAutoPaste") private var autoPaste: Bool = false
-    @State private var hasAccessibility: Bool = DirectPasteHelper.hasAccessibilityPermission()
     /// 카테고리 탭을 아이폰 구성으로 따를지 — 배너로 물어본 뒤에도 여기서 언제든 바꿀 수 있다.
     @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
     @State private var orderedMemos: [Memo] = []
@@ -54,38 +52,6 @@ struct MacPreferencesView: View {
             } header: {
                 Text(NSLocalizedString("Startup", comment: "Prefs section: startup"))
                     .font(MacFont.sectionTitle)
-            }
-
-            Section {
-                Toggle(NSLocalizedString("Paste directly after selecting", comment: "Prefs: auto paste"), isOn: $autoPaste)
-                if autoPaste {
-                    HStack(alignment: .center, spacing: MacSpacing.sm) {
-                        Image(systemName: hasAccessibility ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
-                            .foregroundStyle(hasAccessibility ? .green : .orange)
-                        Text(hasAccessibility
-                             ? NSLocalizedString("Accessibility permission granted", comment: "Prefs: a11y granted")
-                             : NSLocalizedString("Accessibility permission required for direct paste.", comment: "Prefs: a11y needed"))
-                        .font(MacFont.secondary)
-                        .foregroundStyle(.secondary)
-                        Spacer()
-                        if !hasAccessibility {
-                            Button(NSLocalizedString("Grant Access…", comment: "Prefs: grant access")) {
-                                _ = DirectPasteHelper.requestAccessibilityPermission()
-                                // 사용자가 시스템 설정에서 토글 후 돌아왔을 때 refresh.
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                    hasAccessibility = DirectPasteHelper.hasAccessibilityPermission()
-                                }
-                            }
-                        }
-                    }
-                }
-            } header: {
-                Text(NSLocalizedString("Paste behavior", comment: "Prefs section: paste"))
-                    .font(MacFont.sectionTitle)
-            } footer: {
-                Text(NSLocalizedString("When on, pressing Enter in the menu bar popover copies AND pastes to the frontmost app. Otherwise, Enter only copies (use ⌥Enter to paste).", comment: "Prefs: paste behavior note"))
-                    .font(MacFont.secondary)
-                    .foregroundStyle(.secondary)
             }
 
             Section {
@@ -224,12 +190,9 @@ struct MacPreferencesView: View {
                 Text(NSLocalizedString("Global Shortcuts", comment: "Prefs section: global shortcuts"))
                     .font(MacFont.sectionTitle)
             } footer: {
-                VStack(alignment: .leading, spacing: MacSpacing.sm) {
-                    Text(NSLocalizedString("ClipKeyboard needs Accessibility permission to register global shortcuts. Grant access in System Settings → Privacy & Security → Accessibility.", comment: "Accessibility note"))
-                    Text(NSLocalizedString("The quick paste panel (⌃⇧V) stays over your current app — click a memo and the text is pasted directly into the text field you were typing in, without losing focus.", comment: "Quick paste explainer (3-key)"))
-                }
-                .font(MacFont.secondary)
-                .foregroundStyle(.secondary)
+                Text(NSLocalizedString("The quick paste panel (⌃⇧V) stays over your current app without stealing focus — click a memo to copy it, then press ⌘V right where your cursor was.", comment: "Quick paste explainer (3-key)"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
         .formStyle(.grouped)

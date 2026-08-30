@@ -18,6 +18,18 @@
             "state" : "translated",
             "value" : "'%@'와 일치하는 항목이 없습니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有與「%@」相符的項目"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有与“%@”匹配的项目"
+          }
         }
       }
     },
@@ -34,6 +46,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "'%@'이(가) 이 맥과 동기화된 기기에서 사라집니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」將從這台 Mac 和所有已同步的裝置中移除。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”将从这台 Mac 和所有已同步的设备中移除。"
           }
         }
       }
@@ -52,6 +76,18 @@
             "state" : "translated",
             "value" : "[%@] 클립보드에 복사되었습니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已複製 [%@] 到剪貼板"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已复制 [%@] 到剪贴板"
+          }
         }
       }
     },
@@ -69,6 +105,18 @@
             "state" : "translated",
             "value" : "{ }로 감싸면 입력할 때 채우는 칸이 됩니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用 { } 包起來，輸入時就會變成填空欄"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用 { } 包起来，输入时就会变成填空栏"
+          }
         }
       }
     },
@@ -83,6 +131,18 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (⌘%2$@)"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (⌘%2$@)"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ (⌘%2$@)"
@@ -104,6 +164,18 @@
             "state" : "translated",
             "value" : "%1$@ — %2$@ (⌃⇧V)"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ — %2$@ (⌃⇧V)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ — %2$@ (⌃⇧V)"
+          }
         }
       }
     },
@@ -120,6 +192,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d개"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d"
           }
         }
       }
@@ -138,6 +222,18 @@
             "state" : "translated",
             "value" : "%d개 단축어 잠김 — iOS에서 Pro 구매 시 동기화됩니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 條短語已鎖定 — 在 iOS 購買 Pro 後同步"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 条短语已锁定 — 在 iOS 购买 Pro 后同步"
+          }
         }
       }
     },
@@ -154,6 +250,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d개 삭제"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除 %d 項"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除 %d 项"
           }
         }
       }
@@ -172,6 +280,18 @@
             "state" : "translated",
             "value" : "%d개의 항목"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 個項目"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 个项目"
+          }
         }
       }
     },
@@ -186,6 +306,18 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld"
@@ -208,6 +340,18 @@
             "state" : "translated",
             "value" : "+%lld"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld"
+          }
         }
       }
     },
@@ -222,6 +366,18 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌘%lld"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌘%lld"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "⌘%lld"
@@ -243,6 +399,18 @@
             "state" : "translated",
             "value" : "⚠️ 복구 시 현재 데이터가 백업 데이터로 교체됩니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ 回復會用備份資料取代目前的資料"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ 恢复会用备份数据替换当前数据"
+          }
         }
       }
     },
@@ -259,6 +427,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "📁 파일 백업은 iCloud와 별개로 데이터를 파일로 보관하는 가장 확실한 방법입니다. 가져오기는 현재 데이터를 지우지 않고 합칩니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "📁 檔案備份是把資料獨立於 iCloud 另存為檔案的最可靠方式。匯入時會與現有資料合併，不會清除。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "📁 文件备份是把数据独立于 iCloud 另存为文件的最可靠方式。导入时会与现有数据合并，不会清除。"
           }
         }
       }
@@ -277,39 +457,17 @@
             "state" : "translated",
             "value" : "정보"
           }
-        }
-      }
-    },
-    "Accessibility permission granted" : {
-      "comment" : "Prefs: a11y granted",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Accessibility permission granted"
+            "value" : "關於"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "손쉬운 사용 권한이 허용되었습니다"
-          }
-        }
-      }
-    },
-    "Accessibility permission required for direct paste." : {
-      "comment" : "Prefs: a11y needed",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accessibility permission required for direct paste."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "직접 붙여넣기를 하려면 손쉬운 사용 권한이 필요합니다."
+            "value" : "关于"
           }
         }
       }
@@ -328,6 +486,18 @@
             "state" : "translated",
             "value" : "카테고리"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分類"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分类"
+          }
         }
       }
     },
@@ -345,22 +515,17 @@
             "state" : "translated",
             "value" : "카테고리"
           }
-        }
-      }
-    },
-    "Click to paste" : {
-      "comment" : "Panel hint",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Click to paste"
+            "value" : "分類"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "클릭하면 붙여넣기"
+            "value" : "分类"
           }
         }
       }
@@ -379,6 +544,18 @@
             "state" : "translated",
             "value" : "클립보드 히스토리"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼板歷史"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴板历史"
+          }
         }
       }
     },
@@ -395,6 +572,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "클립보드 히스토리"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼板歷史"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴板历史"
           }
         }
       }
@@ -413,6 +602,18 @@
             "state" : "translated",
             "value" : "클립키보드"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼鍵盤"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴键盘"
+          }
         }
       }
     },
@@ -430,22 +631,17 @@
             "state" : "translated",
             "value" : "클립키보드 도움말"
           }
-        }
-      }
-    },
-    "ClipKeyboard needs Accessibility permission to register global shortcuts. Grant access in System Settings → Privacy & Security → Accessibility." : {
-      "comment" : "Accessibility note",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ClipKeyboard needs Accessibility permission to register global shortcuts. Grant access in System Settings → Privacy & Security → Accessibility."
+            "value" : "剪貼鍵盤輔助說明"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "전역 단축키를 등록하려면 ClipKeyboard에 손쉬운 사용 권한이 필요합니다. 시스템 설정 → 개인 정보 보호 및 보안 → 손쉬운 사용에서 권한을 허용하세요."
+            "value" : "剪贴键盘帮助"
           }
         }
       }
@@ -464,6 +660,18 @@
             "state" : "translated",
             "value" : "ClipKeyboard에 오신 것을 환영합니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歡迎使用剪貼鍵盤"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "欢迎使用剪贴键盘"
+          }
         }
       }
     },
@@ -481,22 +689,17 @@
             "state" : "translated",
             "value" : "복사"
           }
-        }
-      }
-    },
-    "Copy and Paste" : {
-      "comment" : "Popover context: copy + paste",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copy and Paste"
+            "value" : "複製"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "복사 후 붙여넣기"
+            "value" : "复制"
           }
         }
       }
@@ -515,6 +718,18 @@
             "state" : "translated",
             "value" : "가상자산 지갑"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加密錢包"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加密钱包"
+          }
         }
       }
     },
@@ -531,6 +746,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "피드백 · 리뷰"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "意見回饋與評分"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "反馈与评价"
           }
         }
       }
@@ -549,6 +776,18 @@
             "state" : "translated",
             "value" : "일반"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通用"
+          }
         }
       }
     },
@@ -565,6 +804,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "전역 단축키"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全域快速鍵"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全局快捷键"
           }
         }
       }
@@ -583,6 +834,18 @@
             "state" : "translated",
             "value" : "좋은 오후예요"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "午安"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下午好"
+          }
         }
       }
     },
@@ -599,6 +862,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "좋은 저녁이에요"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "晚安"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "晚上好"
           }
         }
       }
@@ -617,22 +892,17 @@
             "state" : "translated",
             "value" : "좋은 아침이에요"
           }
-        }
-      }
-    },
-    "Grant Access…" : {
-      "comment" : "Prefs: grant access",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grant Access…"
+            "value" : "早安"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "권한 허용…"
+            "value" : "早上好"
           }
         }
       }
@@ -647,6 +917,18 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IBAN"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IBAN"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IBAN"
@@ -668,6 +950,18 @@
             "state" : "translated",
             "value" : "iCloud 백업"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 備份"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 备份"
+          }
         }
       }
     },
@@ -684,6 +978,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud Drive가 활성화되어 있는지 확인해주세요. 설정 > [사용자 이름] > iCloud > iCloud Drive를 켜주세요."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請確認已啟用 iCloud 雲碟。前往「設定 >「你的名稱」> iCloud > iCloud 雲碟」並打開它。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请确认已启用 iCloud 云盘。前往“设置 >“你的姓名”> iCloud > iCloud 云盘”并打开它。"
           }
         }
       }
@@ -702,6 +1008,18 @@
             "state" : "translated",
             "value" : "iCloud 동기화"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 同步"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 同步"
+          }
         }
       }
     },
@@ -718,6 +1036,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud 백업"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 備份"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 备份"
           }
         }
       }
@@ -736,6 +1066,18 @@
             "state" : "translated",
             "value" : "iCloud 백업 및 복구"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 備份與回復"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 备份与恢复"
+          }
         }
       }
     },
@@ -752,6 +1094,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud 백업은 Pro 기능입니다"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 備份是 Pro 功能"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 备份是 Pro 功能"
           }
         }
       }
@@ -770,6 +1124,18 @@
             "state" : "translated",
             "value" : "iCloud 상태:"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 狀態："
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 状态："
+          }
         }
       }
     },
@@ -786,6 +1152,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud 서버에 일시적인 문제가 있습니다. 잠시 후 다시 시도해주세요."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 暫時發生問題，請稍後再試。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 暂时出现问题，请稍后再试。"
           }
         }
       }
@@ -804,6 +1182,18 @@
             "state" : "translated",
             "value" : "iCloud 저장 공간이 부족합니다. 설정 > [사용자 이름] > iCloud > 저장 공간 관리에서 확인해주세요."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 儲存空間已滿。請前往「設定 >「你的名稱」> iCloud > 管理儲存空間」查看。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 储存空间已满。请前往“设置 >“你的姓名”> iCloud > 管理储存空间”查看。"
+          }
         }
       }
     },
@@ -821,6 +1211,18 @@
             "state" : "translated",
             "value" : "iCloud에 로그인되어 있지 않습니다. 설정 > [사용자 이름] > iCloud에서 로그인해주세요."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你尚未登入 iCloud。請在「設定 >「你的名稱」> iCloud」中登入。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你尚未登录 iCloud。请在“设置 >“你的姓名”> iCloud”中登录。"
+          }
         }
       }
     },
@@ -834,6 +1236,18 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instagram DM (@lee25_ios)"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instagram DM (@lee25_ios)"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Instagram DM (@lee25_ios)"
@@ -855,6 +1269,18 @@
             "state" : "translated",
             "value" : "iOS 구매 시 자동 연동"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iOS 購買後自動同步"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iOS 购买后自动同步"
+          }
         }
       }
     },
@@ -871,6 +1297,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iOS 앱에서 Pro를 구매하면 macOS에서도 자동으로 활성화됩니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iOS App 中購買 Pro 後，macOS 上也會自動啟用。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iOS App 中购买 Pro 后，macOS 上也会自动启用。"
           }
         }
       }
@@ -889,6 +1327,18 @@
             "state" : "translated",
             "value" : "iOS 앱에서 Pro를 구매하면 이 Mac에서도 자동으로 활성화됩니다."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iOS App 中購買 Pro 後，這台 Mac 上也會自動啟用。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iOS App 中购买 Pro 后，这台 Mac 上也会自动启用。"
+          }
         }
       }
     },
@@ -905,6 +1355,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "IP주소"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP 位址"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP 地址"
           }
         }
       }
@@ -923,6 +1385,18 @@
             "state" : "translated",
             "value" : "로그인 시 실행"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登入時啟動"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录时启动"
+          }
         }
       }
     },
@@ -939,6 +1413,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS 전용 단축어 앱"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "專為 macOS 打造的短語 App"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "专为 macOS 打造的短语 App"
           }
         }
       }
@@ -957,6 +1443,18 @@
             "state" : "translated",
             "value" : "macOS에서 가장 빠르고 편리한\n단축어 및 클립보드 관리 앱"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 上最快、最順手的\n短語與剪貼板管理 App"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 上最快、最顺手的\n短语与剪贴板管理 App"
+          }
         }
       }
     },
@@ -973,6 +1471,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어 목록"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短語列表"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短语列表"
           }
         }
       }
@@ -991,6 +1501,18 @@
             "state" : "translated",
             "value" : "백그라운드에서 클립보드 모니터링"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在背景監視剪貼板"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在后台监视剪贴板"
+          }
         }
       }
     },
@@ -1007,6 +1529,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "아래로"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下移"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下移"
           }
         }
       }
@@ -1025,6 +1559,18 @@
             "state" : "translated",
             "value" : "위로"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上移"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上移"
+          }
         }
       }
     },
@@ -1041,6 +1587,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새 단축어"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新建短语"
           }
         }
       }
@@ -1059,6 +1617,18 @@
             "state" : "translated",
             "value" : "새 단축어"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新建短语"
+          }
         }
       }
     },
@@ -1075,6 +1645,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "일치하는 항목 없음"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有相符項目"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有匹配项"
           }
         }
       }
@@ -1093,6 +1675,18 @@
             "state" : "translated",
             "value" : "아직 단축어가 없습니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還沒有短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还没有短语"
+          }
         }
       }
     },
@@ -1109,6 +1703,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어 목록 열기"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打開短語列表"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开短语列表"
           }
         }
       }
@@ -1127,39 +1733,17 @@
             "state" : "translated",
             "value" : "순서"
           }
-        }
-      }
-    },
-    "Paste behavior" : {
-      "comment" : "Prefs section: paste",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Paste behavior"
+            "value" : "排序"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "붙여넣기 동작"
-          }
-        }
-      }
-    },
-    "Paste directly after selecting" : {
-      "comment" : "Prefs: auto paste",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Paste directly after selecting"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "선택 후 바로 붙여넣기"
+            "value" : "排序"
           }
         }
       }
@@ -1178,6 +1762,18 @@
             "state" : "translated",
             "value" : "PayPal 링크"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PayPal 連結"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PayPal 链接"
+          }
         }
       }
     },
@@ -1194,6 +1790,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "환경설정"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置"
           }
         }
       }
@@ -1212,6 +1820,18 @@
             "state" : "translated",
             "value" : "환경설정…"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置…"
+          }
         }
       }
     },
@@ -1225,6 +1845,18 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pro"
@@ -1246,6 +1878,18 @@
             "state" : "translated",
             "value" : "Pro 활성화됨"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro 已啟用"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro 已启用"
+          }
         }
       }
     },
@@ -1262,6 +1906,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "빠른 붙여넣기 패널"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速貼上面板"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速粘贴面板"
           }
         }
       }
@@ -1280,6 +1936,18 @@
             "state" : "translated",
             "value" : "클립키보드 종료"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結束剪貼鍵盤"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出剪贴键盘"
+          }
         }
       }
     },
@@ -1296,6 +1964,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어 검색"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索短语"
           }
         }
       }
@@ -1314,6 +1994,18 @@
             "state" : "translated",
             "value" : "피드백 보내기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳送意見回饋"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发送反馈"
+          }
         }
       }
     },
@@ -1330,6 +2022,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축키"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速鍵"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快捷键"
           }
         }
       }
@@ -1348,6 +2052,18 @@
             "state" : "translated",
             "value" : "온보딩 보기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示入門導覽"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示入门引导"
+          }
         }
       }
     },
@@ -1364,6 +2080,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어 순서"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短語順序"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短语顺序"
           }
         }
       }
@@ -1382,6 +2110,18 @@
             "state" : "translated",
             "value" : "시작"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟動"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启动"
+          }
         }
       }
     },
@@ -1399,22 +2139,17 @@
             "state" : "translated",
             "value" : "SWIFT/BIC"
           }
-        }
-      }
-    },
-    "The quick paste panel (⌃⇧V) stays over your current app — click a memo and the text is pasted directly into the text field you were typing in, without losing focus." : {
-      "comment" : "Quick paste explainer (3-key)",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The quick paste panel (⌃⇧V) stays over your current app — click a memo and the text is pasted directly into the text field you were typing in, without losing focus."
+            "value" : "SWIFT/BIC"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "빠른 붙여넣기 패널(⌃⇧V)은 현재 앱 위에 떠 있습니다 — 단축어를 클릭하면 포커스를 잃지 않고 입력 중이던 텍스트 필드에 바로 붙여넣어집니다."
+            "value" : "SWIFT/BIC"
           }
         }
       }
@@ -1433,6 +2168,18 @@
             "state" : "translated",
             "value" : "URL"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "網址"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "网址"
+          }
         }
       }
     },
@@ -1449,6 +2196,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "부가세 번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加值稅號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "增值税号"
           }
         }
       }
@@ -1467,6 +2226,18 @@
             "state" : "translated",
             "value" : "버전 %@"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本 %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本 %@"
+          }
         }
       }
     },
@@ -1483,6 +2254,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "사용 가이드 보기"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢視使用指南"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看使用指南"
           }
         }
       }
@@ -1501,22 +2284,17 @@
             "state" : "translated",
             "value" : "클립키보드에 오신 것을 환영합니다"
           }
-        }
-      }
-    },
-    "When on, pressing Enter in the menu bar popover copies AND pastes to the frontmost app. Otherwise, Enter only copies (use ⌥Enter to paste)." : {
-      "comment" : "Prefs: paste behavior note",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When on, pressing Enter in the menu bar popover copies AND pastes to the frontmost app. Otherwise, Enter only copies (use ⌥Enter to paste)."
+            "value" : "歡迎使用剪貼鍵盤"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "켜면 메뉴바 팝오버에서 Enter를 누를 때 복사와 동시에 최상단 앱에 붙여넣습니다. 끄면 Enter는 복사만 합니다(⌥Enter로 붙여넣기)."
+            "value" : "欢迎使用剪贴键盘"
           }
         }
       }
@@ -1535,6 +2313,18 @@
             "state" : "translated",
             "value" : "가져오기 실패"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯入失敗"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导入失败"
+          }
         }
       }
     },
@@ -1551,6 +2341,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "가져오기 완료"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯入完成"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导入完成"
           }
         }
       }
@@ -1569,6 +2371,18 @@
             "state" : "translated",
             "value" : "값 채우기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "填寫內容"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "填写内容"
+          }
         }
       }
     },
@@ -1585,6 +2399,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "값을 눌러 복사하세요"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點按值即可複製"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点按值即可复制"
           }
         }
       }
@@ -1603,6 +2429,18 @@
             "state" : "translated",
             "value" : "검색"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索"
+          }
         }
       }
     },
@@ -1619,6 +2457,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "검색 결과 없음"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有搜尋結果"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有搜索结果"
           }
         }
       }
@@ -1637,6 +2487,18 @@
             "state" : "translated",
             "value" : "검색..."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索…"
+          }
         }
       }
     },
@@ -1653,6 +2515,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "계좌번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "銀行帳號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "银行账号"
           }
         }
       }
@@ -1671,6 +2545,18 @@
             "state" : "translated",
             "value" : "기본"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基本"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基本"
+          }
         }
       }
     },
@@ -1687,6 +2573,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "기본·즐겨찾기 같은 탭이 아이폰과 같아집니다. 단축어는 그대로 있어요."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「基本」「收藏」等標籤頁會和 iPhone 上完全一致。你的短語不會有任何變動。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“基本”“收藏”等标签页会和 iPhone 上完全一致。你的短语不会有任何变动。"
           }
         }
       }
@@ -1705,22 +2603,17 @@
             "state" : "translated",
             "value" : "기존 데이터가 있습니다. 복원하면 현재 데이터가 모두 삭제됩니다. 계속하시겠습니까?"
           }
-        }
-      }
-    },
-    "나중에" : {
-      "comment" : "Later button",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Later"
+            "value" : "已有資料。回復會刪除目前所有資料，是否繼續？"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "나중에"
+            "value" : "已有数据。恢复会删除当前所有数据，是否继续？"
           }
         }
       }
@@ -1739,6 +2632,18 @@
             "state" : "translated",
             "value" : "날짜"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日期"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日期"
+          }
         }
       }
     },
@@ -1755,6 +2660,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "내보내기 실패"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯出失敗"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导出失败"
           }
         }
       }
@@ -1773,6 +2690,18 @@
             "state" : "translated",
             "value" : "내보내기 완료"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯出完成"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导出完成"
+          }
         }
       }
     },
@@ -1789,6 +2718,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "내용"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容"
           }
         }
       }
@@ -1807,6 +2748,18 @@
             "state" : "translated",
             "value" : "네트워크 연결을 확인하고 다시 시도해주세요."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請檢查網路連線後再試一次。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请检查网络连接后重试。"
+          }
         }
       }
     },
@@ -1823,6 +2776,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短语"
           }
         }
       }
@@ -1841,6 +2806,18 @@
             "state" : "translated",
             "value" : "단축어 %1$d개 추가, %2$d개 갱신 (총 %3$d개).\n콤보 %4$d개, 이미지 %5$d개를 가져왔습니다."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已新增 %1$d 條短語，更新 %2$d 條（共 %3$d 條）。\n已匯入 %4$d 個組合和 %5$d 張圖片。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已新增 %1$d 条短语，更新 %2$d 条（共 %3$d 条）。\n已导入 %4$d 个组合和 %5$d 张图片。"
+          }
         }
       }
     },
@@ -1857,6 +2834,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어 %d개를 iCloud에 백업했습니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已將 %d 條短語備份到 iCloud。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已将 %d 条短语备份到 iCloud。"
           }
         }
       }
@@ -1875,6 +2864,18 @@
             "state" : "translated",
             "value" : "단축어 5개 · 클립보드 20개 제한"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多 5 條短語 · 20 條剪貼板歷史"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多 5 条短语 · 20 条剪贴板记录"
+          }
         }
       }
     },
@@ -1891,6 +2892,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어 목록 표시"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示短語列表"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示短语列表"
           }
         }
       }
@@ -1909,6 +2922,18 @@
             "state" : "translated",
             "value" : "단축어 수정"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑短语"
+          }
         }
       }
     },
@@ -1925,6 +2950,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어 없음"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有短语"
           }
         }
       }
@@ -1943,6 +2980,18 @@
             "state" : "translated",
             "value" : "단축어+템플릿"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短語＋範本"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短语＋模板"
+          }
         }
       }
     },
@@ -1959,6 +3008,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어가 저장되었습니다"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短語已儲存"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "短语已保存"
           }
         }
       }
@@ -1977,6 +3038,18 @@
             "state" : "translated",
             "value" : "단축어로 저장"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存為短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "存为短语"
+          }
         }
       }
     },
@@ -1994,22 +3067,17 @@
             "state" : "translated",
             "value" : "단축어로 저장되었습니다"
           }
-        }
-      }
-    },
-    "단축어를 탭하면 즉시 붙여넣으려면 손쉬운 사용 권한이 필요합니다.\n\n시스템 설정 > 개인 정보 보호 및 보안 > 손쉬운 사용에서 ClipKeyboard를 켜 주세요." : {
-      "comment" : "macOS alert body: accessibility permission needed for tap-to-paste",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tapping a snippet to paste it instantly requires Accessibility permission.\n\nEnable ClipKeyboard in System Settings > Privacy & Security > Accessibility."
+            "value" : "已儲存為短語"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "단축어를 탭하면 즉시 붙여넣으려면 손쉬운 사용 권한이 필요합니다.\n\n시스템 설정 > 개인 정보 보호 및 보안 > 손쉬운 사용에서 ClipKeyboard를 켜 주세요."
+            "value" : "已存为短语"
           }
         }
       }
@@ -2028,6 +3096,18 @@
             "state" : "translated",
             "value" : "단축어에 보일 내용을 입력하세요"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入要顯示在短語中的內容"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入要显示在短语中的内容"
+          }
         }
       }
     },
@@ -2044,6 +3124,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "데이터를 iCloud에 안전하게 백업하세요"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "把資料安全地備份到 iCloud"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "把数据安全地备份到 iCloud"
           }
         }
       }
@@ -2062,6 +3154,18 @@
             "state" : "translated",
             "value" : "데이터를 준비하는 중 문제가 발생했습니다. 앱을 재시작하고 다시 시도해주세요."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "準備資料時發生錯誤。請重新啟動 App 後再試。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "准备数据时出错。请重新启动 App 后再试。"
+          }
         }
       }
     },
@@ -2078,6 +3182,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "데이터를 파일로 저장했습니다. 안전한 곳에 보관하세요."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "資料已儲存為檔案，請妥善保管。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数据已保存为文件，请妥善保管。"
           }
         }
       }
@@ -2096,6 +3212,18 @@
             "state" : "translated",
             "value" : "도시"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "城市"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "城市"
+          }
         }
       }
     },
@@ -2112,6 +3240,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "드래그하여 순서를 바꿀 수 있어요"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖曳即可調整順序"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖动即可调整顺序"
           }
         }
       }
@@ -2130,6 +3270,18 @@
             "state" : "translated",
             "value" : "똑같은 단축어를 하나만 남기고 정리합니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "相同的短語只保留一條"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "相同的短语只保留一条"
+          }
         }
       }
     },
@@ -2146,6 +3298,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "마지막 백업:"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上次備份："
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上次备份："
           }
         }
       }
@@ -2164,6 +3328,18 @@
             "state" : "translated",
             "value" : "맞추기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保持一致"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保持一致"
+          }
         }
       }
     },
@@ -2180,6 +3356,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "메뉴바 아이콘: 🛶"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選單列圖像：🛶"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "菜单栏图标：🛶"
           }
         }
       }
@@ -2198,6 +3386,18 @@
             "state" : "translated",
             "value" : "모든 기기에서 데이터 동기화"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在所有裝置之間同步資料"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在所有设备之间同步数据"
+          }
         }
       }
     },
@@ -2214,6 +3414,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "모든 기능 사용"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部功能"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部功能"
           }
         }
       }
@@ -2232,6 +3444,18 @@
             "state" : "translated",
             "value" : "모든 기능을 사용할 수 있습니다."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你可以使用全部功能。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你可以使用全部功能。"
+          }
         }
       }
     },
@@ -2248,6 +3472,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "무료 플랜"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免費方案"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免费方案"
           }
         }
       }
@@ -2266,6 +3502,18 @@
             "state" : "translated",
             "value" : "무제한"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無限制"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无限制"
+          }
         }
       }
     },
@@ -2282,6 +3530,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "문제가 발생했습니다. 네트워크 연결과 iCloud 상태를 확인하고 다시 시도해주세요."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "發生問題。請檢查網路連線和 iCloud 狀態後再試一次。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "出了点问题。请检查网络连接和 iCloud 状态后重试。"
           }
         }
       }
@@ -2300,6 +3560,18 @@
             "state" : "translated",
             "value" : "미리보기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預覽"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "预览"
+          }
         }
       }
     },
@@ -2316,6 +3588,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "백업 데이터가 삭제되었습니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備份資料已刪除。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份数据已删除。"
           }
         }
       }
@@ -2334,6 +3618,18 @@
             "state" : "translated",
             "value" : "백업 데이터가 성공적으로 복구되었습니다."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備份資料已成功回復。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份数据已成功恢复。"
+          }
         }
       }
     },
@@ -2350,6 +3646,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "백업 데이터가 없습니다. 먼저 백업을 생성해주세요."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "找不到備份。請先建立備份。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有找到备份。请先创建备份。"
           }
         }
       }
@@ -2368,6 +3676,18 @@
             "state" : "translated",
             "value" : "백업 데이터를 읽을 수 없습니다. 최신 버전의 앱을 사용하고 있는지 확인해주세요."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法讀取備份資料。請確認你使用的是最新版本的 App。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法读取备份数据。请确认你使用的是最新版本的 App。"
+          }
         }
       }
     },
@@ -2384,6 +3704,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "백업 삭제"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除備份"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除备份"
           }
         }
       }
@@ -2402,6 +3734,18 @@
             "state" : "translated",
             "value" : "백업 실패"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備份失敗"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份失败"
+          }
         }
       }
     },
@@ -2418,6 +3762,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "백업 완료"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備份完成"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份完成"
           }
         }
       }
@@ -2436,6 +3792,18 @@
             "state" : "translated",
             "value" : "백업 중..."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在備份…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在备份…"
+          }
         }
       }
     },
@@ -2452,6 +3820,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "백업하기"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備份"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份"
           }
         }
       }
@@ -2470,6 +3850,18 @@
             "state" : "translated",
             "value" : "보안 단축어"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安全短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安全短语"
+          }
         }
       }
     },
@@ -2486,6 +3878,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "보안 단축어에 접근하려면 인증이 필요합니다"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "存取安全短語需要驗證身分"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "访问安全短语需要验证身份"
           }
         }
       }
@@ -2504,6 +3908,18 @@
             "state" : "translated",
             "value" : "보안 단축어의 내용은 아이폰에서만 바꿀 수 있습니다. 여기서는 제목·카테고리만 수정돼요."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安全短語的內容只能在 iPhone 上修改。在這裡只能編輯標題和分類。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安全短语的内容只能在 iPhone 上修改。在这里只能编辑标题和分类。"
+          }
         }
       }
     },
@@ -2520,6 +3936,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "보험번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保險號碼"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保险号码"
           }
         }
       }
@@ -2538,6 +3966,18 @@
             "state" : "translated",
             "value" : "복구 실패"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復失敗"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复失败"
+          }
         }
       }
     },
@@ -2554,6 +3994,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "복구 완료"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復完成"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复完成"
           }
         }
       }
@@ -2572,6 +4024,18 @@
             "state" : "translated",
             "value" : "복구 중..."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在回復…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在恢复…"
+          }
         }
       }
     },
@@ -2588,6 +4052,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "복구하기"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复"
           }
         }
       }
@@ -2606,22 +4082,17 @@
             "state" : "translated",
             "value" : "복사"
           }
-        }
-      }
-    },
-    "복사 후 붙여넣기" : {
-      "comment" : "Copy then paste",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copy and paste"
+            "value" : "複製"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "복사 후 붙여넣기"
+            "value" : "复制"
           }
         }
       }
@@ -2640,6 +4111,18 @@
             "state" : "translated",
             "value" : "복사한 내용을 자동으로 저장하고 관리"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動儲存並管理你複製過的內容"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自动保存并管理你复制过的内容"
+          }
         }
       }
     },
@@ -2656,6 +4139,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "복사한 내용이 자동으로 여기에 저장됩니다\n(최대 100개, 7일간 유지)"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你複製的內容會自動儲存在這裡\n（最多 100 條，保留 7 天）"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你复制的内容会自动保存在这里\n（最多 100 条，保留 7 天）"
           }
         }
       }
@@ -2674,6 +4169,18 @@
             "state" : "translated",
             "value" : "사번/학번"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "員工編號／學號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "工号／学号"
+          }
         }
       }
     },
@@ -2690,6 +4197,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "삭제"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除"
           }
         }
       }
@@ -2708,6 +4227,18 @@
             "state" : "translated",
             "value" : "삭제 실패"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除失敗"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除失败"
+          }
         }
       }
     },
@@ -2724,6 +4255,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "삭제 완료"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已刪除"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已删除"
           }
         }
       }
@@ -2742,6 +4285,18 @@
             "state" : "translated",
             "value" : "삭제…"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除…"
+          }
         }
       }
     },
@@ -2758,6 +4313,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "상태 새로고침"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新整理狀態"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刷新状态"
           }
         }
       }
@@ -2776,6 +4343,18 @@
             "state" : "translated",
             "value" : "상태 확인"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢查狀態"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "检查状态"
+          }
         }
       }
     },
@@ -2792,6 +4371,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새 단축어"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新建短语"
           }
         }
       }
@@ -2810,6 +4401,18 @@
             "state" : "translated",
             "value" : "새 단축어 화면"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增短語畫面"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新建短语界面"
+          }
         }
       }
     },
@@ -2826,6 +4429,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "생년월일"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "出生日期"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "出生日期"
           }
         }
       }
@@ -2844,6 +4459,18 @@
             "state" : "translated",
             "value" : "설정 화면"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定畫面"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置界面"
+          }
         }
       }
     },
@@ -2860,6 +4487,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "세금번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "稅籍編號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "税号"
           }
         }
       }
@@ -2878,6 +4517,18 @@
             "state" : "translated",
             "value" : "송장번호"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貨運追蹤號碼"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快递单号"
+          }
         }
       }
     },
@@ -2894,6 +4545,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "수정…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑…"
           }
         }
       }
@@ -2912,22 +4575,17 @@
             "state" : "translated",
             "value" : "시간"
           }
-        }
-      }
-    },
-    "시스템 설정 열기" : {
-      "comment" : "Button: open system settings\nOpen system settings button",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open System Settings"
+            "value" : "時間"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "시스템 설정 열기"
+            "value" : "时间"
           }
         }
       }
@@ -2946,6 +4604,18 @@
             "state" : "translated",
             "value" : "시작하기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始使用"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开始使用"
+          }
         }
       }
     },
@@ -2962,6 +4632,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "아이폰에서 설정한 카테고리 따르기"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跟隨 iPhone 的分類設定"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跟随 iPhone 的分类设置"
           }
         }
       }
@@ -2980,6 +4662,18 @@
             "state" : "translated",
             "value" : "아이폰에서 설정한 카테고리로 맞출까요?"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要和 iPhone 上的分類保持一致嗎？"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要和 iPhone 上的分类保持一致吗？"
+          }
         }
       }
     },
@@ -2996,6 +4690,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "암호 입력"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入密碼"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入密码"
           }
         }
       }
@@ -3031,6 +4737,18 @@
             "state" : "translated",
             "value" : "앱 메뉴: 클립키보드"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App 選單：剪貼鍵盤"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App 菜单：剪贴键盘"
+          }
         }
       }
     },
@@ -3047,6 +4765,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "언제든지 접근 가능"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隨時都能用"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "随时都能用"
           }
         }
       }
@@ -3065,6 +4795,18 @@
             "state" : "translated",
             "value" : "여권번호"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "護照號碼"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "护照号码"
+          }
         }
       }
     },
@@ -3081,6 +4823,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "여기서 정한 순서는 아이폰·키보드까지 동기화됩니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在這裡設定的順序會同步到 iPhone 和鍵盤。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在这里设定的顺序会同步到 iPhone 和键盘。"
           }
         }
       }
@@ -3099,6 +4853,18 @@
             "state" : "translated",
             "value" : "여러 값이 담긴 단축어입니다. 값 목록은 아이폰에서 바꿀 수 있어요."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這是包含多個值的短語。值列表可以在 iPhone 上修改。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这是包含多个值的短语。值列表可以在 iPhone 上修改。"
+          }
         }
       }
     },
@@ -3115,6 +4881,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "연결 안 됨"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未連接"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未连接"
           }
         }
       }
@@ -3133,6 +4911,18 @@
             "state" : "translated",
             "value" : "연결됨"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已連接"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已连接"
+          }
         }
       }
     },
@@ -3149,6 +4939,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "예약번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預訂編號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "预订编号"
           }
         }
       }
@@ -3167,6 +4969,18 @@
             "state" : "translated",
             "value" : "요청이 너무 많습니다. 잠시 후 다시 시도해주세요."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請求過於頻繁。請稍後再試。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请求过于频繁。请稍后再试。"
+          }
         }
       }
     },
@@ -3183,6 +4997,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "우편번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "郵遞區號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "邮政编码"
           }
         }
       }
@@ -3201,6 +5027,18 @@
             "state" : "translated",
             "value" : "이 단축어를 삭제할까요?"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要刪除這條短語嗎？"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要删除这条短语吗？"
+          }
         }
       }
     },
@@ -3217,6 +5055,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 파일은 ClipKeyboard 백업 파일이 아니거나 손상되었습니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這個檔案不是剪貼鍵盤的備份檔，或者已損毀。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这个文件不是剪贴键盘的备份文件，或者已损坏。"
           }
         }
       }
@@ -3235,6 +5085,18 @@
             "state" : "translated",
             "value" : "이름"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "姓名"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "姓名"
+          }
         }
       }
     },
@@ -3251,6 +5113,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이메일"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "電子郵件"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "电子邮件"
           }
         }
       }
@@ -3269,6 +5143,18 @@
             "state" : "translated",
             "value" : "이미지"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "圖片"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "图片"
+          }
         }
       }
     },
@@ -3286,6 +5172,18 @@
             "state" : "translated",
             "value" : "이미지 단축어"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "圖片短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "图片短语"
+          }
         }
       }
     },
@@ -3302,6 +5200,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이미지 첨부"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附加圖片"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附加图片"
           }
         }
       }
@@ -3337,6 +5247,18 @@
             "state" : "translated",
             "value" : "이미지를 불러올 수 없습니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法載入圖片"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法载入图片"
+          }
         }
       }
     },
@@ -3353,6 +5275,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이미지를 선택하세요"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇圖片"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择图片"
           }
         }
       }
@@ -3371,6 +5305,18 @@
             "state" : "translated",
             "value" : "이미지를 추가해보세요"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "試著加入一張圖片"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "试着添加一张图片"
+          }
         }
       }
     },
@@ -3387,6 +5333,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "인사"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "問候語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "问候语"
           }
         }
       }
@@ -3405,6 +5363,18 @@
             "state" : "translated",
             "value" : "임시"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暫時"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "临时"
+          }
         }
       }
     },
@@ -3421,6 +5391,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "자동으로 채워지는 값"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動填入的值"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自动填入的值"
           }
         }
       }
@@ -3439,6 +5421,18 @@
             "state" : "translated",
             "value" : "자주 사용하는 텍스트를 저장하고 빠르게 붙여넣기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存常用文字，隨時快速貼上"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存常用文字，随时快速粘贴"
+          }
         }
       }
     },
@@ -3455,6 +5449,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "전"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前"
           }
         }
       }
@@ -3473,6 +5479,18 @@
             "state" : "translated",
             "value" : "저장"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
+          }
         }
       }
     },
@@ -3489,6 +5507,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "저장 실패: %@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存失敗：%@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存失败：%@"
           }
         }
       }
@@ -3507,6 +5537,18 @@
             "state" : "translated",
             "value" : "저장 실패: 단축어를 찾을 수 없습니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存失敗 — 找不到該短語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存失败 — 找不到该短语"
+          }
         }
       }
     },
@@ -3523,6 +5565,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "저장소를 찾을 수 없습니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "找不到儲存空間。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "找不到储存空间。"
           }
         }
       }
@@ -3541,22 +5595,17 @@
             "state" : "translated",
             "value" : "전역 단축키"
           }
-        }
-      }
-    },
-    "전역 단축키를 사용하려면 접근성 권한이 필요합니다.\n\n시스템 설정 > 개인 정보 보호 및 보안 > 손쉬운 사용 에서 ClipKeyboard를 활성화하세요." : {
-      "comment" : "Accessibility permission alert body",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Global shortcuts require Accessibility permission.\n\nEnable ClipKeyboard in System Settings > Privacy & Security > Accessibility."
+            "value" : "全域快速鍵"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "전역 단축키를 사용하려면 접근성 권한이 필요합니다.\n\n시스템 설정 > 개인 정보 보호 및 보안 > 손쉬운 사용 에서 ClipKeyboard를 활성화하세요."
+            "value" : "全局快捷键"
           }
         }
       }
@@ -3575,6 +5624,18 @@
             "state" : "translated",
             "value" : "전체"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部"
+          }
         }
       }
     },
@@ -3591,6 +5652,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "전체 삭제"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部清除"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空全部"
           }
         }
       }
@@ -3609,22 +5682,17 @@
             "state" : "translated",
             "value" : "전화번호"
           }
-        }
-      }
-    },
-    "접근성 권한 필요" : {
-      "comment" : "Accessibility permission alert title\nmacOS alert title: accessibility permission required",
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Accessibility Permission Required"
+            "value" : "電話號碼"
           }
         },
-        "ko" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "접근성 권한 필요"
+            "value" : "电话号码"
           }
         }
       }
@@ -3643,6 +5711,18 @@
             "state" : "translated",
             "value" : "제목"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標題"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "标题"
+          }
         }
       }
     },
@@ -3659,6 +5739,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "제목과 내용이 똑같은 단축어를 하나만 남기고 지웁니다. 즐겨찾기·많이 쓴 단축어가 남습니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標題和內容完全相同的短語只保留一條，收藏和常用的會被保留。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "标题和内容完全相同的短语只保留一条，收藏和常用的会被保留。"
           }
         }
       }
@@ -3677,6 +5769,18 @@
             "state" : "translated",
             "value" : "주소"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地址"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地址"
+          }
         }
       }
     },
@@ -3693,6 +5797,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "중복 %d개"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 條重複"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 条重复"
           }
         }
       }
@@ -3711,6 +5827,18 @@
             "state" : "translated",
             "value" : "중복된 단축어를 정리할까요?"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要清理重複的短語嗎？"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要清理重复的短语吗？"
+          }
         }
       }
     },
@@ -3727,6 +5855,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "즐겨찾기"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "收藏"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "收藏"
           }
         }
       }
@@ -3745,6 +5885,18 @@
             "state" : "translated",
             "value" : "즐겨찾기 해제"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消收藏"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消收藏"
+          }
         }
       }
     },
@@ -3761,6 +5913,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지금은 그대로"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "維持現狀"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保持现状"
           }
         }
       }
@@ -3779,6 +5943,18 @@
             "state" : "translated",
             "value" : "진료기록번호"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "病歷號碼"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "病历号"
+          }
         }
       }
     },
@@ -3795,6 +5971,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "차량번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "車牌號碼"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "车牌号"
           }
         }
       }
@@ -3813,6 +6001,18 @@
             "state" : "translated",
             "value" : "창을 닫아도 앱은 백그라운드에서 계속 실행됩니다"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即使關閉視窗，App 仍會在背景繼續執行"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即使关闭窗口，App 仍会在后台继续运行"
+          }
         }
       }
     },
@@ -3829,6 +6029,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "최대 5개"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多 5 條"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多 5 条"
           }
         }
       }
@@ -3847,6 +6059,18 @@
             "state" : "translated",
             "value" : "최대 20개"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多 20 條"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多 20 条"
+          }
         }
       }
     },
@@ -3863,6 +6087,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "최대 100개"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多 100 條"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多 100 条"
           }
         }
       }
@@ -3881,6 +6117,18 @@
             "state" : "translated",
             "value" : "취소"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
         }
       }
     },
@@ -3897,6 +6145,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "카드번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "信用卡號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "银行卡号"
           }
         }
       }
@@ -3915,6 +6175,18 @@
             "state" : "translated",
             "value" : "카테고리"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分類"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分类"
+          }
         }
       }
     },
@@ -3931,6 +6203,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "켜면 기본·즐겨찾기 같은 탭까지 아이폰과 똑같이 보입니다. 끄면 단축어가 들어 있는 카테고리만 '전체' 탭과 함께 보입니다."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟後，「基本」「收藏」等標籤頁會和 iPhone 完全一致。關閉時，只會顯示已有短語的分類，外加一個「全部」標籤頁。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启后，“基本”“收藏”等标签页会和 iPhone 完全一致。关闭时，只会显示已有短语的分类，外加一个“全部”标签页。"
           }
         }
       }
@@ -3949,6 +6233,18 @@
             "state" : "translated",
             "value" : "콤보"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "組合"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "组合"
+          }
         }
       }
     },
@@ -3965,6 +6261,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "클립보드"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼板"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴板"
           }
         }
       }
@@ -3983,6 +6291,18 @@
             "state" : "translated",
             "value" : "클립보드 히스토리"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼板歷史"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴板历史"
+          }
         }
       }
     },
@@ -3999,6 +6319,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "클립보드 히스토리 없음"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有剪貼板歷史"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有剪贴板记录"
           }
         }
       }
@@ -4017,6 +6349,18 @@
             "state" : "translated",
             "value" : "클립보드에 복사"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製到剪貼板"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "复制到剪贴板"
+          }
         }
       }
     },
@@ -4033,6 +6377,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "클립보드에 이미지가 없습니다"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼板中沒有圖片"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴板中没有图片"
           }
         }
       }
@@ -4051,6 +6407,18 @@
             "state" : "translated",
             "value" : "클립보드에서 붙여넣기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從剪貼板貼上"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从剪贴板粘贴"
+          }
         }
       }
     },
@@ -4067,6 +6435,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "클립보드에서 이미지를 추가했습니다"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已從剪貼板加入圖片"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已从剪贴板添加图片"
           }
         }
       }
@@ -4085,6 +6465,18 @@
             "state" : "translated",
             "value" : "클립키보드"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼鍵盤"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴键盘"
+          }
         }
       }
     },
@@ -4101,6 +6493,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "타임존"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時區"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "时区"
           }
         }
       }
@@ -4119,6 +6523,18 @@
             "state" : "translated",
             "value" : "탭하면 복사"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點按即可複製"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点按即可复制"
+          }
         }
       }
     },
@@ -4135,6 +6551,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "텍스트"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文本"
           }
         }
       }
@@ -4153,6 +6581,18 @@
             "state" : "translated",
             "value" : "템플릿"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範本"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模板"
+          }
         }
       }
     },
@@ -4169,6 +6609,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "통관번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "報關編號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "报关单号"
           }
         }
       }
@@ -4187,6 +6639,18 @@
             "state" : "translated",
             "value" : "통화"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貨幣"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "货币"
+          }
         }
       }
     },
@@ -4203,6 +6667,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "파일로 내보내기"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯出到檔案"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导出到文件"
           }
         }
       }
@@ -4221,6 +6697,18 @@
             "state" : "translated",
             "value" : "파일에서 가져오기"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從檔案匯入"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从文件导入"
+          }
         }
       }
     },
@@ -4237,6 +6725,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "파일에서 선택"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從檔案選擇"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从文件选择"
           }
         }
       }
@@ -4255,6 +6755,18 @@
             "state" : "translated",
             "value" : "확인"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "确定"
+          }
         }
       }
     },
@@ -4271,6 +6783,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "회원번호"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "會員編號"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会员编号"
           }
         }
       }
@@ -4305,6 +6829,64 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "전역 단축키: ⌃⇧V"
+          }
+        }
+      }
+    },
+    "Click to copy" : {
+      "comment" : "Panel hint",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click to copy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "클릭하면 복사"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点按即可复制"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點按即可複製"
+          }
+        }
+      }
+    },
+    "The quick paste panel (⌃⇧V) stays over your current app without stealing focus — click a memo to copy it, then press ⌘V right where your cursor was." : {
+      "comment" : "Quick paste explainer (3-key)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The quick paste panel (⌃⇧V) stays over your current app without stealing focus — click a memo to copy it, then press ⌘V right where your cursor was."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "빠른 붙여넣기 패널(⌃⇧V)은 포커스를 뺏지 않고 현재 앱 위에 떠 있습니다 — 단축어를 클릭하면 클립보드에 복사되고, 커서가 있던 자리에서 그대로 ⌘V로 붙여넣으면 됩니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速粘贴面板（⌃⇧V）会浮在当前 App 之上且不会抢走焦点——点按某条短语即可复制，然后在原来的光标位置直接按 ⌘V 粘贴。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速貼上面板（⌃⇧V）會浮在目前 App 之上且不會搶走焦點——點按某條短語即可複製，然後在原本的游標位置直接按 ⌘V 貼上。"
           }
         }
       }
