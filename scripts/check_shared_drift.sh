@@ -58,6 +58,45 @@ for triple in "${EMBEDDED_MAP[@]}"; do
   fi
 done
 
+# 쌍둥이 구현 — 구현은 달라도 CloudKit 레코드 필드 목록은 같아야 한다.
+for triple in "${CONTRACT_MAP[@]}"; do
+  mac_rel="${triple%%|*}"
+  rest="${triple#*|}"
+  ios_rel="${rest%%|*}"
+  label="${rest#*|}"
+  mac_file="$MAC_REPO/$mac_rel"
+  ios_file="$IOS_REPO/$ios_rel"
+
+  if [ ! -f "$ios_file" ] || [ ! -f "$mac_file" ]; then
+    echo "❌ [drift-check] 계약 검사 대상 파일 없음: $mac_rel ↔ iOS $ios_rel"
+    drift=1; continue
+  fi
+
+  missing=""
+  while IFS= read -r field; do
+    [ -z "$field" ] && continue
+    # 의도된 예외는 건너뛴다.
+    skip=0
+    # ⚠️ bash 3.2(맥 기본) + `set -u` 에서는 빈 배열의 "${arr[@]}" 가 unbound 로 터진다.
+    #    CONTRACT_IGNORE 는 비어 있는 것이 정상 상태라 아래 형태를 써야 한다.
+    for ignored in ${CONTRACT_IGNORE[@]+"${CONTRACT_IGNORE[@]}"}; do
+      [ "$field" = "$ignored" ] && skip=1 && break
+    done
+    [ "$skip" -eq 1 ] && continue
+
+    if ! extract_record_fields "$mac_file" | grep -qx "$field"; then
+      missing="$missing $field"
+    fi
+  done <<< "$(extract_record_fields "$ios_file")"
+
+  if [ -n "$missing" ]; then
+    echo "❌ [drift-check] 계약 누락($label): $mac_rel 에 없는 iOS 필드 —$missing"
+    echo "   → 맥이 그 데이터를 백업하지도 복원하지도 못합니다. 옮기거나,"
+    echo "     의도된 것이면 scripts/shared_files.sh 의 CONTRACT_IGNORE 에 근거와 함께 적으세요."
+    drift=1
+  fi
+done
+
 if [ "$drift" -ne 0 ]; then
   echo ""
   echo "🛑 공유 파일이 iOS 앱과 어긋났습니다. iOS를 원본으로 동기화하세요:"
@@ -67,4 +106,4 @@ if [ "$drift" -ne 0 ]; then
   exit 1
 fi
 
-echo "✅ [drift-check] 공유 파일 ${#SHARED_MAP[@]}개 + 블록 ${#EMBEDDED_MAP[@]}개 모두 iOS 앱과 일치"
+echo "✅ [drift-check] 공유 파일 ${#SHARED_MAP[@]}개 + 블록 ${#EMBEDDED_MAP[@]}개 + 계약 ${#CONTRACT_MAP[@]}개 모두 iOS 앱과 일치"

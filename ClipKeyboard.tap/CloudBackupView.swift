@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppKit
 import CloudKit
 import UniformTypeIdentifiers
 
@@ -19,6 +20,11 @@ struct CloudBackupView: View {
     @State private var showImporter = false
     @State private var exportDocument: BackupFileDocument? = nil
     @State private var exportFilename = "ClipKeyboard-Backup.json"
+    // 타임머신 — 백업할 때마다 쌓인 시점별 스냅샷. 최신 백업 하나만 있던 시절엔
+    // 잘못된 백업이 한 번 끼면 직전 상태가 그대로 사라졌다.
+    @State private var snapshots: [BackupSnapshotInfo] = []
+    @State private var isLoadingSnapshots = false
+    @State private var restoringSnapshot: String?
 
     var body: some View {
         if !MacProManager.isCloudBackupAvailable {
@@ -143,6 +149,10 @@ struct CloudBackupView: View {
 
             Divider()
 
+            timeMachineSection
+
+            Divider()
+
             // 파일 백업 — iCloud가 막혀도 데이터를 기기 파일로 직접 빼낼 수 있는 최후의 보루
             VStack(spacing: MacSpacing.md) {
                 Button {
@@ -200,6 +210,124 @@ struct CloudBackupView: View {
         }
     }
 
+    // MARK: - 타임머신
+
+    /// 백업할 때마다 쌓인 시점별 스냅샷 목록. 최근 형상으로 되돌아가는 자리.
+    private var timeMachineSection: some View {
+        VStack(alignment: .leading, spacing: MacSpacing.md) {
+            HStack {
+                Label(NSLocalizedString("이전 시점으로 되돌리기", comment: "Time machine section title"),
+                      systemImage: "clock.arrow.circlepath")
+                    .font(MacFont.sectionTitle)
+                Spacer()
+                if isLoadingSnapshots {
+                    ProgressView().controlSize(.small)
+                } else {
+                    Button(NSLocalizedString("새로고침", comment: "Refresh button")) { loadSnapshots() }
+                        .buttonStyle(.link)
+                        .font(MacFont.secondary)
+                }
+            }
+
+            if snapshots.isEmpty {
+                Text(isLoadingSnapshots
+                     ? NSLocalizedString("불러오는 중…", comment: "Loading snapshots")
+                     : NSLocalizedString("보관된 시점이 아직 없습니다. 백업을 한 번 하면 그때부터 쌓입니다.", comment: "No snapshots yet"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                VStack(spacing: 0) {
+                    ForEach(snapshots) { snap in
+                        snapshotRow(snap)
+                        if snap.id != snapshots.last?.id { Divider() }
+                    }
+                }
+                .macSurface()
+
+                Text(NSLocalizedString("⚠️ 되돌리면 현재 데이터가 그 시점의 데이터로 교체됩니다. 최근 15개까지 보관됩니다.", comment: "Time machine warning"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .onAppear { loadSnapshots() }
+    }
+
+    private func snapshotRow(_ snap: BackupSnapshotInfo) -> some View {
+        HStack(spacing: MacSpacing.md) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(snap.date.formatted(date: .abbreviated, time: .shortened))
+                    .font(MacFont.body)
+                Text(String(format: NSLocalizedString("단축어 %d개", comment: "Snapshot memo count"), snap.memoCount))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+            if restoringSnapshot == snap.recordName {
+                ProgressView().controlSize(.small)
+            } else {
+                Button(NSLocalizedString("되돌리기", comment: "Restore to this point")) {
+                    confirmRestoreSnapshot(snap)
+                }
+                .controlSize(.small)
+                .disabled(cloudService.isRestoring || restoringSnapshot != nil)
+            }
+        }
+        .padding(.horizontal, MacSpacing.md)
+        .padding(.vertical, MacSpacing.sm)
+    }
+
+    private func loadSnapshots() {
+        guard cloudService.isAuthenticated, !isLoadingSnapshots else { return }
+        isLoadingSnapshots = true
+        Task {
+            let list = await cloudService.listSnapshots()
+            await MainActor.run {
+                snapshots = list
+                isLoadingSnapshots = false
+            }
+        }
+    }
+
+    /// 되돌리기는 현재 데이터를 지우는 동작이라 반드시 한 번 묻는다.
+    @MainActor
+    private func confirmRestoreSnapshot(_ snap: BackupSnapshotInfo) {
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("이 시점으로 되돌릴까요?", comment: "Restore snapshot confirm title")
+        alert.informativeText = String(
+            format: NSLocalizedString("%1$@ 시점(단축어 %2$d개)으로 되돌립니다. 지금의 데이터는 이 시점의 데이터로 교체됩니다.", comment: "Restore snapshot confirm body"),
+            snap.date.formatted(date: .abbreviated, time: .shortened), snap.memoCount)
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: NSLocalizedString("되돌리기", comment: "Restore to this point"))
+        alert.addButton(withTitle: NSLocalizedString("취소", comment: "Cancel button"))
+        guard alert.runModal() == .alertFirstButtonReturn else { return }
+
+        restoringSnapshot = snap.recordName
+        Task {
+            do {
+                // 사용자가 방금 동의했으므로 덮어쓰기 확인을 다시 묻지 않는다.
+                try await cloudService.restoreData(forceOverwrite: true, snapshotName: snap.recordName)
+                await MainActor.run {
+                    restoringSnapshot = nil
+                    alertTitle = NSLocalizedString("되돌리기 완료", comment: "Snapshot restore completed")
+                    alertMessage = String(
+                        format: NSLocalizedString("%@ 시점의 데이터로 되돌렸습니다.", comment: "Snapshot restore success"),
+                        snap.date.formatted(date: .abbreviated, time: .shortened))
+                    showAlert = true
+                }
+            } catch {
+                await MainActor.run {
+                    restoringSnapshot = nil
+                    alertTitle = NSLocalizedString("되돌리기 실패", comment: "Snapshot restore failed")
+                    alertMessage = error.localizedDescription
+                    showAlert = true
+                }
+            }
+        }
+    }
+
     /// 백업/복구/내보내기 버튼의 공통 라벨 — 폭·높이·글자 크기를 하나로 맞춘다.
     private func actionLabel(symbol: String, title: String, isBusy: Bool = false) -> some View {
         HStack(spacing: MacSpacing.sm) {
@@ -217,22 +345,61 @@ struct CloudBackupView: View {
 
     // MARK: - Actions
 
-    private func performBackup() {
+    /// - Parameter allowReduce: 축소 경고에 사용자가 "계속"을 눌러 다시 부를 때 true.
+    private func performBackup(allowReduce: Bool = false) {
         Task {
             do {
-                let memoCount = try await cloudService.backupData()
-                await MainActor.run {
-                    alertTitle = NSLocalizedString("백업 완료", comment: "Backup completed")
-                    alertMessage = String(format: NSLocalizedString("단축어 %d개를 iCloud에 백업했습니다.", comment: "Backup success with count"), memoCount)
-                    showAlert = true
+                let outcome = try await cloudService.backupData(allowReduce: allowReduce)
+                await MainActor.run { showBackupOutcome(outcome) }
+            } catch let error as CloudKitError {
+                // 기존 백업을 대폭 줄이는 백업은 묻고 나서 한다 - 조용히 덮으면
+                // 아이폰이 올려 둔 백업이 이 맥의 적은 데이터로 사라진다.
+                if case .backupWouldReduceData = error {
+                    await MainActor.run { confirmReducingBackup(message: error.localizedDescription) }
+                } else {
+                    await MainActor.run { showBackupFailure(error.localizedDescription) }
                 }
             } catch {
-                await MainActor.run {
-                    alertTitle = NSLocalizedString("백업 실패", comment: "Backup failed")
-                    alertMessage = error.localizedDescription
-                    showAlert = true
-                }
+                await MainActor.run { showBackupFailure(error.localizedDescription) }
             }
+        }
+    }
+
+    @MainActor
+    private func showBackupOutcome(_ outcome: BackupOutcome) {
+        switch outcome {
+        case .backedUp(let memoCount):
+            alertTitle = NSLocalizedString("백업 완료", comment: "Backup completed")
+            alertMessage = String(format: NSLocalizedString("단축어 %d개를 iCloud에 백업했습니다.", comment: "Backup success with count"), memoCount)
+            loadSnapshots()   // 방금 쌓인 시점이 목록에 바로 보이도록
+        case .nothingToBackUp:
+            alertTitle = NSLocalizedString("백업할 것이 없습니다", comment: "Nothing to back up title")
+            alertMessage = NSLocalizedString("저장된 단축어가 없어 백업하지 않았습니다.", comment: "Nothing to back up body")
+        case .skippedToProtectExisting(let existing, let new):
+            alertTitle = NSLocalizedString("기존 백업을 지켰습니다", comment: "Backup skipped title")
+            alertMessage = String(format: NSLocalizedString("이 기기의 단축어가 %2$d개뿐이라 %1$d개짜리 기존 백업을 덮어쓰지 않았습니다.", comment: "Backup skipped body"), existing, new)
+        }
+        showAlert = true
+    }
+
+    @MainActor
+    private func showBackupFailure(_ message: String) {
+        alertTitle = NSLocalizedString("백업 실패", comment: "Backup failed")
+        alertMessage = message
+        showAlert = true
+    }
+
+    /// 축소 백업 동의 창. "계속"이면 allowReduce=true 로 다시 부른다.
+    @MainActor
+    private func confirmReducingBackup(message: String) {
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("기존 백업이 줄어듭니다", comment: "Reducing backup confirm title")
+        alert.informativeText = message
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: NSLocalizedString("계속", comment: "Continue button"))
+        alert.addButton(withTitle: NSLocalizedString("취소", comment: "Cancel button"))
+        if alert.runModal() == .alertFirstButtonReturn {
+            performBackup(allowReduce: true)
         }
     }
 

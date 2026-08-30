@@ -45,6 +45,31 @@ EMBEDDED_MAP=(
   "ClipKeyboard.tap/MacCategoryTabs.swift|ClipKeyboard/Presentation/ClipKeyboardList/ClipKeyboardListViewModel.swift|enum CategoryTab: Hashable, Equatable {"
 )
 
+# 파일째 비교도, 선언 블록 비교도 불가능한 **쌍둥이 구현**.
+# iOS 와 맥이 서로 다른 코드로 **같은 CloudKit 레코드**를 읽고 쓴다. 구현이 다른 건
+# 괜찮지만 **레코드 필드 목록은 계약**이다. 한쪽에만 있는 필드가 생기면 그 데이터는
+# 조용히 사라진다.
+#
+# ⚠️ 실제로 이 일이 있었다. 맥 CloudKitBackupService 에 `categoriesAsset` 이 없어서
+#    맥에서 복원하면 카테고리 설정이 통째로 날아갔고(탭이 전부 사라짐), 맥이 올린
+#    백업으로 아이폰이 복원하면 아이폰도 아이콘·순서·숨김을 잃었다.
+#    이 파일이 어느 감시망에도 없어서 212줄이 벌어질 때까지 아무도 몰랐다.
+#
+# 형식: "Mac상대경로|iOS상대경로|설명"
+CONTRACT_MAP=(
+  "ClipKeyboard.tap/CloudKitBackupService.swift|ClipKeyboard/Service/CloudKitBackupService.swift|CloudKit 백업 레코드 필드"
+)
+
+# 맥에 아직 없는 것이 **의도된** 필드. 여기 적힌 것만 봐주고, 나머지는 실패시킨다.
+# 줄일 때마다 하나씩 지워 나가는 목록이지 늘리는 목록이 아니다.
+# (현재 비어 있다 — 맥이 iOS 백업 레코드의 모든 필드를 다룬다)
+CONTRACT_IGNORE=()
+
+# 소스에서 CloudKit 레코드 필드 이름만 뽑아 정렬해 낸다.  $1=파일
+extract_record_fields() {
+  grep -oE 'record\["[a-zA-Z]+"\]' "$1" | sed -E 's/record\["(.*)"\]/\1/' | sort -u
+}
+
 # 선언 블록만 뽑아 stdout 으로 낸다.  $1=파일  $2=시작패턴
 extract_block() {
   awk -v start="$2" '
