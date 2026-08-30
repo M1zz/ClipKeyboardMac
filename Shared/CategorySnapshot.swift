@@ -74,6 +74,11 @@ enum CategorySnapshotStore {
     static let enabledBuiltInsKey = "enabledBuiltInCategories_v1"
     static let featureEnabledKey = "category.feature.enabled.v1"
 
+    /// `Memo.category` 의 기본값이자 아이폰·맥이 주고받는 **저장 센티널**.
+    /// 사용자 정의 카테고리 목록에는 절대 들어가지 않는다(들어가면 기본 탭과 겹친다).
+    /// ⚠️ 번역 금지 - 화면에 뿌릴 때만 현지화한다.
+    static let basicCategoryName = "기본"
+
     private static var defaults: UserDefaults? { AppGroup.defaults }
 
     /// 기기 간 **동기화용** 스냅샷 - 실제로 쓰이는 카테고리만 담는다.
@@ -92,11 +97,34 @@ enum CategorySnapshotStore {
         let usedNames = Set(
             memos.filter { !sampleIDs.contains($0.id) }
                  .map(\.category)
-                 .filter { !$0.isEmpty }
+                 .filter { !$0.isEmpty && $0 != basicCategoryName }
         )
         snapshot.categories = snapshot.categories.filter { usedNames.contains($0) }
+
+        // ⚠️ 이 기기의 **목록에는 없는데 단축어는 이미 그 카테고리에 들어 있는** 경우를 받아 준다.
+        //    없으면 이런 고리가 생긴다: 목록이 빈약한 기기가 올린 스냅샷이 공용 레코드를
+        //    통째로 덮어쓰고(payload 는 병합이 아니라 교체다), 그 기기는 자기가 올린 빈약한
+        //    목록을 그대로 되받아 고착된다. 받는 쪽은 `.merge` 라 더하기만 하므로 **원본 기기는
+        //    멀쩡해 보이고**, 빈약한 기기에서만 카테고리가 사라진다.
+        //    실제로 맥에서 단축어 37개가 카테고리 12개를 쓰는데 탭은 2개만 서고 나머지 23개가
+        //    전부 기본 칸으로 떠밀린 사고가 이것이었다.
+        //    "비샘플 메모가 붙은 카테고리만 싣는다"는 원래 의도는 그대로다 - `usedNames` 가
+        //    이미 샘플과 빈 값과 기본 센티널을 걸러 낸다.
+        //    등장 순서를 유지해 `rebuildFromMemos` 와 같은 순서로 붙인다.
+        var seen = Set(snapshot.categories)
+        for memo in memos where !sampleIDs.contains(memo.id) {
+            let name = memo.category
+            guard usedNames.contains(name), !seen.contains(name) else { continue }
+            seen.insert(name)
+            snapshot.categories.append(name)
+        }
+
         snapshot.icons = snapshot.icons.filter { usedNames.contains($0.key) }
-        snapshot.hiddenTabs = snapshot.hiddenTabs.filter { usedNames.contains($0) }
+        // ⚠️ 즐겨찾기 숨김은 카테고리 이름이 아니라 센티널이라 `usedNames` 에 절대 걸리지 않는다.
+        //    그냥 거르면 "즐겨찾기 탭을 숨김" 설정이 기기 간에 영영 넘어가지 않는다.
+        snapshot.hiddenTabs = snapshot.hiddenTabs.filter {
+            $0 == CategoryBucketRule.favoritesTabKey || usedNames.contains($0)
+        }
         return snapshot
     }
 
@@ -175,7 +203,7 @@ enum CategorySnapshotStore {
         // "기본"은 시스템 기본값이라 사용자 정의 목록에 넣지 않는다.
         let derived = memos
             .map(\.category)
-            .filter { !$0.isEmpty && $0 != "기본" }
+            .filter { !$0.isEmpty && $0 != basicCategoryName }
         // 등장 순서를 유지하면서 중복 제거 - 사용자가 많이 쓴 순서에 가깝다.
         var seen = Set(existing)
         var added: [String] = []
