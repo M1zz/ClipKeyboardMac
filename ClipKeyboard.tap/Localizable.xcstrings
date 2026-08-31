@@ -266,35 +266,6 @@
         }
       }
     },
-    "%d개 단축어 잠김 — iOS에서 Pro 구매 시 동기화됩니다" : {
-      "comment" : "Locked memos banner",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d snippets locked — synced when you buy Pro on iOS"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d개 단축어 잠김 — iOS에서 Pro 구매 시 동기화됩니다"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d 条短语已锁定 — 在 iOS 购买 Pro 后同步"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d 條短語已鎖定 — 在 iOS 購買 Pro 後同步"
-          }
-        }
-      }
-    },
     "%d개 삭제" : {
       "comment" : "Dedupe delete button",
       "localizations" : {
@@ -1168,35 +1139,6 @@
         }
       }
     },
-    "iCloud 백업" : {
-      "comment" : "Feature: icloud",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud Backup"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud 백업"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud 备份"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud 備份"
-          }
-        }
-      }
-    },
     "iCloud 백업 및 복구" : {
       "comment" : "iCloud backup and restore title",
       "localizations" : {
@@ -1222,35 +1164,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud 備份與回復"
-          }
-        }
-      }
-    },
-    "iCloud 백업은 Pro 기능입니다" : {
-      "comment" : "Cloud backup pro",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud backup is a Pro feature"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud 백업은 Pro 기능입니다"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud 备份是 Pro 功能"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iCloud 備份是 Pro 功能"
           }
         }
       }
@@ -1396,93 +1309,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Instagram DM (@lee25_ios)"
-          }
-        }
-      }
-    },
-    "iOS 구매 시 자동 연동" : {
-      "comment" : "Feature: ios sync",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auto-synced with your iOS purchase"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iOS 구매 시 자동 연동"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iOS 购买后自动同步"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iOS 購買後自動同步"
-          }
-        }
-      }
-    },
-    "iOS 앱에서 Pro를 구매하면 macOS에서도 자동으로 활성화됩니다." : {
-      "comment" : "Mac Pro sync hint",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buy Pro in the iOS app and it activates on macOS automatically."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iOS 앱에서 Pro를 구매하면 macOS에서도 자동으로 활성화됩니다."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iOS App 中购买 Pro 后，macOS 上也会自动启用。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iOS App 中購買 Pro 後，macOS 上也會自動啟用。"
-          }
-        }
-      }
-    },
-    "iOS 앱에서 Pro를 구매하면 이 Mac에서도 자동으로 활성화됩니다." : {
-      "comment" : "iOS purchase hint",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buy Pro in the iOS app and it activates on this Mac automatically."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iOS 앱에서 Pro를 구매하면 이 Mac에서도 자동으로 활성화됩니다."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iOS App 中购买 Pro 后，这台 Mac 上也会自动启用。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iOS App 中購買 Pro 後，這台 Mac 上也會自動啟用。"
           }
         }
       }
@@ -1976,64 +1802,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設定…"
-          }
-        }
-      }
-    },
-    "Pro" : {
-      "comment" : "Prefs: pro",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro"
-          }
-        }
-      }
-    },
-    "Pro 활성화됨" : {
-      "comment" : "Pro active",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro activated"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro 활성화됨"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro 已启用"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro 已啟用"
           }
         }
       }
@@ -3054,7 +2822,7 @@
       }
     },
     "단축어" : {
-      "comment" : "Feature: snippets\nSnippet (saved key-value item) display name\nSnippet feature\nSnippets section header",
+      "comment" : "Snippet (saved key-value item) display name\nSnippet feature\nSnippets section header",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3165,35 +2933,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已將 %d 條短語備份到 iCloud。"
-          }
-        }
-      }
-    },
-    "단축어 5개 · 클립보드 20개 제한" : {
-      "comment" : "Free limits",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Up to 5 snippets · 20 clipboard items"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "단축어 5개 · 클립보드 20개 제한"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最多 5 条短语 · 20 条剪贴板记录"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最多 5 條短語 · 20 條剪貼板歷史"
           }
         }
       }
@@ -3832,93 +3571,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "全部功能"
-          }
-        }
-      }
-    },
-    "모든 기능을 사용할 수 있습니다." : {
-      "comment" : "All features unlocked",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You have access to all features."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "모든 기능을 사용할 수 있습니다."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你可以使用全部功能。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你可以使用全部功能。"
-          }
-        }
-      }
-    },
-    "무료 플랜" : {
-      "comment" : "Free plan",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Free plan"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "무료 플랜"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "免费方案"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "免費方案"
-          }
-        }
-      }
-    },
-    "무제한" : {
-      "comment" : "Unlimited",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unlimited"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "무제한"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无限制"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無限制"
           }
         }
       }
@@ -4789,35 +4441,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除…"
-          }
-        }
-      }
-    },
-    "상태 새로고침" : {
-      "comment" : "Refresh Pro status",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Refresh status"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "상태 새로고침"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "刷新状态"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "重新整理狀態"
           }
         }
       }
@@ -6069,6 +5692,35 @@
         }
       }
     },
+    "전" : {
+      "comment" : "ago",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ago"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前"
+          }
+        }
+      }
+    },
     "저장" : {
       "comment" : "Save button",
       "localizations" : {
@@ -6156,64 +5808,6 @@
         }
       }
     },
-    "저장소를 찾을 수 없습니다." : {
-      "comment" : "App Group container missing",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Storage not found."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "저장소를 찾을 수 없습니다."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "找不到储存空间。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "找不到儲存空間。"
-          }
-        }
-      }
-    },
-    "전" : {
-      "comment" : "ago",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ago"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "전"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "前"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "前"
-          }
-        }
-      }
-    },
     "저장된 단축어가 없어 백업하지 않았습니다." : {
       "comment" : "Nothing to back up body",
       "localizations" : {
@@ -6239,6 +5833,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "沒有已儲存的短語，因此未進行備份。"
+          }
+        }
+      }
+    },
+    "저장소를 찾을 수 없습니다." : {
+      "comment" : "App Group container missing",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storage not found."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장소를 찾을 수 없습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "找不到储存空间。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "找不到儲存空間。"
           }
         }
       }
@@ -6707,93 +6330,6 @@
         }
       }
     },
-    "최대 5개" : {
-      "comment" : "Free memo limit",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Up to 5"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최대 5개"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最多 5 条"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最多 5 條"
-          }
-        }
-      }
-    },
-    "최대 20개" : {
-      "comment" : "Free clipboard limit",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Up to 20"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최대 20개"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最多 20 条"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最多 20 條"
-          }
-        }
-      }
-    },
-    "최대 100개" : {
-      "comment" : "Pro clipboard limit",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Up to 100"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최대 100개"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最多 100 条"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最多 100 條"
-          }
-        }
-      }
-    },
     "취소" : {
       "comment" : "Cancel button",
       "localizations" : {
@@ -6969,7 +6505,7 @@
       }
     },
     "클립보드 히스토리" : {
-      "comment" : "Clipboard history feature\nClipboard history title\nFeature: clipboard",
+      "comment" : "Clipboard history feature\nClipboard history title",
       "localizations" : {
         "en" : {
           "stringUnit" : {

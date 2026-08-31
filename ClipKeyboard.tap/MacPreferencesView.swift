@@ -28,15 +28,11 @@ struct MacPreferencesView: View {
             shortcutsTab
                 .tabItem { Label(NSLocalizedString("Shortcuts", comment: "Prefs: shortcuts"), systemImage: AppSymbol.command) }
 
-            proTab
-                .tabItem { Label(NSLocalizedString("Pro", comment: "Prefs: pro"), systemImage: AppSymbol.starFill) }
-
             aboutTab
                 .tabItem { Label(NSLocalizedString("About", comment: "Prefs: about"), systemImage: AppSymbol.infoCircle) }
         }
         .frame(minWidth: 580, minHeight: 460)
         .padding(MacSpacing.lg)
-        .onAppear { MacProManager.refreshFromCloud() }
     }
 
     // MARK: - Tabs
@@ -196,69 +192,6 @@ struct MacPreferencesView: View {
             }
         }
         .formStyle(.grouped)
-    }
-
-    private var proTab: some View {
-        VStack(spacing: MacSpacing.xl) {
-            // 현재 상태
-            HStack(spacing: MacSpacing.md) {
-                Image(systemName: MacProManager.isPro ? "checkmark.seal.fill" : "star.circle")
-                    .font(.system(size: MacIcon.hero))
-                    .foregroundStyle(MacProManager.isPro ? AnyShapeStyle(Color.yellow) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
-                VStack(alignment: .leading, spacing: MacSpacing.xs) {
-                    Text(MacProManager.isPro
-                         ? NSLocalizedString("Pro 활성화됨", comment: "Pro active")
-                         : NSLocalizedString("무료 플랜", comment: "Free plan"))
-                        .font(MacFont.sectionTitle)
-                    Text(MacProManager.isPro
-                         ? NSLocalizedString("모든 기능을 사용할 수 있습니다.", comment: "All features unlocked")
-                         : NSLocalizedString("단축어 5개 · 클립보드 20개 제한", comment: "Free limits"))
-                        .font(MacFont.secondary)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-            }
-            .padding(MacSpacing.lg)
-            .macSurface()
-
-            // 기능 비교
-            VStack(alignment: .leading, spacing: MacSpacing.md) {
-                featureRow(NSLocalizedString("단축어", comment: "Feature: snippets"),
-                           free: NSLocalizedString("최대 5개", comment: "Free memo limit"),
-                           pro: NSLocalizedString("무제한", comment: "Unlimited"))
-                featureRow(NSLocalizedString("클립보드 히스토리", comment: "Feature: clipboard"),
-                           free: NSLocalizedString("최대 20개", comment: "Free clipboard limit"),
-                           pro: NSLocalizedString("최대 100개", comment: "Pro clipboard limit"))
-                featureRow(NSLocalizedString("iCloud 백업", comment: "Feature: icloud"),
-                           free: "—", pro: "✓")
-                featureRow(NSLocalizedString("iOS 구매 시 자동 연동", comment: "Feature: ios sync"),
-                           free: "—", pro: "✓")
-            }
-
-            Spacer()
-
-            if !MacProManager.isPro {
-                Text(NSLocalizedString("iOS 앱에서 Pro를 구매하면 이 Mac에서도 자동으로 활성화됩니다.", comment: "iOS purchase hint"))
-                    .font(MacFont.secondary)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-
-                Button(NSLocalizedString("상태 새로고침", comment: "Refresh Pro status")) {
-                    MacProManager.refreshFromCloud()
-                }
-            }
-        }
-        .font(MacFont.body)
-        .padding(MacSpacing.xl)
-    }
-
-    private func featureRow(_ name: String, free: String, pro: String) -> some View {
-        HStack {
-            Text(name).frame(maxWidth: .infinity, alignment: .leading)
-            Text(free).foregroundStyle(.secondary).frame(width: 90, alignment: .center)
-            Text(pro).foregroundStyle(MacProManager.isPro ? .primary : .secondary).frame(width: 90, alignment: .center)
-        }
-        .font(MacFont.body)
     }
 
     private var aboutTab: some View {

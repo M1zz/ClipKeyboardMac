@@ -40,20 +40,9 @@ struct MemoListView: View {
                              followsPhone: tabPreference.followsPhone)
     }
 
-    private var isFreeUser: Bool { !MacProManager.isPro }
-    private var hiddenMemoCount: Int {
-        guard isFreeUser else { return 0 }
-        return max(0, memos.count - MacProManager.freeMemoLimit)
-    }
-
     var filteredMemos: [Memo] {
         // 사용자가 지정한 수동 순서(있으면) → 없으면 즐겨찾기 먼저, 최근순. iOS와 순서 공유.
         var filtered = MacMemoOrder.sorted(memos)
-
-        // 무료 유저: 표시 한도 적용 (정렬 후 상위 N개만)
-        if isFreeUser {
-            filtered = Array(filtered.prefix(MacProManager.freeMemoLimit))
-        }
 
         // 카테고리 탭 — 탭이 없으면(기능 꺼짐) 필터도 없다.
         if !tabs.isEmpty {
@@ -93,7 +82,6 @@ struct MemoListView: View {
                 MacCategoryAdoptBanner(preference: tabPreference)
                 Divider()
             }
-            lockedBanner
             listSection
         }
         .frame(minWidth: 360, minHeight: 420)
@@ -247,25 +235,6 @@ struct MemoListView: View {
         .padding(.horizontal, MacSpacing.sm)
         .padding(.vertical, MacSpacing.xs + 2)
         .macSurface(MacRadius.xs)
-    }
-
-    /// 무료 유저: 숨겨진 메모 잠금 배너 (조건 미충족 시 빈 뷰)
-    @ViewBuilder
-    private var lockedBanner: some View {
-        if isFreeUser && hiddenMemoCount > 0 {
-            HStack(spacing: MacSpacing.sm) {
-                Image(systemName: AppSymbol.lockFill)
-                Text(String(format: NSLocalizedString("%d개 단축어 잠김 — iOS에서 Pro 구매 시 동기화됩니다", comment: "Locked memos banner"), hiddenMemoCount))
-                    .fixedSize(horizontal: false, vertical: true)
-                Spacer(minLength: 0)
-            }
-            .font(MacFont.body)
-            .foregroundStyle(.orange)
-            .padding(.horizontal, MacSpacing.md)
-            .padding(.vertical, MacSpacing.sm)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.orange.opacity(0.12))
-        }
     }
 
     /// 메모 리스트 (비었으면 빈 상태, 아니면 List + 순서변경 안내)

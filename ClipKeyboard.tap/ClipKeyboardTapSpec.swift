@@ -36,15 +36,16 @@ enum ClipKeyboardTapSpec: LeeoAppSpec {
         marketingURL: URL(string: "https://m1zz.github.io/ClipKeyboard/")!
     )
 
-    /// 수익모델 — 이 맥 앱은 **아무것도 팔지 않는다**.
+    /// 수익모델 — 이 맥 앱은 **스토어 유료 다운로드**다.
     ///
-    /// 아이폰은 `.freemium` 이지만 맥은 다르다. 이 타겟에는 StoreKit 자체가 없다.
-    /// 화면의 Pro 게이트(단축어 한도·iCloud 백업)는 맥이 파는 것이 아니라 **아이폰에서 산
-    /// 권한을 CloudKit 으로 받아 비추는 것**이다(`MacProManager.refreshFromCloud`).
-    /// 그래서 `.free` 가 이 바이너리의 실상이다 — 페이월도 결제 코드도 없고, 따라서
-    /// 복원(Restore) 의무도 이 앱에는 생기지 않는다.
+    /// 아이폰(`ClipKeyboardSpec`)은 `.freemium` 이지만 맥은 다르다. 이 타겟에는 StoreKit 이
+    /// 없고 팔 것도 없다 — 앱을 산 순간 모든 기능이 열린다. 그래서 페이월도, 복원 버튼도
+    /// 필요 없다(복원 의무는 앱 안에서 파는 상품이 있을 때 생긴다).
     ///
-    /// ⚠️ 맥에서 직접 결제를 받게 되는 날에는 이 선언부터 `.freemium` 으로 바꿔야 한다.
-    ///    선언만 그대로 두면 페이월·복원 의무가 빠진 채로 결제가 나간다.
-    static let monetization = LeeoMonetization.free
+    /// ⚠️ 5.0.5(20) 까지는 여기가 `.free` 였고, 화면에는 아이폰 결제를 비추는 Pro 게이트가
+    ///    남아 있었다. 유료로 산 사용자에게 "무료 플랜 · 단축어 10개"를 띄우던 그 코드가
+    ///    Guideline 2.1(b) 리젝의 원인이다. 선언과 화면을 실제 판매 형태에 맞췄다.
+    ///    맥에서 추가 결제를 받게 되는 날에는 `.freemium` 으로 바꾸고 **이 타겟에**
+    ///    StoreKit·페이월·복원을 넣을 것. 아이폰 구매를 비추는 방식은 심사를 통과하지 못한다.
+    static let monetization = LeeoMonetization.paidUpfront
 }

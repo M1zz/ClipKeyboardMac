@@ -15,7 +15,7 @@ struct CloudBackupView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var alertTitle = ""
-    // 파일 백업(내보내기/가져오기) — CloudKit·Pro·로그인과 무관한 최후의 보루
+    // 파일 백업(내보내기/가져오기) — CloudKit·로그인과 무관한 최후의 보루
     @State private var showExporter = false
     @State private var showImporter = false
     @State private var exportDocument: BackupFileDocument? = nil
@@ -27,29 +27,7 @@ struct CloudBackupView: View {
     @State private var restoringSnapshot: String?
 
     var body: some View {
-        if !MacProManager.isCloudBackupAvailable {
-            macProGateView
-        } else {
         backupContentView
-        }
-    }
-
-    private var macProGateView: some View {
-        VStack(spacing: MacSpacing.md) {
-            Spacer()
-            Image(systemName: AppSymbol.icloudFill)
-                .font(.system(size: MacIcon.hero))
-                .foregroundStyle(.tertiary)
-            Text(NSLocalizedString("iCloud 백업은 Pro 기능입니다", comment: "Cloud backup pro"))
-                .font(MacFont.screenTitle)
-            Text(NSLocalizedString("iOS 앱에서 Pro를 구매하면 macOS에서도 자동으로 활성화됩니다.", comment: "Mac Pro sync hint"))
-                .font(MacFont.secondary)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, MacSpacing.xl)
-            Spacer()
-        }
-        .frame(minWidth: 500, minHeight: 420)
     }
 
     private var backupContentView: some View {

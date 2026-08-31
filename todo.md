@@ -1,5 +1,33 @@
 # todo
 
+## App Store 리젝 대응 — Guideline 2.1(b) (2026-08-31, 제출 1aa60e4d / 5.0.5(20))
+
+리뷰 지적: "앱이 Pro 를 참조하는데 해당 IAP 가 심사에 제출되지 않았다."
+실상: **맥 앱은 스토어 유료 다운로드**다. 번들 ID(`com.ysoup.TokenMemo-tap`)가 아이폰과
+달라 유니버설 구매도 아니고, 이 앱 레코드에는 IAP 자체가 없다. 그런데 화면에는
+아이폰 결제 키를 iCloud KV 로 받아 잠그는 Pro 게이트가 남아 있어서, **맥 앱을 제값 주고
+산 사용자가 "무료 플랜 · 단축어 10개" 취급**을 받고 있었다. 심사 이슈이기 전에 버그.
+
+- [x] `MacPreferencesView` Pro 탭 통째 삭제 (상태 카드·기능 비교표·"iOS 에서 구매하면…"·상태 새로고침)
+      - 비교표 숫자(5개/20개)는 실제 한도(10개/50개)와도 어긋나 있었다
+- [x] `CloudBackupView` Pro 게이트 삭제 — iCloud 백업/복구·파일 내보내기를 모든 구매자에게 개방
+- [x] `MemoListView` 무료 표시 한도(`prefix(10)`)와 "N개 단축어 잠김" 배너 삭제
+- [x] `MacProManager` 제거 (Models.swift) — 삭제 이유는 같은 자리에 주석으로 남김
+- [x] `MemoSyncEngine` 동기화 게이트: `#if os(macOS)` 로 맥은 무조건 통과
+      (맥만 산 사용자는 토글을 켜도 엔진이 조용히 거부하던 문제도 같이 해결)
+- [x] `ClipKeyboardTapSpec.monetization` `.free` → `.paidUpfront`
+- [x] `Localizable.xcstrings` 에서 Pro 관련 키 16개 삭제 (4개 언어 · 243개 남음)
+- [x] 빌드 번호 20 → 21 (20 은 거절된 번호라 재사용 불가)
+- [x] 검증: BUILD SUCCEEDED / 컴파일된 4개 언어 `Localizable.strings` 에 Pro·플랜·구매 문구 0건
+
+### 앱 밖에서 해야 할 일 (App Store Connect)
+- [ ] 앱 설명·스크린샷·프로모션 텍스트에 Pro / In-App Purchase 언급이 남아 있으면 삭제
+      (리뷰어가 말한 "references to Pro" 에 메타데이터도 포함될 수 있다)
+- [ ] 이 앱 레코드에 만들어 둔 IAP 상품이 있으면 삭제하거나 제출 대상에서 제외
+- [ ] 리뷰 노트 회신: "이 Mac 앱은 유료 다운로드이며 앱 내 구매가 없습니다.
+      5.0.5(21) 에서 Pro 관련 UI 를 모두 제거했고, 구매 시 전 기능이 열립니다."
+- [ ] 빌드 21 업로드 후 심사 제출
+
 ## 영어 지역화 100% (2026-08-27)
 
 ### 1차 — 문자열 번역

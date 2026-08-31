@@ -663,57 +663,21 @@ class MemoStore: ObservableObject {
     }
 }
 
-// MARK: - MacProManager
+// MARK: - 결제 게이트가 없는 이유
 
-/// iOS 구매 상태를 iCloud KV Store로 동기화받아 macOS Pro 여부 판단.
-/// iCloud KV Store 우선, 없으면 App Group UserDefaults 폴백.
-struct MacProManager {
-    static let proStatusKey = DefaultsKey.proStatus
-
-    /// 전체 접근 권한을 인정하는 키들 — **결제 하나만 보면 안 된다.**
-    ///
-    /// ⚠️ 이 앱은 결제 외 경로로도 권한을 준다: v4.0 이전 유료 구매자(`wasProAtV3`),
-    ///    v3.x 기존 사용자(`existingFreeUser`), TestFlight/체험(`syncEntitled` 로 미러링).
-    ///    `proStatus` 만 보던 탓에 **아이폰에선 Pro인 사용자가 맥에선 무료로 취급**돼
-    ///    메모가 10개까지만 보였다. iOS `ProFeatureManager.hasFullAccess` 와 같은 집합이고,
-    ///    `MemoSyncEngine.isProUser` 도 동일한 키 목록을 쓴다 — **셋을 항상 같이 고칠 것.**
-    ///
-    /// 기기 간 전달은 iCloud KV 가 담당한다(App Group 은 기기 안에서만 공유된다).
-    static let fullAccessKeys = [
-        DefaultsKey.proStatus,
-        DefaultsKey.wasProAtV3,
-        DefaultsKey.existingFreeUser,
-        DefaultsKey.syncEntitled,
-    ]
-
-    static let freeMemoLimit = 10
-    static let freeClipboardLimit = 50
-
-    static var isPro: Bool {
-        let group = UserDefaults(suiteName: AppGroup.identifier)
-        for key in fullAccessKeys {
-            if NSUbiquitousKeyValueStore.default.bool(forKey: key) { return true }
-            if group?.bool(forKey: key) == true { return true }
-        }
-        return false
-    }
-
-    static var isCloudBackupAvailable: Bool {
-        #if DEBUG
-        return true   // 디버그 빌드: 백업 잠금 해제(그랜드파더 Pro 사용자 데이터 복구용). 릴리스/앱스토어 빌드엔 영향 없음.
-        #else
-        return isPro
-        #endif
-    }
-
-    static var memoDisplayLimit: Int { isPro ? Int.max : freeMemoLimit }
-    static var clipboardDisplayLimit: Int { isPro ? 100 : freeClipboardLimit }
-
-    /// 구매 상태가 변경될 때 KV Store에서 새로고침 (앱 포그라운드 복귀 시 호출 권장)
-    static func refreshFromCloud() {
-        NSUbiquitousKeyValueStore.default.synchronize()
-    }
-}
+/// 이 맥 앱은 **스토어 유료 다운로드**다. 앱을 산 것 자체가 전체 권한이므로
+/// 무료 티어도, 해제할 Pro 도 없다 — `ClipKeyboardTapSpec.monetization = .paidUpfront`.
+///
+/// 5.0.5(20) 까지는 `MacProManager` 가 아이폰의 결제 키(`proStatus` 등)를 iCloud KV 로
+/// 받아 맥의 단축어 10개·iCloud 백업을 잠갔다. 그래서 **맥 앱을 제값 주고 산 사용자가
+/// 아이폰에서 Pro 를 사지 않았다는 이유로 "무료 플랜" 취급**을 받았다.
+/// 심사도 같은 곳에서 걸렸다 — Guideline 2.1(b), "Pro 를 참조하는데 해당 IAP 가
+/// 제출되지 않았다"(이 앱 레코드엔 IAP 자체가 없다. 아이폰과 번들 ID 가 다르다).
+/// 잠금과 그 문구를 전부 걷어내면서 `MacProManager` 도 함께 지웠다.
+///
+/// ⚠️ 맥에서 부분유료로 방향을 틀 일이 생기면, 게이트를 되살리기 전에
+///    이 타겟에 StoreKit 과 페이월·복원부터 넣어야 한다. 아이폰 구매를 비추는
+///    방식으로는 다시 심사를 통과하지 못한다.
 
 // MARK: - MacMemoOrder
 
