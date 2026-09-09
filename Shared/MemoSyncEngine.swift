@@ -651,12 +651,21 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     private func makeCategoryRecord() -> CKRecord? {
         var snapshot = currentSyncableCategories()
         guard !snapshot.isEmpty else { return nil }
-        snapshot.updatedAt = Date()
-        guard let payload = try? JSONEncoder().encode(snapshot) else { return nil }
 
         // 메모 레코드와 같은 이유로 서버 버전 위에 얹는다(태그 없이 올리면 두 번째부터 거절당한다).
         let record = cachedRecord(for: categoryRecordID)
             ?? CKRecord(recordType: Self.categoryRecordType, recordID: categoryRecordID)
+
+        // ⚠️ 올리는 것은 **교체**다. 이 기기 목록만 올리면 공용 레코드가 그만큼 깎인다.
+        //    원격에 이미 있던 것을 지우지 않도록 얹는다(카테고리를 새로 만들지는 않는다).
+        //    자세한 이유: CategorySnapshotStore.union
+        if let remotePayload = record["payload"] as? Data,
+           let remote = try? JSONDecoder().decode(CategorySnapshot.self, from: remotePayload) {
+            snapshot = CategorySnapshotStore.union(local: snapshot, remote: remote)
+        }
+
+        snapshot.updatedAt = Date()
+        guard let payload = try? JSONEncoder().encode(snapshot) else { return nil }
         record["payload"] = payload as CKRecordValue
         record["updatedAt"] = snapshot.updatedAt as CKRecordValue
         return record
@@ -670,7 +679,9 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         guard let payload = record["payload"] as? Data,
               let snapshot = try? JSONDecoder().decode(CategorySnapshot.self, from: payload) else { return }
 
-        CategorySnapshotStore.apply(snapshot, strategy: .merge)
+        // 동기화는 `.sync` — 목록·아이콘·색은 더하고, 숨김·기본 제공은 그대로 비춘다.
+        // (`.merge` 로 두면 끈 것·되살린 것이 다른 기기로 영영 안 넘어간다)
+        CategorySnapshotStore.apply(snapshot, strategy: .sync)
         // 방금 받은 상태를 그대로 섀도에 기록 - 받자마자 되올리는 핑퐁을 막는다.
         AppGroup.defaults?
             .set(categoryFingerprint(currentSyncableCategories()), forKey: Self.categoryShadowKey)
