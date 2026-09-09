@@ -1,5 +1,69 @@
 # todo
 
+## App Store 스크린샷 (한국어·영어) — 2026-09-09, **진행 중**
+
+목표: 2880×1800 6장 × 2개 언어. 상단 카피 + 실제 앱 창.
+
+### 촬영 환경 (중요 — 다시 할 때 그대로)
+- 실데이터에 주민번호·카드번호·계좌번호·여권번호·깃토큰이 있어 **그대로 찍으면 안 된다**.
+  App Group 컨테이너(`~/Library/Group Containers/group.com.Ysoup.TokenMemo`)의
+  `memos.data`·`clipboard.history.data`·`Library/Preferences/*.plist` 를 비켜두고
+  데모 데이터로 촬영한 뒤 되돌리는 방식으로 진행. **이번 회차 복구 완료 검증됨**
+  (메모 37개·클립 100개·`memoSyncEnabled=true`·`dev.masterMode=true`·이미지 399개).
+- ⚠️ `memoSyncEnabled` 가 **켜져 있다**. 빈/데모 상태로 앱을 띄우면 아이폰 데이터를
+  깎을 수 있으므로, 촬영용 컨테이너에서는 반드시 `memoSyncEnabled=false` +
+  `memoSync.cloudAdopted.v1=true`(iCloud KV 가 다시 켜는 경로 차단) 로 두고 띄울 것.
+- 클립보드 감시는 `startMonitoring()` 에서 `lastChangeCount` 를 먼저 잡으므로,
+  **앱 시작 시점의 클립보드는 히스토리에 안 들어간다.** 시드 → 실행 → 즉시 촬영이면 깨끗하다.
+  (실행 중에 사용자가 복사하면 들어오므로, 촬영본은 눈으로 확인할 것.)
+- 창 캡처는 `screencapture -x -o -l <windowID>` 로 레티나 2배 원본을 얻는다.
+  창을 key 상태(신호등 컬러)로 만들려면 제목표시줄을 한 번 클릭한 뒤 앱을 front 로.
+
+### 진행 상황
+- [x] 데모 데이터 생성기 (`make_demo.py` — ko/en 각 14개 단축어 + 9개 클립, 실정보 0건)
+- [x] 촬영용 빌드 (5.0.5(21), BUILD SUCCEEDED)
+- [x] 한국어 원본 캡처 6종: 단축어 목록 / 클립보드 히스토리 / iCloud 백업 /
+      환경설정·단축키 / 환경설정·일반 / 새 단축어(템플릿 변수 하이라이트)
+- [ ] **빠른 붙여넣기 패널·메뉴바 팝오버 캡처** — 배경 제어로는 못 띄운다.
+      메뉴 항목이 클립보드를 건드려 차단되고, 전역 단축키 ⌃⇧V 는 화면 제어가 필요.
+      → 화면 제어 승인을 받아야 찍을 수 있다. 이 앱의 핵심 화면이라 빠지면 아깝다.
+- [ ] 영어 캡처 (미착수)
+- [ ] 2880×1800 합성 (카피 + 창 + 배경) — 미착수
+
+## App Store 문안 결함 2건 — 스크린샷 작업 중 발견 (2026-09-09)
+
+### 1) 전역 단축키 표기가 틀렸다 — `docs/marketing/APP_STORE_MAC.md`
+실제 등록값은 `keyCode 9(V) + control|shift` = **⌃⇧V** (`GlobalHotkeyManager.swift:27-28`).
+그런데 스토어 설명 4개 언어 전부가 **⌃⌥K** 로 적고 있다(ko 39·45행, en 71·77행,
+zh-Hans 103·109행, zh-Hant 135·141행). 같은 문단 안에서 패널은 ⌃⇧V, 전역 단축키는
+⌃⌥K 로 갈려 있어 읽는 사람이 둘 다 눌러보게 된다. 앱 안 문구는 이미 고쳐졌는데
+(2026-08-27 작업) 스토어 문안만 옛 값으로 남았다.
+- [ ] 4개 언어 설명에서 ⌃⌥K / Control-Option-K → ⌃⇧V / Control-Shift-V
+
+### 2) 스토어 설명에 Pro 문단이 그대로 남아 있다 — 이번 리젝 사유와 직결
+리뷰어가 말한 "references to Pro" 는 **메타데이터도 포함**한다. 앱에서는 Pro 를
+전부 걷어냈는데(빌드 21), 설명 문안에는 아직 남아 있다:
+- "무료와 Pro / Free and Pro / 免费与 Pro / 免費與 Pro" 섹션 통째 (ko 59·61, en 91·93,
+  zh-Hans 123·125, zh-Hant 155·157행)
+- "iOS에서 Pro를 구매하셨다면 이 맥에서도 자동으로 켜집니다" (ko 53, en 85,
+  zh-Hans 117, zh-Hant 149행)
+이 상태로 제출하면 **같은 사유로 또 걸린다.** 맥은 유료 다운로드라 팔 것이 없다.
+- [ ] 4개 언어에서 Pro 문단·문장 삭제 (문서 + App Store Connect 양쪽)
+- [ ] 문서 상단의 "⚠️ 무료 한도는 코드값을…" 주석과 208~212행 '아직 안 된 것' 항목도
+      Pro 제거에 맞춰 정리
+
+## 브랜치 정리 (2026-09-09)
+
+- [x] `origin/fix/sync-needs-consent-on-this-device` 가 main 에 **완전히 병합됨** 확인
+      (`git merge-base --is-ancestor` YES, main 대비 0 commits ahead / 7 behind).
+      tip = `25d4f98 chore(5.0.3): 아이폰과 버전을 맞추고, 갈라져 있던 공유 파일을 되돌린다`
+- [ ] **원격 브랜치 삭제 — 권한 정책에 막혀 실행 못 함.** 직접 실행 필요:
+      `git push origin --delete fix/sync-needs-consent-on-this-device && git fetch --prune`
+- [ ] `stash@{0}` — 2026-08-27 자동 stash(merge 직전), 43개 파일.
+      `SyncStatusView.swift` `MacCategoryStore.swift` `SyncCloudPeek.swift` 등
+      **지금 main 에 없는 파일**이 들어 있어 함부로 버리지 않았다. 판단 필요.
+
+
 ## App Store 리젝 대응 — Guideline 2.1(b) (2026-08-31, 제출 1aa60e4d / 5.0.5(20))
 
 리뷰 지적: "앱이 Pro 를 참조하는데 해당 IAP 가 심사에 제출되지 않았다."
