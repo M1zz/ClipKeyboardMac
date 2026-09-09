@@ -11,14 +11,14 @@ IOS_REPO="${IOS_REPO:-$HOME/Documents/workspace/Auto/클립키보드}"
 MAC_REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 SHARED_MAP=(
-  "Shared/AppGroup.swift|ClipKeyboard/AppGroup.swift"
-  "Shared/AppLog.swift|ClipKeyboard/AppLog.swift"
-  "Shared/AppSymbol.swift|ClipKeyboard/AppSymbol.swift"
-  "Shared/DefaultsKey.swift|ClipKeyboard/DefaultsKey.swift"
-  "Shared/AppNotification.swift|ClipKeyboard/AppNotification.swift"
-  "Shared/StorageFile.swift|ClipKeyboard/StorageFile.swift"
+  "Shared/AppGroup.swift|ClipKeyboard/App/AppGroup.swift"
+  "Shared/AppLog.swift|ClipKeyboard/App/AppLog.swift"
+  "Shared/AppSymbol.swift|ClipKeyboard/App/AppSymbol.swift"
+  "Shared/DefaultsKey.swift|ClipKeyboard/App/DefaultsKey.swift"
+  "Shared/AppNotification.swift|ClipKeyboard/App/AppNotification.swift"
+  "Shared/StorageFile.swift|ClipKeyboard/App/StorageFile.swift"
   "Shared/CategorySnapshot.swift|ClipKeyboard/Service/CategorySnapshot.swift"
-  "Shared/CategoryBucketRule.swift|ClipKeyboard/CategoryBucketRule.swift"
+  "Shared/CategoryBucketRule.swift|ClipKeyboard/App/CategoryBucketRule.swift"
   "Shared/RemoteFlagsService.swift|ClipKeyboard/Service/RemoteFlagsService.swift"
   # CloudKit 컨테이너를 메인 스레드 밖에서 만드는 관문. 위 두 파일이 이걸 부른다.
   # ⚠️ 빠뜨리면 맥만 `CKContainer(identifier:)` 를 메인에서 직접 불러 4.4.6 과 같은
@@ -38,11 +38,11 @@ SHARED_MAP=(
 #
 # 형식: "Mac상대경로|iOS상대경로|시작패턴"
 EMBEDDED_MAP=(
-  "Shared/SampleMemoStorage.swift|ClipKeyboard/Tips.swift|enum SampleMemoStorage {"
+  "Shared/SampleMemoStorage.swift|ClipKeyboard/App/Tips.swift|enum SampleMemoStorage {"
   # 카테고리 탭 구성 — 맥이 아이폰과 "같은 탭"을 보여주려면 이 두 선언이 같아야 한다.
   # 어긋나면 같은 계정인데 기기마다 탭 목록·순서·소속이 달라진다(사용자에겐 단축어가 사라진 것으로 보인다).
-  "ClipKeyboard.tap/MacCategoryTabs.swift|ClipKeyboard/Presentation/ClipKeyboardList/ClipKeyboardListViewModel.swift|enum BuiltInCategory: String, CaseIterable, Hashable {"
-  "ClipKeyboard.tap/MacCategoryTabs.swift|ClipKeyboard/Presentation/ClipKeyboardList/ClipKeyboardListViewModel.swift|enum CategoryTab: Hashable, Equatable {"
+  "ClipKeyboard.tap/MacCategoryTabs.swift|ClipKeyboard/Screens/List/ClipKeyboardListViewModel.swift|enum BuiltInCategory: String, CaseIterable, Hashable {"
+  "ClipKeyboard.tap/MacCategoryTabs.swift|ClipKeyboard/Screens/List/ClipKeyboardListViewModel.swift|enum CategoryTab: Hashable, Equatable {"
 )
 
 # 파일째 비교도, 선언 블록 비교도 불가능한 **쌍둥이 구현**.

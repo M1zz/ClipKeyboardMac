@@ -25,6 +25,12 @@ extension Notification.Name {
     static let draftsChanged = Notification.Name("draftsChanged")
     static let filterChanged = Notification.Name("filterChanged")
     static let memoDataChanged = Notification.Name("MemoDataChanged")
+    /// 단축어를 **방금 저장했다.** `object` 에 저장된 단축어의 `UUID`.
+    ///
+    /// ⚠️ `memoDataChanged` 와 다르다. 저쪽은 "무언가 바뀌었으니 다시 읽어라"이고,
+    ///    이쪽은 "**이것**을 방금 만들었다"이다. 목록이 그 하나를 보여줄 자리로
+    ///    옮겨 가려면 무엇이 저장됐는지 알아야 한다.
+    static let memoSaved = Notification.Name("memoSaved")
     /// 키보드에서 "전체 접근 허용"이 필요한 동작을 시도했으나 꺼져 있음 → 안내 토스트.
     /// (클립보드 읽기·쓰기는 iOS가 전체 접근 없이는 막는다. 안내가 없으면 조용히 실패한다.)
     static let needsFullAccess = Notification.Name("needsFullAccess")
@@ -84,4 +90,43 @@ extension Notification.Name {
     static let showSettings = Notification.Name("showSettings")
     static let showTemplateInput = Notification.Name("showTemplateInput")
     static let templateInputComplete = Notification.Name("templateInputComplete")
+}
+
+// MARK: - 알림은 메인에서 쏜다
+
+extension NotificationCenter {
+
+    /// 알림을 **언제나 메인 스레드에서** 발행한다. 앱 안의 모든 발행은 이 문을 지난다.
+    ///
+    /// ⚠️ 왜 이게 필요한가: `NotificationCenter` 는 **쏜 스레드에서 그대로** 받는 쪽을 부른다.
+    ///    받는 쪽이 대부분 화면이라는 게 문제다. `onReceive` 는 안에 `receive(on:)` 이 없어
+    ///    알림이 배경에서 오면 **그 배경 스레드에서 클로저가 돈다.** 그 클로저는 거의 예외 없이
+    ///    `@State` 를 고치거나 뷰모델을 다시 읽게 하므로, 결국 배경에서 발행이 일어난다.
+    ///
+    ///        Publishing changes from background threads is not allowed
+    ///
+    ///    이 경고의 파일·행은 **발행한 자리가 아니라 발행을 촉발한 자리**를 가리킨다.
+    ///    그래서 `MemoStore.save` 안의 알림 한 줄이 범인으로 지목됐지만, 실제로 값을 바꾼 것은
+    ///    그 알림을 받은 일곱 개의 화면이었다. 받는 쪽을 하나씩 고치는 길도 있으나
+    ///    받는 곳은 계속 늘어난다. **쏘는 문을 하나로 좁히는 쪽이 끝이 있다.**
+    ///
+    /// ⚠️ 이미 메인이면 **그 자리에서** 쏜다. 눌러서 시트가 뜨는 것 같은 흐름의 순서를
+    ///    지키기 위해서다. 미루는 것은 배경에서 쏠 때뿐이고, 그때 받는 일은 화면을
+    ///    다시 읽는 것뿐이라 한 런루프의 지연이 보이지 않는다.
+    ///
+    ///    (예외: `MemoStore.postDataChanged` 는 메인이어도 미룬다. 저장 도중에 저장이
+    ///     겹치는 재진입 때문이며, 이유는 그 함수 머리말에 적혀 있다.)
+    ///
+    /// 검사: `scripts/check_notification_main.sh`
+    static func postOnMain(name: Notification.Name,
+                           object: Any? = nil,
+                           userInfo: [AnyHashable: Any]? = nil) {
+        if Thread.isMainThread {
+            NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
+        } else {
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
+            }
+        }
+    }
 }

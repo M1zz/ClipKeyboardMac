@@ -12,6 +12,10 @@ import Foundation
 enum DefaultsKey {
     static let autoBackupEnabled = "autoBackupEnabled"
     static let categoryBadgeNudgeDismissed = "categoryBadgeNudgeDismissed"
+    /// "카테고리가 많아졌어요" 안내를 **마지막으로 띄웠을 때의 카테고리 수**(표준 UserDefaults).
+    /// 0 이면 아직 안 물어본 것이다. 되풀이해 말하지 않되, 그 뒤로 또 크게 늘면 한 번 더 묻는다.
+    /// ⚠️ 앱은 카테고리를 임의로 지우지 않는다. 이 값은 "물어봤다"는 표시일 뿐이다.
+    static let categoryCleanupAskedAtCount = "category.cleanup.askedAtCount.v1"
     static let categoryFeatureEnabledV1 = "category.feature.enabled.v1"
     static let comboModelUnifyMigratedV1 = "comboModelUnifyMigrated_v1"
     /// 날인·편철·봉인 등 delight 연출과 햅틱의 마스터 스위치. 값이 없으면 켜짐(기본).
@@ -49,6 +53,9 @@ enum DefaultsKey {
     /// ⚠️ 읽기만 하는 자리에서 값을 쓰지 말 것 - 남의 초기화를 조용히 되돌린다.
     static let appInstallDate = "app_install_date"
     static let appLaunchCount = "appLaunchCount"
+    /// 사용자가 고른 앱 언어 (App Group, `AppLanguage.rawValue`). 값이 없으면 기기 설정을 따른다.
+    /// ⚠️ App Group 이어야 한다. 키보드 익스텐션은 다른 프로세스라 표준 UserDefaults 를 못 본다.
+    static let appLanguage = "app.language.v1"
     /// 단축어별로 쌓인 "넣고 나서 고친 자리"(App Group, `[UUID문자열: EditPattern.Record]` JSON).
     /// ⚠️ 고친 **자리와 값**만 담는다. 사용자의 본문은 건드리지 않는다.
     ///    자세한 이유: ClipKeyboard/Service/EditPattern.swift
@@ -138,6 +145,23 @@ enum DefaultsKey {
     static let keyLabelTruncation = "keyLabelTruncation.v1"
     static let keyboardPasteCount = "keyboard_paste_count"
     static let keyboardSecurePinHash = "keyboard_secure_pin_hash"
+    /// 키보드 위줄에 리턴(보내기) 키를 세울지. App Group - 익스텐션이 읽는다. 기본 켬.
+    static let keyboardShowReturnKey = "keyboardShowReturnKey"
+    /// 키보드에 검색줄을 세울지. App Group. 기본 끔(자리를 한 줄 먹는다).
+    static let keyboardShowSearch = "keyboardShowSearch"
+    /// 키보드에 '최근 사용' 줄을 세울지. App Group.
+    ///
+    /// ⚠️ **값이 없는 것과 false 가 다르다.** 값이 없으면 "아직 안 정했다"는 뜻이고,
+    ///    그때는 단축어 수를 보고 `KeyboardDisplayDefaults` 가 알아서 정한다.
+    ///    그래서 이 키는 `bool(forKey:)` 로 읽으면 안 된다(없는 것이 false 로 뭉개진다).
+    static let keyboardShowRecent = "keyboardShowRecent"
+    /// 키보드를 마지막으로 닫을 때 보고 있던 갈래 페이지 번호. App Group.
+    ///
+    /// 왜 저장하나: 익스텐션은 앱을 옮길 때마다 새로 만들어지고 iOS 가 먼저 죽인다.
+    /// `@State` 로 두면 카톡에서 한 번, 메일에서 한 번, 사파리에서 한 번, 하루에도
+    /// 수십 번 같은 갈래를 다시 찾아 들어가야 한다.
+    /// 갈래가 지워져 번호가 넘치는 경우는 읽는 쪽에서 잘라 낸다.
+    static let keyboardLastCategoryPage = "keyboardLastCategoryPage.v1"
     static let keyboardTypingLang = "keyboardTypingLang"
     static let koreanEnabledMigratedV1 = "koreanEnabledMigrated_v1"
     static let lastBackupDate = "lastBackupDate"
@@ -146,6 +170,12 @@ enum DefaultsKey {
     static let memoManualOrderV1 = "memoManualOrder_v1"
     /// 수동 순서 활성 여부. true면 즐겨찾기 상단 고정 대신 저장된 순서 그대로 정렬.
     static let memoManualOrderActiveV1 = "memoManualOrderActive_v1"
+    /// 온보딩이 심어 준 샘플 단축어의 id 목록.
+    ///
+    /// ⚠️ App Group 이다. 예전에는 표준 UserDefaults 에 있었는데, 그러면 키보드
+    ///    익스텐션이 "심어 준 것" 과 "직접 만든 것" 을 구분하지 못해 남은 칸을
+    ///    앱과 다르게 센다. 한도를 세는 두 쪽이 같은 표를 봐야 한다.
+    static let sampleMemoIdsV1 = "sampleMemoUUIDs_v1"
     static let onboarding = "onboarding"
     /// 맥 앱의 온보딩을 마쳤는지 (standard UD).
     /// ⚠️ **맥 전용이지만 iOS 원본에 둔다.** 이 파일은 맥 저장소가 그대로 복사해 가는 원본이라
@@ -167,6 +197,11 @@ enum DefaultsKey {
     static let reviewBannerLaterDate = "review_banner_later_date"
     static let sampleTemplateFlagsMigratedV1 = "sampleTemplateFlagsMigrated_v1"
     static let secureMemoEncryptionMigratedV1 = "secureMemoEncryptionMigrated_v1"
+    /// 앱이 실제로 잰 **시스템 키보드 높이** 장부(App Group, `[화면키: Double]`).
+    /// 화면키는 `"390x844-P"` 처럼 크기와 방향을 함께 담는다.
+    /// ⚠️ 적는 쪽은 메인 앱뿐이다. 익스텐션이 적으면 자기 높이를 정답으로 삼는 고리가 생긴다.
+    ///    자세한 이유: ClipKeyboard/Service/KeyboardHeightBook.swift
+    static let systemKeyboardHeights = "systemKeyboardHeights.v1"
     static let showVisualCues = "showVisualCues"
     static let useCaseSelection = "useCaseSelection"
     static let userCategoryColorsV1 = "userCategoryColors_v1"
@@ -187,6 +222,23 @@ enum DefaultsKey {
     static let trialLastSeen = "clipkeyboard_trial_last_seen"
     static let userTimezone = "clipkeyboard_user_timezone"
     static let userCurrency = "clipkeyboard_user_currency"
+    /// `{날짜}` 를 어떤 모양으로 넣을지 (App Group - 키보드도 같은 값을 읽는다).
+    /// 값은 `DateTokenFormat.rawValue`. 없으면 `.automatic`(언어에 맞춰 고름).
+    static let templateDateFormat = "clipkeyboard_template_date_format"
+    /// `{시간}` 을 어떤 모양으로 넣을지. 값은 `TimeTokenFormat.rawValue`.
+    static let templateTimeFormat = "clipkeyboard_template_time_format"
+    /// 사용자가 직접 적어 넣은 `{날짜}` 서식들 (JSON `[String]`, ICU 패턴).
+    /// 준비된 보기로 모자란 사람이 자기 모양을 만들어 쓴다.
+    static let templateDateCustomFormats = "clipkeyboard_template_date_custom_formats"
+    /// 빈칸을 채울 때 **한 칸만 펼치고 나머지는 접을지** (App Group, 기본 켬).
+    ///
+    /// 왜 있나: 키보드는 약 290pt 다. 머리 줄과 미리보기를 빼면 182pt 가 남는데
+    /// 빈칸 한 칸이 102pt 라 1.8개밖에 안 보인다. 빈칸이 넷인 템플릿(송금 양식)은
+    /// 절반도 안 보여서 계속 굴려야 한다. 접으면 세 개가 한눈에 들어온다.
+    /// 끄면 예전처럼 전부 펼친다.
+    static let keyboardCompactPlaceholders = "clipkeyboard_keyboard_compact_placeholders"
+    /// 사용자가 직접 적어 넣은 `{시간}` 서식들 (JSON `[String]`).
+    static let templateTimeCustomFormats = "clipkeyboard_template_time_custom_formats"
 
     /// 마스터(개발자) 모드 - 설정 > 앱 정보의 버전 행 7번 탭으로 토글 (standard UD)
     static let masterModeEnabled = "masterModeEnabled"
@@ -208,7 +260,7 @@ enum DefaultsKey {
     static let aiClassificationEnabled = "aiClassificationEnabled"
     /// 붙여넣을 앱 예측 → 단축 액션 제안 토글 (App Group, 기본 ON)
     static let aiActionSuggestionsEnabled = "aiActionSuggestionsEnabled"
-    /// 기본 번역 대상 언어 (AITranslationLanguage rawValue, App Group)
+    /// 기본 번역 대상 언어 (BCP-47, `Locale.Language.minimalIdentifier`. App Group)
     static let aiTranslationTargetLang = "aiTranslationTargetLang"
 
     // MARK: - 메모 실시간 동기화 (CKSyncEngine)
@@ -292,4 +344,45 @@ enum DefaultsKey {
     /// 데모(샘플 페르소나) 데이터가 켜져 있는지 (App Group - 키보드도 같은 데이터를 본다).
     /// 켤 때 원본을 demo.backup.data로 백업하고, 끄면 복원한다. DemoDataService 참고.
     static let demoDataActive = "demoDataActive_v1"
+}
+
+// MARK: - 키보드 표시 옵션의 "아직 안 정했다"
+
+/// 사람이 아직 손대지 않은 표시 옵션을 **단축어 수를 보고** 정해 준다.
+///
+/// 왜 필요한가: '최근 사용' 줄은 찾는 시간을 없애 주는 기능인데 기본이 꺼짐이었고,
+/// 켜는 곳은 설정 > 키보드 레이아웃 > 표시 옵션, 두 단계 아래였다. 그래서 그 줄을
+/// 켜 본 사람만 이득을 봤다. 반대로 단축어가 서넛뿐인 사람에게는 그 줄이 자리만 먹는다.
+/// 둘 다 맞는 말이라 **개수로 가른다.**
+///
+/// ⚠️ 값이 **없는 것**과 **false** 는 다르다. 없으면 "아직 안 정했다", false 는
+///    "꺼 달라고 했다"이다. 한 번 손대면 그 뜻을 끝까지 지킨다. 그래서 이 판정은
+///    `bool(forKey:)` 가 아니라 `object(forKey:)` 로 시작한다.
+///    설정 화면과 키보드가 **같은 답**을 보려면 양쪽 다 여기를 거쳐야 한다.
+enum KeyboardDisplayDefaults {
+
+    /// 이 수를 넘으면 '최근 사용' 줄이 저절로 선다.
+    ///
+    /// 12는 한 화면에 들어가는 키 수(3열 x 4줄 남짓)에서 왔다. 스크롤을 해야
+    /// 보이는 것이 생기는 지점부터 "찾는 일"이 시작되기 때문이다.
+    static let recentSectionThreshold = 12
+
+    /// '최근 사용' 줄을 세울지. 사람이 정한 값이 있으면 그것, 없으면 개수로 정한다.
+    /// - Parameter memoCount: 사용자가 가진 단축어 수.
+    static func showRecentSection(memoCount: Int) -> Bool {
+        if let chosen = AppGroup.defaults?.object(forKey: DefaultsKey.keyboardShowRecent) as? Bool {
+            return chosen
+        }
+        return memoCount >= recentSectionThreshold
+    }
+
+    /// 사람이 이 옵션을 직접 정한 적이 있는지. 설정 화면의 안내 문구가 이걸 본다.
+    static var hasChosenRecentSection: Bool {
+        AppGroup.defaults?.object(forKey: DefaultsKey.keyboardShowRecent) != nil
+    }
+
+    /// 설정 화면에서 토글을 움직였을 때. 이 순간부터 개수 판정은 끝난다.
+    static func chooseRecentSection(_ on: Bool) {
+        AppGroup.defaults?.set(on, forKey: DefaultsKey.keyboardShowRecent)
+    }
 }
