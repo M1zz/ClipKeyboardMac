@@ -1,34 +1,140 @@
 # todo
 
-## App Store 스크린샷 (한국어·영어) — 2026-09-09, **진행 중**
+## App Store 스크린샷 (한국어·영어) — 2026-09-09, **완료**
 
-목표: 2880×1800 6장 × 2개 언어. 상단 카피 + 실제 앱 창.
+2880×1800 여섯 장 × 두 언어를 `appstore/{ko,en}/` 에 냈다. 만드는 법·촬영에서 걸리는
+자리·사고 경위는 전부 [`appstore/README.md`](appstore/README.md) 에 있다.
 
-### 촬영 환경 (중요 — 다시 할 때 그대로)
-- 실데이터에 주민번호·카드번호·계좌번호·여권번호·깃토큰이 있어 **그대로 찍으면 안 된다**.
-  App Group 컨테이너(`~/Library/Group Containers/group.com.Ysoup.TokenMemo`)의
-  `memos.data`·`clipboard.history.data`·`Library/Preferences/*.plist` 를 비켜두고
-  데모 데이터로 촬영한 뒤 되돌리는 방식으로 진행. **이번 회차 복구 완료 검증됨**
-  (메모 37개·클립 100개·`memoSyncEnabled=true`·`dev.masterMode=true`·이미지 399개).
-- ⚠️ `memoSyncEnabled` 가 **켜져 있다**. 빈/데모 상태로 앱을 띄우면 아이폰 데이터를
-  깎을 수 있으므로, 촬영용 컨테이너에서는 반드시 `memoSyncEnabled=false` +
-  `memoSync.cloudAdopted.v1=true`(iCloud KV 가 다시 켜는 경로 차단) 로 두고 띄울 것.
-- 클립보드 감시는 `startMonitoring()` 에서 `lastChangeCount` 를 먼저 잡으므로,
-  **앱 시작 시점의 클립보드는 히스토리에 안 들어간다.** 시드 → 실행 → 즉시 촬영이면 깨끗하다.
-  (실행 중에 사용자가 복사하면 들어오므로, 촬영본은 눈으로 확인할 것.)
-- 창 캡처는 `screencapture -x -o -l <windowID>` 로 레티나 2배 원본을 얻는다.
-  창을 key 상태(신호등 컬러)로 만들려면 제목표시줄을 한 번 클릭한 뒤 앱을 front 로.
+- [x] 데모 데이터 생성기 `scripts/make_demo_data.py` (ko/en 각 단축어 20 · 클립 9, 실정보 0건)
+- [x] 백업·차단·복구 스크립트 `scripts/shoot_prepare.py` (backup / demo / **verify** / restore)
+- [x] 합성 `appstore/build.py` (HTML → 헤드리스 Chrome, 카피는 SHOTS 한 곳)
+- [x] 한국어·영어 원본 6종: 빠른 붙여넣기 패널 / 메뉴바 팝오버 / 단축어 목록 /
+      클립보드 히스토리 / 환경설정·단축키 / iCloud 백업
+- [x] **빠른 붙여넣기 패널·메뉴바 팝오버** — 지난 회차에 못 찍었던 두 장.
+      팝오버 하단 "빠른 붙여넣기 패널" 버튼과 아이콘 우클릭 메뉴로 열면 된다.
+      (앱이 `.accessory` 라 `⌃⇧M` 류 앱 단축키는 키를 보내도 안 먹는다)
 
-### 진행 상황
-- [x] 데모 데이터 생성기 (`make_demo.py` — ko/en 각 14개 단축어 + 9개 클립, 실정보 0건)
-- [x] 촬영용 빌드 (5.0.5(21), BUILD SUCCEEDED)
-- [x] 한국어 원본 캡처 6종: 단축어 목록 / 클립보드 히스토리 / iCloud 백업 /
-      환경설정·단축키 / 환경설정·일반 / 새 단축어(템플릿 변수 하이라이트)
-- [ ] **빠른 붙여넣기 패널·메뉴바 팝오버 캡처** — 배경 제어로는 못 띄운다.
-      메뉴 항목이 클립보드를 건드려 차단되고, 전역 단축키 ⌃⇧V 는 화면 제어가 필요.
-      → 화면 제어 승인을 받아야 찍을 수 있다. 이 앱의 핵심 화면이라 빠지면 아깝다.
-- [ ] 영어 캡처 (미착수)
-- [ ] 2880×1800 합성 (카피 + 창 + 배경) — 미착수
+### ⚠️ 이 회차에 실데이터 사고가 났다 — 복구 완료
+`defaults` CLI 가 **샌드박스 앱이 읽는 plist 와 다른 파일**을 건드리는 걸 몰라
+동기화를 못 막은 채 데모 데이터로 앱을 띄웠다. `MemoSyncCore.swift:87` 의
+"shadow 에 있는데 로컬에 없으면 삭제" 규칙으로 실제 단축어 37건에 툼스톤이 생겨
+iCloud 로 올라갔다. `MemoSyncCore.merge` 의 되살리기 경로(로컬 `lastEdited` 가
+원격 툼스톤보다 최신이면 로컬이 이긴다)로 37건 전부 복구했고 아이폰도 정상 확인.
+- 대가: 그 37건의 `lastEdited` 가 2026-09-09 22:4x 로 바뀌었다(편집일 정렬이 달라진다).
+      원래 값은 `~/ClipKeyboard-실데이터-백업-20260909-204639/container/memos.data` 에 있다.
+- 재발 방지는 `shoot_prepare.py` 의 이중 방어 + `verify` 단계. 자세한 건 README.
+
+### 스크린샷에서 새로 발견한 것
+- [ ] **영어 단축키 이름의 대소문자가 섞여 있다** — 환경설정 ▸ 단축키에서
+      `Quick Paste Panel` · `iCloud Backup` · `Preferences` 는 Title Case 인데
+      `Open memo list` · `New memo` · `Clipboard history` 는 문장형이다.
+      한 표에 나란히 서 있어 눈에 띈다. 스토어 스크린샷 `en/05-shortcuts.png` 에도 그대로 찍혔다.
+
+## 메뉴바 팝오버에서 카테고리를 바꿔도 옛 항목이 남던 것 — 2026-09-09, **고침**
+
+증상: `내앱`(8개)에서 `프롬프트`(2개)로 옮기면 개수는 2개로 맞는데 내용이
+`내앱` 의 맨 위 두 줄(`무지개 공작소` · `욕망의 무지개`)이었다. 두 메모의 `category` 는
+둘 다 `내앱` 이라 `프롬프트` 탭에 나올 이유가 없었다.
+
+원인: `MenuBarPopoverView.swift` 의 행에 `.id(index)` 가 붙어 있었다.
+`ForEach` 는 `id: \.element.id` 로 메모 id 를 키로 잡는데, **`.id()` 가 그 정체성을
+위치 번호로 덮어쓴다.** 그러면 SwiftUI 에게 0·1번 행은 탭이 바뀌어도 "그대로인 같은 뷰"라,
+목록이 8개에서 2개로 줄어도 그 자리의 옛 내용이 살아남는다.
+`.id(index)` 가 있던 이유는 `ScrollViewReader` 가 `selectedIndex`(정수)로 `scrollTo` 하기
+때문 — 정체성을 `memo.id` 로 되돌리고 스크롤 목표도 같은 id 를 쓰게 했다.
+
+- [x] `.id(index)` → `.id(memo.id)`, `scrollTo` 는 `filtered[selectedIndex].id` (범위 검사 포함)
+- [x] 같은 실수 다른 데 없는지 확인 — 나머지 `id: \.offset` 은 이미지·값 배열이고
+      `.id()` 덮어쓰기가 없어 해당 없음. `MemoListView` 는 `List` + `ForEach(filteredMemos)` 라 무관.
+- [x] BUILD SUCCEEDED
+- [ ] **실제 클릭 검증 미완** — 앱이 Xcode 에서 돌고 있어 확인 못 했다. ⌘R 로 다시 띄워
+      `내앱` → `프롬프트` 를 오가 보면 된다.
+
+## 카테고리 설정이 기기 간에 쌓이기만 하던 것 — 2026-09-09, **고침**
+
+증상: 아이폰에서 탭을 **끄거나 숨김을 풀어도** 맥에는 안 넘어왔다. 켠 것·숨긴 것만
+넘어가서 기기를 오갈수록 설정이 쌓이기만 하는 래칫이었다.
+
+원인은 두 자리였다.
+- **받는 쪽** `CategorySnapshotStore.apply(.merge)` 가 `hiddenTabs` · `enabledBuiltIns` 를
+  합집합으로만 썼다.
+- **올리는 쪽** `union(local:remote:)` 이 `enabledBuiltIns` 를 합쳤다.
+  (`hiddenTabs` 는 이미 안 합치고 있었다 — 그 판단이 맞았고, 기본 제공 탭도 같은 성격이다)
+
+### 설계 — 필드마다 성격이 다르다
+| 필드 | 성격 | 올릴 때 | 받을 때 |
+|---|---|---|---|
+| `categories` | 사용자가 **만든** 목록(재고) | 합집합 | 더하기 |
+| `icons` · `colors` | 카테고리별 꾸밈 | 합집합(내 것 우선) | 더하기 |
+| `hiddenTabs` | 사용자가 **치운** 것(상태) | 내 것 그대로 | **거울** |
+| `enabledBuiltIns` | 사용자가 **켠** 탭(상태) | 내 것 그대로 | **거울** |
+| `featureEnabled` | 기능 스위치 | OR | OR |
+
+재고는 쌓고, **상태는 마지막에 동기화한 기기가 정하고 모두가 그리로 수렴**한다.
+
+⚠️ `.merge` 의 뜻을 바꾸지 않았다. 가져오기(`CloudBackupView` 의 파일 가져오기)도
+`.merge` 를 쓰는데, 거기서 거울로 동작하면 **파일 하나 가져왔다고 숨김 설정이 덮인다.**
+그래서 동기화 전용으로 `.sync` 를 새로 두고 동기화 경로만 그걸 쓴다.
+
+- [x] iOS: `MergeStrategy` 에 `.sync` 추가, `apply` 가 `.sync` 일 때만 두 필드를 비춤
+- [x] iOS: `union` 이 `enabledBuiltIns` 를 합치지 않도록
+- [x] iOS: `MemoSyncEngine` 의 적용을 `.merge` → `.sync`
+- [x] iOS 테스트 5개 추가 → **41개 전부 통과 (실패 0)**
+      (`testSyncMirrorsHiddenTabs` · `testSyncMirrorsEnabledBuiltIns` ·
+       `testSyncStillKeepsLocalOnlyCategories` · `testMergeStillUnionsHiddenTabs` ·
+       `test_기본제공_탭은_합치지_않는다`)
+- [x] 맥으로 이식: `Shared/CategorySnapshot.swift` 는 iOS 원본 그대로 복사(맥 전용 분기 없음).
+      `MemoSyncEngine` 은 **통째 복사 금지** — 맥 전용 `#if os(macOS)` 권한 우회(빌드 21의
+      리젝 대응)가 날아간다. `makeCategoryRecord` 의 union 블록과 `.sync` 두 자리만 이식.
+- [x] 맥 BUILD SUCCEEDED / Pro 게이트 우회 보존 확인
+- [x] 드리프트 12건 → **11건** (`CategorySnapshot.swift` 일치). 남은 `MemoSyncEngine.swift`
+      드리프트는 **의도된 것**이다 — 위 맥 전용 분기.
+- [ ] 실제 기기 간 확인: 아이폰에서 탭을 껐다 켰다 해 보고 맥이 따라오는지.
+      ⚠️ 처음 한 번은 **양쪽 다 새 빌드**여야 한다. 옛 빌드는 `.sync` 를 모른다.
+
+### 남은 드리프트 11건 (이번 작업과 무관한 기존 상태)
+9건은 "iOS 원본 없음" — `shared_files.sh` 의 iOS 경로가 실제와 어긋나 있다
+(`ClipKeyboard/AppGroup.swift` 등). 경로를 실제에 맞춰 고쳐야 검사가 의미를 갖는다.
+- [ ] `scripts/shared_files.sh` 의 iOS 경로 9건 정정
+
+## iCloud 복구 버튼이 항상 실패하던 것 — 2026-09-09, **고침**
+
+증상: "복구하기"를 누르면 `작업을 완료할 수 없습니다.(ClipKeyboard_tap.CloudKitError 오류 1.)`
+버그 두 개가 겹쳐 있었다.
+
+### 1) 복구 버튼은 단축어가 하나라도 있으면 성공할 수 없었다
+`restoreData(forceOverwrite:)` 는 로컬에 데이터가 있으면
+`restoreFailed(NSError(code: -2, "…계속하시겠습니까?"))` 를 던졌다. **이건 실패가 아니라
+물음**이고, 부르는 쪽이 확인을 받아 `forceOverwrite: true` 로 다시 부르라는 뜻이었다.
+그런데 `CloudBackupView.performRestore()` 는 그냥 "복구 실패"로 찍고 끝냈다.
+→ `restoreWouldReplaceData(localCount:)` 케이스를 새로 두고(이미 있던
+`backupWouldReduceData` 와 같은 결), `performRestore(overwrite:)` 가 그걸 잡아
+확인 창을 띄운 뒤 `forceOverwrite: true` 로 다시 부른다.
+(스냅샷 "되돌리기"와 자동 복원은 원래 `true` 를 넘겨서 멀쩡했다 — 큰 버튼 하나만 망가져 있었다)
+
+### 2) 공들여 쓴 오류 문구 7개가 화면에 안 나왔다
+`CloudKitError` 가 `Error` 만 채택하고 `localizedDescription` 을 **그냥 새 프로퍼티로**
+정의했다. 그건 Foundation 의 `Error.localizedDescription` 을 덮지 못한다. 정적 타입이
+`Error` 인 `catch` 에서는 Foundation 쪽이 잡혀 NSError 로 브리지되고, 화면엔
+"작업을 완료할 수 없습니다. (오류 N.)" 만 떴다.
+→ `LocalizedError` 채택 + `errorDescription` 으로 바꿨다. 백업 경로는
+`catch let error as CloudKitError` 라 우연히 멀쩡했고, 복구·되돌리기·내보내기만 깨져 있었다.
+
+⚠️ `오류 1` 은 `restoreFailed` 다. Swift 는 **페이로드 있는 케이스를 앞에** 두므로
+선언 순서와 다르다: 0 backupFailed · 1 restoreFailed · 2 backupWouldReduceData ·
+3 notAuthenticated · 4 noBackupFound · 5 encodingFailed · 6 decodingFailed.
+
+- [x] `CloudKitError: LocalizedError` + `errorDescription`
+- [x] `restoreWouldReplaceData(localCount:)` 추가, 확인 창 → 재호출
+- [x] 새 문구 3개를 4개 언어에 등재, 안 쓰게 된 옛 문구 1개 삭제 (245개)
+- [x] BUILD SUCCEEDED / 컴파일된 4개 언어 각 244개
+- [ ] **아직 실제 클릭 검증은 안 했다.** 앱이 Xcode 에서 돌고 있어 이전 빌드였다.
+      Xcode 에서 다시 실행(⌘R)한 뒤 "복구하기" → 확인 창이 뜨는지 볼 것.
+
+### 곁가지로 남은 의문
+- [ ] iCloud 백업 화면의 "마지막 백업: 2개월 19일 전"(`lastBackupDate` = 2026-06-21)과
+      아래 스냅샷 목록의 8월 30일이 어긋난다. 표시 버그인지 자동 백업이 6월 이후
+      안 도는 것인지 확인 필요.
 
 ## App Store 문안 결함 2건 — 스크린샷 작업 중 발견 (2026-09-09)
 
