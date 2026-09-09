@@ -17,7 +17,13 @@ enum BackupOutcome {
     case skippedToProtectExisting(existing: Int, new: Int)
 }
 
-enum CloudKitError: Error {
+/// ⚠️ `LocalizedError` 여야 한다. 예전엔 `Error` 만 채택하고 `localizedDescription` 을
+///    **그냥 새 프로퍼티로** 정의했는데, 그건 Foundation 의 `Error.localizedDescription`
+///    을 덮지 못한다. `catch { ... error.localizedDescription }` 처럼 정적 타입이
+///    `Error` 인 자리에서는 Foundation 쪽이 잡혀 NSError 로 브리지되고, 화면에는
+///    "작업을 완료할 수 없습니다. (CloudKitError 오류 1.)" 만 떴다 — 아래 문구들이
+///    통째로 사라진 것이다. `errorDescription` 으로 두면 두 경로 모두 이 글을 쓴다.
+enum CloudKitError: LocalizedError {
     case notAuthenticated
     case backupFailed(Error)
     case restoreFailed(Error)
@@ -26,8 +32,11 @@ enum CloudKitError: Error {
     case decodingFailed
     /// 수동 백업이 기존 백업을 대폭 축소하려 할 때 - 사용자 동의를 받기 위해 던진다.
     case backupWouldReduceData(existing: Int, new: Int)
+    /// 복구가 이 기기의 단축어를 덮어쓰게 될 때 - 사용자 동의를 받기 위해 던진다.
+    /// (`backupWouldReduceData` 와 같은 결의 "실패가 아니라 물음"이다)
+    case restoreWouldReplaceData(localCount: Int)
 
-    var localizedDescription: String {
+    var errorDescription: String? {
         switch self {
         case .notAuthenticated:
             return NSLocalizedString("iCloud에 로그인되어 있지 않습니다. 설정 > [사용자 이름] > iCloud에서 로그인해주세요.",
@@ -47,6 +56,8 @@ enum CloudKitError: Error {
                                    comment: "Data decoding failed error message")
         case .backupWouldReduceData(let existing, let new):
             return String(format: NSLocalizedString("기존 백업(단축어 %1$d개)을 %2$d개로 덮어쓰려고 합니다. 줄어든 데이터는 백업에서 사라집니다.", comment: "Backup would reduce data warning"), existing, new)
+        case .restoreWouldReplaceData(let localCount):
+            return String(format: NSLocalizedString("이 기기에 단축어 %d개가 있습니다. 복구하면 지금의 단축어가 백업 시점의 것으로 모두 교체됩니다.", comment: "Restore would replace local data warning"), localCount)
         }
     }
 
@@ -729,16 +740,15 @@ class CloudKitBackupService: ObservableObject {
 
         try await ensureAuthenticated()
 
+        // ⚠️ 이건 실패가 아니라 **물음**이다. 부르는 쪽이 잡아서 사용자에게 확인을 받고
+        //    `forceOverwrite: true` 로 다시 부른다(`backupWouldReduceData` 와 같은 결).
+        //    예전엔 `restoreFailed(NSError(code: -2))` 로 던져서, 부르는 쪽이 그냥
+        //    "복구 실패"로 표시하고 끝냈다 — 단축어가 하나라도 있으면 복구 버튼이
+        //    **영영 성공할 수 없었다.**
         if !forceOverwrite && hasLocalData() {
-            print("⚠️ [CloudKit] 기존 데이터 존재 - 사용자 확인 필요")
-            throw CloudKitError.restoreFailed(
-                NSError(domain: "CloudKitBackup", code: -2, userInfo: [
-                    NSLocalizedDescriptionKey: NSLocalizedString(
-                        "기존 데이터가 있습니다. 복원하면 현재 데이터가 모두 삭제됩니다. 계속하시겠습니까?",
-                        comment: "Restore confirmation message"
-                    )
-                ])
-            )
+            let localCount = (try? MemoStore.shared.load(type: .memo).count) ?? 0
+            print("⚠️ [CloudKit] 기존 데이터 \(localCount)개 존재 - 사용자 확인 필요")
+            throw CloudKitError.restoreWouldReplaceData(localCount: localCount)
         }
 
         await MainActor.run { isRestoring = true }

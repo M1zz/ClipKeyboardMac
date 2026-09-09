@@ -2560,35 +2560,6 @@
         }
       }
     },
-    "기존 데이터가 있습니다. 복원하면 현재 데이터가 모두 삭제됩니다. 계속하시겠습니까?" : {
-      "comment" : "Restore confirmation message",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You already have data. Restoring will delete all current data. Continue?"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기존 데이터가 있습니다. 복원하면 현재 데이터가 모두 삭제됩니다. 계속하시겠습니까?"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已有数据。恢复会删除当前所有数据，是否继续？"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已有資料。回復會刪除目前所有資料，是否繼續？"
-          }
-        }
-      }
-    },
     "기존 백업(단축어 %1$d개)을 %2$d개로 덮어쓰려고 합니다. 줄어든 데이터는 백업에서 사라집니다." : {
       "comment" : "Backup would reduce data warning",
       "localizations" : {
@@ -4068,6 +4039,35 @@
         }
       }
     },
+    "복구" : {
+      "comment" : "Restore button (confirm)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복구"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復"
+          }
+        }
+      }
+    },
     "복구 실패" : {
       "comment" : "Restore failed",
       "localizations" : {
@@ -5170,6 +5170,35 @@
         }
       }
     },
+    "이 기기에 단축어 %d개가 있습니다. 복구하면 지금의 단축어가 백업 시점의 것으로 모두 교체됩니다." : {
+      "comment" : "Restore would replace local data warning",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This Mac has %d shortcuts. Restoring replaces all of them with the ones from the backup."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 기기에 단축어 %d개가 있습니다. 복구하면 지금의 단축어가 백업 시점의 것으로 모두 교체됩니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此设备上有 %d 个快捷词。恢复后，当前的快捷词将全部替换为备份时的内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此裝置上有 %d 個快捷詞。回復後，目前的快捷詞將全部取代為備份時的內容。"
+          }
+        }
+      }
+    },
     "이 기기의 단축어가 %2$d개뿐이라 %1$d개짜리 기존 백업을 덮어쓰지 않았습니다." : {
       "comment" : "Backup skipped body",
       "localizations" : {
@@ -6239,6 +6268,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "維持現狀"
+          }
+        }
+      }
+    },
+    "지금의 단축어를 교체할까요?" : {
+      "comment" : "Restore overwrite confirm title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace your current shortcuts?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금의 단축어를 교체할까요?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要替换当前的快捷词吗？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要取代目前的快捷詞嗎？"
           }
         }
       }
