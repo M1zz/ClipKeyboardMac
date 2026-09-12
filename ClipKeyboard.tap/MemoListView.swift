@@ -284,7 +284,7 @@ struct MemoListView: View {
             MacSecureAccess.resolveForPaste(memo) { resolved in
                 if let resolved { copyToClipboard(resolved) }
             }
-        } else if memo.isCombo && !memo.comboValues.isEmpty {
+        } else if memo.isStack && !memo.stackValues.isEmpty {
             // 여러 값(콤보) — 값 하나를 골라 복사하는 시트.
             comboPickMemo = memo
         } else if memo.hasCustomPlaceholders {
@@ -376,7 +376,7 @@ private struct MacComboValuePicker: View {
     @Environment(\.dismiss) private var dismiss
 
     private var values: [String] {
-        memo.comboValues.isEmpty ? [memo.value] : memo.comboValues
+        memo.stackValues.isEmpty ? [memo.value] : memo.stackValues
     }
 
     var body: some View {

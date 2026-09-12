@@ -226,12 +226,12 @@ struct Memo: Identifiable, Codable {
 
     // iOS 필드 (round-trip 손실 방지용)
     var lastUsedAt: Date?
-    var isCombo: Bool = false
-    var comboValues: [String] = []
+    var isStack: Bool = false
+    var stackValues: [String] = []
     var currentComboIndex: Int = 0
     /// 콤보 = 자식 메모 참조(순서 있음). iOS와 round-trip 포맷 일치.
     var childMemoIds: [UUID] = []
-    var comboInterval: TimeInterval = 2.0
+    var stackInterval: TimeInterval = 2.0
     /// 스택의 칸들(이름 + 값). 아이폰이 적고 맥은 읽어서 보여 주기만 한다.
     /// **가지고 있지 않으면 맥이 저장할 때마다 이름이 지워진다**(`StackItem` 머리말).
     var stackItems: [StackItem] = []
@@ -297,8 +297,15 @@ struct Memo: Identifiable, Codable {
         case id, title, value, isChecked
         case lastEdited, isFavorite, clipCount
         case category, isSecure, isTemplate, templateVariables, shortcut, placeholderValues
-        case lastUsedAt, isCombo, comboValues, currentComboIndex, autoDetectedType
-        case childMemoIds, comboInterval, stackItems
+        // ⚠️ 파일에 적히는 글자는 옛 이름 그대로다. 코드 이름만 iOS 와 맞춘다.
+        //    글자를 바꾸면 쓰던 사람의 memos.data 와 아이폰이 쓴 것을 못 읽는다.
+        case lastUsedAt
+        case isStack = "isCombo"
+        case stackValues = "comboValues"
+        case currentComboIndex, autoDetectedType
+        case childMemoIds
+        case stackInterval = "comboInterval"
+        case stackItems
         case imageFileName, imageFileNames, contentType
         case hint, hintShownOnKeyboard
     }
@@ -322,17 +329,17 @@ struct Memo: Identifiable, Codable {
         self.shortcut = try c.decodeIfPresent(String.self, forKey: .shortcut)
         self.placeholderValues = try c.decodeIfPresent([String: [String]].self, forKey: .placeholderValues) ?? [:]
         self.lastUsedAt = try c.decodeIfPresent(Date.self, forKey: .lastUsedAt)
-        self.isCombo = try c.decodeIfPresent(Bool.self, forKey: .isCombo) ?? false
-        self.comboValues = try c.decodeIfPresent([String].self, forKey: .comboValues) ?? []
+        self.isStack = try c.decodeIfPresent(Bool.self, forKey: .isStack) ?? false
+        self.stackValues = try c.decodeIfPresent([String].self, forKey: .stackValues) ?? []
         self.currentComboIndex = try c.decodeIfPresent(Int.self, forKey: .currentComboIndex) ?? 0
         self.childMemoIds = try c.decodeIfPresent([UUID].self, forKey: .childMemoIds) ?? []
-        self.comboInterval = try c.decodeIfPresent(TimeInterval.self, forKey: .comboInterval) ?? 2.0
+        self.stackInterval = try c.decodeIfPresent(TimeInterval.self, forKey: .stackInterval) ?? 2.0
         // 새 키가 있으면 그것이 진짜다. 없으면 값만 있던 옛 콤보를 그 자리에서 칸으로 옮긴다
         // (아이폰과 같은 규칙). 이름은 비워 두고, 부를 때만 자리로 부른다.
         if let items = try c.decodeIfPresent([StackItem].self, forKey: .stackItems), !items.isEmpty {
             self.stackItems = items
         } else {
-            self.stackItems = (try c.decodeIfPresent([String].self, forKey: .comboValues) ?? [])
+            self.stackItems = (try c.decodeIfPresent([String].self, forKey: .stackValues) ?? [])
                 .map { StackItem(value: $0) }
         }
         self.autoDetectedType = try c.decodeIfPresent(ClipboardItemType.self, forKey: .autoDetectedType)

@@ -330,7 +330,7 @@ enum DefaultsKey {
     /// 준비된 템플릿을 한 번 써 봤는지.
     static let tutorialTemplateDone = "tutorial.template.done.v1"
     /// 준비된 콤보를 한 번 써 봤는지.
-    static let tutorialComboDone = "tutorial.combo.done.v1"
+    static let tutorialStackDone = "tutorial.combo.done.v1"
     /// 키보드 크기를 한 번 정해 봤는지(또는 그대로 두기를 골랐는지).
     ///
     /// ⚠️ 왜 튜토리얼에 이 장이 있나: 크기 설정은 설정 세 단계 안쪽에 있어서
@@ -343,7 +343,7 @@ enum DefaultsKey {
     /// ⚠️ 저장해 두어야 한다. 콤보 장은 다섯 걸음이라 그 중간에 앱을 끄는 일이 실제로 생기는데,
     ///    기억해 두지 않으면 다시 열었을 때 가리키는 키는 그대로인데 걸음만 사라져
     ///    **눌러도 아무 일이 안 일어나는 화면**이 된다.
-    static let tutorialComboStep = "tutorial.combo.step.v1"
+    static let tutorialStackStep = "tutorial.combo.step.v1"
     /// 목록과 키보드를 오가는 법을 한 번 알려 줬는지.
     ///
     /// ⚠️ 이 앱의 단축어 탭은 **화면이 둘**(목록 · 키보드 무대)인데, 그걸 아무도 안 알려 줬다.
