@@ -2821,31 +2821,31 @@
         }
       }
     },
-    "단축어 %1$d개 추가, %2$d개 갱신 (총 %3$d개).\n콤보 %4$d개, 이미지 %5$d개를 가져왔습니다." : {
+    "단축어 %1$d개 추가, %2$d개 갱신 (총 %3$d개).\n스택 %4$d개, 이미지 %5$d개를 가져왔습니다." : {
       "comment" : "Import summary message",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Added %1$d snippets, updated %2$d (total %3$d).\nImported %4$d combos and %5$d images."
+            "value" : "Added %1$d snippets, updated %2$d (total %3$d).\nImported %4$d stacks and %5$d images."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "단축어 %1$d개 추가, %2$d개 갱신 (총 %3$d개).\n콤보 %4$d개, 이미지 %5$d개를 가져왔습니다."
+            "value" : "단축어 %1$d개 추가, %2$d개 갱신 (총 %3$d개).\n스택 %4$d개, 이미지 %5$d개를 가져왔습니다."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已新增 %1$d 条短语，更新 %2$d 条（共 %3$d 条）。\n已导入 %4$d 个组合和 %5$d 张图片。"
+            "value" : "已新增 %1$d 条短语，更新 %2$d 条（共 %3$d 条）。\n已导入 %4$d 个短语堆和 %5$d 张图片。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已新增 %1$d 條短語，更新 %2$d 條（共 %3$d 條）。\n已匯入 %4$d 個組合和 %5$d 張圖片。"
+            "value" : "已新增 %1$d 條短語，更新 %2$d 條（共 %3$d 條）。\n已匯入 %4$d 個短語堆和 %5$d 張圖片。"
           }
         }
       }
@@ -6504,31 +6504,31 @@
         }
       }
     },
-    "콤보" : {
+    "스택" : {
       "comment" : "Built-in category: combos only\nVoiceOver: combo badge",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Combo"
+            "value" : "Stack"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "콤보"
+            "value" : "스택"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "组合"
+            "value" : "短语堆"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "組合"
+            "value" : "短語堆"
           }
         }
       }

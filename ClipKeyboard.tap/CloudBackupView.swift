@@ -510,7 +510,7 @@ struct ImportSummary {
     var images: Int
 
     var localizedDescription: String {
-        String(format: NSLocalizedString("단축어 %1$d개 추가, %2$d개 갱신 (총 %3$d개).\n콤보 %4$d개, 이미지 %5$d개를 가져왔습니다.", comment: "Import summary message"),
+        String(format: NSLocalizedString("단축어 %1$d개 추가, %2$d개 갱신 (총 %3$d개).\n스택 %4$d개, 이미지 %5$d개를 가져왔습니다.", comment: "Import summary message"),
                addedMemos, updatedMemos, totalMemos, addedCombos, images)
     }
 }

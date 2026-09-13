@@ -19,7 +19,7 @@ extension Memo {
             parts.append(NSLocalizedString("이미지 단축어", comment: "VoiceOver: image memo badge"))
         }
         if isTemplate { parts.append(NSLocalizedString("템플릿", comment: "VoiceOver: template badge")) }
-        if isStack { parts.append(NSLocalizedString("콤보", comment: "VoiceOver: combo badge")) }
+        if isStack { parts.append(NSLocalizedString("스택", comment: "VoiceOver: combo badge")) }
         return parts.joined(separator: ", ")
     }
 }

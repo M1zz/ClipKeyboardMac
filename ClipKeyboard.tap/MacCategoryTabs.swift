@@ -31,7 +31,7 @@ enum BuiltInCategory: String, CaseIterable, Hashable {
         case .templates: return NSLocalizedString("템플릿", comment: "Built-in category: templates only")
         case .textMemos: return NSLocalizedString("단축어+템플릿", comment: "Built-in category: text memos and templates")
         case .images:    return NSLocalizedString("이미지 단축어", comment: "Built-in category: image memos only")
-        case .combos:    return NSLocalizedString("콤보", comment: "Built-in category: combos only")
+        case .combos:    return NSLocalizedString("스택", comment: "Built-in category: combos only")
         }
     }
 
