@@ -367,6 +367,27 @@ struct CloudBackupView: View {
         showAlert = true
     }
 
+    @MainActor
+    private func showRestoreFailure(_ message: String) {
+        alertTitle = NSLocalizedString("복구 실패", comment: "Restore failed")
+        alertMessage = message
+        showAlert = true
+    }
+
+    /// 덮어쓰기 동의 창. "복구"면 overwrite=true 로 다시 부른다.
+    @MainActor
+    private func confirmReplacingLocalData(message: String) {
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("지금의 단축어를 교체할까요?", comment: "Restore overwrite confirm title")
+        alert.informativeText = message
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: NSLocalizedString("복구", comment: "Restore button (confirm)"))
+        alert.addButton(withTitle: NSLocalizedString("취소", comment: "Cancel button"))
+        if alert.runModal() == .alertFirstButtonReturn {
+            performRestore(overwrite: true)
+        }
+    }
+
     /// 축소 백업 동의 창. "계속"이면 allowReduce=true 로 다시 부른다.
     @MainActor
     private func confirmReducingBackup(message: String) {
@@ -381,21 +402,26 @@ struct CloudBackupView: View {
         }
     }
 
-    private func performRestore() {
+    /// - Parameter overwrite: 덮어쓰기 확인에 사용자가 "복구"를 눌러 다시 부를 때 true.
+    private func performRestore(overwrite: Bool = false) {
         Task {
             do {
-                try await cloudService.restoreData()
+                try await cloudService.restoreData(forceOverwrite: overwrite)
                 await MainActor.run {
                     alertTitle = NSLocalizedString("복구 완료", comment: "Restore completed")
                     alertMessage = NSLocalizedString("백업 데이터가 성공적으로 복구되었습니다.", comment: "Backup data successfully restored")
                     showAlert = true
                 }
-            } catch {
-                await MainActor.run {
-                    alertTitle = NSLocalizedString("복구 실패", comment: "Restore failed")
-                    alertMessage = error.localizedDescription
-                    showAlert = true
+            } catch let error as CloudKitError {
+                // 이 기기의 단축어를 덮어쓰는 복구는 묻고 나서 한다 - 조용히 덮으면
+                // 백업 시점 이후에 만든 단축어가 말 없이 사라진다.
+                if case .restoreWouldReplaceData = error {
+                    await MainActor.run { confirmReplacingLocalData(message: error.localizedDescription) }
+                } else {
+                    await MainActor.run { showRestoreFailure(error.localizedDescription) }
                 }
+            } catch {
+                await MainActor.run { showRestoreFailure(error.localizedDescription) }
             }
         }
     }

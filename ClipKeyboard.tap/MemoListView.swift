@@ -284,7 +284,7 @@ struct MemoListView: View {
             MacSecureAccess.resolveForPaste(memo) { resolved in
                 if let resolved { copyToClipboard(resolved) }
             }
-        } else if memo.isCombo && !memo.comboValues.isEmpty {
+        } else if memo.isStack && !memo.stackValues.isEmpty {
             // 여러 값(콤보) — 값 하나를 골라 복사하는 시트.
             comboPickMemo = memo
         } else if memo.hasCustomPlaceholders {
@@ -376,7 +376,7 @@ private struct MacComboValuePicker: View {
     @Environment(\.dismiss) private var dismiss
 
     private var values: [String] {
-        memo.comboValues.isEmpty ? [memo.value] : memo.comboValues
+        memo.stackValues.isEmpty ? [memo.value] : memo.stackValues
     }
 
     var body: some View {
@@ -397,15 +397,24 @@ private struct MacComboValuePicker: View {
                             onPick(value)
                             dismiss()
                         } label: {
+                            // 칸 **이름**을 값 위에 세운다. 번호만 있을 때는 무엇을 고르는지
+                            // 값을 읽어야 알 수 있었는데, 값이 길거나 비슷하면 그게 잘 안 된다.
+                            // 이름은 아이폰에서 짓고(`StackItem.key`), 안 지었으면 자리로 부른다.
                             HStack(spacing: MacSpacing.md) {
                                 Text("\(idx + 1)")
                                     .font(MacFont.mono)
                                     .foregroundStyle(.secondary)
                                     .frame(width: 20, alignment: .trailing)
-                                Text(value.isEmpty ? "—" : value)
-                                    .font(MacFont.body)
-                                    .lineLimit(2)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(memo.displayKey(at: idx))
+                                        .font(MacFont.secondary)
+                                        .foregroundStyle(.secondary)
+                                        .lineLimit(1)
+                                    Text(value.isEmpty ? "-" : value)
+                                        .font(MacFont.body)
+                                        .lineLimit(2)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
                                 Image(systemName: "doc.on.doc")
                                     .foregroundStyle(.secondary)
                             }

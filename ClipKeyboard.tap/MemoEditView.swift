@@ -138,7 +138,7 @@ struct MemoEditView: View {
                     .foregroundStyle(.secondary)
             }
 
-            if memo.isCombo && !memo.comboValues.isEmpty {
+            if memo.isStack && !memo.stackValues.isEmpty {
                 noticeRow(symbol: "square.stack",
                           text: NSLocalizedString("여러 값이 담긴 단축어입니다. 값 목록은 아이폰에서 바꿀 수 있어요.",
                                                   comment: "Combo memo edit notice"))

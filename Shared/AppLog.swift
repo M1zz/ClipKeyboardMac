@@ -59,3 +59,30 @@ enum AppLog {
         logger(category).error("\(message, privacy: .public)")
     }
 }
+
+// MARK: - Release 에서 사라지는 print
+
+/// 모듈 안의 `print` 를 가로채는 셤.
+///
+/// 왜 필요한가: 이 저장소에는 `print` 가 400개 넘게 있고 전부 릴리즈 빌드에 그대로
+/// 실려 나갔다. `print` 는 stdout 으로 쓰는 **동기 호출**이라, 부르는 자리가
+/// 메인 스레드면 그만큼 메인 스레드가 멈춘다. 특히 `applyFilters()` 는 한 번에
+/// 네 줄을 찍는데 검색어를 칠 때마다 불리고, 키보드 익스텐션에도 49개가 있다.
+/// 익스텐션은 시간·메모리 제약이 가장 빡빡한 곳이다.
+///
+/// 왜 이 방식인가: 모듈 최상위에 같은 이름·같은 시그니처로 선언하면 `Swift.print`
+/// 대신 이것이 잡힌다. 호출부 400여 곳을 건드리지 않아도 되고, 새로 쓰는 `print`
+/// 도 저절로 걸린다. `AppLog.swift` 는 앱과 키보드 익스텐션 **두 타겟 모두**에
+/// 들어 있으므로 한 벌로 양쪽이 덮인다.
+///
+/// ⚠️ 인자 **식** 자체는 릴리즈에서도 계산된다(가변 인자라 `@autoclosure` 를 못 쓴다).
+///    문자열 보간이 무거운 자리라면 `#if DEBUG` 로 직접 감쌀 것.
+///
+/// ⚠️ 사용자 기기에 남겨야 하는 기록은 `print` 가 아니라 `AppLog.error` 로 남긴다.
+///    릴리즈에서 `print` 는 아무 데도 안 남는다.
+@inlinable
+func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    #if DEBUG
+    Swift.print(items.map { "\($0)" }.joined(separator: separator), terminator: terminator)
+    #endif
+}

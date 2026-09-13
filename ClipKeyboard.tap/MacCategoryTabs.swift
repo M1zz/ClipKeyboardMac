@@ -58,11 +58,11 @@ enum BuiltInCategory: String, CaseIterable, Hashable {
     func matches(_ memo: Memo) -> Bool {
         switch self {
         case .templates: return memo.isTemplate
-        case .textMemos: return !memo.isCombo
+        case .textMemos: return !memo.isStack
                               && memo.contentType != .image
                               && memo.contentType != .mixed
         case .images:    return memo.contentType == .image || memo.contentType == .mixed
-        case .combos:    return memo.isCombo
+        case .combos:    return memo.isStack
         }
     }
 }

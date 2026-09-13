@@ -243,7 +243,12 @@ struct MenuBarPopoverView: View {
                             viewModel.selectedIndex = index
                             activateSelected()
                         }
-                        .id(index)
+                        // ⚠️ 여기에 `.id(index)` 를 두면 안 된다. `.id()` 는 행의 정체성을
+                        //    **위치 번호로 덮어쓴다.** 그러면 탭을 바꿔 목록이 8개에서 2개로
+                        //    줄어도 SwiftUI 에게 0·1번 행은 "그대로인 같은 뷰"라, 이전 탭의
+                        //    맨 위 두 줄이 그 자리에 그대로 남았다(개수만 맞고 내용이 옛것).
+                        //    ForEach 가 이미 메모 id 로 키를 잡으므로 여기도 같은 id 를 쓴다.
+                        .id(memo.id)
                         .contextMenu {
                             Button(NSLocalizedString("Copy", comment: "Popover context: copy")) {
                                 copyMemo(memo)
@@ -264,9 +269,13 @@ struct MenuBarPopoverView: View {
                 }
                 .padding(.vertical, 4)
             }
+            // 행의 정체성이 메모 id 이므로 스크롤 목표도 같은 id 여야 한다.
+            // (선택은 위치로 움직이지만 — ↑↓·⌘1~9 — 스크롤은 그 위치의 메모를 가리킨다)
             .onChange(of: viewModel.selectedIndex) { newValue in
+                let items = viewModel.filtered
+                guard items.indices.contains(newValue) else { return }
                 withAnimation(.linear(duration: 0.08)) {
-                    proxy.scrollTo(newValue, anchor: .center)
+                    proxy.scrollTo(items[newValue].id, anchor: .center)
                 }
             }
         }
