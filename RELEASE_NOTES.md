@@ -7,7 +7,50 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 3~5줄, 한 줄 40자 이내. 내부 리팩터링·빌드 설정·의존성은 쓰지 않고
 사용자에게 무엇이 좋아졌는지만 쓴다. 언어마다 따로 쓰되 항목 수와 순서는 맞춘다.
 
-확인: `DeployBar --reponotes 탭클립키보드 5.1.0`
+확인: `DeployBar --reponotes 탭클립키보드 5.1.3`
+
+## 5.1.3
+
+### 앱스토어 (한국어)
+
+즐겨찾기를 눌러도 단축어가 제자리에 남습니다.
+비어 있는 기본과 즐겨찾기 탭은 보이지 않습니다.
+탭 구성이 아이폰과 똑같아졌습니다.
+새 앱 아이콘으로 바뀌었습니다.
+
+### App Store (English)
+
+Starring a snippet no longer moves it.
+Empty General and Favorites tabs hide.
+Tabs now match your iPhone exactly.
+A fresh new app icon.
+
+### 앱스토어 (중국어 간체)
+
+收藏短语后，它会留在原来的位置。
+空的基本和收藏标签不再显示。
+标签的排列和 iPhone 完全一致。
+换上了全新的应用图标。
+
+### 앱스토어 (중국어 번체)
+
+收藏短語後，它會留在原來的位置。
+空的基本和收藏標籤不再顯示。
+標籤的排列和 iPhone 完全一致。
+換上了全新的 App 圖示。
+
+### 개발 메모 (스토어에 올리지 않음)
+
+5.1.3(27) 에 담긴 것:
+
+- 아이폰 b0e028c 를 옮겼다. 별표는 단축어를 기본 칸에서 빼내지 않는다(겹쳐 보기).
+  `CategoryBucketRule` 을 iOS 원본으로 다시 복사했다.
+- 즐겨찾기 탭은 별이 있을 때만, 기본 탭은 받은 것이 있을 때만 선다. 기본은 다른 탭이
+  없으면 비어도 선다. 세는 수는 검색을 거치지 않은 전체(`MacCategoryTabs.phoneTabs`).
+- 앱 아이콘을 Icon Composer 파일(`ClipKeyboard.tap/AppIcon.icon`)로 바꾸고
+  `AppIcon.appiconset` 을 지웠다. 아이폰과 같은 원본이다.
+- `Shared/DefaultsKey.swift` 를 iOS HEAD 와 맞췄다. 아이폰 워킹트리에 커밋 안 된 키가
+  더 있어 그쪽이 커밋되면 `sh scripts/sync_shared.sh` 를 한 번 더 돌려야 한다.
 
 ## 5.1.2
 
