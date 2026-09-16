@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13D9AF3ED9CC12AB3FE8A3C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BCD3CBE05A8FAAF56059A6A /* Assets.xcassets */; };
+		AC0120000000000000000002 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = AC0120000000000000000001 /* AppIcon.icon */; };
 		17DC93EED0FD5E5F5FEE0B22 /* StorageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5824F38E3712AFC7E28C423C /* StorageFile.swift */; };
 		185C80050E84B056C3FA1EDC /* SecureMemoCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7F6E7609585B2B09E8030 /* SecureMemoCrypto.swift */; };
 		269EE510A9E7D507D7153DC5 /* AppSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019C6320E48AC18494616D45 /* AppSymbol.swift */; };
@@ -62,6 +63,7 @@
 		0AA5714C70ED8DA974885E26 /* Version.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		1693B0D87C921C0A31612F63 /* CloudKitBackupService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudKitBackupService.swift; sourceTree = "<group>"; };
 		18105C29D13C26218DF64528 /* CloudBackupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudBackupView.swift; sourceTree = "<group>"; };
+		AC0120000000000000000001 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		1BCD3CBE05A8FAAF56059A6A /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28BD1F084A2AED7850F8CDF5 /* ClipKeyboard.tap.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = ClipKeyboard.tap.entitlements; sourceTree = "<group>"; };
 		2C55EFED8CEE7715CF8F3688 /* AppGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				D6E417E7EB435189A393C2C0 /* OnboardingView.swift */,
 				07D7F6E7609585B2B09E8030 /* SecureMemoCrypto.swift */,
 				CF7F8F61DA1F45856006E0D6 /* WindowManager.swift */,
+				AC0120000000000000000001 /* AppIcon.icon */,
 				1BCD3CBE05A8FAAF56059A6A /* Assets.xcassets */,
 				87D1CE6CB6C35EE73A1D01D6 /* InfoPlist.strings */,
 				28BD1F084A2AED7850F8CDF5 /* ClipKeyboard.tap.entitlements */,
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13D9AF3ED9CC12AB3FE8A3C5 /* Assets.xcassets in Resources */,
+				AC0120000000000000000002 /* AppIcon.icon in Resources */,
 				DF31A3D6B52A5BE814942C51 /* InfoPlist.strings in Resources */,
 				C572F383D90B7F7D7BF3ED50 /* Localizable.xcstrings in Resources */,
 			);
