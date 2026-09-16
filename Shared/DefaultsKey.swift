@@ -153,6 +153,15 @@ enum DefaultsKey {
     /// 첫 흐름에서 **키보드 켜기 안내까지** 지나왔는가(끝냈든 건너뛰었든).
     /// 없으면 첫 단축어를 만든 직후 키보드 설치 안내가 곧바로 이어진다.
     static let keyboardSetupTutorialDone = "keyboardSetupTutorialDone.v1"
+    /// 단축어 키 하나의 높이(pt). 값이 없거나 0 이면 44. App Group.
+    ///
+    /// ⚠️ 문자열이 `.v1` 없이 맨몸이다. 예전부터 쓰던 키라 바꾸면 쓰던 사람의 설정이
+    ///    통째로 초기화된다. 여기 상수로 꺼내 두는 것은 읽는 곳을 한 군데로 모으려는
+    ///    것이지 값을 바꾸려는 것이 아니다.
+    static let keyboardButtonHeight = "keyboardButtonHeight"
+    /// 한 줄에 서는 단축어 키 개수(1~5). 값이 없거나 0 이면 2. App Group.
+    /// 위와 같은 이유로 문자열은 맨몸 그대로 둔다.
+    static let keyboardColumnCount = "keyboardColumnCount"
     /// 조작 키(지우기 · 보내기 · 클립보드 · 지구본 · 갈래 · 전체삭제) 한 칸의 높이(pt).
     /// 값이 없거나 0 이면 28. App Group - 익스텐션이 그릴 때 읽는다.
     ///
