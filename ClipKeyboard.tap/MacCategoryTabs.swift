@@ -10,10 +10,14 @@
 //     없으므로, drift-guard 의 EMBEDDED_MAP 이 이 블록만 뽑아 비교한다.
 //     → 고칠 일이 있으면 **iOS 를 먼저 고치고 여기로 옮긴다.** 여기서만 고치면 드리프트로 뜬다.
 //
-//  탭 구성 규칙(iOS `allCategoryTabs` 와 동일):
-//    기본 → 즐겨찾기(숨기지 않았으면) → 켜 둔 기본 제공 카테고리(allCases 순서) → 사용자 카테고리(숨기지 않은 것)
+//  탭 구성 규칙(iOS `allCategoryTabs` 와 동일, 자세한 까닭은 iOS `docs/product/CATEGORY_TABS.md`):
+//    기본(받은 것이 있으면) → 즐겨찾기(별이 있고 숨기지 않았으면) → 켜 둔 기본 제공 카테고리(allCases 순서)
+//    → 사용자 카테고리(숨기지 않은 것)
 //  ⚠️ "전체" 탭은 없다. iOS 가 없앤 탭이라 맥에만 두면 같은 앱이 기기마다 다르게 보인다.
-//  ⚠️ 메모가 없는 카테고리도 탭으로 보인다 — 막 만든 카테고리가 그 모습이고, 그건 그냥 빈 페이지다.
+//  ⚠️ 사용자 카테고리는 비어도 탭으로 선다 — 막 만든 카테고리가 그 모습이고, 그건 그냥 빈 페이지다.
+//     반면 기본·즐겨찾기는 앱이 놓은 자리라 받을 것이 없으면 쉰다. 다만 기본은 다른 탭이
+//     하나도 없으면 비어도 선다(탭이 0개가 되면 화면이 통째로 사라진다).
+//  ⚠️ 별표는 단축어를 옮기지 않는다. 제 칸에 그대로 두고 즐겨찾기 탭에서 한 번 더 보여 줄 뿐이다.
 //
 
 import SwiftUI
@@ -183,7 +187,7 @@ enum MacCategoryTabs {
     static func tabs(memos: [Memo],
                      snapshot: CategorySnapshot,
                      followsPhone: Bool) -> [CategoryTab] {
-        followsPhone ? phoneTabs(from: snapshot) : legacyTabs(memos: memos, snapshot: snapshot)
+        followsPhone ? phoneTabs(memos: memos, snapshot: snapshot) : legacyTabs(memos: memos, snapshot: snapshot)
     }
 
     /// 4.4.6 까지의 맥 탭 구성 — "전체" + **단축어가 실제로 들어 있는** 카테고리만.
@@ -204,16 +208,19 @@ enum MacCategoryTabs {
 
     /// 아이폰에서 설정한 카테고리 구성 그대로 탭 목록을 만든다.
     ///
+    /// - Parameter memos: **검색을 거치지 않은** 전체 단축어. 기본·즐겨찾기 탭을 세울지 여기서 센다.
+    ///   거른 것을 넘기면 검색어를 치는 동안 탭이 사라졌다 나타난다.
     /// - Returns: 카테고리 기능이 꺼져 있으면 **빈 배열** — 탭 없이 전체 목록 한 장을 보여준다
     ///   (iOS 에서 기능이 꺼졌을 때의 `.all` 단일 페이지와 같은 상태).
-    static func phoneTabs(from snapshot: CategorySnapshot) -> [CategoryTab] {
+    static func phoneTabs(memos: [Memo], snapshot: CategorySnapshot) -> [CategoryTab] {
         guard snapshot.featureEnabled else { return [] }
 
-        var tabs: [CategoryTab] = [.basic]
+        var tabs: [CategoryTab] = []
         let hidden = Set(snapshot.hiddenTabs)
 
-        // 즐겨찾기는 기본 제공 — 메모 유무와 무관하게 항상(숨기지 않는 한) 노출.
-        if !hidden.contains(CategoryBucketRule.favoritesTabKey) {
+        // 즐겨찾기: 별이 하나라도 달렸을 때만. 아무것도 없는 페이지를 한 장 끼워 두지 않는다.
+        let favoriteCount = memos.reduce(0) { $0 + ($1.isFavorite ? 1 : 0) }
+        if CategoryBucketRule.showsFavoritesTab(favoriteCount: favoriteCount, hidden: hidden) {
             tabs.append(.favorites)
         }
         // 기본 제공 카테고리는 켠 것만, allCases 순서를 유지해 탭 순서가 항상 일정하게.
@@ -226,6 +233,11 @@ enum MacCategoryTabs {
             .filter { !hidden.contains($0) }
             .map { CategoryTab.custom($0) }
 
+        // 기본은 **맨 앞**이지만, 받은 것이 없으면 쉰다. 다른 탭이 하나도 없으면 비어도 선다.
+        let basicCount = basicBucket(memos, snapshot: snapshot).count
+        if CategoryBucketRule.showsBasicTab(basicCount: basicCount, otherTabCount: tabs.count) {
+            tabs.insert(.basic, at: 0)
+        }
         return tabs
     }
 
@@ -235,23 +247,27 @@ enum MacCategoryTabs {
         case .all:
             return memos
         case .basic:
-            // ⚠️ 기준은 "만들어 둔 카테고리"가 아니라 **지금 탭이 서 있는 카테고리**다.
-            //    숨긴 카테고리의 단축어까지 기본 칸이 받아야 어느 탭에도 없는 단축어가 안 생긴다.
-            let hidden = Set(snapshot.hiddenTabs)
-            let visible = CategoryBucketRule.visibleCategories(all: snapshot.categories, hidden: hidden)
-            let favoritesVisible = !hidden.contains(CategoryBucketRule.favoritesTabKey)
-            return memos.filter {
-                CategoryBucketRule.belongsToBasicBucket(category: $0.category,
-                                                        isFavorite: $0.isFavorite,
-                                                        visibleCustomCategories: visible,
-                                                        favoritesTabVisible: favoritesVisible)
-            }
+            return basicBucket(memos, snapshot: snapshot)
         case .favorites:
             return memos.filter { $0.isFavorite }
         case .builtIn(let builtIn):
             return memos.filter { builtIn.matches($0) }
         case .custom(let name):
             return memos.filter { $0.category == name }
+        }
+    }
+
+    /// 기본 칸이 받는 단축어. 탭을 고를 때와 탭을 세울지 셀 때 같은 판정을 쓰게 한 곳에 둔다.
+    ///
+    /// ⚠️ 기준은 "만들어 둔 카테고리"가 아니라 **지금 탭이 서 있는 카테고리**다.
+    ///    숨긴 카테고리의 단축어까지 기본 칸이 받아야 어느 탭에도 없는 단축어가 안 생긴다.
+    /// ⚠️ 즐겨찾기 여부는 보지 않는다. 별표는 자리를 옮기지 않는다.
+    private static func basicBucket(_ memos: [Memo], snapshot: CategorySnapshot) -> [Memo] {
+        let visible = CategoryBucketRule.visibleCategories(all: snapshot.categories,
+                                                           hidden: Set(snapshot.hiddenTabs))
+        return memos.filter {
+            CategoryBucketRule.belongsToBasicBucket(category: $0.category,
+                                                    visibleCustomCategories: visible)
         }
     }
 }

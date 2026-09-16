@@ -62,7 +62,7 @@ final class MacCategoryTabPreference: ObservableObject {
         }
 
         let legacy = MacCategoryTabs.legacyTabs(memos: memos, snapshot: snapshot)
-        let parity = MacCategoryTabs.phoneTabs(from: snapshot)
+        let parity = MacCategoryTabs.phoneTabs(memos: memos, snapshot: snapshot)
         if legacy == parity {
             apply(true)
             return

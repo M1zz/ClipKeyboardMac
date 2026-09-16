@@ -41,6 +41,22 @@ enum DefaultsKey {
     /// 칸 추가 상품으로 얻은 추가 단축어 칸수 (App Group, Int).
     /// ⚠️ 키보드 익스텐션은 StoreKit 을 못 보므로 앱이 결제 권한을 여기에 미러링한다.
     static let purchasedExtraSlots = "purchased.extraSlots"
+    /// 소모성 칸 추가 상품으로 산 **팩 수** (App Group, Int. 한 팩 = 5칸).
+    /// ⚠️ 소모성은 애플이 복원해 주지 않는다. 같은 값을 iCloud 키·값 저장소에도 새겨
+    ///    다시 깔거나 기기를 바꿔도 따라오게 한다. 자세한 이유: Service/SlotPack.swift
+    static let purchasedSlotPacks = "purchased.slotPacks"
+    /// 두 대째 상품(기기 동기화만 여는 것)을 샀는가 (App Group, Bool).
+    /// ⚠️ 이 값이 참이어도 **Pro 는 아니다.** 여는 것은 동기화 하나뿐이다.
+    static let twoDevicePurchased = "purchased.twoDevice"
+    /// 결제 순간을 이미 띄운 것들 (App Group, `PurchaseMoment.rawValue` 배열).
+    /// 순간은 각각 **평생 한 번**이다. 두 번 보여 준 순간부터 광고가 된다.
+    static let purchaseMomentsShown = "purchase.moments.shown"
+    /// 카드번호·주민번호처럼 가려야 할 것을 마지막으로 저장한 시각 (App Group, epoch 초).
+    /// 불안은 저장하는 그 순간 가장 크고 하루가 지나면 사라진다. 그래서 이 값은 24시간만 쓴다.
+    static let sensitiveSavedAt = "purchase.moment.sensitiveSavedAt"
+    /// 이 계정에서 본 기기들 (iCloud 키·값 저장소, identifierForVendor 문자열 배열).
+    /// 두 번째 기기가 나타난 날을 알아채려고 둔다. 기기 이름·모델은 담지 않는다.
+    static let knownDeviceIDs = "purchase.knownDeviceIDs"
     /// 단축어가 무료 한도 한 칸 앞(9개)에 **처음** 닿은 시각 (App Group, epoch 초).
     /// 반값 제안은 이 시각에서 일주일이 지난 뒤에 뜬다 - 닿자마자 들이밀면 한도를
     /// 미끼로 쓴 것처럼 보이고, 아직 이 앱이 자기에게 필요한지도 모르는 때다.
@@ -163,6 +179,17 @@ enum DefaultsKey {
     static let keyboardPasteCount = "keyboard_paste_count"
     static let keyboardSecurePinHash = "keyboard_secure_pin_hash"
     /// 키보드 위줄에 리턴(보내기) 키를 세울지. App Group - 익스텐션이 읽는다. 기본 켬.
+    /// 위줄에 **붙여넣기 키**를 세울지 (App Group). 값이 없으면 **꺼짐**.
+    ///
+    /// ⚠️ 기본이 꺼짐인 것은 이 키가 쓸모없어서가 아니라, 위줄이 이미 붐비기 때문이다.
+    ///    붙여넣기는 시스템 키보드에도 있고 길게 눌러도 나온다. 이 앱에서만 할 수 있는
+    ///    일(단축어·숫자 판)에 자리를 먼저 준다. 쓰던 사람은 설정에서 도로 켠다.
+    static let keyboardShowClipboardKey = "keyboardShowClipboardKey"
+    /// 위줄에 **숫자 판으로 건너가는 키**를 세울지 (App Group). 값이 없으면 켜짐.
+    ///
+    /// 숫자만 몇 자 넣으려고 다른 키보드로 건너갔다 오는 일을 없애려고 둔 키다.
+    /// 자리가 아까운 사람은 끌 수 있게 한다(설정 ▸ 키보드 ▸ 키보드 레이아웃).
+    static let keyboardShowNumberPad = "keyboardShowNumberPad"
     static let keyboardShowReturnKey = "keyboardShowReturnKey"
     /// 키보드에 검색줄을 세울지. App Group. 기본 끔(자리를 한 줄 먹는다).
     static let keyboardShowSearch = "keyboardShowSearch"
@@ -363,6 +390,43 @@ enum DefaultsKey {
     static let launchQuarantinedStages = "launch.quarantinedStages"
     /// 격리 목록을 기록한 앱 버전. 버전이 바뀌면 목록을 비우고 다시 시도한다 (App Group).
     static let launchQuarantineVersion = "launch.quarantineVersion"
+
+    // MARK: - 사용자 상태 (UserState)
+    /// 단축어를 실제로 **쓴 날**들 (App Group, `"yyyy-MM-dd"` 문자열 배열).
+    ///
+    /// ⚠️ `kbBeaconDayCounts` 와 역할이 다르다. 저쪽은 허브로 보내고 나면 **지워진다**
+    ///    (`KeyboardDayLedger.removeDays`). 보낸 뒤 비워지는 원장으로 활동일을 재면
+    ///    앱을 오래 쓴 사람일수록 활동일이 0에 가까워진다. 이쪽은 아무도 비우지 않는다.
+    /// ⚠️ 기기 밖으로 나가지 않는다. 판정(`UserState`)에만 쓴다.
+    static let userStateActiveDays = "userstate.activeDays.v1"
+    /// 지금까지 **가장 높이 올라갔던** 숙련도 (App Group, `UserLevel.rawValue`).
+    ///
+    /// ⚠️ 이 값이 있어서 레벨이 내려가지 않는다. 한 달 쉬었다고 능숙이 꺼냄으로
+    ///    떨어지면 돌아온 사람이 자기가 다 아는 안내를 처음부터 다시 본다.
+    static let userStateLevelFloor = "userstate.levelFloor.v1"
+    /// 바닥(`userStateLevelFloor`)을 예전 기록으로 한 번 잡아 줬는가 (App Group, Bool).
+    ///
+    /// ⚠️ 활동일 원장은 이 기능과 함께 생겼다. 이미 몇 달 쓰던 사람은 원장이 비어 있어
+    ///    활동일 0으로 읽히고, 그대로 두면 능숙하던 사람이 초심자 안내를 다시 본다.
+    ///    그래서 첫 판정 때 활동일을 빼고 한 번 계산해 바닥으로 깔아 준다.
+    static let userStateFloorSeeded = "userstate.floorSeeded.v1"
+    /// 직전 판정에서 휴면이었는가 (App Group, Bool). 깨어난 순간을 잡기 위한 표식이다.
+    static let userStateWasDormant = "userstate.wasDormant.v1"
+    /// 휴면에서 깬 시각 (App Group, epoch 초). 이때부터 7일이 "돌아온 사람"이다.
+    static let userStateReturnedAt = "userstate.returnedAt.v1"
+
+    /// 지금 흉내 내는 사용 단계 (App Group, `UserStage.rawValue`). 비어 있으면 진짜 상태를 쓴다.
+    ///
+    /// ⚠️ **개발자 전용이다.** 값이 들어 있는 동안 `UserStateStore` 는 기기의 진짜 값을 보지 않고,
+    ///    바닥(`userStateLevelFloor`)도 휴면 기록도 건드리지 않는다. 끄면 원래대로 돌아온다.
+    static let userStateSimulatedStage = "userstate.simulatedStage.v1"
+    /// 단계 시뮬레이터가 카테고리를 갈아끼우기 전에 적어 둔 원래 목록 (App Group, [String]).
+    static let userStageCategoryBackup = "userstate.stage.categoryBackup.v1"
+    /// 같은 순간의 **카테고리 기능 스위치** (App Group, "on" · "off" · "unset").
+    ///
+    /// ⚠️ 목록만 되돌리면 스위치가 꺼진 채로 남는다. 되돌렸는데도 화면에서는 카테고리가
+    ///    사라진 것으로 보이고, 사용자는 자기 카테고리가 지워진 줄 안다.
+    static let userStageCategoryFeatureBackup = "userstate.stage.categoryFeatureBackup.v1"
 
     // MARK: - 데모 데이터
     /// 데모(샘플 페르소나) 데이터가 켜져 있는지 (App Group - 키보드도 같은 데이터를 본다).
