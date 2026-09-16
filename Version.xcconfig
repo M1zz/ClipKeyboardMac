@@ -25,4 +25,4 @@ MARKETING_VERSION = 5.1.3
 // ⚠️ 이 값을 1 로 되돌리지 마라. 4.4.7 때 그렇게 했다가 거절당했고,
 //    5.1.2 를 올리기 직전에도 25 가 1 로 돌아가 있었다.
 //    fastlane bump 나 Xcode 가 건드린 자국이면 되돌리지 말고 그대로 두고 +1 할 것.
-CURRENT_PROJECT_VERSION = 28
+CURRENT_PROJECT_VERSION = 29
