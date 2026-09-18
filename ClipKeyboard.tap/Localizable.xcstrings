@@ -881,6 +881,35 @@
         }
       }
     },
+    "다시 켜지는 순간 이 맥을 비우고, iCloud 에서 %d개를 처음부터 받아옵니다." : {
+      "comment" : "Reset: done body v2",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The moment it reopens, this Mac is emptied and %d snippets are pulled from iCloud from scratch."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 켜지는 순간 이 맥을 비우고, iCloud 에서 %d개를 처음부터 받아옵니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新打开的瞬间会清空这台 Mac，并从 iCloud 重新获取 %d 条短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新開啟的瞬間會清空這台 Mac，並從 iCloud 重新取得 %d 條短語。"
+          }
+        }
+      }
+    },
     "동기화 구역이 아직 없습니다. 아무 기기도 올린 적이 없다는 뜻입니다." : {
       "comment" : "Diagnostics: zone missing",
       "localizations" : {
@@ -1254,6 +1283,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未知"
+          }
+        }
+      }
+    },
+    "앱을 다시 켭니다." : {
+      "comment" : "Reset: done title v2",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app will reopen."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱을 다시 켭니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用将重新打开。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App 將重新開啟。"
           }
         }
       }

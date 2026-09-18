@@ -78,6 +78,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("🚀 [APP] ClipKeyboard 시작")
 
+        // ⚠️ 무엇보다 먼저. 동기화 엔진도, 백업 자동 복원도 서기 전에 비워야 한다
+        //    (엔진이 서면 옛 기억이 되살아난다 - MacSyncReset 주석).
+        let didReset = MacSyncReset.applyPendingResetIfNeeded()
+
         // LeeoKit 사용량 트래커 — 리뷰 요청 게이팅에 쓰인다.
         _ = LeeoEngagement.shared.registerLaunch()
 
@@ -118,8 +122,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // (덮어쓸 로컬 데이터가 없을 때만 동작 — 사용자 데이터 보호)
         // 복원이 끝난 뒤에도 여전히 비어있으면(맥 단독 신규 유저) 더미를 시드한다.
         Task {
-            await CloudKitBackupService.shared.autoRestoreIfLocalEmpty()
-            await MainActor.run { MacSampleSeeder.seedIfNeeded() }
+            // 방금 비운 실행에서는 백업 자동 복원·예시 심기를 건너뛴다. 비운 자리는
+            // 동기화가 채워야 하고, 여기서 백업을 덮어쓰면 무엇이 들어왔는지 알 수 없다.
+            if !didReset {
+                await CloudKitBackupService.shared.autoRestoreIfLocalEmpty()
+                await MainActor.run { MacSampleSeeder.seedIfNeeded() }
+            }
             // 첫 부팅 부트스트랩(autoRestore) 이후에는 실시간 동기화 엔진이 인계한다.
             await MainActor.run { MemoSyncEngine.shared.startIfEnabled() }
         }

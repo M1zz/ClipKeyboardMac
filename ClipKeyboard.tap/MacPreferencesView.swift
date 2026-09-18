@@ -169,8 +169,8 @@ struct MacPreferencesView: View {
                 isResetting = false
 
                 let done = NSAlert()
-                done.messageText = NSLocalizedString("다 지웠습니다. 앱을 다시 켭니다.", comment: "Reset: done title")
-                var body = String(format: NSLocalizedString("앱이 다시 켜지면 iCloud 에서 %d개를 받아옵니다.", comment: "Reset: done body"),
+                done.messageText = NSLocalizedString("앱을 다시 켭니다.", comment: "Reset: done title v2")
+                var body = String(format: NSLocalizedString("다시 켜지는 순간 이 맥을 비우고, iCloud 에서 %d개를 처음부터 받아옵니다.", comment: "Reset: done body v2"),
                                   result.cloudCount)
                 if let safety = result.safetyCopy {
                     body += "\n\n" + String(format: NSLocalizedString("지우기 전 사본: %@", comment: "Reset: safety copy path"),

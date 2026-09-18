@@ -91,32 +91,42 @@ enum MacSyncReset {
         // 1) 안전 사본 - 지우기 전에 반드시 남긴다.
         let safety = writeSafetyCopy()
 
-        // 2) 이 맥의 단축어를 비운다. **지운 표식(툼스톤)은 남기지 않는다** -
-        //    남기면 그 표식이 iCloud 로 올라가 아이폰의 단축어까지 지운다.
+        // 2) 실제로 지우는 일은 **다음 실행의 맨 앞**에서 한다(`applyPendingResetIfNeeded`).
+        //    ⚠️ 지금 지우면 안 된다. 돌고 있는 엔진이 곧바로 옛 기억을 다시 써 버려,
+        //       다시 켜도 "이미 다 받았다" 는 낡은 표식이 살아남는다. 그래서 아이폰 데이터가
+        //       iCloud 에 있는데도 하나도 안 들어왔다.
+        AppGroup.defaults?.set(true, forKey: DefaultsKey.macSyncResetPending)
+
+        return Result(cloudCount: plan.cloudCount, safetyCopy: safety)
+    }
+
+    /// 켜질 때 맨 앞에서 부른다. 표식이 있으면 이 맥의 단축어와 동기화 기억을 지운다.
+    /// 엔진이 서기 **전**이라, 지운 기억이 다시 쓰이지 않는다.
+    /// - Returns: 이번 실행에서 지웠는가 (지웠으면 백업 자동 복원·예시 심기를 건너뛴다).
+    @discardableResult
+    static func applyPendingResetIfNeeded() -> Bool {
+        guard let defaults = AppGroup.defaults,
+              defaults.bool(forKey: DefaultsKey.macSyncResetPending) else { return false }
+        defaults.removeObject(forKey: DefaultsKey.macSyncResetPending)
+
+        // 이 맥의 단축어를 비운다. **지운 표식(툼스톤)은 남기지 않는다** -
+        // 남기면 그 표식이 iCloud 로 올라가 아이폰의 단축어까지 지운다.
         do {
             try MemoStore.shared.save(memos: [], type: .memo)
         } catch {
-            throw Failure.wipeFailed(error.localizedDescription)
+            print("⚠️ [MacSyncReset] 단축어 비우기 실패: \(error)")
         }
 
-        // 3) 동기화 기억을 통째로 버린다 - 이 맥을 "한 번도 받아본 적 없는 기기" 로 되돌린다.
-        if let defaults = AppGroup.defaults {
-            for key in [DefaultsKey.syncEngineState, DefaultsKey.syncShadow, DefaultsKey.syncTombstones,
-                        "memo.sync.recordMeta"] {
-                defaults.removeObject(forKey: key)
-            }
+        // 동기화 기억을 통째로 버린다 - 이 맥을 "한 번도 받아본 적 없는 기기" 로 되돌린다.
+        for key in [DefaultsKey.syncEngineState, DefaultsKey.syncShadow, DefaultsKey.syncTombstones,
+                    "memo.sync.recordMeta"] {
+            defaults.removeObject(forKey: key)
         }
-        // 예시 단축어 표식도 지운다 - 맥이 심은 예시는 방금 함께 지워졌다.
+        // 예시 단축어 표식도 지운다 - 맥이 심은 예시도 방금 함께 지워졌다.
         SampleMemoStorage.save(ids: [])
 
-        // 4) 엔진은 이미 돌고 있고 옛 기억을 메모리에 들고 있다. 앱을 다시 켜야 새 기억으로
-        //    처음부터 받아온다.
-        //    ⚠️ 엔진에 restart 를 넣지 않는다. `Shared/MemoSyncEngine.swift` 는 아이폰 원본과
-        //       **바이트 단위로 같아야** 하고(scripts/check_shared_drift.sh 가 배포를 막는다),
-        //       맥에서만 고치면 다음 동기화 때 조용히 덮어써진다.
-        NotificationCenter.default.post(name: .dataRestored, object: nil)
-
-        return Result(cloudCount: plan.cloudCount, safetyCopy: safety)
+        print("🧹 [MacSyncReset] 이 맥을 비웠다. 엔진이 처음부터 받아온다.")
+        return true
     }
 
     /// 앱을 새로 띄우고 지금 것을 끈다. 지운 뒤 엔진을 새 기억으로 세우는 유일한 길이다.

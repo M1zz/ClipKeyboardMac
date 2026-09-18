@@ -12,6 +12,16 @@
 
 import Foundation
 
+extension DefaultsKey {
+    /// "다시 켜지면 지우고 처음부터 받아와라" 표식 (`MacSyncReset`).
+    ///
+    /// ⚠️ 지우는 일을 **앱이 켜질 때** 하는 이유: 돌고 있는 동기화 엔진은 수시로 자기 기억
+    ///    (어디까지 받아왔는지 가리키는 토큰)을 저장한다. 그래서 켜져 있는 동안 기억을
+    ///    지워 봐야 곧바로 옛 토큰이 다시 쓰이고, 다시 켜면 "이미 다 받았다" 는 낡은 표식이
+    ///    살아 있어 아이폰 데이터가 있어도 받아오지 않는다.
+    static let macSyncResetPending = "mac.sync.resetPending.v1"
+}
+
 // ⚠️ 지금은 비어 있다. `hasCompletedOnboarding` 이 여기 있었는데, 아이폰 쪽
 //    `DefaultsKey` 가 같은 이름을 갖게 되면서 공유 파일과 **이름이 겹쳐 빌드가 깨졌다.**
 //    같은 값을 두 곳에 적어 둘 이유가 없어 공유 파일 쪽을 남겼다.
