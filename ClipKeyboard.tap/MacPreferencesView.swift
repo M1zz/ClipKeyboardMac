@@ -16,6 +16,10 @@ struct MacPreferencesView: View {
     /// 카테고리 탭을 아이폰 구성으로 따를지 — 배너로 물어본 뒤에도 여기서 언제든 바꿀 수 있다.
     @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
     @State private var orderedMemos: [Memo] = []
+    /// 아이폰과의 실시간 동기화. 값은 App Group 에 있고 켜면 iCloud 로 다른 기기에도 전파된다.
+    @State private var syncEnabled: Bool = MemoSyncFlags.enabled
+    /// 마지막으로 받아온 시각 - 켜 놓고도 안 오는지 사람이 눈으로 볼 수 있어야 한다.
+    @State private var syncStatus: String = ""
 
     var body: some View {
         TabView {
@@ -50,6 +54,33 @@ struct MacPreferencesView: View {
                     .font(MacFont.sectionTitle)
             }
 
+            // ⚠️ 이 스위치가 없어서 맥은 아이폰 변경을 영영 못 받았다. 엔진은 이 값이 켜져
+            //    있을 때만 돌고(`MemoSyncFlags.enabled`), 값은 기기마다 따로다. 갓 설치한
+            //    기기는 다른 기기 설정을 이어받지도 않으므로(`adoptCloudPreferenceIfNeeded`),
+            //    켤 자리가 없으면 잠든 채로 남는다.
+            Section {
+                Toggle(NSLocalizedString("아이폰과 실시간으로 동기화", comment: "Prefs: realtime sync toggle"),
+                       isOn: Binding(get: { syncEnabled }, set: { setSyncEnabled($0) }))
+                if !syncStatus.isEmpty {
+                    Text(syncStatus)
+                        .font(MacFont.secondary)
+                        .foregroundStyle(.secondary)
+                }
+                Button(NSLocalizedString("지금 동기화", comment: "Prefs: sync now button")) {
+                    MemoSyncEngine.shared.startIfEnabled()
+                    MemoSyncEngine.shared.syncNow()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { refreshSyncStatus() }
+                }
+                .disabled(!syncEnabled)
+            } header: {
+                Text(NSLocalizedString("Sync", comment: "Prefs section: sync"))
+                    .font(MacFont.sectionTitle)
+            } footer: {
+                Text(NSLocalizedString("켜면 아이폰에서 더하거나 지운 단축어가 이 맥에도 바로 반영됩니다. 끄면 이 맥의 단축어는 이 맥에만 남습니다.", comment: "Prefs: realtime sync note"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+            }
+
             Section {
                 Toggle(NSLocalizedString("아이폰에서 설정한 카테고리 따르기", comment: "Prefs: follow phone category tabs"),
                        isOn: Binding(get: { tabPreference.followsPhone },
@@ -71,6 +102,38 @@ struct MacPreferencesView: View {
             }
         }
         .formStyle(.grouped)
+        .onAppear {
+            syncEnabled = MemoSyncFlags.enabled
+            refreshSyncStatus()
+        }
+    }
+
+    private func setSyncEnabled(_ on: Bool) {
+        syncEnabled = on
+        MemoSyncFlags.setEnabled(on)
+        if on {
+            MemoSyncEngine.shared.startIfEnabled()
+            MemoSyncEngine.shared.syncNow()
+        }
+        refreshSyncStatus()
+    }
+
+    /// 마지막으로 받아온·올린 시각을 한 줄로. 아무 기록이 없으면 아직 한 번도 못 돈 것이다.
+    private func refreshSyncStatus() {
+        guard MemoSyncFlags.enabled else { syncStatus = ""; return }
+        if let error = MemoSyncStatus.lastError, !error.isEmpty {
+            syncStatus = String(format: NSLocalizedString("동기화 오류: %@", comment: "Prefs: sync error"), error)
+            return
+        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        if let pulled = MemoSyncStatus.lastPullAt ?? MemoSyncStatus.lastCheckAt {
+            syncStatus = String(format: NSLocalizedString("마지막 확인: %@", comment: "Prefs: last sync time"),
+                                formatter.string(from: pulled))
+        } else {
+            syncStatus = NSLocalizedString("아직 받아온 기록이 없습니다.", comment: "Prefs: never synced")
+        }
     }
 
     // MARK: - Order (단축어 순서)

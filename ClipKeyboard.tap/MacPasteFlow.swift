@@ -63,12 +63,12 @@ private final class TemplateFillWindow: NSObject, NSWindowDelegate {
         window?.close()
         let content = MacTemplateFillSheet(
             memo: memo,
-            onComplete: { [weak self] resolved in
+            onComplete: { resolved in
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(resolved, forType: .string)
-                self?.finish()
+                // 창은 시트가 "복사됨" 을 잠깐 보여 준 뒤 `onClose` 로 닫는다.
             },
-            onCancel: { [weak self] in self?.finish() }
+            onClose: { [weak self] in self?.finish() }
         )
         let panel = NSPanel(
             contentRect: NSRect(x: 0, y: 0, width: 420, height: 460),

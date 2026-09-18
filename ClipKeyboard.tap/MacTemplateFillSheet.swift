@@ -16,10 +16,12 @@ struct MacTemplateFillSheet: View {
     let onComplete: (String) -> Void
     /// 시트가 아니라 창으로 띄웠을 때 닫는 길 - 창에서는 `dismiss` 가 아무 일도 하지 않는다
     /// (`MacPasteFlow`).
-    var onCancel: (() -> Void)? = nil
+    var onClose: (() -> Void)? = nil
 
     @Environment(\.dismiss) private var dismiss
     @State private var inputs: [String: String] = [:]
+    /// 복사한 뒤 창이 닫히기 전까지 - 그냥 사라지면 복사가 된 것인지 알 수 없다.
+    @State private var copied = false
 
     private var placeholders: [String] { memo.customPlaceholders }
 
@@ -98,23 +100,37 @@ struct MacTemplateFillSheet: View {
 
             // 액션 - 스크롤 밖에 둔다. 칸이 많아도 복사 버튼이 늘 보여야 한다.
             HStack(spacing: MacSpacing.sm) {
-                Button(NSLocalizedString("취소", comment: "Cancel button")) {
-                    dismiss()
-                    onCancel?()
-                }
+                Button(NSLocalizedString("취소", comment: "Cancel button")) { close() }
                     .keyboardShortcut(.cancelAction)
                 Spacer()
-                Button(NSLocalizedString("복사", comment: "Copy")) {
-                    onComplete(resolved)
-                    dismiss()
+                if copied {
+                    Label(NSLocalizedString("Copied — press ⌘V to paste", comment: "Quick paste panel: shown on a row right after copying it"),
+                          systemImage: AppSymbol.checkmarkCircleFill)
+                        .font(MacFont.body.weight(.medium))
+                        .foregroundStyle(.green)
+                        .transition(.opacity)
+                } else {
+                    Button(NSLocalizedString("복사", comment: "Copy")) { copyAndClose() }
+                        .buttonStyle(.borderedProminent)
+                        .keyboardShortcut(.defaultAction)
                 }
-                .buttonStyle(.borderedProminent)
-                .keyboardShortcut(.defaultAction)
             }
             .controlSize(.large)
         }
         .padding(MacSpacing.xl)
         .frame(width: 420, height: 460)
+    }
+
+    /// 복사하고, 복사됐다고 잠깐 보여 준 뒤 닫는다(패널·팝오버와 같은 0.9초).
+    private func copyAndClose() {
+        onComplete(resolved)
+        withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copied = true }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { close() }
+    }
+
+    private func close() {
+        dismiss()
+        onClose?()
     }
 
     private func binding(for token: String) -> Binding<String> {

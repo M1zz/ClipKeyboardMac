@@ -62,6 +62,35 @@
         }
       }
     },
+    "Sync" : {
+      "comment" : "Prefs section: sync",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동기화"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "同步"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "同步"
+          }
+        }
+      }
+    },
     "[%@] 클립보드에 복사되었습니다" : {
       "comment" : "Clipboard copy toast",
       "localizations" : {
@@ -500,6 +529,180 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "⚠️ 回復會用備份資料取代目前的資料"
+          }
+        }
+      }
+    },
+    "동기화 오류: %@" : {
+      "comment" : "Prefs: sync error",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync error: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동기화 오류: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "同步出错：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "同步發生錯誤：%@"
+          }
+        }
+      }
+    },
+    "마지막 확인: %@" : {
+      "comment" : "Prefs: last sync time",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last checked: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "마지막 확인: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上次检查：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上次檢查：%@"
+          }
+        }
+      }
+    },
+    "아이폰과 실시간으로 동기화" : {
+      "comment" : "Prefs: realtime sync toggle",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync with iPhone in real time"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰과 실시간으로 동기화"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "与 iPhone 实时同步"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "與 iPhone 即時同步"
+          }
+        }
+      }
+    },
+    "아직 받아온 기록이 없습니다." : {
+      "comment" : "Prefs: never synced",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing has been received yet."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 받아온 기록이 없습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还没有收到任何内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還沒有收到任何內容。"
+          }
+        }
+      }
+    },
+    "지금 동기화" : {
+      "comment" : "Prefs: sync now button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync Now"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금 동기화"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即同步"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即同步"
+          }
+        }
+      }
+    },
+    "켜면 아이폰에서 더하거나 지운 단축어가 이 맥에도 바로 반영됩니다. 끄면 이 맥의 단축어는 이 맥에만 남습니다." : {
+      "comment" : "Prefs: realtime sync note",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When on, snippets you add or delete on iPhone show up on this Mac right away. When off, this Mac keeps its snippets to itself."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "켜면 아이폰에서 더하거나 지운 단축어가 이 맥에도 바로 반영됩니다. 끄면 이 맥의 단축어는 이 맥에만 남습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启后，在 iPhone 上添加或删除的短语会立即出现在这台 Mac 上。关闭后，这台 Mac 的短语只留在本机。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟後，在 iPhone 上新增或刪除的短語會立即出現在這台 Mac 上。關閉後，這台 Mac 的短語只留在本機。"
           }
         }
       }

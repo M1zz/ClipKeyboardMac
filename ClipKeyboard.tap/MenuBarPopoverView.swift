@@ -94,6 +94,8 @@ struct MenuBarPopoverView: View {
     @FocusState private var searchFocused: Bool
     /// 삭제 확인을 기다리는 단축어 — 되돌릴 수 없는 동작이라 한 번 묻는다.
     @State private var deleteCandidate: Memo?
+    /// 방금 복사한 단축어 - 팝오버가 닫히기 전에 그 행에 알림을 띄운다.
+    @State private var copiedID: UUID?
 
     /// 팝오버를 닫는 콜백 (MenuBarManager에서 주입).
     let dismiss: () -> Void
@@ -209,7 +211,8 @@ struct MenuBarPopoverView: View {
                             memo: memo,
                             index: index,
                             isSelected: index == viewModel.selectedIndex,
-                            showShortcut: index < 9
+                            showShortcut: index < 9,
+                            isCopied: copiedID == memo.id
                         ) {
                             viewModel.selectedIndex = index
                             activateSelected()
@@ -384,7 +387,10 @@ struct MenuBarPopoverView: View {
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(resolved, forType: .string)
             print("✅ [Popover] 복사: \(memo.title)")
-            dismiss()
+            // 닫기 전에 "복사됨 · ⌘V로 붙여넣으세요" 를 잠깐 보여 준다 - 그냥 사라지면
+            // 복사가 된 것인지 알 수 없다(빠른 붙여넣기 패널과 같은 시간).
+            withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = memo.id }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { dismiss() }
         }
     }
 }
@@ -519,13 +525,20 @@ private struct PopoverRow: View {
     let index: Int
     let isSelected: Bool
     let showShortcut: Bool
+    let isCopied: Bool
     let onTap: () -> Void
 
     var body: some View {
         Button(action: onTap) {
             HStack(spacing: MacSpacing.md) {
-                // 즐겨찾기 하트 / 인덱스 배지
-                if memo.isFavorite {
+                // 복사 표시 / 즐겨찾기 하트 / 인덱스 배지
+                if isCopied {
+                    Image(systemName: AppSymbol.checkmarkCircleFill)
+                        .foregroundStyle(.green)
+                        .font(MacFont.body.weight(.semibold))
+                        .frame(width: 28, alignment: .center)
+                        .transition(.scale(scale: 0.3).combined(with: .opacity))
+                } else if memo.isFavorite {
                     Image(systemName: AppSymbol.heartFill)
                         .foregroundStyle(.pink)
                         .font(MacFont.body)
@@ -543,9 +556,15 @@ private struct PopoverRow: View {
                     Text(memo.title)
                         .font(MacFont.rowTitle)
                         .lineLimit(1)
+                    if isCopied {
+                        Text(NSLocalizedString("Copied — press ⌘V to paste", comment: "Quick paste panel: shown on a row right after copying it"))
+                            .font(MacFont.secondary.weight(.medium))
+                            .foregroundStyle(.green)
+                            .lineLimit(1)
+                    }
                     // 보안 메모는 값을 마스킹(인증 전 노출 금지). 템플릿은 칸이 보이게 여러 줄.
                     let preview = memo.listPreviewText
-                    if !preview.isEmpty {
+                    if !isCopied, !preview.isEmpty {
                         Text(memo.isSecure ? AttributedString(preview) : preview.templateChipAttributed())
                             .font(MacFont.secondary)
                             .foregroundStyle(.secondary)
@@ -557,8 +576,8 @@ private struct PopoverRow: View {
             .padding(.horizontal, MacSpacing.lg)
             .padding(.vertical, MacSpacing.sm)
             .background(
-                isSelected
-                    ? MacColor.selection
+                isCopied ? Color.green.opacity(0.18)
+                    : isSelected ? MacColor.selection
                     : Color.clear
             )
             .contentShape(Rectangle())
