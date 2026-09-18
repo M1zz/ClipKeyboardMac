@@ -47,6 +47,8 @@ enum AppSymbol {
     static let clock = "clock"
     static let clockArrowCirclepath = "clock.arrow.circlepath"
     static let clockBadgeCheckmarkFill = "clock.badge.checkmark.fill"
+    /// 키보드 빠른 줄: 매주·매달 같은 때 쓰는 단축어가 **지금 쓸 차례**다.
+    static let calendarBadgeClock = "calendar.badge.clock"
     static let command = "command"
     static let crownFill = "crown.fill"
     static let cupAndSaucerFill = "cup.and.saucer.fill"

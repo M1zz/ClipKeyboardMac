@@ -57,6 +57,25 @@ enum DefaultsKey {
     /// 이 계정에서 본 기기들 (iCloud 키·값 저장소, identifierForVendor 문자열 배열).
     /// 두 번째 기기가 나타난 날을 알아채려고 둔다. 기기 이름·모델은 담지 않는다.
     static let knownDeviceIDs = "purchase.knownDeviceIDs"
+
+    // MARK: - 알아서 맞추기 (5.1.4)
+
+    /// 단축어를 쓴 시각들 (App Group, `[UUID문자열: [epoch 초]]`). 단축어마다 최근 24번.
+    /// 내용은 담지 않는다. 자세한 이유: ClipKeyboard/Service/UsageRhythm.swift
+    static let usageRhythmLog = "usage.rhythm.log.v1"
+    /// 키보드가 뜬 판들 (App Group, `[KeyboardSessionLedger.Session]` JSON). 최근 20판.
+    /// 무엇을 쳤는지는 담지 않는다. 자세한 이유: ClipKeyboard/Service/KeyboardSessionLedger.swift
+    static let keyboardSessionLedger = "keyboard.session.ledger.v1"
+    /// 사람이 설정에서 직접 정해 둔 쓰임새 (App Group, `Persona.rawValue`). 없으면 앱이 알아서 본다.
+    static let personaOverride = "persona.override.v1"
+    /// 앱이 마지막으로 알아본 쓰임새 (App Group, `Persona.rawValue`).
+    static let personaInferred = "persona.inferred.v1"
+    /// 앱이 알아본 쓰임새에 확신이 있는가 (App Group, Bool).
+    static let personaInferredConfident = "persona.inferred.confident.v1"
+    /// 같은 글을 몇 번 복사했는지 (표준, `[RepeatCopyLedger.Entry]` JSON). 글은 담지 않고 지문만.
+    static let repeatCopyLedger = "repeat.copy.ledger.v1"
+    /// 친구에게 알리기를 이미 권했는가 (App Group, Bool). 평생 한 번.
+    static let shareMomentShown = "feature.fit.shareMomentShown.v1"
     /// 단축어가 무료 한도 한 칸 앞(9개)에 **처음** 닿은 시각 (App Group, epoch 초).
     /// 반값 제안은 이 시각에서 일주일이 지난 뒤에 뜬다 - 닿자마자 들이밀면 한도를
     /// 미끼로 쓴 것처럼 보이고, 아직 이 앱이 자기에게 필요한지도 모르는 때다.
@@ -268,6 +287,8 @@ enum DefaultsKey {
     static let proStatus = "clipkeyboard_is_pro"
     static let wasProAtV3 = "clipkeyboard_was_pro_at_v3"
     static let existingFreeUser = "clipkeyboard_existing_free_user"
+    /// Pro 권한이 가족 공유로만 들어왔는가 (App Group). 기능 판정에는 안 쓴다 - 통계에서 결제와 가르는 데만.
+    static let proViaFamilySharing = "clipkeyboard_pro_via_family_sharing"
     static let v4GraceMemos = "clipkeyboard_v4_grace_memos"
     static let v4GraceBannerDismissed = "clipkeyboard_v4_grace_banner_dismissed"
     static let v4GrandfatherBootstrapDone = "clipkeyboard_v4_grandfather_bootstrap_done"

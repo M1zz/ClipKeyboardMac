@@ -87,6 +87,8 @@ extension Notification.Name {
     static let showMemoList = Notification.Name("showMemoList")
     static let showNewMemo = Notification.Name("showNewMemo")
     static let showPaywall = Notification.Name("showPaywall")
+    /// 샘플로 잘못 열려 있던 기능을 걷었다 - 목록이 안내 배너를 다시 판정한다.
+    static let accessRevoked = Notification.Name("accessRevoked")
     static let showSettings = Notification.Name("showSettings")
     static let showTemplateInput = Notification.Name("showTemplateInput")
     static let templateInputComplete = Notification.Name("templateInputComplete")
