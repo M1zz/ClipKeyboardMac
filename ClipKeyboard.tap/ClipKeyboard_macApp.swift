@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreSpotlight
 import LeeoKit
 
 @main
@@ -99,6 +100,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 클립보드 모니터링 시작
         ClipboardMonitorService.shared.startMonitoring()
 
+        // Spotlight 에서 어느 나라 이름으로 검색해도 앱이 나오게 한다 (MacSpotlightIndexer 주석 참고)
+        MacSpotlightIndexer.indexAppNames()
+
+        // 아이폰의 변경 알림(푸시)을 받는다.
+        // ⚠️ 이게 없으면 맥은 **실행할 때와 앱이 활성화될 때만** 받아온다. 메뉴바 앱이라
+        //    ⌃⇧V 패널만 쓰면 앱이 활성화되지 않아, 아이폰에서 지운 단축어가 계속 남아 보였다.
+        //    사용자에게 묻는 권한이 아니다(알림을 띄우지 않는 조용한 푸시 — CloudKit 전용).
+        NSApp.registerForRemoteNotifications()
+
         // 원격 킬스위치 갱신 — 플래그 캐시는 **기기별**(App Group)이라 맥도 직접 받아와야 한다.
         // 안 부르면 맥은 영원히 기본값(전부 켬)이라, 아이폰만 꺼지고 맥은 계속 올린다.
         // 실패해도 조용히 넘어가고 캐시로 계속 동작한다(가용성 우선).
@@ -120,6 +130,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // (다른 기기에서 토글이 켜져 KV로 전파된 경우 여기서 비로소 시작될 수 있어 start 먼저 호출.)
         MemoSyncEngine.shared.startIfEnabled()
         MemoSyncEngine.shared.syncNow()
+    }
+
+    func application(_ application: NSApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("📡 [APP] 푸시 등록 완료 (\(deviceToken.count) bytes)")
+    }
+
+    func application(_ application: NSApplication,
+                     didFailToRegisterForRemoteNotificationsWithError error: any Error) {
+        // 실패해도 앱은 그대로 돈다 - 활성화될 때와 패널을 열 때 받아오는 길이 남아 있다.
+        print("⚠️ [APP] 푸시 등록 실패: \(error.localizedDescription)")
+    }
+
+    func application(_ application: NSApplication,
+                     didReceiveRemoteNotification userInfo: [String: Any]) {
+        MemoSyncEngine.shared.startIfEnabled()
+        MemoSyncEngine.shared.syncNow()
+    }
+
+    /// Spotlight 에서 앱 이름 항목을 누르면 여기로 온다 - 메뉴바 앱이라 창이 없으니 단축어 목록을 연다.
+    func application(_ application: NSApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([any NSUserActivityRestoring]) -> Void) -> Bool {
+        guard userActivity.activityType == CSSearchableItemActionType else { return false }
+        NotificationCenter.default.post(name: .showMemoList, object: nil)
+        return true
     }
 
     func applicationWillTerminate(_ notification: Notification) {
