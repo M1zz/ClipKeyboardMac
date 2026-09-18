@@ -530,6 +530,238 @@
         }
       }
     },
+    "아이폰에서 지운 것 반영하기" : {
+      "comment" : "Prefs: apply cloud deletions",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply deletions from iPhone"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 지운 것 반영하기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用 iPhone 上的删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "套用 iPhone 上的刪除"
+          }
+        }
+      }
+    },
+    "아이폰에서 지운 것 중 이 맥에 남아 있는 단축어가 없습니다." : {
+      "comment" : "Deletions: none body",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No snippets deleted on iPhone are still on this Mac."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 지운 것 중 이 맥에 남아 있는 단축어가 없습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有在 iPhone 上删除却仍留在这台 Mac 上的短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有在 iPhone 上刪除卻仍留在這台 Mac 上的短語。"
+          }
+        }
+      }
+    },
+    "아이폰에서 지운 단축어 %d개를 이 맥에서도 지웠습니다." : {
+      "comment" : "Deletions: done body",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted %d snippets on this Mac that were deleted on iPhone."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 지운 단축어 %d개를 이 맥에서도 지웠습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已在这台 Mac 上删除 %d 条在 iPhone 上删除的短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已在這台 Mac 上刪除 %d 條在 iPhone 上刪除的短語。"
+          }
+        }
+      }
+    },
+    "아이폰에서 지웠는데 이 맥에 남아 있는 것: %d개" : {
+      "comment" : "Diagnostics: zombie count",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted on iPhone but still here: %d"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 지웠는데 이 맥에 남아 있는 것: %d개"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iPhone 上已删除但这台 Mac 上仍有：%d 条"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iPhone 上已刪除但這台 Mac 上仍有：%d 條"
+          }
+        }
+      }
+    },
+    "예: %@" : {
+      "comment" : "Diagnostics: zombie sample",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For example: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "例如：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "例如：%@"
+          }
+        }
+      }
+    },
+    "정리 실패" : {
+      "comment" : "Deletions: failed title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cleanup failed"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정리 실패"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整理失败"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整理失敗"
+          }
+        }
+      }
+    },
+    "정리했습니다" : {
+      "comment" : "Deletions: done title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cleaned up"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정리했습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已整理"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已整理"
+          }
+        }
+      }
+    },
+    "지울 것이 없습니다" : {
+      "comment" : "Deletions: none title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to delete"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지울 것이 없습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有需要删除的内容"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有需要刪除的內容"
+          }
+        }
+      }
+    },
     "📁 파일 백업은 iCloud와 별개로 데이터를 파일로 보관하는 가장 확실한 방법입니다. 가져오기는 현재 데이터를 지우지 않고 합칩니다." : {
       "comment" : "File backup info",
       "localizations" : {

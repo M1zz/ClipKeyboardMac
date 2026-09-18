@@ -90,6 +90,12 @@ struct MacPreferencesView: View {
                 }
                 .disabled(isDiagnosing)
 
+                // 아이폰에서 지웠는데 맥에 되살아난 것들을 정리한다(위 살펴보기에 개수가 나온다).
+                Button(NSLocalizedString("아이폰에서 지운 것 반영하기", comment: "Prefs: apply cloud deletions")) {
+                    applyCloudDeletions()
+                }
+                .disabled(!syncEnabled || isResetting)
+
                 // 되돌릴 수 없는 일이라 아래쪽에, 빨갛게, 두 번 묻고 실행한다.
                 Button(NSLocalizedString("이 맥 것을 지우고 아이폰에서 다시 받기", comment: "Prefs: wipe and pull button")) {
                     confirmWipeAndPull()
@@ -183,6 +189,29 @@ struct MacPreferencesView: View {
             } catch {
                 isResetting = false
                 showAlert(title: NSLocalizedString("다시 받기 실패", comment: "Reset: failed title"),
+                          message: error.localizedDescription)
+            }
+        }
+    }
+
+    /// iCloud 가 지웠다고 하는 것을 이 맥에서도 지운다. 개수를 먼저 보여 주고 확인받는다.
+    private func applyCloudDeletions() {
+        isResetting = true
+        Task {
+            do {
+                let removed = try await MacSyncReset.applyCloudDeletions()
+                isResetting = false
+                if removed > 0 {
+                    diagnostics = ""
+                    showAlert(title: NSLocalizedString("정리했습니다", comment: "Deletions: done title"),
+                              message: String(format: NSLocalizedString("아이폰에서 지운 단축어 %d개를 이 맥에서도 지웠습니다.", comment: "Deletions: done body"), removed))
+                } else {
+                    showAlert(title: NSLocalizedString("지울 것이 없습니다", comment: "Deletions: none title"),
+                              message: NSLocalizedString("아이폰에서 지운 것 중 이 맥에 남아 있는 단축어가 없습니다.", comment: "Deletions: none body"))
+                }
+            } catch {
+                isResetting = false
+                showAlert(title: NSLocalizedString("정리 실패", comment: "Deletions: failed title"),
                           message: error.localizedDescription)
             }
         }

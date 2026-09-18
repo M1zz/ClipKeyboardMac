@@ -56,6 +56,8 @@ enum MacSyncDiagnostics {
         do {
             var memoCount = 0
             var tombstoneCount = 0
+            /// iCloud 가 "지웠다" 고 하는 id 들 - 이 맥에 아직 살아 있으면 삭제가 안 먹은 것이다.
+            var tombstoneIDs: Set<UUID> = []
             var hasCategories = false
             var newest: Date?
             var token: CKServerChangeToken?
@@ -67,7 +69,12 @@ enum MacSyncDiagnostics {
                     guard let record = try? change.get().record else { continue }
                     switch record.recordType {
                     case MemoSyncEngine.recordType:
-                        if record["deletedAt"] != nil { tombstoneCount += 1 } else { memoCount += 1 }
+                        if record["deletedAt"] != nil {
+                            tombstoneCount += 1
+                            if let id = UUID(uuidString: record.recordID.recordName) { tombstoneIDs.insert(id) }
+                        } else {
+                            memoCount += 1
+                        }
                     case MemoSyncEngine.categoryRecordType:
                         hasCategories = true
                     default:
@@ -95,8 +102,19 @@ enum MacSyncDiagnostics {
             }
 
             // 4) 이 맥이 가진 것과 견줘 본다 - 어느 쪽이 안 올리고 있는지가 여기서 갈린다.
-            let local = ((try? MemoStore.shared.load(type: .memo)) ?? []).count
-            lines.append(String(format: NSLocalizedString("이 맥의 단축어: %d개", comment: "Diagnostics: local count"), local))
+            let localMemos = (try? MemoStore.shared.load(type: .memo)) ?? []
+            lines.append(String(format: NSLocalizedString("이 맥의 단축어: %d개", comment: "Diagnostics: local count"),
+                                localMemos.count))
+
+            // 5) **지운 것이 되살아나는지** - iCloud 는 지웠다는데 이 맥에 아직 살아 있는 것들.
+            //    맥의 수정 시각이 삭제보다 나중이면 병합에서 맥이 이겨 되살린다(MemoSyncCore.merge).
+            let zombies = localMemos.filter { tombstoneIDs.contains($0.id) }
+            if !zombies.isEmpty {
+                lines.append(String(format: NSLocalizedString("아이폰에서 지웠는데 이 맥에 남아 있는 것: %d개", comment: "Diagnostics: zombie count"),
+                                    zombies.count))
+                let sample = zombies.prefix(5).map(\.title).joined(separator: ", ")
+                lines.append(String(format: NSLocalizedString("예: %@", comment: "Diagnostics: zombie sample"), sample))
+            }
         } catch {
             lines.append(String(format: NSLocalizedString("구역 읽기 실패: %@", comment: "Diagnostics: zone read failed"),
                                 error.localizedDescription))

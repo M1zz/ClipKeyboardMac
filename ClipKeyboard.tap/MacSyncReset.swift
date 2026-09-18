@@ -137,6 +137,55 @@ enum MacSyncReset {
         return true
     }
 
+    /// iCloud 가 "지웠다" 고 하는 것을 이 맥에서도 지운다.
+    ///
+    /// ⚠️ 병합 규칙(`MemoSyncCore.merge`)은 **로컬 수정 시각이 삭제보다 나중이면 로컬이 이긴다.**
+    ///    맥이 옛 백업을 복원하면서 수정 시각이 새로 찍히면, 아이폰의 삭제가 전부 그 규칙에
+    ///    져서 되살아나고 다시 올라간다(아이폰에서도 되살아난다). 그때 사람이 "아이폰 쪽이
+    ///    맞다" 고 정해 주는 자리다.
+    /// - Returns: 지운 개수.
+    @discardableResult
+    static func applyCloudDeletions() async throws -> Int {
+        let database = await CloudKitContainer.privateDatabase(containerID)
+        let zoneID = CKRecordZone.ID(zoneName: MemoSyncEngine.zoneName, ownerName: CKCurrentUserDefaultName)
+
+        var deletedIDs: Set<UUID> = []
+        do {
+            var token: CKServerChangeToken?
+            var more = true
+            while more {
+                let result = try await database.recordZoneChanges(inZoneWith: zoneID, since: token)
+                for change in result.modificationResultsByID.values {
+                    guard let record = try? change.get().record,
+                          record.recordType == MemoSyncEngine.recordType,
+                          record["deletedAt"] != nil,
+                          let id = UUID(uuidString: record.recordID.recordName) else { continue }
+                    deletedIDs.insert(id)
+                }
+                token = result.changeToken
+                more = result.moreComing
+            }
+        } catch {
+            throw Failure.cloudUnreadable(error.localizedDescription)
+        }
+
+        let local = (try? MemoStore.shared.load(type: .memo)) ?? []
+        let kept = local.filter { !deletedIDs.contains($0.id) }
+        let removed = local.count - kept.count
+        guard removed > 0 else { return 0 }
+
+        do {
+            // 저장하면 `.memoDataChanged` 가 나가고, 엔진이 **지금 시각**으로 툼스톤을 새로
+            // 올린다. 그래야 되살아난 사본이 다른 기기에서도 다시 지워진다.
+            try MemoStore.shared.save(memos: kept, type: .memo)
+        } catch {
+            throw Failure.wipeFailed(error.localizedDescription)
+        }
+        NotificationCenter.default.post(name: .dataRestored, object: nil)
+        AppLog.info(.wipe, "아이폰 삭제 반영: \(removed)개 지움")
+        return removed
+    }
+
     /// 앱을 새로 띄우고 지금 것을 끈다. 지운 뒤 엔진을 새 기억으로 세우는 유일한 길이다.
     static func relaunch() {
         let configuration = NSWorkspace.OpenConfiguration()
