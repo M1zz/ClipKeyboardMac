@@ -342,6 +342,10 @@ struct Memo: Identifiable, Codable {
             self.stackItems = (try c.decodeIfPresent([String].self, forKey: .stackValues) ?? [])
                 .map { StackItem(value: $0) }
         }
+        // ⚠️ 스택인지는 **칸이 있는지**로 정한다 - 아이폰은 `isStack` 을 `!stackItems.isEmpty` 로
+        //    계산한다. 파일의 `isCombo` 표시만 믿었더니, 표시가 false 로 남은 스택을 맥이 일반
+        //    단축어로 보고 대표 값 하나만 복사했다(⌃⇧V 패널에서 스택 창이 안 뜸).
+        self.isStack = !self.stackItems.isEmpty
         self.autoDetectedType = try c.decodeIfPresent(ClipboardItemType.self, forKey: .autoDetectedType)
         self.imageFileName = try c.decodeIfPresent(String.self, forKey: .imageFileName)
         self.imageFileNames = try c.decodeIfPresent([String].self, forKey: .imageFileNames) ?? []

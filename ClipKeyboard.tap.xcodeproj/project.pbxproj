@@ -42,6 +42,8 @@
 		CA7EG0R00000000000000B02 /* CategorySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7EG0R00000000000000F02 /* CategorySnapshot.swift */; };
 		MACCATTAB0000000000000B04 /* MacCategoryTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACCATTAB0000000000000F04 /* MacCategoryTabs.swift */; };
 		MACDEFKEY000000000000B05 /* MacDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACDEFKEY000000000000F05 /* MacDefaultsKey.swift */; };
+		MACSPOTLIT00000000000B01 /* MacSpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */; };
+		MACPASTEFLOW000000000B01 /* MacPasteFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */; };
 		MACCATPREF00000000000B06 /* MacCategoryTabPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACCATPREF00000000000F06 /* MacCategoryTabPreference.swift */; };
 		MEMOEDITVIEW000000000B07 /* MemoEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = MEMOEDITVIEW000000000F07 /* MemoEditView.swift */; };
 		MACMEMOACTIONS0000000B08 /* MacMemoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACMEMOACTIONS0000000F08 /* MacMemoActions.swift */; };
@@ -92,6 +94,8 @@
 		CA7EG0R00000000000000F02 /* CategorySnapshot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategorySnapshot.swift; sourceTree = "<group>"; };
 		MACCATTAB0000000000000F04 /* MacCategoryTabs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacCategoryTabs.swift; sourceTree = "<group>"; };
 		MACDEFKEY000000000000F05 /* MacDefaultsKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacDefaultsKey.swift; sourceTree = "<group>"; };
+		MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSpotlightIndexer.swift; sourceTree = "<group>"; };
+		MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPasteFlow.swift; sourceTree = "<group>"; };
 		MACCATPREF00000000000F06 /* MacCategoryTabPreference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacCategoryTabPreference.swift; sourceTree = "<group>"; };
 		MEMOEDITVIEW000000000F07 /* MemoEditView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoEditView.swift; sourceTree = "<group>"; };
 		MACMEMOACTIONS0000000F08 /* MacMemoActions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacMemoActions.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 				E22C7148DD0D10FD7FCB6CBC /* MacTheme.swift */,
 				MACCATTAB0000000000000F04 /* MacCategoryTabs.swift */,
 				MACDEFKEY000000000000F05 /* MacDefaultsKey.swift */,
+				MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */,
+				MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */,
 				MACCATPREF00000000000F06 /* MacCategoryTabPreference.swift */,
 				D1EB53D0BD0E25A78BF1D6F6 /* MemoAddView.swift */,
 				MEMOEDITVIEW000000000F07 /* MemoEditView.swift */,
@@ -342,6 +348,8 @@
 				CA7EG0R00000000000000B02 /* CategorySnapshot.swift in Sources */,
 				MACCATTAB0000000000000B04 /* MacCategoryTabs.swift in Sources */,
 				MACDEFKEY000000000000B05 /* MacDefaultsKey.swift in Sources */,
+				MACSPOTLIT00000000000B01 /* MacSpotlightIndexer.swift in Sources */,
+				MACPASTEFLOW000000000B01 /* MacPasteFlow.swift in Sources */,
 				MACCATPREF00000000000B06 /* MacCategoryTabPreference.swift in Sources */,
 				CA7EBUCKET00000000000B03 /* CategoryBucketRule.swift in Sources */,
 				8E307EF1A65000000000B003 /* RemoteFlagsService.swift in Sources */,
@@ -385,7 +393,8 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = ClipKeyboard;
+				INFOPLIST_KEY_CFBundleDisplayName = ClipKeyboard.tap;
+				INFOPLIST_FILE = ClipKeyboard.tap/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -490,7 +499,8 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = ClipKeyboard;
+				INFOPLIST_KEY_CFBundleDisplayName = ClipKeyboard.tap;
+				INFOPLIST_FILE = ClipKeyboard.tap/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (

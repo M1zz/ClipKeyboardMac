@@ -555,9 +555,9 @@ struct CompactMemoItemRow: View {
                             .foregroundStyle(.secondary)
                     }
                 } else {
-                    Text(memo.isSecure ? AttributedString(MacSecureAccess.maskedPreview(memo)) : memo.value.templateChipAttributed())
+                    Text(memo.isSecure ? AttributedString(memo.listPreviewText) : memo.listPreviewText.templateChipAttributed())
                         .font(MacFont.secondary)
-                        .lineLimit(1)
+                        .lineLimit(memo.listPreviewLineLimit)
                         .foregroundStyle(.secondary)
                 }
             }

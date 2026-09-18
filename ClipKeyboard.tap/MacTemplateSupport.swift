@@ -178,6 +178,20 @@ extension Memo {
     /// 사용자 입력이 필요한 커스텀 플레이스홀더가 있는지.
     var hasCustomPlaceholders: Bool { !customPlaceholders.isEmpty }
 
+    /// 목록 행에서 내용을 몇 줄까지 보여 줄지.
+    /// 템플릿은 **칸이 어디 있는지 보여야** 고를 수 있다 - 한 줄로 자르면 뒤쪽 칸이 잘려 안 보였다.
+    /// 나머지는 한 화면에 많이 보이도록 한 줄.
+    var listPreviewLineLimit: Int {
+        !isSecure && hasCustomPlaceholders ? 3 : 1
+    }
+
+    /// 행 미리보기 글. 한 줄로 보일 땐 줄바꿈을 공백으로 접고, 여러 줄로 보이는 템플릿은 줄바꿈을 살린다.
+    var listPreviewText: String {
+        let text = MacSecureAccess.maskedPreview(self)
+        guard listPreviewLineLimit == 1 else { return text.trimmingCharacters(in: .whitespacesAndNewlines) }
+        return text.replacingOccurrences(of: "\n", with: " ").trimmingCharacters(in: .whitespaces)
+    }
+
     /// 붙여넣기용으로 자동 변수(날짜/시간/타임존 등)를 치환한 문자열.
     /// 커스텀 플레이스홀더({이름} 등)는 그대로 둔다 — 값 채우기 UI에서 처리.
     func resolvedForPaste() -> String {

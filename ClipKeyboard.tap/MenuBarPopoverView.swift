@@ -192,41 +192,12 @@ struct MenuBarPopoverView: View {
 
     /// 카테고리 탭 — 아이폰이 설정한 목록·순서·이름·아이콘 그대로.
     /// 카테고리 기능이 꺼져 있으면(탭 없음) 줄 자체가 사라진다.
-    @ViewBuilder
     private var categoryTabs: some View {
-        let tabs = viewModel.tabs
-        if tabs.count > 1 {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: MacSpacing.sm) {
-                    ForEach(tabs, id: \.self) { tab in
-                        categoryChip(tab)
-                    }
-                }
-                .padding(.horizontal, MacSpacing.lg)
-                .padding(.bottom, MacSpacing.sm)
-            }
-        }
-    }
-
-    private func categoryChip(_ tab: CategoryTab) -> some View {
-        let isSelected = viewModel.selectedTab == tab
-        return Button {
+        MacCategoryChipBar(tabs: viewModel.tabs, selected: viewModel.selectedTab) { tab in
             viewModel.selectedTab = tab
             viewModel.selectedIndex = 0
-        } label: {
-            HStack(spacing: MacSpacing.xs) {
-                Image(systemName: tab.icon)
-                Text(MacCategoryName.display(tab.displayName))
-                    .lineLimit(1)
-            }
-            .font(MacFont.body)
-            .foregroundStyle(isSelected ? AnyShapeStyle(Color.accentColor) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
-            .padding(.horizontal, MacSpacing.md)
-            .padding(.vertical, MacSpacing.xs)
-            .background(isSelected ? MacColor.selection : MacColor.surface, in: Capsule())
-            .contentShape(Capsule())
         }
-        .buttonStyle(.plain)
+        .padding(.bottom, viewModel.tabs.count > 1 ? MacSpacing.sm : 0)
     }
 
     private var memoList: some View {
@@ -401,6 +372,12 @@ struct MenuBarPopoverView: View {
     }
 
     private func copyMemo(_ memo: Memo) {
+        // 템플릿(채울 칸)·스택은 한 번에 복사할 수 없다 - 입력 창으로 넘긴다(빠른 붙여넣기 패널과 같은 길).
+        if MacPasteFlow.needsInput(memo) {
+            dismiss()
+            MacPasteFlow.open(memo)
+            return
+        }
         // 보안 메모면 Touch ID 인증 + 복호화 후 복사. 일반 메모는 즉시.
         MacSecureAccess.resolveForPaste(memo) { resolved in
             guard let resolved else { return } // 인증 취소/실패/키 미동기화
@@ -409,6 +386,129 @@ struct MenuBarPopoverView: View {
             print("✅ [Popover] 복사: \(memo.title)")
             dismiss()
         }
+    }
+}
+
+// MARK: - Category chips
+
+/// 카테고리 칩 줄 — 메뉴바 팝오버와 ⌃⇧V 빠른 붙여넣기 패널이 같은 모양을 쓴다.
+/// 탭이 하나 이하면 아무것도 그리지 않는다.
+///
+/// ⚠️ 가로 스크롤은 트랙패드·매직마우스로만 된다. 일반 마우스는 휠이 세로라, Shift 를 모르면
+///    넘친 칩에 닿을 길이 없었다. 그래서 이 줄 위에 커서가 있을 때는 세로 휠을 가로로 돌린다.
+///    눌러 고른 칩은 가운데로 끌어온다.
+struct MacCategoryChipBar: View {
+    let tabs: [CategoryTab]
+    let selected: CategoryTab
+    let onSelect: (CategoryTab) -> Void
+
+    @State private var position = ScrollPosition(edge: .leading)
+    @State private var offsetX: CGFloat = 0
+    @State private var maxOffsetX: CGFloat = 0
+    @State private var isHovering = false
+
+    var body: some View {
+        if tabs.count > 1 {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: MacSpacing.sm) {
+                    // 스크롤 목표는 자리 번호로 잡는다 - `scrollTo(id:)` 는 Sendable 한 id 를 요구한다.
+                    ForEach(Array(tabs.enumerated()), id: \.element) { index, tab in
+                        chip(tab, index: index).id(index)
+                    }
+                }
+                .padding(.horizontal, MacSpacing.lg)
+                .scrollTargetLayout()
+            }
+            .scrollPosition($position)
+            .onScrollGeometryChange(for: CGSize.self) { geometry in
+                CGSize(width: geometry.contentOffset.x,
+                       height: max(0, geometry.contentSize.width - geometry.containerSize.width))
+            } action: { _, value in
+                offsetX = value.width
+                maxOffsetX = value.height
+            }
+            .onHover { isHovering = $0 }
+            .background(VerticalWheelToHorizontal(isActive: isHovering && maxOffsetX > 0) { delta in
+                let target = min(max(offsetX - delta, 0), maxOffsetX)
+                position.scrollTo(x: target)
+            })
+        }
+    }
+
+    private func chip(_ tab: CategoryTab, index: Int) -> some View {
+        let isSelected = selected == tab
+        return Button {
+            onSelect(tab)
+            withAnimation(.easeOut(duration: 0.2)) { position.scrollTo(id: index, anchor: .center) }
+        } label: {
+            HStack(spacing: MacSpacing.xs) {
+                Image(systemName: tab.icon)
+                Text(MacCategoryName.display(tab.displayName))
+                    .lineLimit(1)
+            }
+            .font(MacFont.body)
+            .foregroundStyle(isSelected ? AnyShapeStyle(Color.accentColor) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
+            .padding(.horizontal, MacSpacing.md)
+            .padding(.vertical, MacSpacing.xs)
+            .background(isSelected ? MacColor.selection : MacColor.surface, in: Capsule())
+            .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+/// 커서가 올라가 있는 동안 **세로로만 굴린** 휠을 가로 이동량으로 넘긴다.
+/// 가로 성분이 있는 스크롤(트랙패드·매직마우스·Shift+휠)은 건드리지 않고 원래대로 흘려보낸다.
+/// 떠 있는 패널은 키 창이 아니어도 휠 이벤트는 커서 아래 창으로 오므로 로컬 모니터로 잡힌다.
+private struct VerticalWheelToHorizontal: NSViewRepresentable {
+    let isActive: Bool
+    let onScroll: (CGFloat) -> Void
+
+    func makeCoordinator() -> Coordinator { Coordinator() }
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        context.coordinator.view = view
+        context.coordinator.update(isActive: isActive, onScroll: onScroll)
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        context.coordinator.update(isActive: isActive, onScroll: onScroll)
+    }
+
+    static func dismantleNSView(_ nsView: NSView, coordinator: Coordinator) {
+        coordinator.stop()
+    }
+
+    final class Coordinator {
+        weak var view: NSView?
+        private var monitor: Any?
+        private var isActive = false
+        private var onScroll: ((CGFloat) -> Void)?
+
+        func update(isActive: Bool, onScroll: @escaping (CGFloat) -> Void) {
+            self.isActive = isActive
+            self.onScroll = onScroll
+            guard monitor == nil else { return }
+            monitor = NSEvent.addLocalMonitorForEvents(matching: .scrollWheel) { [weak self] event in
+                guard let self, self.isActive,
+                      event.window != nil, event.window === self.view?.window,
+                      event.scrollingDeltaX == 0, event.scrollingDeltaY != 0
+                else { return event }
+                // 일반 휠은 한 칸이 1 안팎이라 칩 한 개쯤 움직이게 키운다.
+                let scale: CGFloat = event.hasPreciseScrollingDeltas ? 1 : 24
+                self.onScroll?(event.scrollingDeltaY * scale)
+                return nil
+            }
+        }
+
+        func stop() {
+            if let monitor { NSEvent.removeMonitor(monitor) }
+            monitor = nil
+        }
+
+        deinit { stop() }
     }
 }
 
@@ -443,15 +543,13 @@ private struct PopoverRow: View {
                     Text(memo.title)
                         .font(MacFont.rowTitle)
                         .lineLimit(1)
-                    // 보안 메모는 값을 마스킹(인증 전 노출 금지).
-                    let preview = MacSecureAccess.maskedPreview(memo)
-                        .replacingOccurrences(of: "\n", with: " ")
-                        .trimmingCharacters(in: .whitespaces)
+                    // 보안 메모는 값을 마스킹(인증 전 노출 금지). 템플릿은 칸이 보이게 여러 줄.
+                    let preview = memo.listPreviewText
                     if !preview.isEmpty {
                         Text(memo.isSecure ? AttributedString(preview) : preview.templateChipAttributed())
                             .font(MacFont.secondary)
                             .foregroundStyle(.secondary)
-                            .lineLimit(1)
+                            .lineLimit(memo.listPreviewLineLimit)
                     }
                 }
                 Spacer(minLength: 0)

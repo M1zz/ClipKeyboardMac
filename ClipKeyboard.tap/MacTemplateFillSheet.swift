@@ -14,6 +14,9 @@ struct MacTemplateFillSheet: View {
     let memo: Memo
     /// 치환 완료 문자열
     let onComplete: (String) -> Void
+    /// 시트가 아니라 창으로 띄웠을 때 닫는 길 - 창에서는 `dismiss` 가 아무 일도 하지 않는다
+    /// (`MacPasteFlow`).
+    var onCancel: (() -> Void)? = nil
 
     @Environment(\.dismiss) private var dismiss
     @State private var inputs: [String: String] = [:]
@@ -46,44 +49,59 @@ struct MacTemplateFillSheet: View {
                     .lineLimit(1)
             }
 
-            // 원본 템플릿 (칩 미리보기)
-            Text(memo.value.templateChipAttributed())
-                .font(MacFont.body)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(MacSpacing.md)
-                .macSurface()
+            // 칸이 많거나 템플릿이 길면 여기만 스크롤한다.
+            // ⚠️ 창 크기를 내용에 맞추지 않는다 - 그렇게 했다가 크기 계산이 끝나지 않아
+            //    앱이 죽었다(`MacPasteFlow` 주석).
+            ScrollView {
+                VStack(alignment: .leading, spacing: MacSpacing.lg) {
+                    // 원본 템플릿 (칩 미리보기)
+                    // ⚠️ 세로로는 줄이지 않는다 - 높이가 모자라면 SwiftUI 가 한 줄로 접어 "…" 로
+                    //    잘랐고, 뒤쪽 칸({금액})이 안 보여 무엇을 채우는지 알 수 없었다.
+                    Text(memo.value.templateChipAttributed())
+                        .font(MacFont.body)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(MacSpacing.md)
+                        .macSurface()
 
-            // 입력 필드
-            VStack(alignment: .leading, spacing: MacSpacing.md) {
-                ForEach(placeholders, id: \.self) { token in
-                    let name = token.trimmingCharacters(in: CharacterSet(charactersIn: "{} "))
+                    // 입력 필드
+                    VStack(alignment: .leading, spacing: MacSpacing.md) {
+                        ForEach(placeholders, id: \.self) { token in
+                            let name = token.trimmingCharacters(in: CharacterSet(charactersIn: "{} "))
+                            VStack(alignment: .leading, spacing: MacSpacing.xs) {
+                                Text(name)
+                                    .font(MacFont.secondary)
+                                    .foregroundStyle(.secondary)
+                                TextField(name, text: binding(for: token))
+                                    .textFieldStyle(.roundedBorder)
+                                    .font(MacFont.body)
+                            }
+                        }
+                    }
+
+                    // 결과 미리보기
                     VStack(alignment: .leading, spacing: MacSpacing.xs) {
-                        Text(name)
+                        Text(NSLocalizedString("미리보기", comment: "Preview label"))
                             .font(MacFont.secondary)
                             .foregroundStyle(.secondary)
-                        TextField(name, text: binding(for: token))
-                            .textFieldStyle(.roundedBorder)
+                        Text(resolved.isEmpty ? " " : resolved)
                             .font(MacFont.body)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .textSelection(.enabled)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(MacSpacing.md)
+                            .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: MacRadius.sm))
                     }
                 }
+                .padding(.horizontal, 1)
             }
 
-            // 결과 미리보기
-            VStack(alignment: .leading, spacing: MacSpacing.xs) {
-                Text(NSLocalizedString("미리보기", comment: "Preview label"))
-                    .font(MacFont.secondary)
-                    .foregroundStyle(.secondary)
-                Text(resolved.isEmpty ? " " : resolved)
-                    .font(MacFont.body)
-                    .textSelection(.enabled)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(MacSpacing.md)
-                    .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: MacRadius.sm))
-            }
-
-            // 액션
+            // 액션 - 스크롤 밖에 둔다. 칸이 많아도 복사 버튼이 늘 보여야 한다.
             HStack(spacing: MacSpacing.sm) {
-                Button(NSLocalizedString("취소", comment: "Cancel button")) { dismiss() }
+                Button(NSLocalizedString("취소", comment: "Cancel button")) {
+                    dismiss()
+                    onCancel?()
+                }
                     .keyboardShortcut(.cancelAction)
                 Spacer()
                 Button(NSLocalizedString("복사", comment: "Copy")) {
@@ -96,7 +114,7 @@ struct MacTemplateFillSheet: View {
             .controlSize(.large)
         }
         .padding(MacSpacing.xl)
-        .frame(width: 420)
+        .frame(width: 420, height: 460)
     }
 
     private func binding(for token: String) -> Binding<String> {
