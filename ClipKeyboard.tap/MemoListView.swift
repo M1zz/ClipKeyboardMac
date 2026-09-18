@@ -78,6 +78,10 @@ struct MemoListView: View {
         VStack(spacing: 0) {
             headerSection
             Divider()
+            if MacSyncPrompt.shared.needsAsk {
+                MacSyncPromptBanner(prompt: MacSyncPrompt.shared)
+                Divider()
+            }
             if tabPreference.needsAsk {
                 MacCategoryAdoptBanner(preference: tabPreference)
                 Divider()

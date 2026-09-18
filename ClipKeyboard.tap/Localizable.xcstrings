@@ -533,6 +533,35 @@
         }
       }
     },
+    "나중에" : {
+      "comment" : "Sync prompt: later",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나중에"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "稍后"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "稍後"
+          }
+        }
+      }
+    },
     "동기화 오류: %@" : {
       "comment" : "Prefs: sync error",
       "localizations" : {
@@ -562,6 +591,35 @@
         }
       }
     },
+    "동기화 켜기" : {
+      "comment" : "Sync prompt: turn on",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn On Sync"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동기화 켜기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启同步"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟同步"
+          }
+        }
+      }
+    },
     "마지막 확인: %@" : {
       "comment" : "Prefs: last sync time",
       "localizations" : {
@@ -587,6 +645,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "上次檢查：%@"
+          }
+        }
+      }
+    },
+    "아이폰과 동기화가 꺼져 있습니다" : {
+      "comment" : "Sync prompt title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync with iPhone is off"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰과 동기화가 꺼져 있습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "与 iPhone 的同步已关闭"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "與 iPhone 的同步已關閉"
           }
         }
       }
@@ -703,6 +790,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開啟後，在 iPhone 上新增或刪除的短語會立即出現在這台 Mac 上。關閉後，這台 Mac 的短語只留在本機。"
+          }
+        }
+      }
+    },
+    "켜면 아이폰에서 더하거나 지운 단축어를 이 맥이 받아옵니다." : {
+      "comment" : "Sync prompt detail",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn it on and this Mac will receive snippets you add or delete on iPhone."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "켜면 아이폰에서 더하거나 지운 단축어를 이 맥이 받아옵니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启后，这台 Mac 会收到你在 iPhone 上添加或删除的短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟後，這台 Mac 會收到你在 iPhone 上新增或刪除的短語。"
           }
         }
       }

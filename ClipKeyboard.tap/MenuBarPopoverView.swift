@@ -91,6 +91,7 @@ final class PopoverViewModel: ObservableObject {
 struct MenuBarPopoverView: View {
     @StateObject private var viewModel = PopoverViewModel()
     @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
+    @ObservedObject private var syncPrompt = MacSyncPrompt.shared
     @FocusState private var searchFocused: Bool
     /// 삭제 확인을 기다리는 단축어 — 되돌릴 수 없는 동작이라 한 번 묻는다.
     @State private var deleteCandidate: Memo?
@@ -103,6 +104,10 @@ struct MenuBarPopoverView: View {
     var body: some View {
         VStack(spacing: 0) {
             searchBar
+            if syncPrompt.needsAsk {
+                Divider()
+                MacSyncPromptBanner(prompt: syncPrompt)
+            }
             if tabPreference.needsAsk {
                 Divider()
                 MacCategoryAdoptBanner(preference: tabPreference)
@@ -122,6 +127,7 @@ struct MenuBarPopoverView: View {
         .frame(width: 400, height: 500)
         .onAppear {
             viewModel.reload()
+            syncPrompt.refresh()
             DispatchQueue.main.async { searchFocused = true }
         }
         .onChange(of: tabPreference.followsPhone) { _ in
