@@ -45,6 +45,7 @@
 		MACSPOTLIT00000000000B01 /* MacSpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */; };
 		MACPASTEFLOW000000000B01 /* MacPasteFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */; };
 		MACSYNCPROMPT00000000B01 /* MacSyncPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */; };
+		MACSYNCDIAG000000000B01X /* MacSyncDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */; };
 		MACCATPREF00000000000B06 /* MacCategoryTabPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACCATPREF00000000000F06 /* MacCategoryTabPreference.swift */; };
 		MEMOEDITVIEW000000000B07 /* MemoEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = MEMOEDITVIEW000000000F07 /* MemoEditView.swift */; };
 		MACMEMOACTIONS0000000B08 /* MacMemoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACMEMOACTIONS0000000F08 /* MacMemoActions.swift */; };
@@ -98,6 +99,7 @@
 		MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSpotlightIndexer.swift; sourceTree = "<group>"; };
 		MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPasteFlow.swift; sourceTree = "<group>"; };
 		MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSyncPrompt.swift; sourceTree = "<group>"; };
+		MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSyncDiagnostics.swift; sourceTree = "<group>"; };
 		MACCATPREF00000000000F06 /* MacCategoryTabPreference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacCategoryTabPreference.swift; sourceTree = "<group>"; };
 		MEMOEDITVIEW000000000F07 /* MemoEditView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoEditView.swift; sourceTree = "<group>"; };
 		MACMEMOACTIONS0000000F08 /* MacMemoActions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacMemoActions.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */,
 				MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */,
 				MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */,
+				MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */,
 				MACCATPREF00000000000F06 /* MacCategoryTabPreference.swift */,
 				D1EB53D0BD0E25A78BF1D6F6 /* MemoAddView.swift */,
 				MEMOEDITVIEW000000000F07 /* MemoEditView.swift */,
@@ -354,6 +357,7 @@
 				MACSPOTLIT00000000000B01 /* MacSpotlightIndexer.swift in Sources */,
 				MACPASTEFLOW000000000B01 /* MacPasteFlow.swift in Sources */,
 				MACSYNCPROMPT00000000B01 /* MacSyncPrompt.swift in Sources */,
+				MACSYNCDIAG000000000B01X /* MacSyncDiagnostics.swift in Sources */,
 				MACCATPREF00000000000B06 /* MacCategoryTabPreference.swift in Sources */,
 				CA7EBUCKET00000000000B03 /* CategoryBucketRule.swift in Sources */,
 				8E307EF1A65000000000B003 /* RemoteFlagsService.swift in Sources */,

@@ -20,6 +20,9 @@ struct MacPreferencesView: View {
     @State private var syncEnabled: Bool = MemoSyncFlags.enabled
     /// 마지막으로 받아온 시각 - 켜 놓고도 안 오는지 사람이 눈으로 볼 수 있어야 한다.
     @State private var syncStatus: String = ""
+    /// iCloud 안을 직접 읽어 본 결과 - 안 맞을 때 어느 쪽이 안 올리는지 가리는 자리.
+    @State private var diagnostics: String = ""
+    @State private var isDiagnosing = false
 
     var body: some View {
         TabView {
@@ -72,6 +75,27 @@ struct MacPreferencesView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { refreshSyncStatus() }
                 }
                 .disabled(!syncEnabled)
+
+                // 동기화가 겉으로는 도는데 데이터가 안 맞을 때, iCloud 안을 직접 읽어 센다.
+                Button(isDiagnosing
+                       ? NSLocalizedString("살펴보는 중…", comment: "Prefs: diagnostics running")
+                       : NSLocalizedString("iCloud 안 살펴보기", comment: "Prefs: inspect iCloud button")) {
+                    isDiagnosing = true
+                    Task {
+                        let result = await MacSyncDiagnostics.inspect()
+                        diagnostics = result
+                        isDiagnosing = false
+                    }
+                }
+                .disabled(isDiagnosing)
+
+                if !diagnostics.isEmpty {
+                    Text(diagnostics)
+                        .font(MacFont.secondary)
+                        .foregroundStyle(.secondary)
+                        .textSelection(.enabled)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             } header: {
                 Text(NSLocalizedString("Sync", comment: "Prefs section: sync"))
                     .font(MacFont.sectionTitle)
