@@ -310,6 +310,9 @@ struct MenuBarPopoverView: View {
             }
             Spacer()
 
+            // 동기화가 돌고 있다는 표시 - 꺼져 있으면 위쪽 안내 띠가 대신 말한다.
+            MacSyncIndicator(prompt: syncPrompt)
+
             // 전역 단축키 안내 — 메뉴바를 열지 않아도 어디서나 패널을 띄울 수 있다는 정보.
             quickPasteHint
 

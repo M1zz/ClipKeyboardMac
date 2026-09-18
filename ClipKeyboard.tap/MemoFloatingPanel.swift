@@ -197,6 +197,7 @@ struct MemoFloatingPanelView: View {
             }
             .padding(.leading, -MacSpacing.sm)
             Spacer(minLength: MacSpacing.sm)
+            MacSyncIndicator(prompt: MacSyncPrompt.shared)
             Button {
                 onDismiss()
             } label: {

@@ -649,6 +649,35 @@
         }
       }
     },
+    "아이폰과 동기화 켜짐" : {
+      "comment" : "Sync indicator label",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syncing with iPhone"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰과 동기화 켜짐"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在与 iPhone 同步"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在與 iPhone 同步"
+          }
+        }
+      }
+    },
     "아이폰과 동기화가 꺼져 있습니다" : {
       "comment" : "Sync prompt title",
       "localizations" : {

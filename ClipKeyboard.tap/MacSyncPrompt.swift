@@ -47,6 +47,49 @@ final class MacSyncPrompt: ObservableObject {
     }
 }
 
+/// 동기화가 켜져 있다는 표시. 켜져 있을 때만 보이고, 마지막으로 확인한 시각을 툴팁으로 말한다.
+/// 눌러서 그 자리에서 한 번 더 받아올 수 있다. 오류가 남아 있으면 색과 기호가 달라진다.
+struct MacSyncIndicator: View {
+    @ObservedObject var prompt: MacSyncPrompt
+    /// 눌렀을 때 한 번 더 받아온 뒤 툴팁을 갱신하기 위한 표식.
+    @State private var syncedAt = Date()
+
+    var body: some View {
+        if MemoSyncFlags.enabled {
+            Button {
+                MemoSyncEngine.shared.startIfEnabled()
+                MemoSyncEngine.shared.syncNow()
+                syncedAt = Date()
+            } label: {
+                Image(systemName: hasError ? AppSymbol.exclamationmarkTriangleFill : AppSymbol.icloudFill)
+                    .font(MacFont.body)
+                    .foregroundStyle(hasError ? AnyShapeStyle(Color.orange) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .help(tooltip)
+            .accessibilityLabel(NSLocalizedString("아이폰과 동기화 켜짐", comment: "Sync indicator label"))
+        }
+    }
+
+    private var hasError: Bool {
+        !(MemoSyncStatus.lastError ?? "").isEmpty
+    }
+
+    private var tooltip: String {
+        if let error = MemoSyncStatus.lastError, !error.isEmpty {
+            return String(format: NSLocalizedString("동기화 오류: %@", comment: "Prefs: sync error"), error)
+        }
+        let on = NSLocalizedString("아이폰과 동기화 켜짐", comment: "Sync indicator label")
+        guard let at = MemoSyncStatus.lastPullAt ?? MemoSyncStatus.lastCheckAt else { return on }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return on + " · " + String(format: NSLocalizedString("마지막 확인: %@", comment: "Prefs: last sync time"),
+                                   formatter.string(from: at))
+    }
+}
+
 struct MacSyncPromptBanner: View {
     @ObservedObject var prompt: MacSyncPrompt
 
