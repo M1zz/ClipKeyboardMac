@@ -23,6 +23,7 @@ struct MacPreferencesView: View {
     /// iCloud 안을 직접 읽어 본 결과 - 안 맞을 때 어느 쪽이 안 올리는지 가리는 자리.
     @State private var diagnostics: String = ""
     @State private var isDiagnosing = false
+    @State private var isResetting = false
 
     var body: some View {
         TabView {
@@ -89,6 +90,13 @@ struct MacPreferencesView: View {
                 }
                 .disabled(isDiagnosing)
 
+                // 되돌릴 수 없는 일이라 아래쪽에, 빨갛게, 두 번 묻고 실행한다.
+                Button(NSLocalizedString("이 맥 것을 지우고 아이폰에서 다시 받기", comment: "Prefs: wipe and pull button")) {
+                    confirmWipeAndPull()
+                }
+                .tint(.red)
+                .disabled(!syncEnabled || isResetting)
+
                 if !diagnostics.isEmpty {
                     Text(diagnostics)
                         .font(MacFont.secondary)
@@ -130,6 +138,62 @@ struct MacPreferencesView: View {
             syncEnabled = MemoSyncFlags.enabled
             refreshSyncStatus()
         }
+    }
+
+    /// 지우기 전에 **무엇을 받아오게 되는지 세어 보여 주고** 확인받는다.
+    /// 아무것도 못 받아오는 상태에서 지우면 그냥 데이터가 사라지는 것이라, 그때는 막는다.
+    private func confirmWipeAndPull() {
+        isResetting = true
+        Task {
+            do {
+                let plan = try await MacSyncReset.plan()
+                isResetting = false
+                guard plan.cloudCount > 0 else {
+                    showAlert(title: NSLocalizedString("받아올 것이 없습니다", comment: "Reset: nothing to pull title"),
+                              message: MacSyncReset.Failure.cloudEmpty.localizedDescription ?? "")
+                    return
+                }
+
+                let alert = NSAlert()
+                alert.alertStyle = .critical
+                alert.messageText = NSLocalizedString("이 맥의 단축어를 지우고 다시 받을까요?", comment: "Reset: confirm title")
+                alert.informativeText = String(
+                    format: NSLocalizedString("이 맥의 단축어 %1$d개가 사라지고, iCloud 에 있는 %2$d개를 처음부터 받아옵니다. 지우기 전에 지금 데이터를 파일로 한 벌 남깁니다. iCloud 와 아이폰은 건드리지 않습니다.", comment: "Reset: confirm body"),
+                    plan.localCount, plan.cloudCount)
+                alert.addButton(withTitle: NSLocalizedString("지우고 다시 받기", comment: "Reset: confirm button"))
+                alert.addButton(withTitle: NSLocalizedString("취소", comment: "Cancel button"))
+                guard alert.runModal() == .alertFirstButtonReturn else { return }
+
+                isResetting = true
+                let result = try await MacSyncReset.wipeAndPull()
+                isResetting = false
+
+                let done = NSAlert()
+                done.messageText = NSLocalizedString("다 지웠습니다. 앱을 다시 켭니다.", comment: "Reset: done title")
+                var body = String(format: NSLocalizedString("앱이 다시 켜지면 iCloud 에서 %d개를 받아옵니다.", comment: "Reset: done body"),
+                                  result.cloudCount)
+                if let safety = result.safetyCopy {
+                    body += "\n\n" + String(format: NSLocalizedString("지우기 전 사본: %@", comment: "Reset: safety copy path"),
+                                             safety.path)
+                }
+                done.informativeText = body
+                done.addButton(withTitle: NSLocalizedString("다시 켜기", comment: "Reset: relaunch button"))
+                done.runModal()
+                MacSyncReset.relaunch()
+            } catch {
+                isResetting = false
+                showAlert(title: NSLocalizedString("다시 받기 실패", comment: "Reset: failed title"),
+                          message: error.localizedDescription)
+            }
+        }
+    }
+
+    private func showAlert(title: String, message: String) {
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = message
+        alert.addButton(withTitle: NSLocalizedString("확인", comment: "OK button"))
+        alert.runModal()
     }
 
     private func setSyncEnabled(_ on: Bool) {

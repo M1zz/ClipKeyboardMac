@@ -178,6 +178,35 @@
         }
       }
     },
+    "iCloud 를 읽지 못했습니다: %@" : {
+      "comment" : "Reset: cloud unreadable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not read iCloud: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 를 읽지 못했습니다: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法读取 iCloud：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法讀取 iCloud：%@"
+          }
+        }
+      }
+    },
     "iCloud 안 살펴보기" : {
       "comment" : "Prefs: inspect iCloud button",
       "localizations" : {
@@ -232,6 +261,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud 中的短語：%1$d 條（刪除標記 %2$d 條）"
+          }
+        }
+      }
+    },
+    "iCloud 에 받아올 단축어가 없습니다. 이 맥의 데이터를 지우지 않았습니다." : {
+      "comment" : "Reset: cloud empty",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no snippets in iCloud to pull, so nothing on this Mac was erased."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 에 받아올 단축어가 없습니다. 이 맥의 데이터를 지우지 않았습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 中没有可获取的短语，因此没有清空这台 Mac 的数据。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 中沒有可取得的短語，因此沒有清空這台 Mac 的資料。"
           }
         }
       }
@@ -736,6 +794,93 @@
         }
       }
     },
+    "다 지웠습니다. 앱을 다시 켭니다." : {
+      "comment" : "Reset: done title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erased. The app will reopen."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다 지웠습니다. 앱을 다시 켭니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已清空，应用将重新打开。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已清空，App 將重新開啟。"
+          }
+        }
+      }
+    },
+    "다시 받기 실패" : {
+      "comment" : "Reset: failed title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not pull again"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 받기 실패"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新获取失败"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新取得失敗"
+          }
+        }
+      }
+    },
+    "다시 켜기" : {
+      "comment" : "Reset: relaunch button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reopen"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 켜기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新打开"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新開啟"
+          }
+        }
+      }
+    },
     "동기화 구역이 아직 없습니다. 아무 기기도 올린 적이 없다는 뜻입니다." : {
       "comment" : "Diagnostics: zone missing",
       "localizations" : {
@@ -877,6 +1022,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "上次檢查：%@"
+          }
+        }
+      }
+    },
+    "받아올 것이 없습니다" : {
+      "comment" : "Reset: nothing to pull title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to pull"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "받아올 것이 없습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有可获取的内容"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有可取得的內容"
           }
         }
       }
@@ -1084,6 +1258,93 @@
         }
       }
     },
+    "앱이 다시 켜지면 iCloud 에서 %d개를 받아옵니다." : {
+      "comment" : "Reset: done body",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When the app reopens, it will pull %d snippets from iCloud."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱이 다시 켜지면 iCloud 에서 %d개를 받아옵니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用重新打开后，将从 iCloud 获取 %d 条短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App 重新開啟後，將從 iCloud 取得 %d 條短語。"
+          }
+        }
+      }
+    },
+    "이 맥 것을 지우고 아이폰에서 다시 받기" : {
+      "comment" : "Prefs: wipe and pull button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase this Mac and pull from iPhone"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 맥 것을 지우고 아이폰에서 다시 받기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空这台 Mac 并从 iPhone 重新获取"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空這台 Mac 並從 iPhone 重新取得"
+          }
+        }
+      }
+    },
+    "이 맥의 단축어 %1$d개가 사라지고, iCloud 에 있는 %2$d개를 처음부터 받아옵니다. 지우기 전에 지금 데이터를 파일로 한 벌 남깁니다. iCloud 와 아이폰은 건드리지 않습니다." : {
+      "comment" : "Reset: confirm body",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d snippets on this Mac will be erased, and %2$d from iCloud will be pulled from scratch. A copy of the current data is saved to a file first. iCloud and your iPhone are left untouched."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 맥의 단축어 %1$d개가 사라지고, iCloud 에 있는 %2$d개를 처음부터 받아옵니다. 지우기 전에 지금 데이터를 파일로 한 벌 남깁니다. iCloud 와 아이폰은 건드리지 않습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这台 Mac 上的 %1$d 条短语将被清空，并从 iCloud 重新获取 %2$d 条。清空前会先把当前数据存成文件。iCloud 和 iPhone 不会受影响。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這台 Mac 上的 %1$d 條短語將被清空，並從 iCloud 重新取得 %2$d 條。清空前會先把目前資料存成檔案。iCloud 和 iPhone 不會受影響。"
+          }
+        }
+      }
+    },
     "이 맥의 단축어: %d개" : {
       "comment" : "Diagnostics: local count",
       "localizations" : {
@@ -1109,6 +1370,64 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "這台 Mac 上的短語：%d 條"
+          }
+        }
+      }
+    },
+    "이 맥의 단축어를 지우고 다시 받을까요?" : {
+      "comment" : "Reset: confirm title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase this Mac's snippets and pull again?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 맥의 단축어를 지우고 다시 받을까요?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要清空这台 Mac 的短语并重新获取吗？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要清空這台 Mac 的短語並重新取得嗎？"
+          }
+        }
+      }
+    },
+    "이 맥의 데이터를 지우지 못했습니다: %@" : {
+      "comment" : "Reset: wipe failed",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not erase this Mac's data: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 맥의 데이터를 지우지 못했습니다: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法清空这台 Mac 的数据：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法清空這台 Mac 的資料：%@"
           }
         }
       }
@@ -1254,6 +1573,64 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "立即同步"
+          }
+        }
+      }
+    },
+    "지우고 다시 받기" : {
+      "comment" : "Reset: confirm button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase and Pull"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지우고 다시 받기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空并重新获取"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空並重新取得"
+          }
+        }
+      }
+    },
+    "지우기 전 사본: %@" : {
+      "comment" : "Reset: safety copy path",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy saved before erasing: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지우기 전 사본: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空前的副本：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空前的副本：%@"
           }
         }
       }
