@@ -81,6 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // ⚠️ 무엇보다 먼저. 동기화 엔진도, 백업 자동 복원도 서기 전에 비워야 한다
         //    (엔진이 서면 옛 기억이 되살아난다 - MacSyncReset 주석).
         let didReset = MacSyncReset.applyPendingResetIfNeeded()
+        AppLog.info(.launch, "시작 (reset 적용=\(didReset))")
 
         // LeeoKit 사용량 트래커 — 리뷰 요청 게이팅에 쓰인다.
         _ = LeeoEngagement.shared.registerLaunch()

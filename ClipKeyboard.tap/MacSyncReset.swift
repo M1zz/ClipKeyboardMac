@@ -96,6 +96,7 @@ enum MacSyncReset {
         //       다시 켜도 "이미 다 받았다" 는 낡은 표식이 살아남는다. 그래서 아이폰 데이터가
         //       iCloud 에 있는데도 하나도 안 들어왔다.
         AppGroup.defaults?.set(true, forKey: DefaultsKey.macSyncResetPending)
+        AppLog.info(.wipe, "reset 예약: iCloud \(plan.cloudCount)개 받을 예정, 이 맥 \(plan.localCount)개 비울 예정")
 
         return Result(cloudCount: plan.cloudCount, safetyCopy: safety)
     }
@@ -105,8 +106,11 @@ enum MacSyncReset {
     /// - Returns: 이번 실행에서 지웠는가 (지웠으면 백업 자동 복원·예시 심기를 건너뛴다).
     @discardableResult
     static func applyPendingResetIfNeeded() -> Bool {
-        guard let defaults = AppGroup.defaults,
-              defaults.bool(forKey: DefaultsKey.macSyncResetPending) else { return false }
+        guard let defaults = AppGroup.defaults else {
+            AppLog.error(.wipe, "App Group 을 열 수 없어 reset 표식을 보지 못했다")
+            return false
+        }
+        guard defaults.bool(forKey: DefaultsKey.macSyncResetPending) else { return false }
         defaults.removeObject(forKey: DefaultsKey.macSyncResetPending)
 
         // 이 맥의 단축어를 비운다. **지운 표식(툼스톤)은 남기지 않는다** -
@@ -114,7 +118,7 @@ enum MacSyncReset {
         do {
             try MemoStore.shared.save(memos: [], type: .memo)
         } catch {
-            print("⚠️ [MacSyncReset] 단축어 비우기 실패: \(error)")
+            AppLog.error(.wipe, "단축어 비우기 실패: \(error.localizedDescription)")
         }
 
         // 동기화 기억을 통째로 버린다 - 이 맥을 "한 번도 받아본 적 없는 기기" 로 되돌린다.
@@ -125,6 +129,10 @@ enum MacSyncReset {
         // 예시 단축어 표식도 지운다 - 맥이 심은 예시도 방금 함께 지워졌다.
         SampleMemoStorage.save(ids: [])
 
+        // ⚠️ `print` 만 남기면 안 된다. 이 일은 **앱을 다시 켠 직후**에 일어나는데, Xcode 로
+        //    실행 중이었다면 그 순간 디버그 세션이 끊겨 콘솔에 아무것도 보이지 않는다.
+        //    시스템 로그에 남겨야 나중에 `log show` 로 확인할 수 있다.
+        AppLog.info(.wipe, "이 맥을 비웠다. 엔진이 처음부터 받아온다.")
         print("🧹 [MacSyncReset] 이 맥을 비웠다. 엔진이 처음부터 받아온다.")
         return true
     }
