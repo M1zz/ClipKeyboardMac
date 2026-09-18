@@ -131,6 +131,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             // 첫 부팅 부트스트랩(autoRestore) 이후에는 실시간 동기화 엔진이 인계한다.
             await MainActor.run { MemoSyncEngine.shared.startIfEnabled() }
+
+            // iCloud 안에 무엇이 들어 있는지 시작할 때 한 번 시스템 로그에 남긴다.
+            // ⚠️ 화면(환경설정 ▸ 동기화)에도 같은 것이 있지만, 이쪽은 **다시 켜진 뒤**를 볼 수 있다.
+            //    Xcode 로 실행 중이면 앱이 다시 켜지는 순간 콘솔이 끊겨 아무것도 남지 않는다.
+            let report = await MacSyncDiagnostics.inspect()
+            AppLog.info(.diagnostics, "iCloud 살펴보기\n" + report)
         }
     }
 
