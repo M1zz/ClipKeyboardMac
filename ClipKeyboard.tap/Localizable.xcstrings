@@ -325,7 +325,33 @@
       }
     },
     "%d단계" : {
-      "comment" : "Stack item fallback name by position"
+      "comment" : "Stack item fallback name by position",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Step %d"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d단계"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第 %d 步"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第 %d 步"
+          }
+        }
+      }
     },
     "%lld" : {
       "comment" : "A label showing the index of a memo in the list of ordered memos. The argument is the 1-based index of the memo.",
