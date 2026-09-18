@@ -642,6 +642,13 @@ class CloudKitBackupService: ObservableObject {
         }
     }
 
+    /// 단축어가 하나라도 있는가 - 자동 복원 여부는 **이것으로만** 판단한다.
+    func hasLocalMemos() -> Bool {
+        let count = (try? MemoStore.shared.load(type: .memo).count) ?? 0
+        print("📊 [CloudKit] 로컬 단축어 확인: \(count)개")
+        return count > 0
+    }
+
     // MARK: - Auto Restore (시작 시 비어있으면 iCloud에서 가져오기)
 
     /// 로컬 데이터가 비어있고 iCloud에 백업이 있으면 시작 시 조용히 복원한다.
@@ -649,9 +656,15 @@ class CloudKitBackupService: ObservableObject {
     /// (아이폰에서 만든 메모를 맥에서 바로 보이게 하는 핵심 동작)
     @discardableResult
     func autoRestoreIfLocalEmpty() async -> Bool {
-        // 로컬에 데이터가 있으면 자동 복원하지 않음 — 사용자 데이터 보호.
-        if hasLocalData() {
-            print("ℹ️ [CloudKit] 로컬 데이터 존재 - 자동 복원 생략")
+        // 단축어가 하나라도 있으면 자동 복원하지 않음 — 사용자 데이터 보호.
+        //
+        // ⚠️ 여기서 `hasLocalData()` 를 보면 안 된다. 그 함수는 **클립보드 기록**과 콤보까지
+        //    함께 센다. 맥은 켜 두기만 해도 클립보드 기록이 저절로 쌓이므로, 단축어가 0 개인
+        //    맥도 늘 "데이터 있음" 이 되어 자동 복원이 영영 돌지 않았다.
+        //    (실제 로그: "메모 0개, 클립보드 7개" 인데 "로컬 데이터 존재 - 자동 복원 생략")
+        //    복원이 덮어쓰는 것은 단축어다. 그러니 판단도 단축어로 한다.
+        if hasLocalMemos() {
+            print("ℹ️ [CloudKit] 단축어가 이미 있음 - 자동 복원 생략")
             return false
         }
         do {
