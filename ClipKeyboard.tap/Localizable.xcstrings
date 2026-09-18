@@ -62,6 +62,35 @@
         }
       }
     },
+    "(단축어 %d개)" : {
+      "comment" : "Backup record memo count",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(%d snippets)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(단축어 %d개)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "（%d 条短语）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "（%d 條短語）"
+          }
+        }
+      }
+    },
     "[%@] 클립보드에 복사되었습니다" : {
       "comment" : "Clipboard copy toast",
       "localizations" : {

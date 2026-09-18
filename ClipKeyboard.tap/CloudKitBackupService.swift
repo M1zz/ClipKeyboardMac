@@ -153,6 +153,8 @@ class CloudKitBackupService: ObservableObject {
 
     @Published var isAuthenticated: Bool = false
     @Published var lastBackupDate: Date?
+    /// iCloud 백업 레코드에 들어 있는 단축어 수 - 화면이 "무엇이 백업돼 있는지" 를 같이 보여 준다.
+    @Published var backupMemoCount: Int?
     @Published var isBackingUp: Bool = false
     @Published var isRestoring: Bool = false
     @Published var autoBackupEnabled: Bool = false
@@ -214,6 +216,23 @@ class CloudKitBackupService: ObservableObject {
         if let timestamp = UserDefaults.standard.object(forKey: DefaultsKey.lastBackupDate) as? Date {
             self.lastBackupDate = timestamp
         }
+    }
+
+    /// iCloud 에 실제로 올라와 있는 백업 레코드의 시각을 읽어 온다.
+    ///
+    /// ⚠️ `loadLastBackupDate()` 는 **이 기기가 백업한 시각**만 안다(로컬 설정값). 그래서
+    ///    아이폰에서 백업해도 맥 화면의 "마지막 백업" 은 그대로였고, 사람은 백업이 안 된 줄
+    ///    알았다. 백업 레코드는 두 기기가 같은 것을 덮어쓰므로 서버가 적어 둔 수정 시각이
+    ///    곧 "마지막으로 누가 언제 백업했는가" 다.
+    @MainActor
+    func refreshLastBackupDateFromCloud() async {
+        guard let record = try? await backend().database.record(for: CKRecord.ID(recordName: "TokenMemoBackup")),
+              let modified = record.modificationDate else { return }
+        // 서버 것이 더 최신일 때만 갱신한다 - 이 기기가 방금 백업한 직후라면 그대로 둔다.
+        if let local = lastBackupDate, local >= modified { return }
+        lastBackupDate = modified
+        backupMemoCount = Self.existingMemoCount(from: record)
+        print("☁️ [CloudKit] iCloud 의 마지막 백업: \(modified)")
     }
 
     private func saveLastBackupDate(_ date: Date) {

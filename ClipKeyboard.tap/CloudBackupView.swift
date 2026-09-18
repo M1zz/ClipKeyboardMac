@@ -28,6 +28,10 @@ struct CloudBackupView: View {
 
     var body: some View {
         backupContentView
+            .task {
+                // 화면을 열 때 iCloud 쪽 백업 시각을 확인한다(아이폰이 한 백업도 보이도록).
+                await cloudService.refreshLastBackupDateFromCloud()
+            }
     }
 
     private var backupContentView: some View {
@@ -62,6 +66,7 @@ struct CloudBackupView: View {
 
                     Button(NSLocalizedString("상태 확인", comment: "Check status button")) {
                         cloudService.checkAccountStatus()
+                        Task { await cloudService.refreshLastBackupDateFromCloud() }
                     }
                 }
 
@@ -74,6 +79,13 @@ struct CloudBackupView: View {
                         Text(lastBackupDate, style: .relative)
 
                         Text(NSLocalizedString("전", comment: "ago"))
+
+                        // 아이폰이 백업한 것도 여기 나온다 - 이 맥이 백업한 시각만 보던 시절엔
+                        // 아이폰에서 백업해도 이 줄이 그대로여서 안 된 줄 알았다.
+                        if let count = cloudService.backupMemoCount {
+                            Text(String(format: NSLocalizedString("(단축어 %d개)", comment: "Backup record memo count"), count))
+                                .foregroundStyle(.secondary)
+                        }
 
                         Spacer()
                     }
