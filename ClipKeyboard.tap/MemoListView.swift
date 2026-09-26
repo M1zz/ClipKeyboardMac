@@ -145,6 +145,11 @@ struct MemoListView: View {
             // iCloud 자동/수동 복원 직후 목록 갱신.
             loadMemos()
         }
+        .onReceive(NotificationCenter.default.publisher(for: .memoDataChanged)) { _ in
+            // 새 단축어는 별도 창(MemoAddView)에서 저장된다. 이 알림을 안 들으면 저장은 됐는데
+            // 목록이 그대로라, 창을 다시 띄울 때까지 "만든 단축어가 날아갔다"로 보인다.
+            loadMemos()
+        }
         .onChange(of: tabPreference.followsPhone) { _ in
             // 배너·환경설정에서 구성을 바꾸면 탭 목록이 통째로 달라진다 — 첫 탭으로 옮긴다.
             selectedTab = tabs.first ?? .all
