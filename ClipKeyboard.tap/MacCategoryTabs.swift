@@ -271,3 +271,85 @@ enum MacCategoryTabs {
         }
     }
 }
+
+// MARK: - 단축어 추가·편집 화면의 카테고리 고르기
+
+/// 카테고리를 **목록에서 고르게** 한다. 예전에는 글자를 쳐 넣는 칸이라, 오타 하나가
+/// 조용히 새 카테고리(새 탭)가 됐고 그 이름은 카테고리 목록에도 올라가지 않았다.
+///
+/// `selection` 은 **저장값**이다 — 기본 카테고리는 센티널(`"기본"`)로 들고, 화면에만
+/// 현지화된 이름을 보인다.
+///
+/// ⚠️ "새 카테고리…"로 만든 이름은 여기서 바로 등록하지 않는다. 단축어를 저장하지 않고
+///    창을 닫으면 빈 탭만 남기 때문이다. 저장하는 쪽이 `register(_:)` 를 부른다.
+struct MacCategoryPicker: View {
+    @Binding var selection: String
+
+    @State private var names: [String] = CategorySnapshotStore.current().categories
+    @State private var isAddingNew = false
+    @State private var newName = ""
+
+    /// "새 카테고리…" 항목의 태그 — 사람이 칠 수 없는 값이라 실제 이름과 겹치지 않는다.
+    private static let newCategoryTag = "\u{0}new-category"
+
+    var body: some View {
+        Picker("", selection: pickerBinding) {
+            Text(MacCategoryName.localizedBasic).tag(MacCategoryName.basicSentinel)
+            ForEach(options, id: \.self) { name in
+                Text(name).tag(name)
+            }
+            Divider()
+            Text(NSLocalizedString("새 카테고리…", comment: "Category picker: create a new category"))
+                .tag(Self.newCategoryTag)
+        }
+        .labelsHidden()
+        .font(MacFont.body)
+        .frame(width: 200)
+        .alert(NSLocalizedString("새 카테고리", comment: "New category alert title"),
+               isPresented: $isAddingNew) {
+            TextField(NSLocalizedString("카테고리 이름", comment: "New category name placeholder"),
+                      text: $newName)
+            Button(NSLocalizedString("추가", comment: "Add new category")) { commitNewName() }
+            Button(NSLocalizedString("취소", comment: "Cancel"), role: .cancel) { newName = "" }
+        }
+    }
+
+    /// 고를 수 있는 사용자 카테고리. 목록에 없는 값(방금 만든 이름, 목록 밖에 붙어 있던
+    /// 단축어의 카테고리)도 끝에 붙여, 지금 값이 항목에 없어 빈 칸으로 보이는 일을 막는다.
+    private var options: [String] {
+        var list = names.filter { $0 != MacCategoryName.basicSentinel }
+        if selection != MacCategoryName.basicSentinel, !list.contains(selection) {
+            list.append(selection)
+        }
+        return list
+    }
+
+    private var pickerBinding: Binding<String> {
+        Binding(
+            get: { selection },
+            set: { picked in
+                if picked == Self.newCategoryTag {
+                    newName = ""
+                    isAddingNew = true
+                } else {
+                    selection = picked
+                }
+            }
+        )
+    }
+
+    private func commitNewName() {
+        let stored = MacCategoryName.stored(newName)
+        newName = ""
+        // 대소문자만 다른 기존 이름이 있으면 그것을 고른다 — 같은 뜻의 탭이 둘 서지 않게.
+        selection = names.first { $0.caseInsensitiveCompare(stored) == .orderedSame } ?? stored
+    }
+
+    /// 단축어를 저장하기 직전에 부른다. 목록에 없는 카테고리면 등록해 탭이 서고
+    /// 다른 기기로도 넘어가게 한다(저장이 곧 `.memoDataChanged` 라 동기화가 함께 싣는다).
+    static func register(_ stored: String) {
+        guard stored != MacCategoryName.basicSentinel,
+              !CategorySnapshotStore.current().categories.contains(stored) else { return }
+        CategorySnapshotStore.apply(CategorySnapshot(categories: [stored]), strategy: .merge)
+    }
+}

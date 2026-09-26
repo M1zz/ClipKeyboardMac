@@ -14,7 +14,7 @@ struct MemoAddView: View {
 
     @State private var title: String = ""
     @State private var textContent: String = ""
-    @State private var category: String = MacCategoryName.localizedBasic
+    @State private var category: String = MacCategoryName.basicSentinel
     @State private var attachedImages: [NSImage] = []
     @State private var showToast: Bool = false
     @State private var toastMessage: String = ""
@@ -50,10 +50,7 @@ struct MemoAddView: View {
                         .font(MacFont.secondary)
                         .foregroundStyle(.secondary)
 
-                    TextField(NSLocalizedString("카테고리", comment: "Category placeholder"), text: $category)
-                        .textFieldStyle(.roundedBorder)
-                        .font(MacFont.body)
-                        .frame(width: 160)
+                    MacCategoryPicker(selection: $category)
 
                     Spacer()
                 }
@@ -337,10 +334,11 @@ struct MemoAddView: View {
             let customTokens = textContent.extractTemplatePlaceholders()
             let isTemplate = !customTokens.isEmpty
 
+            MacCategoryPicker.register(category)
             let newMemo = Memo(
                 title: title,
                 value: textContent,
-                category: MacCategoryName.stored(category),
+                category: category,
                 isTemplate: isTemplate,
                 templateVariables: customTokens,
                 imageFileNames: savedImageFileNames,
