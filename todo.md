@@ -254,3 +254,24 @@ zh-Hans 103·109행, zh-Hant 135·141행). 같은 문단 안에서 패널은 ⌃
 - [ ] 기존에 커스텀 카테고리를 **문자 그대로 "General"** 로 만들어 둔 사용자는, 그 단축어를 다음에
       편집·저장할 때 기본 칸으로 합쳐진다. 탭 이름이 어차피 "General" 이라 화면상 차이는 없다.
 - [ ] `stash@{0}` (4.4.2 시절 작업) 처리 여부 — 불필요하면 `git stash drop`
+
+## 단축어 추가·편집의 카테고리 칸을 Picker로 (2026-09-24)
+- [x] 평문 TextField → `MacCategoryPicker` (기본 · 사용자 카테고리 · 새 카테고리…)
+      `MacCategoryTabs.swift` 끝. 새 이름은 **저장할 때만** 목록에 등록(`register`).
+- [x] 영어 화면에 "Category Label" 이 글자 그대로 찍히던 번역 수정 → "Category"
+- [x] Debug 빌드 성공
+- [x] 새 단축어 저장 후 목록이 안 갱신돼 "날아간 것처럼" 보이던 문제 — MemoListView 가 `.memoDataChanged` 도 듣게 함
+- [ ] 실제 창에서 눈으로 확인 (정식판이 실데이터·동기화 켜진 채 돌고 있어 Debug 실행은 보류)
+
+## 맥에서 만든 단축어가 아이폰에 안 온다 — 원인 확인 (2026-09-24)
+- 맥: App Store 5.1.4(31), CloudKit **Production**. 17:03 레코드 전송 성공(로그 확인).
+- 아이폰(POS-M7NGWGKHC4): 5.1.5(19) **Xcode 설치 개발 빌드** → CloudKit **Development**.
+  동기화 켜짐·권한 있음·마지막 수신 9/23 60건 — 전부 Development 쪽 데이터.
+- 두 기기가 서로 다른 CloudKit 환경이라 영영 만나지 않는다. 코드 버그 아님.
+- 이후 아이폰을 TestFlight 판으로 **덮어 설치** → 데이터·동기화 기록이 Development 기준으로 남음.
+  폰 로그(2026-09-24 18:09): 받기 4회 모두 서버 조회 0건, 단축어 전송 0건. 토글은 켜져 있었다.
+- [x] 수정: 존 안에 표식 레코드(`sync-epoch`, Memo 종류·payload)를 두고, 기기가 기억한 표식과
+      다르면 엔진 상태·섀도·레코드 메타·카테고리 섀도를 비운 뒤 처음부터 다시 맞춘다(툼스톤은 유지).
+      iOS `ClipKeyboard/Service/MemoSyncEngine.swift` 와 맥 `Shared/MemoSyncEngine.swift` 에 같은 코드. 양쪽 빌드 성공.
+- [ ] 새 TestFlight 빌드를 아이폰에 올려 확인 — 맥·아이폰 목록이 합쳐지는지
+- [ ] 맥 새 빌드도 배포 (지금 설치된 5.1.4 에는 이 확인이 없다)

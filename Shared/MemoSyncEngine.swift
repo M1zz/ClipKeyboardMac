@@ -174,6 +174,9 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         startTask = Task { [weak self] in
             guard let self else { return }
             let database = await CloudKitContainer.privateDatabase(self.containerID)
+            // 엔진 상태를 읽기 **전에** 확인한다 - 다른 데이터베이스의 상태로 엔진을 만들면
+            // 그 엔진은 받을 것도 보낼 것도 없다고 여기고 조용히 논다.
+            await self.verifyBaseline(in: database)
             let config = CKSyncEngine.Configuration(
                 database: database,
                 stateSerialization: self.loadState(),
@@ -598,6 +601,91 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         guard !retry.isEmpty else { return }
         syncEngine.state.add(pendingRecordZoneChanges: retry)
         log.info("re-queued \(retry.count) records after save conflict")
+    }
+
+    // MARK: - 기준선 확인 (이 기기의 동기화 기록이 지금 데이터베이스의 것인가)
+    //
+    // 이 기기는 동기화 기록을 세 가지 들고 있다: 엔진 상태(어디까지 받았나),
+    // 섀도(무엇을 이미 보냈나), 레코드 메타(서버 버전 태그). 셋 다 **특정 데이터베이스**에
+    // 대한 기억인데, 기기는 그 데이터베이스가 바뀐 걸 알 방법이 없었다.
+    //
+    // ⚠️ 실제로 있었던 일: Xcode 로 깐 개발 빌드(CloudKit Development) 위에 TestFlight 판
+    //    (Production)을 덮어 깔았다. 앱 데이터는 그대로 남았고, 엔진은 Development 에서
+    //    받은 위치를 들고 Production 에 붙어 **서버에 한 번도 묻지 않고** 받기를 끝냈다.
+    //    섀도는 "전부 보냈음"이라 단축어도 하나도 올리지 않았다. 토글은 켜져 있고 오류도
+    //    없는데 맥과 아이폰이 대놓고 다른 목록을 보여 줬다.
+    //    계정을 바꾸거나 iCloud 데이터를 지워 존이 새로 생긴 경우도 같은 모양이 된다.
+    //
+    // → 존 안에 무작위 표식(epoch)을 하나 두고, 기기는 마지막으로 맞춘 표식을 기억한다.
+    //   서버 표식이 기억과 다르면 기록을 비우고 처음부터 다시 받고 다시 올린다.
+    //
+    // ⚠️ 표식은 새 레코드 종류가 아니라 **기존 `Memo` 종류의 `payload`** 에 싣는다.
+    //    Production 스키마에 없는 종류는 대시보드에서 배포하기 전까지 저장이 거절된다.
+    //    이름이 UUID 가 아니라서 구버전을 포함한 모든 수신 경로가 메모로 읽지 않고 건너뛴다.
+
+    private static let epochRecordName = "sync-epoch"
+    /// 이 기기가 마지막으로 맞춘 서버 표식.
+    private static let epochKey = "memo.sync.epoch"
+
+    private func verifyBaseline(in database: CKDatabase) async {
+        let recordID = CKRecord.ID(recordName: Self.epochRecordName, zoneID: zoneID)
+        let localEpoch = defaults?.string(forKey: Self.epochKey)
+        do {
+            let remoteEpoch: String
+            if let existing = try await fetchEpoch(recordID, in: database) {
+                remoteEpoch = existing
+            } else {
+                remoteEpoch = try await createEpoch(recordID, in: database)
+            }
+            guard remoteEpoch != localEpoch else { return }
+            // 표식을 처음 맞추는 기기(이 확인이 들어간 첫 실행)도 여기로 온다. 멀쩡한 기기라면
+            // 한 번 전부 다시 받고 다시 올리는 비용뿐이고, 어긋난 기기는 이걸로 살아난다.
+            resetBaseline(reason: localEpoch == nil ? "first epoch check" : "epoch changed")
+            defaults?.set(remoteEpoch, forKey: Self.epochKey)
+        } catch {
+            // 확인하지 못했으면 아무것도 지우지 않는다 - 네트워크가 없다고 기록을 날리면 안 된다.
+            log.error("baseline check skipped: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    /// 서버의 표식. 없으면 nil(존이 아직 없어도 nil).
+    private func fetchEpoch(_ recordID: CKRecord.ID, in database: CKDatabase) async throws -> String? {
+        do {
+            let record = try await database.record(for: recordID)
+            guard let data = record["payload"] as? Data else { return nil }
+            return String(data: data, encoding: .utf8)
+        } catch let error as CKError where error.code == .unknownItem || error.code == .zoneNotFound {
+            return nil
+        }
+    }
+
+    /// 표식을 새로 심는다. 다른 기기가 먼저 심었으면 그쪽 것을 따른다.
+    private func createEpoch(_ recordID: CKRecord.ID, in database: CKDatabase) async throws -> String {
+        _ = try await database.save(CKRecordZone(zoneID: zoneID))   // 이미 있으면 그대로 둔다
+        let epoch = UUID().uuidString
+        let record = CKRecord(recordType: Self.recordType, recordID: recordID)
+        record["payload"] = Data(epoch.utf8) as CKRecordValue
+        do {
+            _ = try await database.save(record)
+            log.info("sync epoch created")
+            return epoch
+        } catch let error as CKError where error.code == .serverRecordChanged {
+            guard let existing = try await fetchEpoch(recordID, in: database) else { throw error }
+            return existing
+        }
+    }
+
+    /// 이 기기의 동기화 기록을 비운다. 다음 엔진은 처음부터 받고, 이 기기 단축어를 전부 다시 올린다.
+    ///
+    /// ⚠️ **툼스톤은 남긴다.** 이 기기에서 지운 단축어를 기억하는 유일한 기록이라,
+    ///    지우면 다른 기기에 남은 사본이 받아지는 순간 되살아난다.
+    private func resetBaseline(reason: String) {
+        defaults?.removeObject(forKey: DefaultsKey.syncEngineState)
+        defaults?.removeObject(forKey: DefaultsKey.syncShadow)
+        defaults?.removeObject(forKey: Self.recordMetaKey)
+        defaults?.removeObject(forKey: Self.categoryShadowKey)
+        recordMetaCache = nil
+        log.info("sync baseline reset: \(reason, privacy: .public)")
     }
 
     // MARK: - 카테고리 설정 동기화
