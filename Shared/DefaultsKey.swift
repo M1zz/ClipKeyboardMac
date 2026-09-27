@@ -83,6 +83,17 @@ enum DefaultsKey {
     /// 반값 제안을 이미 띄운 **기회들**(App Group, `DiscountOfferManager.Occasion.rawValue` 배열).
     /// 기회는 둘뿐이고(설치 직후·한도 한 칸 앞), 각각 한 번씩만 뜬다.
     static let discountOfferShownOccasions = "discount.offer.shownOccasions"
+
+    // MARK: - 네 가지 판 (5.1.5)
+
+    /// 필수 단축어 칸을 판 안에서 만든 단축어 (App Group, `[Essential.id: UUID문자열]`).
+    /// 제목을 고쳐도, 언어를 바꿔도 그 칸이 찬 것으로 본다. 자세한 이유: ClipKeyboard/Service/PersonaEdition.swift
+    static let editionEssentialLinks = "persona.edition.essentialLinks.v1"
+    /// 필수 단축어 카드를 닫은 판 (App Group, `PersonaEdition.Kind.rawValue` 배열).
+    /// 판이 바뀌면 새 판의 카드는 한 번 다시 보인다.
+    static let editionShelfDismissed = "persona.edition.shelfDismissed.v1"
+    /// 키보드 빠른 줄에 붙박아 세울 단축어 (App Group, `[UUID문자열]`). 앱이 적고 키보드가 읽는다.
+    static let quickRowAnchors = "quick.row.anchors.v1"
     static let enabledBuiltInCategoriesV1 = "enabledBuiltInCategories_v1"
     /// 앱을 처음 연 날 (standard UD, Date). 리뷰 요청·붙여넣기 안내·반값 제안이 모두 이 값을 본다.
     /// ⚠️ 읽기만 하는 자리에서 값을 쓰지 말 것 - 남의 초기화를 조용히 되돌린다.
@@ -235,6 +246,14 @@ enum DefaultsKey {
     /// 갈래가 지워져 번호가 넘치는 경우는 읽는 쪽에서 잘라 낸다.
     static let keyboardLastCategoryPage = "keyboardLastCategoryPage.v1"
     static let keyboardTypingLang = "keyboardTypingLang"
+    // 아래 다섯은 예전부터 문자열로만 적던 키다. 값은 그대로 두고 이름만 꺼낸다.
+    static let keyboardButtonFontSize = "keyboardButtonFontSize"
+    static let keyboardUseCustomColors = "keyboardUseCustomColors"
+    static let keyboardCustomBgHex = "keyboardCustomBgHex"
+    static let keyboardCustomKeyHex = "keyboardCustomKeyHex"
+    static let keyboardKoreanLayout = "keyboardKoreanLayout"
+    /// 목록 카드의 최소 높이(pt). 표준 UserDefaults (앱 전용).
+    static let memoCardHeight = "memoCardHeight"
     static let koreanEnabledMigratedV1 = "koreanEnabledMigrated_v1"
     static let lastBackupDate = "lastBackupDate"
     static let memoCopyCount = "memoCopyCount"
@@ -503,4 +522,60 @@ enum KeyboardDisplayDefaults {
     static func chooseRecentSection(_ on: Bool) {
         AppGroup.defaults?.set(on, forKey: DefaultsKey.keyboardShowRecent)
     }
+}
+
+// MARK: - 키보드 설정 (이름과 기본값을 한 몸으로)
+
+/// 설정 하나 - **키와 값이 없을 때의 값**을 한 몸으로 둔다.
+struct Pref<Value> {
+    let key: String
+    let fallback: Value
+
+    /// 저장된 값. 없거나 타입이 다르면 `fallback`.
+    func value(in defaults: UserDefaults? = AppGroup.defaults) -> Value {
+        defaults?.object(forKey: key) as? Value ?? fallback
+    }
+}
+
+/// 키보드 설정의 **단 하나의 목록.** 설정 화면 · 미리보기 · 키보드 익스텐션 · 높이 계산이
+/// 모두 여기서 키와 기본값을 가져간다.
+///
+/// ⚠️ 예전에는 같은 키를 `KeyboardLayoutSettings` 와 `KeyboardView` 가 각자 문자열과
+///    기본값으로 적어 두었다(`@AppStorage("keyboardColumnCount") ... = 2` 가 두 벌).
+///    한쪽 기본값만 바뀌면 토글을 만진 적 없는 사람에게 설정과 키보드가 다른 것을 말한다.
+///    `@AppStorage` 를 쓸 때도 기본값은 반드시 여기서 가져온다:
+///    `@AppStorage(KeyboardPrefs.columnCount.key, store: AppGroup.defaults) var n = KeyboardPrefs.columnCount.fallback`
+enum KeyboardPrefs {
+    // 격자
+    static let columnCount = Pref(key: DefaultsKey.keyboardColumnCount, fallback: 2)
+    static let buttonHeight = Pref(key: DefaultsKey.keyboardButtonHeight, fallback: 44.0)
+    static let buttonFontSize = Pref(key: DefaultsKey.keyboardButtonFontSize, fallback: 17.0)
+    /// 0 이면 아직 안 고른 것이다(`KeyboardHeightBook.resolvedControlKeySize`).
+    static let controlKeySize = Pref(key: DefaultsKey.keyboardControlKeySize, fallback: 0.0)
+
+    // 색
+    static let useCustomColors = Pref(key: DefaultsKey.keyboardUseCustomColors, fallback: false)
+    static let customBgHex = Pref(key: DefaultsKey.keyboardCustomBgHex, fallback: "")
+    static let customKeyHex = Pref(key: DefaultsKey.keyboardCustomKeyHex, fallback: "")
+
+    // 위줄의 키 (기본값의 이유는 `DefaultsKey` 각 항목에)
+    static let showSearch = Pref(key: DefaultsKey.keyboardShowSearch, fallback: false)
+    static let showReturnKey = Pref(key: DefaultsKey.keyboardShowReturnKey, fallback: true)
+    static let showNumberPad = Pref(key: DefaultsKey.keyboardShowNumberPad, fallback: true)
+    static let showClipboardKey = Pref(key: DefaultsKey.keyboardShowClipboardKey, fallback: false)
+
+    // 입력
+    static let koreanEnabled = Pref(key: DefaultsKey.keyboardKoreanEnabled, fallback: false)
+    static let typingLang = Pref(key: DefaultsKey.keyboardTypingLang, fallback: "english")
+    static let koreanLayout = Pref(key: DefaultsKey.keyboardKoreanLayout, fallback: "dubeolsik")
+
+    // 앱과 같이 쓰는 표시 (기본값이 다르면 앱에서는 안 보이고 키보드에서만 보인다)
+    static let showVisualCues = Pref(key: DefaultsKey.showVisualCues, fallback: false)
+    static let contentHintEnabled = Pref(key: DefaultsKey.contentHintEnabled, fallback: false)
+}
+
+/// 앱 화면 설정 중 여러 화면이 같이 읽는 것.
+enum AppPrefs {
+    /// 목록 카드 최소 높이. 설정 미리보기와 목록이 같은 값을 쓴다.
+    static let memoCardHeight = Pref(key: DefaultsKey.memoCardHeight, fallback: 140.0)
 }

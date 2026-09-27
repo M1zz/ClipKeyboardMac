@@ -205,8 +205,11 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     ///    맥만 산 사용자가 토글을 켜도 엔진이 조용히 거부해 아무것도 올라가지 않았다.
     ///
     /// ⚠️ 결제 키(`proStatus`) 하나만 보면 안 된다. 이 앱은 **결제 외 경로**로도 전체 접근 권한을 준다:
-    /// v4.0 이전 유료 구매자(`wasProAtV3`) · v3.x 기존 사용자(`existingFreeUser`) · TestFlight/체험
-    /// (`syncEntitled` 로 미러링). 설정의 동기화 토글은 `hasFullAccess` 로 열리는데 엔진만 결제를
+    /// v4.0 이전 유료 구매자(`wasProAtV3`) · TestFlight/체험 (`syncEntitled` 로 미러링).
+    /// ⚠️ `existingFreeUser` 는 보지 않는다. 기기에서 짐작한 표시라 권한이 아니다
+    ///    (`ProFeatureManager.isGrandfathered(hasPurchase:wasExistingFreeUser:existingFreeUserVerified:)`).
+    ///    아직 영수증으로 확인 못 한 옛 표시는 `syncEntitled` 에 이미 반영돼 있다.
+    /// 설정의 동기화 토글은 `hasFullAccess` 로 열리는데 엔진만 결제를
     /// 요구하던 탓에, 그랜드파더 사용자는 **토글이 켜져 있는데도 엔진이 조용히 거부**해
     /// 아이폰에서 아무것도 올라가지 않았다.
     private var hasSyncEntitlement: Bool {
@@ -214,8 +217,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         return true
         #else
         // App Group + iCloud KV 어느 쪽이든 켜져 있으면 인정(기존 백업 게이팅과 동일 취지).
-        let keys = [DefaultsKey.proStatus, DefaultsKey.wasProAtV3,
-                    DefaultsKey.existingFreeUser, DefaultsKey.syncEntitled]
+        let keys = [DefaultsKey.proStatus, DefaultsKey.wasProAtV3, DefaultsKey.syncEntitled]
         for key in keys {
             if defaults?.bool(forKey: key) == true { return true }
             if NSUbiquitousKeyValueStore.default.bool(forKey: key) { return true }
@@ -345,7 +347,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         let scope = context.options.scope
         let pending = syncEngine.state.pendingRecordZoneChanges.filter { scope.contains($0) }
         let current = syncableMemos()
-        let byId = Dictionary(uniqueKeysWithValues: current.map { ($0.id, $0) })
+        let byId = Dictionary(current.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let tombstones = loadTombstones()
 
         return await CKSyncEngine.RecordZoneChangeBatch(pendingChanges: pending) { [weak self] recordID in
@@ -370,7 +372,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     /// 서버 저장이 확정된 레코드만 섀도에 기록한다 - 확정 전에는 계속 "보낼 것"으로 남겨 재시도되게 한다.
     private func confirmSent(_ records: [CKRecord]) {
         let current = syncableMemos()
-        let byId = Dictionary(uniqueKeysWithValues: current.map { ($0.id, $0) })
+        let byId = Dictionary(current.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         var shadow = loadShadow()
         for record in records {
             // 카테고리 설정 업로드 확정 - 지문을 기록해 같은 내용이 다시 올라가지 않게 한다.
