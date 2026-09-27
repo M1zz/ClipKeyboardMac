@@ -7,7 +7,52 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 3~5줄, 한 줄 40자 이내. 내부 리팩터링·빌드 설정·의존성은 쓰지 않고
 사용자에게 무엇이 좋아졌는지만 쓴다. 언어마다 따로 쓰되 항목 수와 순서는 맞춘다.
 
-확인: `DeployBar --reponotes 탭클립키보드 5.1.4`
+확인: `DeployBar --reponotes 탭클립키보드 5.1.6`
+
+## 5.1.6
+
+### 앱스토어 (한국어)
+
+단축어 카테고리를 목록에서 골라 정할 수 있습니다.
+새 단축어를 저장하면 목록에 바로 보입니다.
+아이폰과의 동기화가 더 안정적으로 동작합니다.
+같은 단축어가 겹쳐 있어도 앱이 꺼지지 않습니다.
+
+### App Store (English)
+
+Pick a snippet's category from a list instead of typing it.
+New snippets show up in the list right after you save.
+Syncing with iPhone is more reliable.
+Duplicate snippets no longer make the app quit.
+
+### 앱스토어 (중국어 간체)
+
+可以从列表中为短语选择分类，无需手动输入。
+保存新短语后会立即显示在列表中。
+与 iPhone 的同步更加稳定。
+即使有重复的短语，应用也不会退出。
+
+### 앱스토어 (중국어 번체)
+
+可以從清單中為短語選擇分類，不必手動輸入。
+儲存新短語後會立即顯示在清單中。
+與 iPhone 的同步更加穩定。
+即使有重複的短語，App 也不會結束。
+
+### 개발 메모 (스토어에 올리지 않음)
+
+5.1.6(32) 에 담긴 것. 마케팅 버전은 아이폰 앱(5.1.6)과 번호를 맞추려고 5.1.5 를 건너뛰었다.
+
+- 카테고리를 쳐 넣지 않고 목록에서 고른다 (7431ea1)
+- 새 단축어를 저장해도 목록이 그대로라 날아간 것처럼 보이던 것을 고쳤다 (9a69e2f)
+- `MemoSyncEngine`: iCloud 쪽 `sync-epoch` 표식이 이 기기가 기억하는 값과 다르면 동기화 기록을
+  비우고 처음부터 다시 맞춘다. 다른 데이터베이스의 기록을 들고 조용히 놀던 엔진을 되살린다 (7553ce3, iOS e5f7bfa)
+- 공유 파일 3개(`AppSymbol` · `DefaultsKey` · `MemoSyncEngine`)를 iOS 원본과 다시 맞췄다
+  (`scripts/sync_shared.sh`). 어긋난 채로는 배포 전 검사(`check_shared_drift.sh`)가 배포를 멈춘다.
+  - `MemoSyncEngine`: `memos.data` 에 같은 id 가 둘이면 `Dictionary(uniqueKeysWithValues:)` 가
+    앱을 죽이던 것을 `uniquingKeysWith` 로 막는다. 동기화 권한 확인에서 기기에서 짐작한
+    `existingFreeUser` 를 뺐다 (iOS f68f3c0)
+  - `DefaultsKey`: 아이폰 키보드 설정 목록(`KeyboardPrefs` · `AppPrefs`)이 함께 들어왔다. 맥은 쓰지 않는다
 
 ## 5.1.4
 
