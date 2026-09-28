@@ -8826,6 +8826,35 @@
           }
         }
       }
+    },
+    "기기 간 동기화가 꺼져 있거나 아직 시작되지 않았어요." : {
+      "comment" : "Make-authoritative error: sync engine is not running",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cross-device sync is off or hasn't started yet."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기기 간 동기화가 꺼져 있거나 아직 시작되지 않았어요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跨设备同步已关闭或尚未启动。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跨裝置同步已關閉或尚未啟動。"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

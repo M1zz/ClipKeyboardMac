@@ -95,15 +95,20 @@ enum MemoSyncCore {
     struct MergeResult: Equatable {
         var memos: [Memo]
         var tombstones: [UUID: Date]
-        /// 로컬이 이겨서 원격에 다시 올려야 하는 메모(원격 삭제를 로컬 최신 편집이 덮은 경우).
+        /// 로컬이 이겨서 원격에 다시 올려야 하는 메모.
+        /// 원격 삭제를 로컬 최신 편집이 덮었거나, 원격 사본보다 로컬 편집이 더 최신인 경우.
         var toReupload: [Memo]
+        /// 로컬 삭제가 이겨서 원격에 다시 알려야 하는 삭제 [id: deletedAt].
+        /// 원격은 아직 살아 있는 사본을 들고 있다 - 알리지 않으면 다른 기기에 영영 남는다.
+        var tombstonesToReupload: [UUID: Date] = [:]
 
         static func == (l: MergeResult, r: MergeResult) -> Bool {
             let lIds: [String] = l.memos.map { $0.id.uuidString }.sorted()
             let rIds: [String] = r.memos.map { $0.id.uuidString }.sorted()
-            let lReupload: [UUID] = l.toReupload.map { $0.id }
-            let rReupload: [UUID] = r.toReupload.map { $0.id }
+            let lReupload: [String] = l.toReupload.map { $0.id.uuidString }.sorted()
+            let rReupload: [String] = r.toReupload.map { $0.id.uuidString }.sorted()
             return lIds == rIds && l.tombstones == r.tombstones && lReupload == rReupload
+                && l.tombstonesToReupload == r.tombstonesToReupload
         }
     }
 
@@ -118,6 +123,7 @@ enum MemoSyncCore {
         for memo in local { alive[memo.id] = memo }
         var tombstones = localTombstones
         var toReupload: [Memo] = []
+        var tombstonesToReupload: [UUID: Date] = [:]
 
         for r in remote {
             let localMemo = alive[r.id]
@@ -135,14 +141,22 @@ enum MemoSyncCore {
             } else if let rm = r.memo {
                 // 원격 살아있는 메모.
                 if let lt = localTomb, lt >= r.lastEdited {
-                    // 로컬 삭제가 더(또는 같게) 최신 → 삭제 유지(원격 메모 무시).
+                    // 로컬 삭제가 더(또는 같게) 최신 → 삭제 유지, 그리고 원격에 다시 알린다.
+                    tombstonesToReupload[r.id] = lt
                     continue
                 }
                 if let lm = localMemo {
                     if isNewer(rm.lastEdited, idLhs: rm.id, than: lm.lastEdited, idRhs: lm.id) {
                         alive[r.id] = rm
+                    } else if isNewer(lm.lastEdited, idLhs: lm.id, than: rm.lastEdited, idRhs: rm.id) {
+                        // 로컬이 더 최신 → 유지하고 **다시 올린다.**
+                        // ⚠️ 예전엔 "다음 push 에서 올라간다"고 믿고 두었다. 그런데 병합 직후 섀도를
+                        //    이 결과로 다시 쓰므로 이 사본은 "보냈음"이 되고, 다시는 올라가지 않았다.
+                        //    두 기기가 서로 "내 것이 최신"이라며 다른 내용을 영영 들고 있었다
+                        //    (아이폰에서 옮긴 카테고리가 맥에서는 그대로였던 것).
+                        //    같으면(시각·id 모두) 아무것도 하지 않는다 - 되받은 제 사본에 핑퐁하지 않게.
+                        toReupload.append(lm)
                     }
-                    // else 로컬이 더 최신 → 유지(다음 push에서 올라감).
                 } else {
                     alive[r.id] = rm                    // 신규 또는 되살림
                     tombstones.removeValue(forKey: r.id)
@@ -152,7 +166,8 @@ enum MemoSyncCore {
 
         return MergeResult(memos: ordered(alive, like: local),
                            tombstones: tombstones,
-                           toReupload: toReupload)
+                           toReupload: toReupload,
+                           tombstonesToReupload: tombstonesToReupload)
     }
 
     /// 병합 결과를 **결정적인 순서**로 편다.

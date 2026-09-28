@@ -190,10 +190,15 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             NotificationCenter.default.addObserver(
                 self, selector: #selector(self.localDataChanged),
                 name: .memoDataChanged, object: nil)
+            NotificationCenter.default.addObserver(
+                self, selector: #selector(self.localCategoriesChanged),
+                name: .categoryDataChanged, object: nil)
 
             self.log.info("MemoSyncEngine started")
             // 시작 시 한 번: 로컬 미동기 변경을 큐에 올리고, 원격을 당겨온다.
+            self.cleanUpLegacyCategoryRecords()
             self.enqueueLocalChanges()
+            self.announceTombstonesIfNeeded()
             try? await engine.fetchChanges()
         }
     }
@@ -244,6 +249,12 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
     // MARK: - Local change detection (push)
 
+    /// 카테고리 열쇠만 바뀌었을 때 - 단축어 비교까지 돌릴 필요는 없다.
+    @objc private func localCategoriesChanged() {
+        guard !isApplyingRemoteChanges else { return }
+        enqueueCategoryItemChanges()
+    }
+
     @objc private func localDataChanged() {
         guard !isApplyingRemoteChanges else { return }
         enqueueLocalChanges()
@@ -268,6 +279,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     private func enqueueLocalChanges() {
         guard let engine else { return }
         enqueueCategorySettingsIfChanged()
+        enqueueCategoryItemChanges()
 
         let current = syncableMemos()
         let changes = MemoSyncCore.localChanges(
@@ -349,12 +361,22 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         let current = syncableMemos()
         let byId = Dictionary(current.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let tombstones = loadTombstones()
+        let categoryItems = CategoryItemStore.load()
 
         return await CKSyncEngine.RecordZoneChangeBatch(pendingChanges: pending) { [weak self] recordID in
             guard let self else { return nil }
             // 카테고리 설정은 UUID 가 아닌 고정 이름이라 메모 경로보다 먼저 가른다.
             if recordID.recordName == Self.categoryRecordName {
                 return self.makeCategoryRecord()
+            }
+            if let categoryID = CategorySyncCore.id(fromRecordName: recordID.recordName) {
+                // 옛 이름(`Memo` 종류)으로는 다시 저장하지 않는다 - 새 이름으로만 간다.
+                guard !recordID.recordName.hasPrefix(CategorySyncCore.legacyRecordPrefix),
+                      let item = categoryItems[categoryID] else {
+                    syncEngine.state.remove(pendingRecordZoneChanges: [.saveRecord(recordID)])
+                    return nil
+                }
+                return self.makeCategoryItemRecord(recordID, item: item)
             }
             guard let id = UUID(uuidString: recordID.recordName) else { return nil }
             if let memo = byId[id] {
@@ -374,11 +396,21 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         let current = syncableMemos()
         let byId = Dictionary(current.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         var shadow = loadShadow()
+        var categoryShadow = CategoryItemStore.loadShadow()
+        defer { CategoryItemStore.saveShadow(categoryShadow) }
         for record in records {
             // 카테고리 설정 업로드 확정 - 지문을 기록해 같은 내용이 다시 올라가지 않게 한다.
             if record.recordID.recordName == Self.categoryRecordName {
                 AppGroup.defaults?
                     .set(categoryFingerprint(currentSyncableCategories()), forKey: Self.categoryShadowKey)
+                continue
+            }
+            // 카테고리 항목 - **보낸 레코드의 내용**으로 기록한다. 그 사이 또 바뀌었으면 다음에 다시 간다.
+            if let categoryID = CategorySyncCore.id(fromRecordName: record.recordID.recordName) {
+                if let payload = record["payload"] as? Data,
+                   let item = try? JSONDecoder().decode(CategoryItem.self, from: payload) {
+                    categoryShadow[categoryID] = CategorySyncCore.fingerprint(item)
+                }
                 continue
             }
             guard let id = UUID(uuidString: record.recordID.recordName) else { continue }
@@ -399,10 +431,18 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         cacheRecordMetas(modifications)
 
         var remotes: [RemoteMemo] = []
+        var remoteCategoryItems: [CategoryItem] = []
         for record in modifications {
             // 카테고리 설정 레코드는 메모가 아니므로 따로 처리하고 넘어간다.
             if record.recordID.recordName == Self.categoryRecordName {
                 applyRemoteCategories(record)
+                continue
+            }
+            if CategorySyncCore.id(fromRecordName: record.recordID.recordName) != nil {
+                if let payload = record["payload"] as? Data,
+                   let item = try? JSONDecoder().decode(CategoryItem.self, from: payload) {
+                    remoteCategoryItems.append(item)
+                }
                 continue
             }
             guard let id = UUID(uuidString: record.recordID.recordName) else { continue }
@@ -421,6 +461,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             guard let id = UUID(uuidString: recordID.recordName) else { continue }
             remotes.append(RemoteMemo(id: id, memo: nil, lastEdited: Date()))
         }
+
+        applyRemoteCategoryItems(remoteCategoryItems)
 
         let local = (try? MemoStore.shared.load(type: .memo)) ?? []
         let result = MemoSyncCore.merge(local: local, localTombstones: loadTombstones(), remote: remotes)
@@ -448,9 +490,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         let syncable = sampleIDs.isEmpty ? result.memos : result.memos.filter { !sampleIDs.contains($0.id) }
         saveShadow(MemoSyncCore.buildShadow(syncable))
 
-        // 로컬이 이긴 항목(원격 삭제를 로컬 최신편집이 덮음)은 다시 올린다.
-        if let engine, !result.toReupload.isEmpty {
-            engine.state.add(pendingRecordZoneChanges: result.toReupload.map { .saveRecord(recordID($0.id)) })
+        // 로컬이 이긴 항목은 다시 올린다 - 편집이든 삭제든. 안 올리면 상대 기기는 제 사본을 계속 든다.
+        let reuploadIDs = result.toReupload.map(\.id) + Array(result.tombstonesToReupload.keys)
+        if let engine, !reuploadIDs.isEmpty {
+            engine.state.add(pendingRecordZoneChanges: reuploadIDs.map { .saveRecord(recordID($0)) })
         }
 
         MemoSyncStatus.recordPull(count: remotes.count)
@@ -564,6 +607,13 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         return record
     }
 
+    /// 레코드의 마지막 수정 시각. 단축어는 `lastEdited`, 카테고리 레코드(`CategorySettings` 종류)는
+    /// `updatedAt` 에 둔다. ⚠️ 한쪽만 보면 다른 쪽은 늘 "아주 옛날"이 되어, 충돌 때 서버의 새 버전을
+    /// 내 옛 버전으로 덮어쓴다.
+    static func editedDate(of record: CKRecord) -> Date {
+        (record["lastEdited"] as? Date) ?? (record["updatedAt"] as? Date) ?? .distantPast
+    }
+
     /// 저장 실패 처리 - 특히 `serverRecordChanged` 는 **버리면 안 되는** 실패다.
     /// 서버 레코드를 받아 태그를 갱신하고, 내 변경이 더 최신일 때만 다시 올린다.
     private func handleFailedSaves(_ failures: [CKSyncEngine.Event.SentRecordZoneChanges.FailedRecordSave],
@@ -577,8 +627,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                 guard let serverRecord = failure.error.serverRecord else { continue }
                 cacheRecordMeta(serverRecord)
                 // 서버 쪽이 더 최신이면 내 변경은 접는다 - 다음 fetch 가 서버 값을 가져온다.
-                let serverEdited = serverRecord["lastEdited"] as? Date ?? .distantPast
-                let mineEdited = failure.record["lastEdited"] as? Date ?? .distantPast
+                let serverEdited = Self.editedDate(of: serverRecord)
+                let mineEdited = Self.editedDate(of: failure.record)
                 guard mineEdited >= serverEdited else {
                     conflictRetries[name] = nil
                     continue
@@ -625,7 +675,14 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     //    Production 스키마에 없는 종류는 대시보드에서 배포하기 전까지 저장이 거절된다.
     //    이름이 UUID 가 아니라서 구버전을 포함한 모든 수신 경로가 메모로 읽지 않고 건너뛴다.
 
-    private static let epochRecordName = "sync-epoch"
+    /// ⚠️ 종류는 `Memo` 가 아니라 `CategorySettings` 다. 이미 나간 맥 5.1.4 의 "다시 받기"와 진단은
+    ///    `Memo` 종류를 **이름을 보지 않고** 단축어로 센다. 거기에 이 레코드가 끼면 iCloud 에 단축어가
+    ///    하나도 없어도 "받을 것이 있다"가 되어 맥을 비워 버릴 수 있다. `CategorySettings` 는 이미
+    ///    Production 스키마에 있어(`payload`) 배포 없이 쓸 수 있고, 옛 버전은 이름이 달라 읽지 않는다.
+    /// ⚠️ 이름이 `.v2` 인 까닭: 개발 빌드가 `Memo` 종류로 만든 `sync-epoch` 가 남아 있고, CloudKit 은
+    ///    같은 이름의 레코드 종류를 바꿀 수 없다. 옛 것은 새로 심을 때 지운다(`legacyEpochRecordName`).
+    static let epochRecordName = "sync-epoch.v2"
+    static let legacyEpochRecordName = "sync-epoch"
     /// 이 기기가 마지막으로 맞춘 서버 표식.
     private static let epochKey = "memo.sync.epoch"
 
@@ -665,16 +722,44 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     private func createEpoch(_ recordID: CKRecord.ID, in database: CKDatabase) async throws -> String {
         _ = try await database.save(CKRecordZone(zoneID: zoneID))   // 이미 있으면 그대로 둔다
         let epoch = UUID().uuidString
-        let record = CKRecord(recordType: Self.recordType, recordID: recordID)
+        let record = CKRecord(recordType: Self.categoryRecordType, recordID: recordID)
         record["payload"] = Data(epoch.utf8) as CKRecordValue
         do {
             _ = try await database.save(record)
             log.info("sync epoch created")
+            // `Memo` 종류로 남은 옛 표식은 치운다 - 맥 5.1.4 가 단축어로 센다. 없거나 실패해도 그만이다.
+            _ = try? await database.deleteRecord(
+                withID: CKRecord.ID(recordName: Self.legacyEpochRecordName, zoneID: zoneID))
             return epoch
         } catch let error as CKError where error.code == .serverRecordChanged {
             guard let existing = try await fetchEpoch(recordID, in: database) else { throw error }
             return existing
         }
+    }
+
+    /// 표식을 마지막으로 맞춘 뒤 삭제를 알린 표식.
+    private static let tombstonesAnnouncedKey = "memo.sync.tombstonesAnnounced"
+
+    /// 이 기기가 아는 삭제를 **지금 데이터베이스에 표식마다 한 번** 다시 알린다.
+    ///
+    /// ⚠️ 툼스톤은 "섀도에는 있는데 목록에서 사라진 것"일 때만 올라간다. 기준선을 비우면
+    ///    섀도가 비어 그 판정이 다시는 서지 않고, 병합도 원격 사본을 받으면 "내가 더 나중에
+    ///    지웠다"며 조용히 무시할 뿐 알리지 않는다. 그래서 끊겨 있던 동안(다른 데이터베이스에
+    ///    붙어 있던 동안) 아이폰에서 지운 단축어가 맥에는 영영 남아 있었다.
+    ///    다른 기기가 지운 뒤에 고친 단축어라면 서버 쪽이 더 최신이라 `serverRecordChanged`
+    ///    처리가 이 삭제를 접는다 - 고친 것이 지워지지는 않는다.
+    private func announceTombstonesIfNeeded() {
+        guard let engine,
+              let epoch = defaults?.string(forKey: Self.epochKey),
+              defaults?.string(forKey: Self.tombstonesAnnouncedKey) != epoch else { return }
+        let aliveIDs = Set(((try? MemoStore.shared.load(type: .memo)) ?? []).map(\.id))
+        let ids = loadTombstones().keys.filter { !aliveIDs.contains($0) }
+        if !ids.isEmpty {
+            engine.state.add(pendingRecordZoneChanges: ids.map { .saveRecord(recordID($0)) })
+        }
+        // 대기열은 엔진 상태와 함께 저장되므로 보내기 전에 앱이 꺼져도 사라지지 않는다.
+        defaults?.set(epoch, forKey: Self.tombstonesAnnouncedKey)
+        log.info("announced \(ids.count) tombstones to this database")
     }
 
     /// 이 기기의 동기화 기록을 비운다. 다음 엔진은 처음부터 받고, 이 기기 단축어를 전부 다시 올린다.
@@ -686,8 +771,254 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         defaults?.removeObject(forKey: DefaultsKey.syncShadow)
         defaults?.removeObject(forKey: Self.recordMetaKey)
         defaults?.removeObject(forKey: Self.categoryShadowKey)
+        // 카테고리 항목은 남기고 "올린 것"만 비운다 - 새 데이터베이스에 전부(지운 것 포함) 다시 올라간다.
+        defaults?.removeObject(forKey: CategoryItemStore.shadowKey)
         recordMetaCache = nil
         log.info("sync baseline reset: \(reason, privacy: .public)")
+    }
+
+    // MARK: - 이 기기를 정본으로 (다른 기기를 이 기기에 맞춘다)
+    //
+    // 평소 동기화는 id 마다 **마지막 수정 시각이 늦은 쪽**을 고른다. 그런데 시각이 꼬이면
+    // (끊겨 있던 동안의 편집, 복원·다시 받기로 새로 찍힌 시각) 사람이 보기엔 틀린 쪽이 이긴다.
+    // 아이폰에서 카테고리를 옮겼는데 맥 사본의 시각이 더 늦어 맥 것이 남은 일이 그랬다.
+    // → 사람이 "이 기기가 정답"이라고 정하면, 서버를 이 기기와 똑같이 만든다.
+    //   다른 기기는 평소처럼 받기만 하면 이 기기와 같아진다.
+
+    struct AuthorityPlan {
+        /// 서버와 내용이 달라 이 기기 것으로 다시 올릴 단축어.
+        let updates: [UUID]
+        /// 서버에는 살아 있는데 이 기기에는 없는 단축어 - 지운 것으로 올린다.
+        let deletions: [UUID]
+        /// 서버와 내용이 다른 카테고리(이 기기에서 지운 것 포함).
+        var categoryUpdates: [UUID] = []
+        /// 서버에는 살아 있는데 이 기기는 모르는 카테고리.
+        var categoryDeletions: [CategoryItem] = []
+        var isEmpty: Bool {
+            updates.isEmpty && deletions.isEmpty && categoryUpdates.isEmpty && categoryDeletions.isEmpty
+        }
+    }
+
+    enum AuthorityError: LocalizedError {
+        case notRunning
+        var errorDescription: String? {
+            NSLocalizedString("기기 간 동기화가 꺼져 있거나 아직 시작되지 않았어요.",
+                              comment: "Make-authoritative error: sync engine is not running")
+        }
+    }
+
+    /// 서버의 단축어 레코드를 전부 받아 이 기기와 비교한다. **아무것도 바꾸지 않는다.**
+    func planMakeThisDeviceAuthoritative() async throws -> AuthorityPlan {
+        await startTask?.value
+        guard engine != nil else { throw AuthorityError.notRunning }
+        let database = await CloudKitContainer.privateDatabase(containerID)
+
+        // 이미지는 받지 않는다 - 비교에는 본문(payload)과 삭제 표시만 있으면 된다.
+        var records: [CKRecord] = []
+        var token: CKServerChangeToken?
+        var moreComing = true
+        while moreComing {
+            let changes = try await database.recordZoneChanges(
+                inZoneWith: zoneID, since: token, desiredKeys: ["payload", "deletedAt", "lastEdited", "updatedAt"])
+            for (_, result) in changes.modificationResultsByID {
+                if case .success(let modification) = result { records.append(modification.record) }
+            }
+            token = changes.changeToken
+            moreComing = changes.moreComing
+        }
+        // 받은 김에 서버 버전 태그를 새로 기억한다 - 곧 올릴 때 충돌 없이 덮어쓰게.
+        cacheRecordMetas(records)
+
+        var remoteAlive: [UUID: Memo] = [:]
+        var remoteSeen = Set<UUID>()
+        var remoteCategories: [UUID: CategoryItem] = [:]
+        for record in records {
+            if let categoryID = CategorySyncCore.id(fromRecordName: record.recordID.recordName) {
+                if let payload = record["payload"] as? Data,
+                   let item = try? JSONDecoder().decode(CategoryItem.self, from: payload) {
+                    remoteCategories[categoryID] = item
+                }
+                continue
+            }
+            guard let id = UUID(uuidString: record.recordID.recordName) else { continue }
+            remoteSeen.insert(id)
+            if record["deletedAt"] == nil,
+               let payload = record["payload"] as? Data,
+               let memo = try? JSONDecoder().decode(Memo.self, from: payload) {
+                remoteAlive[id] = memo
+            }
+        }
+
+        let local = syncableMemos()
+        // 지울 것은 **샘플까지 포함한** 이 기기 목록으로 가른다 - 샘플은 올리지 않을 뿐 여기 있다.
+        let localIDs = Set(((try? MemoStore.shared.load(type: .memo)) ?? []).map(\.id))
+        let updates = local.filter { memo in
+            guard let remote = remoteAlive[memo.id] else { return true }   // 없거나 지워진 것으로 있음
+            return MemoSyncCore.fingerprint(remote) != MemoSyncCore.fingerprint(memo)
+        }.map(\.id)
+        let deletions = remoteAlive.keys.filter { !localIDs.contains($0) }
+
+        let localCategories = refreshCategoryItems()
+        let categoryUpdates = localCategories.values.filter { item in
+            guard let remote = remoteCategories[item.id] else { return true }
+            return !remote.hasSameContent(as: item)
+        }.map(\.id)
+        let categoryDeletions = remoteCategories.values.filter { !$0.isDeleted && localCategories[$0.id] == nil }
+
+        log.info("authority plan: \(remoteSeen.count) remote, \(updates.count) updates, \(deletions.count) deletions, categories \(categoryUpdates.count)/\(categoryDeletions.count)")
+        return AuthorityPlan(updates: updates, deletions: Array(deletions),
+                             categoryUpdates: categoryUpdates, categoryDeletions: categoryDeletions)
+    }
+
+    /// 계획대로 올린다. 다른 단축어는 **지금 시각**으로 고쳐 올려 어느 기기에서든 이기게 하고,
+    /// 이 기기에 없는 단축어는 지금 시각의 삭제로 올린다.
+    func applyMakeThisDeviceAuthoritative(_ plan: AuthorityPlan) async throws {
+        await startTask?.value
+        guard let engine else { throw AuthorityError.notRunning }
+        guard !plan.isEmpty else { return }
+        let now = Date()
+
+        if !plan.updates.isEmpty {
+            let targets = Set(plan.updates)
+            var memos = try MemoStore.shared.load(type: .memo)
+            for index in memos.indices where targets.contains(memos[index].id) {
+                memos[index].lastEdited = now
+            }
+            try MemoStore.shared.save(memos: memos, type: .memo)
+        }
+        if !plan.deletions.isEmpty {
+            var tombstones = loadTombstones()
+            for id in plan.deletions { tombstones[id] = now }
+            saveTombstones(tombstones)
+        }
+
+        var categoryIDs: [UUID] = []
+        if !plan.categoryUpdates.isEmpty || !plan.categoryDeletions.isEmpty {
+            var items = CategoryItemStore.load()
+            for id in plan.categoryUpdates { items[id]?.lastEdited = now }
+            for remote in plan.categoryDeletions {
+                var gone = remote
+                gone.deletedAt = now
+                gone.lastEdited = now
+                items[remote.id] = gone
+            }
+            CategoryItemStore.save(items)
+            categoryIDs = plan.categoryUpdates + plan.categoryDeletions.map(\.id)
+        }
+
+        let ids = plan.updates + plan.deletions
+        engine.state.add(pendingRecordZoneChanges: ids.map { .saveRecord(recordID($0)) }
+                                                  + categoryIDs.map { .saveRecord(categoryItemRecordID($0)) })
+        try await engine.sendChanges()
+        log.info("authority applied: \(plan.updates.count) updates, \(plan.deletions.count) deletions, categories \(categoryIDs.count)")
+    }
+
+    // MARK: - 카테고리 항목 동기화 (카테고리 하나에 레코드 하나)
+    //
+    // 원본은 App Group 열쇠다. 올릴 때 열쇠를 읽어 항목을 갱신하고(`refresh`),
+    // 받으면 항목을 합친 뒤 열쇠에 되쓴다(`project`). 규칙: CategorySyncCore.
+
+    private func categoryItemRecordID(_ id: UUID) -> CKRecord.ID {
+        CKRecord.ID(recordName: CategorySyncCore.recordName(id), zoneID: zoneID)
+    }
+
+    /// 열쇠 → 항목. 처음 옮기는 중이면 이름 기반 id 와 가장 옛날 시각을 쓴다.
+    @discardableResult
+    private func refreshCategoryItems() -> [UUID: CategoryItem] {
+        let snapshot = CategorySnapshotStore.current()
+        let memos = (try? MemoStore.shared.load(type: .memo)) ?? []
+        let sampleIDs = SampleMemoStorage.load()
+        let used = Set(memos.filter { !sampleIDs.contains($0.id) }.map(\.category))
+        let hidden = Set(snapshot.hiddenTabs)
+        // 쓰는 카테고리이거나 사람이 보이게 둔 카테고리만 새로 만든다. 페르소나가 숨긴 채 심은
+        // 빈 카테고리는 기기 언어마다 이름이 달라, 싣으면 언어별로 겹친다(`syncable` 과 같은 이유).
+        let eligible: (String) -> Bool = { used.contains($0) || !hidden.contains($0) }
+        let migrating = !CategoryItemStore.isMigrated
+        let before = CategoryItemStore.load()
+        let after = CategorySyncCore.refresh(items: before, from: snapshot, eligible: eligible,
+                                             migrating: migrating, now: Date())
+        if after != before { CategoryItemStore.save(after) }
+        if migrating {
+            CategoryItemStore.markMigrated()
+            log.info("category items migrated: \(after.count)")
+        }
+        return after
+    }
+
+    private static let legacyCategoryCleanedKey = "category.sync.legacyRecordsCleaned"
+
+    /// 개발 빌드가 `Memo` 종류로 올린 `category.<id>` 를 한 번 지우고, 항목을 새 이름으로 다시 올린다.
+    /// ⚠️ 남겨 두면 맥 5.1.4 의 "다시 받기"가 이것을 단축어로 센다(SyncBackwardCompatibilityTests).
+    ///    지우는 신호는 옛 엔진이든 새 엔진이든 이름이 UUID 가 아니라 단축어 삭제로 읽지 않고,
+    ///    새 엔진은 카테고리 삭제로도 읽지 않는다(`applyFetched` 의 삭제는 UUID 만 본다).
+    private func cleanUpLegacyCategoryRecords() {
+        guard let engine, defaults?.bool(forKey: Self.legacyCategoryCleanedKey) != true else { return }
+        let ids = Array(CategoryItemStore.load().keys)
+        if !ids.isEmpty {
+            engine.state.add(pendingRecordZoneChanges: ids.map {
+                .deleteRecord(CKRecord.ID(recordName: CategorySyncCore.legacyRecordName($0), zoneID: zoneID))
+            })
+            // 새 이름으로 전부 다시 올라가게 "올린 것"을 비운다.
+            defaults?.removeObject(forKey: CategoryItemStore.shadowKey)
+        }
+        defaults?.set(true, forKey: Self.legacyCategoryCleanedKey)
+        log.info("legacy category records queued for deletion: \(ids.count)")
+    }
+
+    /// 올린 것과 다른 항목을 올린다.
+    private func enqueueCategoryItemChanges() {
+        guard let engine else { return }
+        let items = refreshCategoryItems()
+        let shadow = CategoryItemStore.loadShadow()
+        let dirty = items.values.filter { shadow[$0.id] != CategorySyncCore.fingerprint($0) }.map(\.id)
+        guard !dirty.isEmpty else { return }
+        engine.state.add(pendingRecordZoneChanges: dirty.map { .saveRecord(categoryItemRecordID($0)) })
+        log.info("category items queued: \(dirty.count)")
+    }
+
+    /// ⚠️ **옛 버전과 스키마를 지키는 모양**이다. 종류는 `CategorySettings`, 필드는 그 종류에 이미 있는
+    ///    `payload`(항목 전체, 삭제 표시 포함)와 `updatedAt`(수정 시각) 둘뿐이다.
+    ///    - `Memo` 종류로 올리면 맥 5.1.4 의 "다시 받기"와 진단이 단축어로 센다(표식과 같은 이유).
+    ///    - 새 필드(`lastEdited`, `deletedAt`)를 붙이면 Production 스키마에 없어 저장이 거절된다.
+    ///    - 이름이 `category-settings` 가 아니고 UUID 도 아니라서, 모든 옛 버전이 읽지 않고 건너뛴다.
+    private func makeCategoryItemRecord(_ recordID: CKRecord.ID, item: CategoryItem) -> CKRecord? {
+        Self.buildCategoryItemRecord(recordID, item: item, base: cachedRecord(for: recordID))
+    }
+
+    /// 레코드 모양만 만든다(네트워크 없음) - 시험이 옛 버전과의 약속을 확인하는 자리.
+    static func buildCategoryItemRecord(_ recordID: CKRecord.ID, item: CategoryItem, base: CKRecord?) -> CKRecord? {
+        guard let payload = try? JSONEncoder().encode(item) else { return nil }
+        let record = base ?? CKRecord(recordType: categoryRecordType, recordID: recordID)
+        record["payload"] = payload as CKRecordValue
+        record["updatedAt"] = item.lastEdited as CKRecordValue
+        return record
+    }
+
+    /// 받은 항목을 합치고 열쇠에 되쓴다.
+    private func applyRemoteCategoryItems(_ remote: [CategoryItem]) {
+        guard !remote.isEmpty else { return }
+        // 이 기기에서 방금 바꾼 것을 먼저 항목에 담는다 - 안 그러면 되쓰기가 그 편집을 덮는다.
+        let before = refreshCategoryItems()
+        let merged = CategorySyncCore.merge(local: before, remote: remote)
+        let deduped = CategorySyncCore.dedupe(merged.items, now: Date())
+        CategoryItemStore.save(deduped.items)
+
+        // 받은 그대로 남은 항목은 "올린 것"으로 기록한다 - 받자마자 되올리지 않게.
+        var shadow = CategoryItemStore.loadShadow()
+        for item in remote where deduped.items[item.id] == item {
+            shadow[item.id] = CategorySyncCore.fingerprint(item)
+        }
+        CategoryItemStore.saveShadow(shadow)
+
+        CategorySnapshotStore.writeItemFields(
+            CategorySyncCore.project(deduped.items, onto: CategorySnapshotStore.current(),
+                                     formerNames: Set(before.values.map(\.name))))
+
+        let reupload = merged.toReupload.union(deduped.changed)
+        if let engine, !reupload.isEmpty {
+            engine.state.add(pendingRecordZoneChanges: reupload.map { .saveRecord(categoryItemRecordID($0)) })
+        }
+        log.info("category items applied: \(remote.count) remote, \(reupload.count) re-queued")
     }
 
     // MARK: - 카테고리 설정 동기화
@@ -697,7 +1028,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     // (예전엔 App Group UserDefaults 에만 있어 새 기기에서 탭이 통째로 사라졌다.)
 
     static let categoryRecordType = "CategorySettings"
-    private static let categoryRecordName = "category-settings"
+    static let categoryRecordName = "category-settings"
     /// 마지막으로 올린 스냅샷 지문 - 안 바뀌었으면 다시 올리지 않는다(불필요한 쓰기 방지).
     private static let categoryShadowKey = "memo.sync.categoryShadow"
 
@@ -769,9 +1100,23 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         guard let payload = record["payload"] as? Data,
               let snapshot = try? JSONDecoder().decode(CategorySnapshot.self, from: payload) else { return }
 
-        // 동기화는 `.sync` - 목록·아이콘·색은 더하고, 숨김·기본 제공은 그대로 비춘다.
-        // (`.merge` 로 두면 끈 것·되살린 것이 다른 기기로 영영 안 넘어간다)
-        CategorySnapshotStore.apply(snapshot, strategy: .sync)
+        if CategoryItemStore.isMigrated {
+            // 목록·아이콘·색·숨김은 이제 **카테고리 항목**이 옮긴다. 이 덩어리는 옛 버전이 더하기만 하며
+            // 올리는 것이라, 여기서 목록을 받으면 지운 카테고리가 되살아난다.
+            // → 화면 구성(기본 제공·즐겨찾기 숨김·기능 켬)만 받고, 항목이 **한 번도 본 적 없는** 이름만
+            //   받아들인다(아직 업데이트하지 않은 기기가 새로 만든 카테고리).
+            let known = Set(CategoryItemStore.load().values.map(\.name))
+            var unseen = CategorySnapshot()
+            unseen.categories = snapshot.categories.filter { !known.contains($0) }
+            unseen.icons = snapshot.icons.filter { unseen.categories.contains($0.key) }
+            unseen.colors = snapshot.colors.filter { unseen.categories.contains($0.key) }
+            if !unseen.categories.isEmpty { CategorySnapshotStore.apply(unseen, strategy: .merge) }
+            CategorySnapshotStore.applyLayout(snapshot)
+        } else {
+            // 동기화는 `.sync` - 목록·아이콘·색은 더하고, 숨김·기본 제공은 그대로 비춘다.
+            // (`.merge` 로 두면 끈 것·되살린 것이 다른 기기로 영영 안 넘어간다)
+            CategorySnapshotStore.apply(snapshot, strategy: .sync)
+        }
         // 방금 받은 상태를 그대로 섀도에 기록 - 받자마자 되올리는 핑퐁을 막는다.
         AppGroup.defaults?
             .set(categoryFingerprint(currentSyncableCategories()), forKey: Self.categoryShadowKey)

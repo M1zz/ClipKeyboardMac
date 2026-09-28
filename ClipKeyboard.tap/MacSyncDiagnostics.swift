@@ -68,7 +68,9 @@ enum MacSyncDiagnostics {
                 for change in result.modificationResultsByID.values {
                     guard let record = try? change.get().record else { continue }
                     switch record.recordType {
-                    case MemoSyncEngine.recordType:
+                    // ⚠️ 이름이 UUID 인 것만 단축어다. 같은 종류에 다른 것이 실릴 수 있다
+                    //    (한때 동기화 표식이 그랬다). 세면 없는 단축어가 있다고 나온다.
+                    case MemoSyncEngine.recordType where UUID(uuidString: record.recordID.recordName) != nil:
                         if record["deletedAt"] != nil {
                             tombstoneCount += 1
                             if let id = UUID(uuidString: record.recordID.recordName) { tombstoneIDs.insert(id) }

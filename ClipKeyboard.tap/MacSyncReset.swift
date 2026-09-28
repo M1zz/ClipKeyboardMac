@@ -67,8 +67,11 @@ enum MacSyncReset {
             while more {
                 let result = try await database.recordZoneChanges(inZoneWith: zoneID, since: token)
                 for change in result.modificationResultsByID.values {
+                    // ⚠️ 이름이 UUID 인 것만 단축어로 센다. 단축어가 아닌 레코드까지 세면 iCloud 가
+                    //    비어 있어도 "받을 것이 있다"가 되어, 이 맥을 비우고 아무것도 못 받는다.
                     guard let record = try? change.get().record,
                           record.recordType == MemoSyncEngine.recordType,
+                          UUID(uuidString: record.recordID.recordName) != nil,
                           record["deletedAt"] == nil else { continue }
                     alive += 1
                 }
