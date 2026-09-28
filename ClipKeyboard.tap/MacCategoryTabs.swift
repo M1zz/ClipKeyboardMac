@@ -228,9 +228,11 @@ enum MacCategoryTabs {
         tabs += BuiltInCategory.allCases
             .filter { enabled.contains($0.rawValue) }
             .map { CategoryTab.builtIn($0) }
-        // 사용자 카테고리는 아이폰이 정한 순서 그대로, 숨기지 않은 것만.
+        // 사용자 카테고리는 아이폰이 정한 순서 그대로, 숨기지 않았고 **단축어가 있는** 것만.
+        // 아이폰 목록·키보드와 같은 규칙이다. 빈 카테고리는 탭이 아니라 환경설정의 카테고리 목록에 있다.
+        let used = Set(memos.map(\.category))
         tabs += snapshot.categories
-            .filter { !hidden.contains($0) }
+            .filter { !hidden.contains($0) && used.contains($0) }
             .map { CategoryTab.custom($0) }
 
         // 기본은 **맨 앞**이지만, 받은 것이 없으면 쉰다. 다른 탭이 하나도 없으면 비어도 선다.
