@@ -12,6 +12,8 @@ if [ ! -d "$IOS_REPO" ]; then
   exit 1
 fi
 
+use_ios_ref_snapshot
+
 changed=0
 for pair in "${SHARED_MAP[@]}"; do
   mac_rel="${pair%%|*}"

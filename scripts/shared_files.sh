@@ -7,6 +7,11 @@
 
 # iOS 앱 리포 경로 (환경변수로 덮어쓸 수 있음)
 IOS_REPO="${IOS_REPO:-$HOME/Documents/workspace/Auto/클립키보드}"
+# 비교 기준이 되는 iOS 커밋. 기본은 iOS **원격 최신**이다.
+# ⚠️ iOS 폴더의 작업 상태를 기준으로 삼으면, 그 폴더가 원격보다 뒤처져 있을 때
+#    최신인 맥 파일이 "어긋났다"로 뜨고, sync_shared.sh 는 옛 파일로 맥을 되돌린다.
+#    `IOS_REF=worktree` 로 두면 예전처럼 iOS 폴더의 파일을 그대로 본다.
+IOS_REF="${IOS_REF:-origin/main}"
 # 이 Mac 리포 경로 (스크립트 위치 기준 = scripts/의 부모)
 MAC_REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -76,4 +81,36 @@ extract_block() {
     !inblock && index($0, start) == 1 { inblock = 1; print; next }
     inblock { print; if ($0 ~ /^}/) exit }
   ' "$1"
+}
+
+# IOS_REPO 를 IOS_REF 시점의 iOS 파일만 담은 임시 폴더로 바꿔 끼운다.
+# iOS 레포는 `fetch` 만 한다 — 브랜치·작업 중인 파일은 건드리지 않는다.
+use_ios_ref_snapshot() {
+  [ "$IOS_REF" = "worktree" ] && return 0
+  if ! git -C "$IOS_REPO" rev-parse --git-dir >/dev/null 2>&1; then
+    echo "⚠️  [shared] iOS 폴더가 git 레포가 아니라 작업 파일을 그대로 봅니다: $IOS_REPO"
+    return 0
+  fi
+  local remote="${IOS_REF%%/*}"
+  if [ "$remote" != "$IOS_REF" ] && ! git -C "$IOS_REPO" fetch -q "$remote" 2>/dev/null; then
+    echo "⚠️  [shared] iOS 원격을 갱신하지 못해 마지막으로 받아 둔 $IOS_REF 로 비교합니다."
+  fi
+  if ! git -C "$IOS_REPO" rev-parse -q --verify "$IOS_REF^{commit}" >/dev/null; then
+    echo "❌ [shared] iOS 레포에 $IOS_REF 가 없습니다. IOS_REF 로 지정하세요."
+    exit 1
+  fi
+
+  local rel
+  # 전역이어야 한다 — EXIT 트랩은 함수가 끝난 뒤에 돈다.
+  IOS_SNAPSHOT="$(mktemp -d)"
+  trap 'rm -rf "$IOS_SNAPSHOT"' EXIT
+  local snap="$IOS_SNAPSHOT"
+  for entry in "${SHARED_MAP[@]}" "${EMBEDDED_MAP[@]}" "${CONTRACT_MAP[@]}"; do
+    rel="${entry#*|}"; rel="${rel%%|*}"
+    mkdir -p "$snap/$(dirname "$rel")"
+    # 원본에 없는 파일은 만들지 않는다 — 호출하는 쪽이 "iOS 원본 없음"으로 알린다.
+    git -C "$IOS_REPO" show "$IOS_REF:$rel" > "$snap/$rel" 2>/dev/null || rm -f "$snap/$rel"
+  done
+  echo "ℹ️  [shared] 비교 기준: iOS $IOS_REF ($(git -C "$IOS_REPO" rev-parse --short "$IOS_REF"))"
+  IOS_REPO="$snap"
 }
