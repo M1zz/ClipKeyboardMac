@@ -275,3 +275,11 @@ zh-Hans 103·109행, zh-Hant 135·141행). 같은 문단 안에서 패널은 ⌃
       iOS `ClipKeyboard/Service/MemoSyncEngine.swift` 와 맥 `Shared/MemoSyncEngine.swift` 에 같은 코드. 양쪽 빌드 성공.
 - [ ] 새 TestFlight 빌드를 아이폰에 올려 확인 — 맥·아이폰 목록이 합쳐지는지
 - [ ] 맥 새 빌드도 배포 (지금 설치된 5.1.4 에는 이 확인이 없다)
+
+## 카테고리 동기화 일원화 · 하위 호환 (2026-09-28)
+설계·약속: iOS 저장소 `docs/engineering/CATEGORY_SYNC_UNIFICATION.md`
+- [x] 공유 파일 `Shared/MemoSyncEngine.swift`·`MemoSyncCore.swift`·`CategorySnapshot.swift` 를 iOS 와 같게
+- [x] `MacSyncDiagnostics`·`MacSyncReset.plan` 이 이름이 UUID 인 `Memo` 레코드만 단축어로 센다
+- [ ] 맥 새 빌드로 카테고리 이름 바꾸기·지우기가 폰과 오가는지 실기기 확인
+- [x] 단축어가 없는 카테고리는 탭으로 세우지 않는다(`MacCategoryTabs.phoneTabs`, 아이폰과 같은 규칙)
+

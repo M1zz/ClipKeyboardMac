@@ -15,28 +15,32 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 
 단축어 카테고리를 목록에서 골라 정할 수 있습니다.
 새 단축어를 저장하면 목록에 바로 보입니다.
-아이폰과의 동기화가 더 안정적으로 동작합니다.
+아이폰과 동기화가 안정적이고 카테고리 변경도 맞춰집니다.
+단축어가 없는 카테고리는 탭에 보이지 않습니다.
 같은 단축어가 겹쳐 있어도 앱이 꺼지지 않습니다.
 
 ### App Store (English)
 
 Pick a snippet's category from a list instead of typing it.
 New snippets show up in the list right after you save.
-Syncing with iPhone is more reliable.
+Syncing with iPhone is more reliable, and category changes carry over.
+Categories with no snippets no longer appear as tabs.
 Duplicate snippets no longer make the app quit.
 
 ### 앱스토어 (중국어 간체)
 
 可以从列表中为短语选择分类，无需手动输入。
 保存新短语后会立即显示在列表中。
-与 iPhone 的同步更加稳定。
+与 iPhone 的同步更加稳定，分类的更改也会一并同步。
+没有短语的分类不再显示为标签页。
 即使有重复的短语，应用也不会退出。
 
 ### 앱스토어 (중국어 번체)
 
 可以從清單中為短語選擇分類，不必手動輸入。
 儲存新短語後會立即顯示在清單中。
-與 iPhone 的同步更加穩定。
+與 iPhone 的同步更加穩定，分類的變更也會一併同步。
+沒有短語的分類不再顯示為分頁。
 即使有重複的短語，App 也不會結束。
 
 ### 개발 메모 (스토어에 올리지 않음)
@@ -53,6 +57,12 @@ Duplicate snippets no longer make the app quit.
     앱을 죽이던 것을 `uniquingKeysWith` 로 막는다. 동기화 권한 확인에서 기기에서 짐작한
     `existingFreeUser` 를 뺐다 (iOS f68f3c0)
   - `DefaultsKey`: 아이폰 키보드 설정 목록(`KeyboardPrefs` · `AppPrefs`)이 함께 들어왔다. 맥은 쓰지 않는다
+- 카테고리를 단축어처럼 하나씩 동기화한다. 이름 변경과 삭제가 아이폰과 오간다. 병합에서 이긴 쪽을
+  다시 올리고, 이긴 삭제를 다시 알린다 (610e2f5, iOS dcaa4ab. 설계: iOS `docs/engineering/CATEGORY_SYNC_UNIFICATION.md`)
+  - 새 레코드는 `CategorySettings` 종류에 `payload` · `updatedAt` 만. 5.1.4 의 "다시 받기"가 `Memo` 종류를
+    이름을 안 보고 세므로 섞이면 맥을 비울 수 있었다. 이 판의 진단·다시 받기도 UUID 이름만 센다
+  - 옛 버전과 섞여 도는 동안: 옛 버전에서 지우거나 바꾼 카테고리는 새 버전으로 가지 않는다. 데이터가 사라지는 방향은 없다
+- 단축어가 없는 카테고리는 탭으로 세우지 않는다. 아이폰 목록·키보드와 같은 규칙 (2604d0b, iOS 811f184)
 
 ## 5.1.4
 
