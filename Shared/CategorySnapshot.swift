@@ -612,8 +612,9 @@ extension Notification.Name {
 
 extension CategorySnapshotStore {
     /// 카테고리 열쇠에 쓴 뒤 부른다. 엔진이 곧바로 항목을 갱신해 올린다.
+    /// 배경에서 불려도 듣는 쪽(동기화 엔진)은 메인에서 받는다.
     static func notifyChanged() {
-        NotificationCenter.default.post(name: .categoryDataChanged, object: nil)
+        NotificationCenter.postOnMain(name: .categoryDataChanged)
     }
 }
 
