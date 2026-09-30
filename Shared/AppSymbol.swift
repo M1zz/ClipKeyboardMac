@@ -98,6 +98,7 @@ enum AppSymbol {
     static let keyFill = "key.fill"
     static let keyboard = "keyboard"
     static let keyboardBadgeEye = "keyboard.badge.eye"
+    static let keyboardBadgeEllipsis = "keyboard.badge.ellipsis"
     static let lightbulb = "lightbulb"
     static let lightbulbFill = "lightbulb.fill"
     static let line3HorizontalDecreaseCircle = "line.3.horizontal.decrease.circle"

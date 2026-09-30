@@ -86,6 +86,21 @@ final class RemoteFlagsService: ObservableObject {
         return defaults.bool(forKey: cachePrefix + flag.rawValue)
     }
 
+    /// 원격에서 옮길 수 있는 **숫자**. 켜고 끄는 `Flag` 와 따로 둔다.
+    /// 필드가 없으면 캐시를 비워 두고, 읽는 쪽이 기본값을 쓴다.
+    ///
+    /// ⚠️ 적는 곳은 App Group 이다. 키보드에는 이 서비스가 없어서 그 키를 직접 읽는다.
+    enum Number: String, CaseIterable {
+        /// 무료로 쓰는 횟수(FreeUse). 읽는 쪽이 허용 범위를 지킨다.
+        case freeUseThreshold
+
+        var cacheKey: String {
+            switch self {
+            case .freeUseThreshold: return DefaultsKey.remoteFreeUseThreshold
+            }
+        }
+    }
+
     // MARK: - 갱신
 
     /// 앱 실행 시 호출. 쓰로틀 간격 안이면 아무것도 안 한다.
@@ -110,6 +125,14 @@ final class RemoteFlagsService: ObservableObject {
                 // 필드가 없으면 건드리지 않는다 - 기존 캐시(또는 기본 켬)를 유지.
                 guard let raw = record[flag.rawValue] as? Int64 else { continue }
                 defaults?.set(raw != 0, forKey: Self.cachePrefix + flag.rawValue)
+            }
+            for number in Number.allCases {
+                if let raw = record[number.rawValue] as? Int64 {
+                    defaults?.set(Int(raw), forKey: number.cacheKey)
+                } else {
+                    // 필드를 지우면 기본값으로 돌아간다.
+                    defaults?.removeObject(forKey: number.cacheKey)
+                }
             }
             defaults?.set(Date().timeIntervalSince1970, forKey: Self.lastFetchKey)
             AppLog.info(.flags, "🎛 [RemoteFlagsService.fetch] 플래그 갱신 완료")
