@@ -559,238 +559,6 @@
         }
       }
     },
-    "아이폰에서 지운 것 반영하기" : {
-      "comment" : "Prefs: apply cloud deletions",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apply deletions from iPhone"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "아이폰에서 지운 것 반영하기"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "应用 iPhone 上的删除"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "套用 iPhone 上的刪除"
-          }
-        }
-      }
-    },
-    "아이폰에서 지운 것 중 이 맥에 남아 있는 단축어가 없습니다." : {
-      "comment" : "Deletions: none body",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No snippets deleted on iPhone are still on this Mac."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "아이폰에서 지운 것 중 이 맥에 남아 있는 단축어가 없습니다."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "没有在 iPhone 上删除却仍留在这台 Mac 上的短语。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "沒有在 iPhone 上刪除卻仍留在這台 Mac 上的短語。"
-          }
-        }
-      }
-    },
-    "아이폰에서 지운 단축어 %d개를 이 맥에서도 지웠습니다." : {
-      "comment" : "Deletions: done body",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deleted %d snippets on this Mac that were deleted on iPhone."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "아이폰에서 지운 단축어 %d개를 이 맥에서도 지웠습니다."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已在这台 Mac 上删除 %d 条在 iPhone 上删除的短语。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已在這台 Mac 上刪除 %d 條在 iPhone 上刪除的短語。"
-          }
-        }
-      }
-    },
-    "아이폰에서 지웠는데 이 맥에 남아 있는 것: %d개" : {
-      "comment" : "Diagnostics: zombie count",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deleted on iPhone but still here: %d"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "아이폰에서 지웠는데 이 맥에 남아 있는 것: %d개"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iPhone 上已删除但这台 Mac 上仍有：%d 条"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 iPhone 上已刪除但這台 Mac 上仍有：%d 條"
-          }
-        }
-      }
-    },
-    "예: %@" : {
-      "comment" : "Diagnostics: zombie sample",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "For example: %@"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "예: %@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "例如：%@"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "例如：%@"
-          }
-        }
-      }
-    },
-    "정리 실패" : {
-      "comment" : "Deletions: failed title",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cleanup failed"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "정리 실패"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "整理失败"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "整理失敗"
-          }
-        }
-      }
-    },
-    "정리했습니다" : {
-      "comment" : "Deletions: done title",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cleaned up"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "정리했습니다"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已整理"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已整理"
-          }
-        }
-      }
-    },
-    "지울 것이 없습니다" : {
-      "comment" : "Deletions: none title",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nothing to delete"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "지울 것이 없습니다"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "没有需要删除的内容"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "沒有需要刪除的內容"
-          }
-        }
-      }
-    },
     "📁 파일 백업은 iCloud와 별개로 데이터를 파일로 보관하는 가장 확실한 방법입니다. 가져오기는 현재 데이터를 지우지 않고 합칩니다." : {
       "comment" : "File backup info",
       "localizations" : {
@@ -5491,6 +5259,64 @@
         }
       }
     },
+    "새 카테고리" : {
+      "comment" : "New category alert title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Category"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 카테고리"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新建分类"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增分類"
+          }
+        }
+      }
+    },
+    "새 카테고리…" : {
+      "comment" : "Category picker: create a new category",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Category…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 카테고리…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新建分类…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增分類…"
+          }
+        }
+      }
+    },
     "새로고침" : {
       "comment" : "Refresh button",
       "localizations" : {
@@ -5897,6 +5723,122 @@
         }
       }
     },
+    "아이폰에서 지운 것 반영하기" : {
+      "comment" : "Prefs: apply cloud deletions",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply deletions from iPhone"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 지운 것 반영하기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用 iPhone 上的删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "套用 iPhone 上的刪除"
+          }
+        }
+      }
+    },
+    "아이폰에서 지운 것 중 이 맥에 남아 있는 단축어가 없습니다." : {
+      "comment" : "Deletions: none body",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No snippets deleted on iPhone are still on this Mac."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 지운 것 중 이 맥에 남아 있는 단축어가 없습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有在 iPhone 上删除却仍留在这台 Mac 上的短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有在 iPhone 上刪除卻仍留在這台 Mac 上的短語。"
+          }
+        }
+      }
+    },
+    "아이폰에서 지운 단축어 %d개를 이 맥에서도 지웠습니다." : {
+      "comment" : "Deletions: done body",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted %d snippets on this Mac that were deleted on iPhone."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 지운 단축어 %d개를 이 맥에서도 지웠습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已在这台 Mac 上删除 %d 条在 iPhone 上删除的短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已在這台 Mac 上刪除 %d 條在 iPhone 上刪除的短語。"
+          }
+        }
+      }
+    },
+    "아이폰에서 지웠는데 이 맥에 남아 있는 것: %d개" : {
+      "comment" : "Diagnostics: zombie count",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted on iPhone but still here: %d"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이폰에서 지웠는데 이 맥에 남아 있는 것: %d개"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iPhone 上已删除但这台 Mac 上仍有：%d 条"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 iPhone 上已刪除但這台 Mac 上仍有：%d 條"
+          }
+        }
+      }
+    },
     "아직 받아온 기록이 없습니다." : {
       "comment" : "Prefs: never synced",
       "localizations" : {
@@ -6271,6 +6213,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已連接"
+          }
+        }
+      }
+    },
+    "예: %@" : {
+      "comment" : "Diagnostics: zombie sample",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For example: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "例如：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "例如：%@"
           }
         }
       }
@@ -7087,35 +7058,6 @@
         }
       }
     },
-    "저장" : {
-      "comment" : "Save button",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "저장"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "保存"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "儲存"
-          }
-        }
-      }
-    },
     "저장 구역 확인 실패: %@" : {
       "comment" : "Diagnostics: zone check failed",
       "localizations" : {
@@ -7141,35 +7083,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法檢查儲存區：%@"
-          }
-        }
-      }
-    },
-    "저장 구역: %@" : {
-      "comment" : "Diagnostics: zones",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zones: %@"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "저장 구역: %@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "存储区：%@"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "儲存區：%@"
           }
         }
       }
@@ -7203,35 +7116,6 @@
         }
       }
     },
-    "전" : {
-      "comment" : "ago",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ago"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "전"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "前"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "前"
-          }
-        }
-      }
-    },
     "저장 실패: 단축어를 찾을 수 없습니다" : {
       "comment" : "Toast: memo missing on save",
       "localizations" : {
@@ -7261,35 +7145,6 @@
         }
       }
     },
-    "저장된 단축어가 없어 백업하지 않았습니다." : {
-      "comment" : "Nothing to back up body",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "There are no saved shortcuts, so nothing was backed up."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "저장된 단축어가 없어 백업하지 않았습니다."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "没有已保存的短语，因此未进行备份。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "沒有已儲存的短語，因此未進行備份。"
-          }
-        }
-      }
-    },
     "저장소를 찾을 수 없습니다." : {
       "comment" : "App Group container missing",
       "localizations" : {
@@ -7315,6 +7170,122 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "找不到儲存空間。"
+          }
+        }
+      }
+    },
+    "전" : {
+      "comment" : "ago",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ago"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前"
+          }
+        }
+      }
+    },
+    "저장" : {
+      "comment" : "Save button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存"
+          }
+        }
+      }
+    },
+    "저장 구역: %@" : {
+      "comment" : "Diagnostics: zones",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zones: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장 구역: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "存储区：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存區：%@"
+          }
+        }
+      }
+    },
+    "저장된 단축어가 없어 백업하지 않았습니다." : {
+      "comment" : "Nothing to back up body",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no saved shortcuts, so nothing was backed up."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장된 단축어가 없어 백업하지 않았습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有已保存的短语，因此未进行备份。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有已儲存的短語，因此未進行備份。"
           }
         }
       }
@@ -7460,6 +7431,64 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "電話號碼"
+          }
+        }
+      }
+    },
+    "정리 실패" : {
+      "comment" : "Deletions: failed title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cleanup failed"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정리 실패"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整理失败"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整理失敗"
+          }
+        }
+      }
+    },
+    "정리했습니다" : {
+      "comment" : "Deletions: done title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cleaned up"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정리했습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已整理"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已整理"
           }
         }
       }
@@ -7841,6 +7870,35 @@
         }
       }
     },
+    "지울 것이 없습니다" : {
+      "comment" : "Deletions: none title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to delete"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지울 것이 없습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有需要删除的内容"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有需要刪除的內容"
+          }
+        }
+      }
+    },
     "진료기록번호" : {
       "comment" : "Medical Record Number",
       "localizations" : {
@@ -7928,8 +7986,37 @@
         }
       }
     },
+    "추가" : {
+      "comment" : "Add new category",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추가"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增"
+          }
+        }
+      }
+    },
     "취소" : {
-      "comment" : "Cancel button",
+      "comment" : "Cancel\nCancel button",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -7988,6 +8075,7 @@
     },
     "카테고리" : {
       "comment" : "Category placeholder",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -8069,6 +8157,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分類設定：有"
+          }
+        }
+      }
+    },
+    "카테고리 이름" : {
+      "comment" : "New category name placeholder",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category Name"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카테고리 이름"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分类名称"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分類名稱"
           }
         }
       }
@@ -8707,122 +8824,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "會員編號"
-          }
-        }
-      }
-    },
-    "새 카테고리…" : {
-      "comment" : "Category picker: create a new category",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New Category…"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "새 카테고리…"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新建分类…"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新增分類…"
-          }
-        }
-      }
-    },
-    "새 카테고리" : {
-      "comment" : "New category alert title",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New Category"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "새 카테고리"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新建分类"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新增分類"
-          }
-        }
-      }
-    },
-    "카테고리 이름" : {
-      "comment" : "New category name placeholder",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Category Name"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "카테고리 이름"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "分类名称"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "分類名稱"
-          }
-        }
-      }
-    },
-    "추가" : {
-      "comment" : "Add new category",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "추가"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "添加"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新增"
           }
         }
       }
