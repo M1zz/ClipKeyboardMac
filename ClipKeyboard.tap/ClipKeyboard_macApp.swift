@@ -119,6 +119,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 실패해도 조용히 넘어가고 캐시로 계속 동작한다(가용성 우선).
         Task { @MainActor in RemoteFlagsService.shared.refreshInBackground() }
 
+        // 익명 사용 통계 - FeedbackHub 로 설치 스냅샷 · 오늘의 활동을 보낸다(MacUsageReporting 주석).
+        MacUsageReporting.reportLaunch()
+
         // iCloud 자동 복원: 로컬이 비어있으면 아이폰 백업을 시작 시 가져온다.
         // (덮어쓸 로컬 데이터가 없을 때만 동작 — 사용자 데이터 보호)
         // 복원이 끝난 뒤에도 여전히 비어있으면(맥 단독 신규 유저) 더미를 시드한다.

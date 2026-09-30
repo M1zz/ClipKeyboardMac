@@ -396,6 +396,7 @@ struct MenuBarPopoverView: View {
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(resolved, forType: .string)
             print("✅ [Popover] 복사: \(memo.title)")
+            MacUsageReporting.record(event: "memo_copy:popover")
             // 닫기 전에 "복사됨 · ⌘V로 붙여넣으세요" 를 잠깐 보여 준다 - 그냥 사라지면
             // 복사가 된 것인지 알 수 없다(빠른 붙여넣기 패널과 같은 시간).
             withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = memo.id }

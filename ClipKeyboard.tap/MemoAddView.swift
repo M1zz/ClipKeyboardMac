@@ -347,6 +347,7 @@ struct MemoAddView: View {
             memos.append(newMemo)
 
             try MemoStore.shared.save(memos: memos, type: .memo)
+            MacUsageReporting.record(event: "memo_create")
 
             print("✅ [MemoAdd] 메모 저장 완료")
             showToastMessage(NSLocalizedString("단축어가 저장되었습니다", comment: "Toast: memo saved"))

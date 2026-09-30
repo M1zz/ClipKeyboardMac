@@ -66,6 +66,7 @@ private final class TemplateFillWindow: NSObject, NSWindowDelegate {
             onComplete: { resolved in
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(resolved, forType: .string)
+                MacUsageReporting.record(event: "template_fill")
                 // 창은 시트가 "복사됨" 을 잠깐 보여 준 뒤 `onClose` 로 닫는다.
             },
             onClose: { [weak self] in self?.finish() }
@@ -327,6 +328,7 @@ private struct StackPasteView: View {
             guard let resolved else { return }
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(resolved, forType: .string)
+            MacUsageReporting.record(event: "stack_paste")
             withAnimation(.spring(response: 0.25, dampingFraction: 0.7)) {
                 done.insert(index)
                 justCopied = index

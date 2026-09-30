@@ -357,6 +357,7 @@ struct MemoListView: View {
         print("📋 [MemoListView] copyToClipboard - 클립보드 복사 시작")
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(text, forType: .string)
+        MacUsageReporting.record(event: "memo_copy:list")
         print("✅ [MemoListView] copyToClipboard - 클립보드 복사 완료")
     }
 

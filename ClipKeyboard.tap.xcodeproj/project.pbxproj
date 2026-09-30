@@ -44,6 +44,7 @@
 		MACDEFKEY000000000000B05 /* MacDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACDEFKEY000000000000F05 /* MacDefaultsKey.swift */; };
 		MACSPOTLIT00000000000B01 /* MacSpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */; };
 		MACPASTEFLOW000000000B01 /* MacPasteFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */; };
+		MACUSAGEREPORT0000000B01 /* MacUsageReporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACUSAGEREPORT0000000F01 /* MacUsageReporting.swift */; };
 		MACSYNCPROMPT00000000B01 /* MacSyncPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */; };
 		MACSYNCDIAG000000000B01X /* MacSyncDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */; };
 		MACSYNCRESET00000000B01X /* MacSyncReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSYNCRESET00000000F01X /* MacSyncReset.swift */; };
@@ -99,6 +100,7 @@
 		MACDEFKEY000000000000F05 /* MacDefaultsKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacDefaultsKey.swift; sourceTree = "<group>"; };
 		MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSpotlightIndexer.swift; sourceTree = "<group>"; };
 		MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPasteFlow.swift; sourceTree = "<group>"; };
+		MACUSAGEREPORT0000000F01 /* MacUsageReporting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacUsageReporting.swift; sourceTree = "<group>"; };
 		MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSyncPrompt.swift; sourceTree = "<group>"; };
 		MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSyncDiagnostics.swift; sourceTree = "<group>"; };
 		MACSYNCRESET00000000F01X /* MacSyncReset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSyncReset.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				MACDEFKEY000000000000F05 /* MacDefaultsKey.swift */,
 				MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */,
 				MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */,
+				MACUSAGEREPORT0000000F01 /* MacUsageReporting.swift */,
 				MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */,
 				MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */,
 				MACSYNCRESET00000000F01X /* MacSyncReset.swift */,
@@ -359,6 +362,7 @@
 				MACDEFKEY000000000000B05 /* MacDefaultsKey.swift in Sources */,
 				MACSPOTLIT00000000000B01 /* MacSpotlightIndexer.swift in Sources */,
 				MACPASTEFLOW000000000B01 /* MacPasteFlow.swift in Sources */,
+				MACUSAGEREPORT0000000B01 /* MacUsageReporting.swift in Sources */,
 				MACSYNCPROMPT00000000B01 /* MacSyncPrompt.swift in Sources */,
 				MACSYNCDIAG000000000B01X /* MacSyncDiagnostics.swift in Sources */,
 				MACSYNCRESET00000000B01X /* MacSyncReset.swift in Sources */,

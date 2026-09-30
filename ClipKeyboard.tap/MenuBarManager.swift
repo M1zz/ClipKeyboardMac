@@ -121,6 +121,7 @@ class MenuBarManager: NSObject {
         // (NSPopover의 contentViewController 재사용으로 인한 stale 리스트 문제 해결)
         popover.contentViewController = makePopoverContentController()
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+        MacUsageReporting.record(event: "popover_open", countsAsEngagement: false)
 
         // 팝오버 윈도우를 key window로 만들어 TextField가 바로 입력 받도록.
         popover.contentViewController?.view.window?.makeKey()

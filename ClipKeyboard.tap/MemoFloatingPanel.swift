@@ -48,6 +48,7 @@ final class MemoFloatingPanelController: NSObject {
         }
         guard let panel else { return }
         showGeneration += 1
+        MacUsageReporting.record(event: "panel_open", countsAsEngagement: false)
 
         // 이 패널은 앱을 활성화하지 않는다 - `applicationDidBecomeActive` 의 동기화가 돌지 않아
         // 아이폰에서 지운 단축어가 그대로 보였다. 열 때마다 직접 받아온다.
@@ -134,6 +135,7 @@ final class MemoFloatingPanelController: NSObject {
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(resolved, forType: .string)
             print("📋 [FloatingPanel] 메모 복사: \(memo.title)")
+            MacUsageReporting.record(event: "memo_copy:panel")
             // 2) 행 앞에 체크를 띄우고 ⌘V 로 붙여넣으라고 알린다.
             //    ⚠️ 직접 붙여넣어 주지 않는다. 다른 앱에 ⌘V 를 누르는 것(CGEvent)은 5.0.5(18)이
             //       Guideline 2.4.5 로 거절된 이유다 (docs/RELEASE_NOTES_5.0.5_macOS.md).

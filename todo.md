@@ -1,5 +1,15 @@
 # todo
 
+## FeedbackHub 사용 통계 — 2026-09-30, **완료**
+
+맥 앱도 아이폰과 같은 허브(`iCloud.com.Ysoup.FeedbackHub`)에 `UsageSnapshot` · `UsageEvent` 를 쌓는다.
+`appId = com.ysoup.TokenMemo-tap`, `platform = macOS` 로 갈린다. 정책은 `MacUsageReporting.swift`.
+
+- [x] 시작 시 설치 스냅샷(지표: shortcuts · ownShortcuts · templates · combos · secure · favorites · categories · uses · clips · flag.syncOn) + `app_open`
+- [x] 이벤트: `panel_open` · `popover_open` · `memo_copy:{panel,popover,list}` · `template_fill` · `stack_paste` · `memo_create` (이름당 6시간 1건)
+- [x] 원격 킬스위치 `usageReportingEnabled` 따름
+- [ ] FeedbackHubViewer 에서 macOS 레코드가 실제로 들어오는지 확인 (Development 로 한 번 돌려 스키마 확인)
+
 ## App Store 스크린샷 (한국어·영어) — 2026-09-09, **완료**
 
 2880×1800 여섯 장 × 두 언어를 `appstore/{ko,en}/` 에 냈다. 만드는 법·촬영에서 걸리는
