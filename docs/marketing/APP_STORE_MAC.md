@@ -190,15 +190,17 @@ Available in Korean, English, Simplified Chinese and Traditional Chinese.
 
 아이폰 앱과 **같은 페이지**를 씁니다. 페이지가 두 앱을 함께 다루고 있어 따로 만들지 않습니다.
 
-| 로케일 | 개인정보 처리방침 | 지원 · 마케팅 |
-| --- | --- | --- |
-| ko | `https://m1zz.github.io/ClipKeyboard/privacy.html?lang=ko` | `https://m1zz.github.io/ClipKeyboard/tutorial.html?lang=ko` |
-| en | `.../privacy.html?lang=en` | `.../tutorial.html?lang=en` |
-| zh-Hans | `.../privacy.html?lang=zh-Hans` | `.../tutorial.html?lang=zh-Hans` |
-| zh-Hant | `.../privacy.html?lang=zh-Hant` | `.../tutorial.html?lang=zh-Hant` |
+| 로케일 | 개인정보 처리방침 | 지원 | 마케팅 |
+| --- | --- | --- | --- |
+| ko | `https://m1zz.github.io/ClipKeyboard/ko/privacy.html` | `…/ko/tutorial.html` | `…/ko/` |
+| en-US | `…/en/privacy.html` | `…/en/tutorial.html` | `…/en/` |
+| zh-Hans | `…/zh-Hans/privacy.html` | `…/zh-Hans/tutorial.html` | `…/zh-Hans/` |
+| zh-Hant | `…/zh-Hant/privacy.html` | `…/zh-Hant/tutorial.html` | `…/zh-Hant/` |
 
-⚠️ `?lang=` 을 반드시 붙입니다. 없으면 페이지가 **보는 사람의 브라우저 언어**를 따라가서,
-   심사자 기기가 영어면 중국어 처리방침 대신 영어가 뜹니다.
+원본은 레포 최상단 `APPSTORE.md` 의 URL 칸이다. DeployBar 가 배포 때 언어별 칸에 올린다.
+
+⚠️ 언어마다 폴더가 따로 있다(`/ko/`, `/en/` …). 예전처럼 `?lang=` 을 붙인 루트 주소는
+   브라우저 언어를 따라가는 기본 페이지라 스토어 링크로 쓰지 않는다.
 
 ⚠️ 페이지는 아이폰 레포의 `main` 브랜치 `docs/` 에서 나갑니다. 문구를 고쳤으면
    `main` 에 올라갔는지 확인하고 링크를 등록할 것.
