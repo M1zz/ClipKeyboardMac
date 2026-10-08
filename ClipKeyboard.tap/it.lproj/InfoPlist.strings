@@ -1,0 +1,7 @@
+/*
+  InfoPlist.strings
+  ClipKeyboard.tap (it)
+*/
+
+/* App display name */
+"CFBundleDisplayName" = "ClipKeyboard";

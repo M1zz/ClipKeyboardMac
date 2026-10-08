@@ -7,6 +7,7 @@
 
     python3 scripts/make_demo_data.py ko    # 한국어 데모
     python3 scripts/make_demo_data.py en    # 영어 데모
+    python3 scripts/make_demo_data.py ja    # 그 밖의 언어는 demo_locales.json
 
 여기 담긴 값은 하나도 빠짐없이 지어낸 것이다. 실존하는 계좌·카드·여권 번호가 아니고,
 example.com / example.org 처럼 문서용으로 예약된 도메인만 쓴다(RFC 2606).
@@ -212,10 +213,42 @@ SETS = {
 }
 
 
+# ── 그 밖의 언어 ────────────────────────────────────────────────────────────
+# 말만 `demo_locales.json` 에 있고, 구성(카테고리·즐겨찾기·사용 횟수·템플릿 여부)은
+# EN_MEMOS 와 **같은 순서·같은 속성**을 그대로 따른다. 항목은 [제목, 값] 또는 [제목, 값, 힌트].
+# 카테고리 순서는 [업무, 개인, 여행] 에 해당하는 그 언어 이름.
+def _localized_set(spec):
+    work, personal, travel = spec["categories"]
+    cat_map = {"기본": "기본", "Work": work, "Personal": personal, "Travel": travel}
+    variables = iter(spec["templateVariables"])
+    memos = []
+    for base, item in zip(EN_MEMOS, spec["memos"]):
+        title, value = item[0], item[1]
+        hint = item[2] if len(item) > 2 else None
+        m = dict(base)
+        m.update(id=str(uuid.uuid4()).upper(), title=title, value=value,
+                 category=cat_map[base["category"]])
+        if base["isTemplate"]:
+            m["templateVariables"] = next(variables)
+        m.pop("hint", None)
+        if hint:
+            m["hint"] = hint
+        memos.append(m)
+    clips = [clip(text, minutes_ago=c_minutes)
+             for text, c_minutes in zip(spec["clips"], (2, 11, 26, 48, 95, 140, 220, 310, 420))]
+    return memos, clips, spec["categories"]
+
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(_HERE, "demo_locales.json"), encoding="utf-8") as _f:
+    for _loc, _spec in json.load(_f).items():
+        SETS[_loc] = _localized_set(_spec)
+
+
 def main():
     locale = sys.argv[1] if len(sys.argv) > 1 else "ko"
     if locale not in SETS:
-        sys.exit(f"모르는 로케일: {locale} (ko | en)")
+        sys.exit(f"모르는 로케일: {locale} ({' | '.join(SETS)})")
     memos, clips, categories = SETS[locale]
 
     if not os.path.isdir(CONTAINER):

@@ -7,7 +7,158 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 3~5줄, 한 줄 40자 이내. 내부 리팩터링·빌드 설정·의존성은 쓰지 않고
 사용자에게 무엇이 좋아졌는지만 쓴다. 언어마다 따로 쓰되 항목 수와 순서는 맞춘다.
 
-확인: `DeployBar --reponotes 탭클립키보드 5.1.6`
+확인: `DeployBar --reponotes 탭클립키보드 5.1.7`
+
+## 5.1.7
+
+### 앱스토어 (한국어)
+
+일본어와 독일어 등 19개 언어를 새로 지원합니다.
+처음 켤 때 보이는 예시 단축어도 그 언어로 나옵니다.
+카테고리를 바꾸면 아이폰에도 더 확실히 반영됩니다.
+
+### App Store (English)
+
+Now in 19 more languages, from Japanese to Turkish.
+Starter snippets now appear in your language.
+Category changes reach your iPhone more reliably.
+
+### 앱스토어 (중국어 간체)
+
+新增日语、德语等 19 种语言。
+首次打开时的示例短语也会以你的语言显示。
+更改分类后，能更可靠地同步到 iPhone。
+
+### 앱스토어 (중국어 번체)
+
+新增日文、德文等 19 種語言。
+首次開啟時的範例短語也會以你的語言顯示。
+變更分類後，能更確實地同步到 iPhone。
+
+### 앱스토어 (일본어, ja)
+
+日本語やドイツ語など19の言語に新しく対応しました。
+最初に入っているサンプルのスニペットもその言語で表示されます。
+カテゴリの変更がiPhoneにより確実に反映されるようになりました。
+
+### 앱스토어 (독일어, de)
+
+Neu in 19 weiteren Sprachen, darunter Deutsch.
+Die Beispiel-Bausteine erscheinen in deiner Sprache.
+Kategorie-Änderungen kommen zuverlässiger aufs iPhone.
+
+### 앱스토어 (스페인어, es)
+
+Ahora en 19 idiomas más, entre ellos el español.
+Los fragmentos de ejemplo aparecen en tu idioma.
+Los cambios de categoría llegan mejor al iPhone.
+
+### 앱스토어 (프랑스어, fr)
+
+Désormais en 19 langues de plus, dont le français.
+Les extraits d’exemple s’affichent dans votre langue.
+Les catégories modifiées arrivent mieux sur l’iPhone.
+
+### 앱스토어 (이탈리아어, it)
+
+Ora in 19 lingue in più, tra cui l’italiano.
+I frammenti di esempio compaiono nella tua lingua.
+Le categorie modificate arrivano meglio su iPhone.
+
+### 앱스토어 (포르투갈어(브라질), pt-BR)
+
+Agora em mais 19 idiomas, incluindo português.
+Os trechos de exemplo aparecem no seu idioma.
+Mudanças de categoria chegam melhor ao iPhone.
+
+### 앱스토어 (러시아어, ru)
+
+Добавлено 19 новых языков, включая русский.
+Примеры заготовок теперь на вашем языке.
+Изменения категорий надёжнее доходят до iPhone.
+
+### 앱스토어 (체코어, cs)
+
+Nově podporujeme 19 dalších jazyků včetně češtiny.
+Ukázkové úryvky se zobrazí ve vašem jazyce.
+Změny kategorií se spolehlivěji dostanou do iPhonu.
+
+### 앱스토어 (덴마크어, da)
+
+Nu på 19 nye sprog, deriblandt dansk.
+Eksempler på tekststykker vises nu på dit sprog.
+Ændringer i kategorier når mere pålideligt din iPhone.
+
+### 앱스토어 (그리스어, el)
+
+Υποστήριξη 19 νέων γλωσσών, μαζί και τα ελληνικά.
+Τα δείγματα αποσπασμάτων εμφανίζονται στη γλώσσα σας.
+Οι αλλαγές κατηγοριών φτάνουν πιο σίγουρα στο iPhone.
+
+### 앱스토어 (핀란드어, fi)
+
+Nyt 19 uutta kieltä, mukana myös suomi.
+Esimerkkipätkät näkyvät nyt omalla kielelläsi.
+Kategorioiden muutokset välittyvät iPhoneen varmemmin.
+
+### 앱스토어 (인도네시아어, id)
+
+Kini mendukung 19 bahasa baru, termasuk Indonesia.
+Contoh cuplikan kini muncul dalam bahasa Anda.
+Perubahan kategori kini lebih pasti sampai ke iPhone.
+
+### 앱스토어 (노르웨이어(보크말), nb)
+
+Nå på 19 nye språk, blant annet norsk.
+Eksempler på tekstbiter vises nå på ditt språk.
+Endringer i kategorier når iPhonen mer pålitelig.
+
+### 앱스토어 (네덜란드어, nl)
+
+Nu in 19 extra talen, waaronder het Nederlands.
+Voorbeeldfragmenten verschijnen nu in jouw taal.
+Categoriewijzigingen bereiken je iPhone betrouwbaarder.
+
+### 앱스토어 (폴란드어, pl)
+
+Obsługa 19 nowych języków, w tym polskiego.
+Przykładowe fragmenty pojawiają się w Twoim języku.
+Zmiany kategorii pewniej docierają na iPhone’a.
+
+### 앱스토어 (스웨덴어, sv)
+
+Nu på 19 nya språk, bland annat svenska.
+Exempeltextsnuttarna visas nu på ditt språk.
+Ändrade kategorier når din iPhone mer pålitligt.
+
+### 앱스토어 (태국어, th)
+
+รองรับเพิ่มอีก 19 ภาษา รวมถึงภาษาไทย
+ข้อความตัวอย่างตอนเริ่มใช้แสดงเป็นภาษาของคุณ
+เปลี่ยนหมวดหมู่แล้วซิงค์ไป iPhone ได้แน่นอนขึ้น
+
+### 앱스토어 (튀르키예어, tr)
+
+Türkçe dahil 19 yeni dil desteği eklendi.
+Örnek hazır metinler artık sizin dilinizde.
+Kategori değişiklikleri iPhone’a daha sağlam ulaşır.
+
+### 앱스토어 (베트남어, vi)
+
+Hỗ trợ thêm 19 ngôn ngữ, trong đó có tiếng Việt.
+Đoạn văn bản mẫu hiển thị bằng ngôn ngữ của bạn.
+Đổi danh mục giờ được đồng bộ sang iPhone chắc chắn hơn.
+
+### 개발 메모 (스토어에 올리지 않음)
+
+5.1.7 에 담긴 것.
+
+- 19개 언어를 더했다: ja, de, es, fr, it, pt-BR, ru, cs, da, el, fi, id, nb, nl, pl, sv, th, tr, vi.
+  `Localizable.xcstrings` 305개 문자열 전부, 언어별 `InfoPlist.strings`(앱 이름은 라틴 `ClipKeyboard`), `deploy.env` LOCALES, `APPSTORE.md`, 스크린샷.
+- 첫 실행 예시 단축어(`MacSampleSeeder`)도 새 언어마다 그 언어 문구로 심는다. 지원하지 않는 언어는 여전히 영어.
+- 카테고리 변경 알림을 메인 스레드에서 쏜다. 배경에서 바꾼 카테고리도 동기화 엔진이 놓치지 않는다 (1181cdf, iOS 5b70816)
+- 맥 앱도 FeedbackHub 에 사용 통계(설치 스냅샷·이벤트, 단축어 내용 없음)를 보낸다 (f411ab9). 개인정보 라벨 확인은 사람 몫.
+- LeeoKit 3.5.1 → 3.16.1 (c16281d)
 
 ## 5.1.6
 

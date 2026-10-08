@@ -1,0 +1,2417 @@
+{
+ "zh-Hans": {
+  "categories": [
+   "工作",
+   "个人",
+   "旅行"
+  ],
+  "memos": [
+   [
+    "工作邮箱",
+    "zhang.wei@example.com"
+   ],
+   [
+    "个人邮箱",
+    "zhangwei@example.org"
+   ],
+   [
+    "手机号码",
+    "138 0000 0000"
+   ],
+   [
+    "常用回复",
+    "收到，谢谢！"
+   ],
+   [
+    "自我介绍",
+    "你好，我是张伟。\n在平台团队负责产品规划。\n联系方式 zhangwei@example.org"
+   ],
+   [
+    "邮件签名",
+    "张伟 · 产品部\n示例科技有限公司\nzhang.wei@example.com"
+   ],
+   [
+    "视频会议链接",
+    "https://meet.example.com/zhangwei"
+   ],
+   [
+    "GitHub 主页",
+    "https://github.com/example"
+   ],
+   [
+    "不在座位",
+    "我暂时不在座位上，请留言，看到后会尽快回复。"
+   ],
+   [
+    "回复模板",
+    "{姓名}你好，感谢你的咨询。\n我会在 {日期} 前回复你。\n\n张伟",
+    "回复客户咨询时用"
+   ],
+   [
+    "会议纪要抬头",
+    "【{日期}】{主题}\n参会人：{参会人}\n\n讨论\n- \n\n结论\n- "
+   ],
+   [
+    "报价说明",
+    "{姓名}你好，附上你要的报价。\n看完有任何问题随时告诉我。"
+   ],
+   [
+    "办公室 Wi-Fi",
+    "网络 Example-Guest\n密码 example1234"
+   ],
+   [
+    "公司信息",
+    "示例科技有限公司 / 统一社会信用代码 00000000000000000X\n北京市朝阳区示例路 0 号"
+   ],
+   [
+    "银行账号",
+    "示例银行 0000 0000 0000 0000\n户名 张伟"
+   ],
+   [
+    "家庭住址",
+    "上海市浦东新区示例路 0 弄 0 号 000 室"
+   ],
+   [
+    "快递备注",
+    "不在家的话请放快递柜，谢谢。"
+   ],
+   [
+    "护照信息",
+    "护照号 E00000000\nZHANG WEI"
+   ],
+   [
+    "机票预订号",
+    "ABC000 / 上海浦东 → 东京成田"
+   ],
+   [
+    "酒店地址",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "zhang.wei@example.com",
+   "收到，谢谢！",
+   "https://meet.example.com/zhangwei",
+   "示例银行 0000 0000 0000 0000",
+   "【2026-09-09】9 月迭代检查\n参会人：张伟、李娜",
+   "上海市浦东新区示例路 0 弄 0 号",
+   "ABC000 / 上海浦东 → 东京成田",
+   "Example-Guest / example1234",
+   "zhangwei@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{姓名}",
+    "{日期}"
+   ],
+   [
+    "{日期}",
+    "{主题}",
+    "{参会人}"
+   ],
+   [
+    "{姓名}"
+   ]
+  ]
+ },
+ "zh-Hant": {
+  "categories": [
+   "工作",
+   "個人",
+   "旅行"
+  ],
+  "memos": [
+   [
+    "公司信箱",
+    "chen.yating@example.com"
+   ],
+   [
+    "個人信箱",
+    "yating.chen@example.org"
+   ],
+   [
+    "手機號碼",
+    "0900-000-000"
+   ],
+   [
+    "常用回覆",
+    "收到，謝謝！"
+   ],
+   [
+    "自我介紹",
+    "你好，我是陳雅婷。\n在平台團隊負責產品規劃。\n聯絡方式 yating.chen@example.org"
+   ],
+   [
+    "郵件簽名",
+    "陳雅婷 · 產品部\n範例科技股份有限公司\nchen.yating@example.com"
+   ],
+   [
+    "視訊會議連結",
+    "https://meet.example.com/yating"
+   ],
+   [
+    "GitHub 個人頁面",
+    "https://github.com/example"
+   ],
+   [
+    "暫時離開",
+    "我目前不在座位上，請留言，看到後會盡快回覆。"
+   ],
+   [
+    "回覆範本",
+    "{姓名}你好，感謝你的詢問。\n我會在 {日期} 前回覆你。\n\n陳雅婷",
+    "回覆客戶詢問時用"
+   ],
+   [
+    "會議記錄抬頭",
+    "【{日期}】{主題}\n與會者：{與會者}\n\n討論\n- \n\n結論\n- "
+   ],
+   [
+    "報價說明",
+    "{姓名}你好，附上你需要的報價單。\n看完有任何問題隨時告訴我。"
+   ],
+   [
+    "辦公室 Wi-Fi",
+    "網路 Example-Guest\n密碼 example1234"
+   ],
+   [
+    "公司資料",
+    "範例科技股份有限公司 / 統一編號 00000000\n台北市信義區範例路 0 號"
+   ],
+   [
+    "銀行帳號",
+    "範例銀行 (000) 0000-0000-0000\n戶名 陳雅婷"
+   ],
+   [
+    "住家地址",
+    "台中市西區範例街 0 巷 0 號 0 樓"
+   ],
+   [
+    "收件備註",
+    "不在家的話請交給管理室，謝謝。"
+   ],
+   [
+    "護照資料",
+    "護照號碼 300000000\nCHEN YA-TING"
+   ],
+   [
+    "機票訂位代號",
+    "ABC000 / 桃園 → 東京成田"
+   ],
+   [
+    "飯店地址",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "chen.yating@example.com",
+   "收到，謝謝！",
+   "https://meet.example.com/yating",
+   "範例銀行 (000) 0000-0000-0000",
+   "【2026-09-09】9 月衝刺檢討\n與會者：陳雅婷、林志明",
+   "台中市西區範例街 0 巷 0 號",
+   "ABC000 / 桃園 → 東京成田",
+   "Example-Guest / example1234",
+   "yating.chen@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{姓名}",
+    "{日期}"
+   ],
+   [
+    "{日期}",
+    "{主題}",
+    "{與會者}"
+   ],
+   [
+    "{姓名}"
+   ]
+  ]
+ },
+ "ja": {
+  "categories": [
+   "仕事",
+   "プライベート",
+   "旅行"
+  ],
+  "memos": [
+   [
+    "仕事用メール",
+    "taro.yamada@example.com"
+   ],
+   [
+    "個人用メール",
+    "yamada.taro@example.org"
+   ],
+   [
+    "携帯番号",
+    "090-0000-0000"
+   ],
+   [
+    "お礼のひとこと",
+    "承知しました。ありがとうございます！"
+   ],
+   [
+    "自己紹介",
+    "はじめまして、山田太郎です。\nプロダクトチームで企画を担当しています。\n連絡先 yamada.taro@example.org"
+   ],
+   [
+    "メール署名",
+    "山田太郎｜プロダクトチーム\n株式会社サンプル\ntaro.yamada@example.com"
+   ],
+   [
+    "ビデオ会議リンク",
+    "https://meet.example.com/taro"
+   ],
+   [
+    "GitHubプロフィール",
+    "https://github.com/example"
+   ],
+   [
+    "不在のお知らせ",
+    "ただいま席を外しております。ご用件をお残しいただければ、確認しだいご連絡いたします。"
+   ],
+   [
+    "返信テンプレート",
+    "{名前}様\nお問い合わせありがとうございます。\n{日付}までにご連絡いたします。\n\n山田",
+    "お客様への返信に"
+   ],
+   [
+    "議事録の見出し",
+    "【{日付}】{議題}\n出席者：{出席者}\n\n議論\n・\n\n決定事項\n・"
+   ],
+   [
+    "見積もりのご案内",
+    "{名前}様\nご依頼のお見積もりをお送りします。\nご確認のほどよろしくお願いいたします。"
+   ],
+   [
+    "オフィスのWi-Fi",
+    "ネットワーク Example-Guest\nパスワード example1234"
+   ],
+   [
+    "会社情報",
+    "株式会社サンプル\n〒000-0000 東京都千代田区丸の内0-0-0"
+   ],
+   [
+    "振込先口座",
+    "サンプル銀行 本店 普通 0000000\nヤマダ タロウ"
+   ],
+   [
+    "自宅の住所",
+    "〒000-0000 東京都世田谷区サンプル0-0-0\nサンプルハイツ000"
+   ],
+   [
+    "配達メモ",
+    "不在の場合は宅配ボックスに入れてください。"
+   ],
+   [
+    "パスポート情報",
+    "旅券番号 TK0000000\nYAMADA TARO"
+   ],
+   [
+    "航空券の予約番号",
+    "ABC000 / 羽田 → ソウル金浦"
+   ],
+   [
+    "ホテルの住所",
+    "Example Hotel Seoul\n000 Example-ro, Jung-gu, Seoul"
+   ]
+  ],
+  "clips": [
+   "taro.yamada@example.com",
+   "承知しました。ありがとうございます！",
+   "https://meet.example.com/taro",
+   "サンプル銀行 本店 普通 0000000",
+   "【2026-09-09】9月スプリント振り返り\n出席者：山田、佐藤",
+   "東京都世田谷区サンプル0-0-0",
+   "ABC000 / 羽田 → ソウル金浦",
+   "Example-Guest / example1234",
+   "yamada.taro@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{名前}",
+    "{日付}"
+   ],
+   [
+    "{日付}",
+    "{議題}",
+    "{出席者}"
+   ],
+   [
+    "{名前}"
+   ]
+  ]
+ },
+ "de": {
+  "categories": [
+   "Arbeit",
+   "Privat",
+   "Reisen"
+  ],
+  "memos": [
+   [
+    "E-Mail Arbeit",
+    "lena.schneider@example.com"
+   ],
+   [
+    "E-Mail privat",
+    "lena.schneider@example.org"
+   ],
+   [
+    "Handynummer",
+    "+49 170 0000000"
+   ],
+   [
+    "Kurzes Danke",
+    "Alles klar – vielen Dank!"
+   ],
+   [
+    "Vorstellung",
+    "Hallo, ich bin Lena Schneider.\nProduktmanagerin im Plattform-Team.\nErreichbar unter lena.schneider@example.org"
+   ],
+   [
+    "E-Mail-Signatur",
+    "Lena Schneider · Produkt\nBeispiel GmbH\nlena.schneider@example.com"
+   ],
+   [
+    "Meeting-Link",
+    "https://meet.example.com/lena"
+   ],
+   [
+    "GitHub-Profil",
+    "https://github.com/example"
+   ],
+   [
+    "Abwesenheitsnotiz",
+    "Ich bin gerade nicht am Platz. Hinterlass mir eine Nachricht, ich melde mich."
+   ],
+   [
+    "Antwortvorlage",
+    "Hallo {Name}, danke für deine Nachricht.\nIch melde mich bis {Datum}.\n\nViele Grüße\nLena",
+    "Für Kundenanfragen"
+   ],
+   [
+    "Protokollkopf",
+    "[{Datum}] {Thema}\nTeilnehmende: {Personen}\n\nDiskussion\n- \n\nBeschlüsse\n- "
+   ],
+   [
+    "Angebot nachfassen",
+    "Hallo {Name}, anbei das gewünschte Angebot.\nSag gern Bescheid, was du davon hältst."
+   ],
+   [
+    "Büro-WLAN",
+    "Netzwerk Example-Guest\nPasswort example1234"
+   ],
+   [
+    "Firmendaten",
+    "Beispiel GmbH / USt-IdNr. DE000000000\nBeispielstraße 0, 10115 Berlin"
+   ],
+   [
+    "Bankverbindung",
+    "Beispielbank\nIBAN DE00 0000 0000 0000 0000 00\nLena Schneider"
+   ],
+   [
+    "Privatadresse",
+    "Musterweg 0\n80331 München"
+   ],
+   [
+    "Hinweis für Paketzustellung",
+    "Bitte beim Nachbarn im Erdgeschoss abgeben."
+   ],
+   [
+    "Reisepass",
+    "Reisepass C00000000\nLENA SCHNEIDER"
+   ],
+   [
+    "Flugbuchung",
+    "ABC000 / FRA → NRT"
+   ],
+   [
+    "Hoteladresse",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "lena.schneider@example.com",
+   "Alles klar – vielen Dank!",
+   "https://meet.example.com/lena",
+   "IBAN DE00 0000 0000 0000 0000 00",
+   "[2026-09-09] Sprint-Check-in\nTeilnehmende: Lena, Jonas",
+   "Musterweg 0, 80331 München",
+   "ABC000 / FRA → NRT",
+   "Example-Guest / example1234",
+   "lena.schneider@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{Name}",
+    "{Datum}"
+   ],
+   [
+    "{Datum}",
+    "{Thema}",
+    "{Personen}"
+   ],
+   [
+    "{Name}"
+   ]
+  ]
+ },
+ "es": {
+  "categories": [
+   "Trabajo",
+   "Personal",
+   "Viajes"
+  ],
+  "memos": [
+   [
+    "Correo del trabajo",
+    "lucia.garcia@example.com"
+   ],
+   [
+    "Correo personal",
+    "lucia.garcia@example.org"
+   ],
+   [
+    "Móvil",
+    "+34 600 000 000"
+   ],
+   [
+    "Gracias rápido",
+    "Recibido, ¡muchas gracias!"
+   ],
+   [
+    "Presentación",
+    "Hola, soy Lucía García.\nResponsable de producto en el equipo de plataforma.\nEscríbeme a lucia.garcia@example.org"
+   ],
+   [
+    "Firma de correo",
+    "Lucía García · Producto\nEmpresa Ejemplo\nlucia.garcia@example.com"
+   ],
+   [
+    "Enlace de reunión",
+    "https://meet.example.com/lucia"
+   ],
+   [
+    "Perfil de GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Mensaje de ausencia",
+    "Ahora no estoy en mi puesto. Déjame un mensaje y te respondo en cuanto pueda."
+   ],
+   [
+    "Plantilla de respuesta",
+    "Hola, {nombre}. Gracias por escribirnos.\nTe responderé antes del {fecha}.\n\nUn saludo,\nLucía",
+    "Para responder a clientes"
+   ],
+   [
+    "Encabezado de acta",
+    "[{fecha}] {tema}\nAsistentes: {asistentes}\n\nDebate\n- \n\nAcuerdos\n- "
+   ],
+   [
+    "Seguimiento de presupuesto",
+    "Hola, {nombre}. Te envío el presupuesto que pediste.\nDime qué te parece."
+   ],
+   [
+    "Wi-Fi de la oficina",
+    "Red Example-Guest\nContraseña example1234"
+   ],
+   [
+    "Datos de la empresa",
+    "Empresa Ejemplo / NIF B00000000\nCalle Ejemplo 0, 28001 Madrid"
+   ],
+   [
+    "Cuenta bancaria",
+    "Banco Ejemplo\nES00 0000 0000 0000 0000 0000\nLucía García"
+   ],
+   [
+    "Dirección de casa",
+    "Calle Ejemplo 0, 0.º A\n08001 Barcelona"
+   ],
+   [
+    "Nota de entrega",
+    "Si no estoy, por favor deja el paquete en conserjería."
+   ],
+   [
+    "Datos del pasaporte",
+    "Pasaporte AAA000000\nLUCIA GARCIA"
+   ],
+   [
+    "Reserva de vuelo",
+    "ABC000 / MAD → NRT"
+   ],
+   [
+    "Dirección del hotel",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "lucia.garcia@example.com",
+   "Recibido, ¡muchas gracias!",
+   "https://meet.example.com/lucia",
+   "ES00 0000 0000 0000 0000 0000",
+   "[2026-09-09] Revisión del sprint\nAsistentes: Lucía, Pablo",
+   "Calle Ejemplo 0, 08001 Barcelona",
+   "ABC000 / MAD → NRT",
+   "Example-Guest / example1234",
+   "lucia.garcia@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{nombre}",
+    "{fecha}"
+   ],
+   [
+    "{fecha}",
+    "{tema}",
+    "{asistentes}"
+   ],
+   [
+    "{nombre}"
+   ]
+  ]
+ },
+ "fr": {
+  "categories": [
+   "Travail",
+   "Perso",
+   "Voyage"
+  ],
+  "memos": [
+   [
+    "E-mail pro",
+    "camille.martin@example.com"
+   ],
+   [
+    "E-mail perso",
+    "camille.martin@example.org"
+   ],
+   [
+    "Portable",
+    "06 00 00 00 00"
+   ],
+   [
+    "Merci rapide",
+    "Bien reçu, merci beaucoup !"
+   ],
+   [
+    "Présentation",
+    "Bonjour, je suis Camille Martin.\nChef de produit dans l’équipe plateforme.\nJoignable à camille.martin@example.org"
+   ],
+   [
+    "Signature e-mail",
+    "Camille Martin · Produit\nExemple SAS\ncamille.martin@example.com"
+   ],
+   [
+    "Lien de visio",
+    "https://meet.example.com/camille"
+   ],
+   [
+    "Profil GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Message d’absence",
+    "Je ne suis pas à mon bureau. Laissez-moi un message, je reviens vers vous."
+   ],
+   [
+    "Modèle de réponse",
+    "Bonjour {nom}, merci pour votre message.\nJe reviens vers vous d’ici le {date}.\n\nBien cordialement,\nCamille",
+    "Pour répondre aux clients"
+   ],
+   [
+    "En-tête de compte rendu",
+    "[{date}] {sujet}\nParticipants : {participants}\n\nDiscussion\n- \n\nDécisions\n- "
+   ],
+   [
+    "Relance devis",
+    "Bonjour {nom}, voici le devis demandé.\nN’hésitez pas à me faire part de vos remarques."
+   ],
+   [
+    "Wi-Fi du bureau",
+    "Réseau Example-Guest\nMot de passe example1234"
+   ],
+   [
+    "Infos société",
+    "Exemple SAS / SIRET 000 000 000 00000\n0 rue de l’Exemple, 75001 Paris"
+   ],
+   [
+    "RIB",
+    "Banque Exemple\nIBAN FR00 0000 0000 0000 0000 0000 000\nCamille Martin"
+   ],
+   [
+    "Adresse perso",
+    "0 avenue de l’Exemple\n69000 Lyon"
+   ],
+   [
+    "Consigne de livraison",
+    "En cas d’absence, merci de laisser le colis à la gardienne."
+   ],
+   [
+    "Passeport",
+    "Passeport 00AA00000\nCAMILLE MARTIN"
+   ],
+   [
+    "Réservation de vol",
+    "ABC000 / CDG → NRT"
+   ],
+   [
+    "Adresse de l’hôtel",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "camille.martin@example.com",
+   "Bien reçu, merci beaucoup !",
+   "https://meet.example.com/camille",
+   "IBAN FR00 0000 0000 0000 0000 0000 000",
+   "[2026-09-09] Point sprint\nParticipants : Camille, Hugo",
+   "0 avenue de l’Exemple, 69000 Lyon",
+   "ABC000 / CDG → NRT",
+   "Example-Guest / example1234",
+   "camille.martin@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{nom}",
+    "{date}"
+   ],
+   [
+    "{date}",
+    "{sujet}",
+    "{participants}"
+   ],
+   [
+    "{nom}"
+   ]
+  ]
+ },
+ "it": {
+  "categories": [
+   "Lavoro",
+   "Personale",
+   "Viaggi"
+  ],
+  "memos": [
+   [
+    "Email di lavoro",
+    "giulia.rossi@example.com"
+   ],
+   [
+    "Email personale",
+    "giulia.rossi@example.org"
+   ],
+   [
+    "Cellulare",
+    "+39 300 000 0000"
+   ],
+   [
+    "Grazie veloce",
+    "Ricevuto, grazie mille!"
+   ],
+   [
+    "Presentazione",
+    "Ciao, sono Giulia Rossi.\nProduct manager nel team piattaforma.\nScrivimi a giulia.rossi@example.org"
+   ],
+   [
+    "Firma email",
+    "Giulia Rossi · Prodotto\nEsempio S.r.l.\ngiulia.rossi@example.com"
+   ],
+   [
+    "Link riunione",
+    "https://meet.example.com/giulia"
+   ],
+   [
+    "Profilo GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Messaggio di assenza",
+    "Al momento non sono alla scrivania. Lasciami un messaggio e ti ricontatto."
+   ],
+   [
+    "Modello di risposta",
+    "Ciao {nome}, grazie per averci scritto.\nTi rispondo entro il {data}.\n\nUn saluto,\nGiulia",
+    "Per rispondere ai clienti"
+   ],
+   [
+    "Intestazione verbale",
+    "[{data}] {argomento}\nPresenti: {partecipanti}\n\nDiscussione\n- \n\nDecisioni\n- "
+   ],
+   [
+    "Invio preventivo",
+    "Ciao {nome}, ecco il preventivo che mi hai chiesto.\nFammi sapere cosa ne pensi."
+   ],
+   [
+    "Wi-Fi ufficio",
+    "Rete Example-Guest\nPassword example1234"
+   ],
+   [
+    "Dati aziendali",
+    "Esempio S.r.l. / P.IVA 00000000000\nVia Esempio 0, 20121 Milano"
+   ],
+   [
+    "Conto corrente",
+    "Banca Esempio\nIBAN IT00 X000 0000 0000 0000 0000 000\nGiulia Rossi"
+   ],
+   [
+    "Indirizzo di casa",
+    "Via Esempio 0, int. 0\n00184 Roma"
+   ],
+   [
+    "Note per la consegna",
+    "Se non ci sono, lasciate il pacco al portiere."
+   ],
+   [
+    "Dati passaporto",
+    "Passaporto YA0000000\nGIULIA ROSSI"
+   ],
+   [
+    "Prenotazione volo",
+    "ABC000 / FCO → NRT"
+   ],
+   [
+    "Indirizzo hotel",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "giulia.rossi@example.com",
+   "Ricevuto, grazie mille!",
+   "https://meet.example.com/giulia",
+   "IBAN IT00 X000 0000 0000 0000 0000 000",
+   "[2026-09-09] Punto sullo sprint\nPresenti: Giulia, Marco",
+   "Via Esempio 0, 00184 Roma",
+   "ABC000 / FCO → NRT",
+   "Example-Guest / example1234",
+   "giulia.rossi@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{nome}",
+    "{data}"
+   ],
+   [
+    "{data}",
+    "{argomento}",
+    "{partecipanti}"
+   ],
+   [
+    "{nome}"
+   ]
+  ]
+ },
+ "pt-BR": {
+  "categories": [
+   "Trabalho",
+   "Pessoal",
+   "Viagem"
+  ],
+  "memos": [
+   [
+    "E-mail do trabalho",
+    "ana.souza@example.com"
+   ],
+   [
+    "E-mail pessoal",
+    "ana.souza@example.org"
+   ],
+   [
+    "Celular",
+    "+55 11 90000-0000"
+   ],
+   [
+    "Agradecimento rápido",
+    "Recebido, muito obrigada!"
+   ],
+   [
+    "Apresentação",
+    "Oi, eu sou a Ana Souza.\nGerente de produto no time de plataforma.\nFale comigo em ana.souza@example.org"
+   ],
+   [
+    "Assinatura de e-mail",
+    "Ana Souza · Produto\nEmpresa Exemplo Ltda.\nana.souza@example.com"
+   ],
+   [
+    "Link da reunião",
+    "https://meet.example.com/ana"
+   ],
+   [
+    "Perfil no GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Mensagem de ausência",
+    "No momento estou fora. Deixe sua mensagem que eu retorno assim que puder."
+   ],
+   [
+    "Modelo de resposta",
+    "Oi, {nome}! Obrigada pela mensagem.\nRespondo até {data}.\n\nAbraços,\nAna",
+    "Para responder clientes"
+   ],
+   [
+    "Cabeçalho de ata",
+    "[{data}] {assunto}\nParticipantes: {participantes}\n\nDiscussão\n- \n\nDecisões\n- "
+   ],
+   [
+    "Envio de orçamento",
+    "Oi, {nome}! Segue o orçamento que você pediu.\nMe conta o que achou."
+   ],
+   [
+    "Wi-Fi do escritório",
+    "Rede Example-Guest\nSenha example1234"
+   ],
+   [
+    "Dados da empresa",
+    "Empresa Exemplo Ltda. / CNPJ 00.000.000/0001-00\nRua Exemplo, 0 – São Paulo, SP"
+   ],
+   [
+    "Conta bancária",
+    "Banco Exemplo\nAgência 0000 · Conta 00000-0\nAna Souza"
+   ],
+   [
+    "Endereço de casa",
+    "Rua Exemplo, 0, apto 00\nRio de Janeiro, RJ 00000-000"
+   ],
+   [
+    "Recado de entrega",
+    "Se eu não estiver, pode deixar com o porteiro."
+   ],
+   [
+    "Dados do passaporte",
+    "Passaporte AA000000\nANA SOUZA"
+   ],
+   [
+    "Reserva de voo",
+    "ABC000 / GRU → NRT"
+   ],
+   [
+    "Endereço do hotel",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "ana.souza@example.com",
+   "Recebido, muito obrigada!",
+   "https://meet.example.com/ana",
+   "Agência 0000 · Conta 00000-0",
+   "[2026-09-09] Revisão da sprint\nParticipantes: Ana, Lucas",
+   "Rua Exemplo, 0, apto 00",
+   "ABC000 / GRU → NRT",
+   "Example-Guest / example1234",
+   "ana.souza@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{nome}",
+    "{data}"
+   ],
+   [
+    "{data}",
+    "{assunto}",
+    "{participantes}"
+   ],
+   [
+    "{nome}"
+   ]
+  ]
+ },
+ "ru": {
+  "categories": [
+   "Работа",
+   "Личное",
+   "Путешествия"
+  ],
+  "memos": [
+   [
+    "Рабочая почта",
+    "anna.smirnova@example.com"
+   ],
+   [
+    "Личная почта",
+    "anna.smirnova@example.org"
+   ],
+   [
+    "Мобильный",
+    "+7 900 000-00-00"
+   ],
+   [
+    "Короткое спасибо",
+    "Поняла, большое спасибо!"
+   ],
+   [
+    "О себе",
+    "Здравствуйте, меня зовут Анна Смирнова.\nМенеджер продукта в команде платформы.\nПишите на anna.smirnova@example.org"
+   ],
+   [
+    "Подпись письма",
+    "Анна Смирнова · Продукт\nООО «Пример»\nanna.smirnova@example.com"
+   ],
+   [
+    "Ссылка на встречу",
+    "https://meet.example.com/anna"
+   ],
+   [
+    "Профиль GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Нет на месте",
+    "Сейчас меня нет на месте. Оставьте сообщение, и я отвечу позже."
+   ],
+   [
+    "Шаблон ответа",
+    "Здравствуйте, {имя}! Спасибо за обращение.\nОтвечу до {дата}.\n\nС уважением,\nАнна",
+    "Для писем клиентам"
+   ],
+   [
+    "Шапка протокола",
+    "[{дата}] {тема}\nУчастники: {участники}\n\nОбсуждение\n- \n\nРешения\n- "
+   ],
+   [
+    "Напоминание о КП",
+    "Здравствуйте, {имя}! Высылаю коммерческое предложение, которое вы запрашивали.\nБуду рада вашему ответу."
+   ],
+   [
+    "Wi-Fi в офисе",
+    "Сеть Example-Guest\nПароль example1234"
+   ],
+   [
+    "Реквизиты компании",
+    "ООО «Пример» / ИНН 0000000000\nул. Примерная, д. 0, Москва, 101000"
+   ],
+   [
+    "Банковский счёт",
+    "Пример Банк 00000 000 0 0000 0000000\nАнна Смирнова"
+   ],
+   [
+    "Домашний адрес",
+    "ул. Примерная, д. 0, кв. 0\nМосква, 101000"
+   ],
+   [
+    "Для курьера",
+    "Пожалуйста, оставьте посылку на ресепшене."
+   ],
+   [
+    "Паспорт",
+    "Загранпаспорт 00 0000000\nANNA SMIRNOVA"
+   ],
+   [
+    "Бронь авиабилета",
+    "ABC000 / SVO → NRT"
+   ],
+   [
+    "Адрес отеля",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "anna.smirnova@example.com",
+   "Поняла, большое спасибо!",
+   "https://meet.example.com/anna",
+   "Пример Банк 00000 000 0 0000 0000000",
+   "[2026-09-09] Планёрка спринта\nУчастники: Анна, Алексей",
+   "ул. Примерная, д. 0, кв. 0, Москва",
+   "ABC000 / SVO → NRT",
+   "Example-Guest / example1234",
+   "anna.smirnova@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{имя}",
+    "{дата}"
+   ],
+   [
+    "{дата}",
+    "{тема}",
+    "{участники}"
+   ],
+   [
+    "{имя}"
+   ]
+  ]
+ },
+ "cs": {
+  "categories": [
+   "Práce",
+   "Osobní",
+   "Cestování"
+  ],
+  "memos": [
+   [
+    "Pracovní e-mail",
+    "tereza.dvorakova@example.com"
+   ],
+   [
+    "Osobní e-mail",
+    "tereza.dvorakova@example.org"
+   ],
+   [
+    "Mobil",
+    "+420 600 000 000"
+   ],
+   [
+    "Rychlé díky",
+    "Rozumím, moc děkuji!"
+   ],
+   [
+    "Představení",
+    "Dobrý den, jmenuji se Tereza Dvořáková.\nProduktová manažerka v týmu platformy.\nKontakt: tereza.dvorakova@example.org"
+   ],
+   [
+    "Podpis e-mailu",
+    "Tereza Dvořáková · Produkt\nUkázka s.r.o.\ntereza.dvorakova@example.com"
+   ],
+   [
+    "Odkaz na schůzku",
+    "https://meet.example.com/tereza"
+   ],
+   [
+    "Profil na GitHubu",
+    "https://github.com/example"
+   ],
+   [
+    "Nepřítomnost",
+    "Momentálně nejsem u stolu. Nechte mi vzkaz a ozvu se."
+   ],
+   [
+    "Šablona odpovědi",
+    "Dobrý den, {jméno}, děkuji za zprávu.\nOdpovím do {datum}.\n\nS pozdravem\nTereza",
+    "Odpovědi zákazníkům"
+   ],
+   [
+    "Hlavička zápisu",
+    "[{datum}] {téma}\nÚčastníci: {účastníci}\n\nDiskuse\n- \n\nZávěry\n- "
+   ],
+   [
+    "Připomenutí nabídky",
+    "Dobrý den, {jméno}, v příloze posílám nabídku, o kterou jste žádali.\nDejte mi prosím vědět, co na ni říkáte."
+   ],
+   [
+    "Wi-Fi v kanceláři",
+    "Síť Example-Guest\nHeslo example1234"
+   ],
+   [
+    "Firemní údaje",
+    "Ukázka s.r.o. / IČO 00000000\nUkázková 0, 110 00 Praha"
+   ],
+   [
+    "Bankovní účet",
+    "Ukázková banka 000000-0000000000/0000\nTereza Dvořáková"
+   ],
+   [
+    "Adresa domů",
+    "Ukázková 0\n602 00 Brno"
+   ],
+   [
+    "Pro kurýra",
+    "Balík prosím nechte na recepci."
+   ],
+   [
+    "Cestovní pas",
+    "Pas 00000000\nTEREZA DVORAKOVA"
+   ],
+   [
+    "Rezervace letu",
+    "ABC000 / PRG → NRT"
+   ],
+   [
+    "Adresa hotelu",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "tereza.dvorakova@example.com",
+   "Rozumím, moc děkuji!",
+   "https://meet.example.com/tereza",
+   "Ukázková banka 000000-0000000000/0000",
+   "[2026-09-09] Kontrola sprintu\nÚčastníci: Tereza, Jakub",
+   "Ukázková 0, 602 00 Brno",
+   "ABC000 / PRG → NRT",
+   "Example-Guest / example1234",
+   "tereza.dvorakova@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{jméno}",
+    "{datum}"
+   ],
+   [
+    "{datum}",
+    "{téma}",
+    "{účastníci}"
+   ],
+   [
+    "{jméno}"
+   ]
+  ]
+ },
+ "da": {
+  "categories": [
+   "Arbejde",
+   "Privat",
+   "Rejser"
+  ],
+  "memos": [
+   [
+    "Arbejdsmail",
+    "mette.jensen@example.com"
+   ],
+   [
+    "Privat mail",
+    "mette.jensen@example.org"
+   ],
+   [
+    "Mobilnummer",
+    "+45 00 00 00 00"
+   ],
+   [
+    "Hurtigt tak",
+    "Det er modtaget – tusind tak!"
+   ],
+   [
+    "Præsentation",
+    "Hej, jeg hedder Mette Jensen.\nProduktchef i platformteamet.\nSkriv til mig på mette.jensen@example.org"
+   ],
+   [
+    "E-mailsignatur",
+    "Mette Jensen · Produkt\nEksempel ApS\nmette.jensen@example.com"
+   ],
+   [
+    "Mødelink",
+    "https://meet.example.com/mette"
+   ],
+   [
+    "GitHub-profil",
+    "https://github.com/example"
+   ],
+   [
+    "Fraværsbesked",
+    "Jeg er ikke ved skrivebordet lige nu. Læg en besked, så vender jeg tilbage."
+   ],
+   [
+    "Svarskabelon",
+    "Hej {navn}, tak for din henvendelse.\nJeg vender tilbage senest {dato}.\n\nVenlig hilsen\nMette",
+    "Til svar på kundemails"
+   ],
+   [
+    "Mødereferat",
+    "[{dato}] {emne}\nDeltagere: {deltagere}\n\nDrøftelse\n- \n\nBeslutninger\n- "
+   ],
+   [
+    "Opfølgning på tilbud",
+    "Hej {navn}, her er det tilbud, du bad om.\nSig endelig til, hvad du synes."
+   ],
+   [
+    "Kontorets wi-fi",
+    "Netværk Example-Guest\nAdgangskode example1234"
+   ],
+   [
+    "Firmaoplysninger",
+    "Eksempel ApS / CVR 00000000\nEksempelvej 0, 2100 København Ø"
+   ],
+   [
+    "Bankkonto",
+    "Eksempelbank\nReg. 0000 Konto 0000000000\nMette Jensen"
+   ],
+   [
+    "Hjemmeadresse",
+    "Prøvegade 0, 1. th.\n8000 Aarhus C"
+   ],
+   [
+    "Leveringsbesked",
+    "Pakken må gerne afleveres i receptionen."
+   ],
+   [
+    "Pasoplysninger",
+    "Pas 000000000\nMETTE JENSEN"
+   ],
+   [
+    "Flybekræftelse",
+    "ABC000 / CPH → NRT"
+   ],
+   [
+    "Hotellets adresse",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "mette.jensen@example.com",
+   "Det er modtaget – tusind tak!",
+   "https://meet.example.com/mette",
+   "Reg. 0000 Konto 0000000000",
+   "[09.09.2026] Sprint-statusmøde\nDeltagere: Mette, Mikkel",
+   "Prøvegade 0, 1. th., 8000 Aarhus C",
+   "ABC000 / CPH → NRT",
+   "Example-Guest / example1234",
+   "mette.jensen@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{navn}",
+    "{dato}"
+   ],
+   [
+    "{dato}",
+    "{emne}",
+    "{deltagere}"
+   ],
+   [
+    "{navn}"
+   ]
+  ]
+ },
+ "el": {
+  "categories": [
+   "Δουλειά",
+   "Προσωπικά",
+   "Ταξίδια"
+  ],
+  "memos": [
+   [
+    "Email δουλειάς",
+    "maria.papadopoulou@example.com"
+   ],
+   [
+    "Προσωπικό email",
+    "maria.papadopoulou@example.org"
+   ],
+   [
+    "Κινητό",
+    "+30 690 000 0000"
+   ],
+   [
+    "Σύντομο ευχαριστώ",
+    "Εντάξει, ευχαριστώ πολύ!"
+   ],
+   [
+    "Συστάσεις",
+    "Γεια σας, είμαι η Μαρία Παπαδοπούλου.\nΥπεύθυνη προϊόντος στην ομάδα πλατφόρμας.\nΕπικοινωνία: maria.papadopoulou@example.org"
+   ],
+   [
+    "Υπογραφή email",
+    "Μαρία Παπαδοπούλου · Προϊόν\nΠαράδειγμα Α.Ε.\nmaria.papadopoulou@example.com"
+   ],
+   [
+    "Σύνδεσμος σύσκεψης",
+    "https://meet.example.com/maria"
+   ],
+   [
+    "Προφίλ GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Μήνυμα απουσίας",
+    "Δεν είμαι στο γραφείο αυτή τη στιγμή. Αφήστε μήνυμα και θα σας απαντήσω."
+   ],
+   [
+    "Πρότυπο απάντησης",
+    "Γεια σας {όνομα}, ευχαριστώ για το μήνυμα.\nΘα σας απαντήσω έως {ημερομηνία}.\n\nΜε εκτίμηση,\nΜαρία",
+    "Για απαντήσεις σε πελάτες"
+   ],
+   [
+    "Κεφαλίδα πρακτικών",
+    "[{ημερομηνία}] {θέμα}\nΣυμμετέχοντες: {άτομα}\n\nΣυζήτηση\n- \n\nΑποφάσεις\n- "
+   ],
+   [
+    "Υπενθύμιση προσφοράς",
+    "Γεια σας {όνομα}, σας στέλνω την προσφορά που ζητήσατε.\nΠείτε μου τη γνώμη σας."
+   ],
+   [
+    "Wi-Fi γραφείου",
+    "Δίκτυο Example-Guest\nΚωδικός example1234"
+   ],
+   [
+    "Στοιχεία εταιρείας",
+    "Παράδειγμα Α.Ε. / ΑΦΜ 000000000\nΟδός Παραδείγματος 0, 100 00 Αθήνα"
+   ],
+   [
+    "Τραπεζικός λογαριασμός",
+    "Παράδειγμα Τράπεζα GR00 0000 0000 0000 0000 0000 000\nΜαρία Παπαδοπούλου"
+   ],
+   [
+    "Διεύθυνση σπιτιού",
+    "Οδός Παραδείγματος 0\n500 00 Θεσσαλονίκη"
+   ],
+   [
+    "Οδηγία παράδοσης",
+    "Παρακαλώ αφήστε το δέμα στην υποδοχή."
+   ],
+   [
+    "Διαβατήριο",
+    "Διαβατήριο AA0000000\nMARIA PAPADOPOULOU"
+   ],
+   [
+    "Κράτηση πτήσης",
+    "ABC000 / ATH → NRT"
+   ],
+   [
+    "Διεύθυνση ξενοδοχείου",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "maria.papadopoulou@example.com",
+   "Εντάξει, ευχαριστώ πολύ!",
+   "https://meet.example.com/maria",
+   "Παράδειγμα Τράπεζα GR00 0000 0000 0000 0000 0000 000",
+   "[2026-09-09] Εβδομαδιαία ενημέρωση\nΣυμμετέχοντες: Μαρία, Νίκος",
+   "Οδός Παραδείγματος 0, 500 00 Θεσσαλονίκη",
+   "ABC000 / ATH → NRT",
+   "Example-Guest / example1234",
+   "maria.papadopoulou@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{όνομα}",
+    "{ημερομηνία}"
+   ],
+   [
+    "{ημερομηνία}",
+    "{θέμα}",
+    "{άτομα}"
+   ],
+   [
+    "{όνομα}"
+   ]
+  ]
+ },
+ "fi": {
+  "categories": [
+   "Työ",
+   "Oma",
+   "Matkat"
+  ],
+  "memos": [
+   [
+    "Työsähköposti",
+    "aino.virtanen@example.com"
+   ],
+   [
+    "Oma sähköposti",
+    "aino.virtanen@example.org"
+   ],
+   [
+    "Puhelinnumero",
+    "+358 40 000 0000"
+   ],
+   [
+    "Pikakiitos",
+    "Selvä – kiitos paljon!"
+   ],
+   [
+    "Esittely",
+    "Hei, olen Aino Virtanen.\nTuotepäällikkö alustatiimissä.\nTavoitat minut osoitteesta aino.virtanen@example.org"
+   ],
+   [
+    "Sähköpostin allekirjoitus",
+    "Aino Virtanen · Tuote\nEsimerkki Oy\naino.virtanen@example.com"
+   ],
+   [
+    "Kokouslinkki",
+    "https://meet.example.com/aino"
+   ],
+   [
+    "GitHub-profiili",
+    "https://github.com/example"
+   ],
+   [
+    "Poissaoloviesti",
+    "En ole juuri nyt paikalla. Jätä viesti, niin palaan asiaan."
+   ],
+   [
+    "Vastauspohja",
+    "Hei {nimi}, kiitos yhteydenotostasi.\nPalaan asiaan viimeistään {päivä}.\n\nTerveisin\nAino",
+    "Asiakasviesteihin vastaamiseen"
+   ],
+   [
+    "Muistion otsikko",
+    "[{päivä}] {aihe}\nOsallistujat: {osallistujat}\n\nKeskustelu\n- \n\nPäätökset\n- "
+   ],
+   [
+    "Tarjouksen seuranta",
+    "Hei {nimi}, tässä pyytämäsi tarjous.\nKerro mielelläsi, mitä mieltä olet."
+   ],
+   [
+    "Toimiston wifi",
+    "Verkko Example-Guest\nSalasana example1234"
+   ],
+   [
+    "Yrityksen tiedot",
+    "Esimerkki Oy / Y-tunnus 0000000-0\nEsimerkkikatu 0, 00100 Helsinki"
+   ],
+   [
+    "Pankkitili",
+    "Esimerkkipankki\nIBAN FI00 0000 0000 0000 00\nAino Virtanen"
+   ],
+   [
+    "Kotiosoite",
+    "Mallitie 0 A 0\n33100 Tampere"
+   ],
+   [
+    "Toimitusohje",
+    "Paketin voi jättää vastaanottoon."
+   ],
+   [
+    "Passin tiedot",
+    "Passi XP0000000\nAINO VIRTANEN"
+   ],
+   [
+    "Lentovahvistus",
+    "ABC000 / HEL → NRT"
+   ],
+   [
+    "Hotellin osoite",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "aino.virtanen@example.com",
+   "Selvä – kiitos paljon!",
+   "https://meet.example.com/aino",
+   "IBAN FI00 0000 0000 0000 00",
+   "[9.9.2026] Sprintin tilannekatsaus\nOsallistujat: Aino, Mikko",
+   "Mallitie 0 A 0, 33100 Tampere",
+   "ABC000 / HEL → NRT",
+   "Example-Guest / example1234",
+   "aino.virtanen@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{nimi}",
+    "{päivä}"
+   ],
+   [
+    "{päivä}",
+    "{aihe}",
+    "{osallistujat}"
+   ],
+   [
+    "{nimi}"
+   ]
+  ]
+ },
+ "id": {
+  "categories": [
+   "Kerja",
+   "Pribadi",
+   "Perjalanan"
+  ],
+  "memos": [
+   [
+    "Email Kantor",
+    "budi.santoso@example.com"
+   ],
+   [
+    "Email Pribadi",
+    "budi.santoso@example.org"
+   ],
+   [
+    "Nomor HP",
+    "0812-0000-0000"
+   ],
+   [
+    "Terima Kasih Singkat",
+    "Baik, terima kasih banyak!"
+   ],
+   [
+    "Perkenalan",
+    "Halo, saya Budi Santoso.\nProduct manager di tim platform.\nHubungi saya di budi.santoso@example.org"
+   ],
+   [
+    "Tanda Tangan Email",
+    "Budi Santoso · Produk\nPT Contoh Jaya\nbudi.santoso@example.com"
+   ],
+   [
+    "Tautan Rapat",
+    "https://meet.example.com/budi"
+   ],
+   [
+    "Profil GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Pesan Sedang Tidak di Tempat",
+    "Saya sedang tidak di meja. Silakan tinggalkan pesan, nanti saya hubungi kembali."
+   ],
+   [
+    "Templat Balasan",
+    "Halo {nama}, terima kasih sudah menghubungi kami.\nSaya akan membalas paling lambat {tanggal}.\n\nSalam,\nBudi",
+    "Untuk membalas pelanggan"
+   ],
+   [
+    "Kepala Notulen",
+    "[{tanggal}] {topik}\nPeserta: {peserta}\n\nPembahasan\n- \n\nKeputusan\n- "
+   ],
+   [
+    "Kirim Penawaran",
+    "Halo {nama}, berikut penawaran harga yang Anda minta.\nKabari saya pendapat Anda, ya."
+   ],
+   [
+    "Wi-Fi Kantor",
+    "Jaringan Example-Guest\nKata sandi example1234"
+   ],
+   [
+    "Data Perusahaan",
+    "PT Contoh Jaya / NPWP 00.000.000.0-000.000\nJl. Contoh No. 0, Jakarta Pusat"
+   ],
+   [
+    "Nomor Rekening",
+    "Bank Contoh 000-000-0000\na.n. Budi Santoso"
+   ],
+   [
+    "Alamat Rumah",
+    "Jl. Contoh No. 0, RT 00/RW 00\nBandung 00000"
+   ],
+   [
+    "Catatan Pengiriman",
+    "Kalau saya tidak di rumah, titipkan ke satpam ya."
+   ],
+   [
+    "Data Paspor",
+    "Paspor X0000000\nBUDI SANTOSO"
+   ],
+   [
+    "Kode Pemesanan Tiket",
+    "ABC000 / CGK → NRT"
+   ],
+   [
+    "Alamat Hotel",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "budi.santoso@example.com",
+   "Baik, terima kasih banyak!",
+   "https://meet.example.com/budi",
+   "Bank Contoh 000-000-0000",
+   "[2026-09-09] Evaluasi sprint\nPeserta: Budi, Rina",
+   "Jl. Contoh No. 0, Bandung",
+   "ABC000 / CGK → NRT",
+   "Example-Guest / example1234",
+   "budi.santoso@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{nama}",
+    "{tanggal}"
+   ],
+   [
+    "{tanggal}",
+    "{topik}",
+    "{peserta}"
+   ],
+   [
+    "{nama}"
+   ]
+  ]
+ },
+ "nb": {
+  "categories": [
+   "Jobb",
+   "Privat",
+   "Reise"
+  ],
+  "memos": [
+   [
+    "Jobb-e-post",
+    "ingrid.hansen@example.com"
+   ],
+   [
+    "Privat e-post",
+    "ingrid.hansen@example.org"
+   ],
+   [
+    "Mobilnummer",
+    "+47 400 00 000"
+   ],
+   [
+    "Kjapp takk",
+    "Den er grei – tusen takk!"
+   ],
+   [
+    "Presentasjon",
+    "Hei, jeg heter Ingrid Hansen.\nProduktleder i plattformteamet.\nNå meg på ingrid.hansen@example.org"
+   ],
+   [
+    "E-postsignatur",
+    "Ingrid Hansen · Produkt\nEksempel AS\ningrid.hansen@example.com"
+   ],
+   [
+    "Møtelenke",
+    "https://meet.example.com/ingrid"
+   ],
+   [
+    "GitHub-profil",
+    "https://github.com/example"
+   ],
+   [
+    "Fraværsmelding",
+    "Jeg er ikke ved pulten akkurat nå. Legg igjen en beskjed, så tar jeg kontakt."
+   ],
+   [
+    "Svarmal",
+    "Hei {navn}, takk for henvendelsen.\nJeg svarer deg innen {dato}.\n\nVennlig hilsen\nIngrid",
+    "Til svar på kundehenvendelser"
+   ],
+   [
+    "Møtereferat",
+    "[{dato}] {tema}\nDeltakere: {deltakere}\n\nDiskusjon\n- \n\nBeslutninger\n- "
+   ],
+   [
+    "Oppfølging av tilbud",
+    "Hei {navn}, her er tilbudet du ba om.\nSi gjerne fra hva du synes."
+   ],
+   [
+    "Kontor-Wi-Fi",
+    "Nettverk Example-Guest\nPassord example1234"
+   ],
+   [
+    "Firmaopplysninger",
+    "Eksempel AS / Org.nr. 000 000 000\nEksempelveien 0, 0150 Oslo"
+   ],
+   [
+    "Bankkonto",
+    "Eksempelbanken\nKonto 0000 00 00000\nIngrid Hansen"
+   ],
+   [
+    "Hjemmeadresse",
+    "Prøvegata 0\n5000 Bergen"
+   ],
+   [
+    "Leveringsbeskjed",
+    "Pakken kan leveres i resepsjonen."
+   ],
+   [
+    "Passopplysninger",
+    "Pass 00000000\nINGRID HANSEN"
+   ],
+   [
+    "Flybekreftelse",
+    "ABC000 / OSL → NRT"
+   ],
+   [
+    "Hotelladresse",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "ingrid.hansen@example.com",
+   "Den er grei – tusen takk!",
+   "https://meet.example.com/ingrid",
+   "Konto 0000 00 00000",
+   "[09.09.2026] Sprintstatus\nDeltakere: Ingrid, Lars",
+   "Prøvegata 0, 5000 Bergen",
+   "ABC000 / OSL → NRT",
+   "Example-Guest / example1234",
+   "ingrid.hansen@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{navn}",
+    "{dato}"
+   ],
+   [
+    "{dato}",
+    "{tema}",
+    "{deltakere}"
+   ],
+   [
+    "{navn}"
+   ]
+  ]
+ },
+ "nl": {
+  "categories": [
+   "Werk",
+   "Privé",
+   "Reizen"
+  ],
+  "memos": [
+   [
+    "Werk-e-mail",
+    "sanne.devries@example.com"
+   ],
+   [
+    "Privé-e-mail",
+    "sanne.devries@example.org"
+   ],
+   [
+    "Mobiel nummer",
+    "+31 6 00000000"
+   ],
+   [
+    "Kort bedankje",
+    "Helemaal goed – heel erg bedankt!"
+   ],
+   [
+    "Introductie",
+    "Hoi, ik ben Sanne de Vries.\nProductmanager in het platformteam.\nBereikbaar via sanne.devries@example.org"
+   ],
+   [
+    "E-mailhandtekening",
+    "Sanne de Vries · Product\nVoorbeeld B.V.\nsanne.devries@example.com"
+   ],
+   [
+    "Vergaderlink",
+    "https://meet.example.com/sanne"
+   ],
+   [
+    "GitHub-profiel",
+    "https://github.com/example"
+   ],
+   [
+    "Afwezigheidsbericht",
+    "Ik ben even niet aan mijn bureau. Laat een bericht achter, dan kom ik erop terug."
+   ],
+   [
+    "Antwoordsjabloon",
+    "Hoi {naam}, bedankt voor je bericht.\nIk laat uiterlijk {datum} van me horen.\n\nGroet,\nSanne",
+    "Voor vragen van klanten"
+   ],
+   [
+    "Notulenkop",
+    "[{datum}] {onderwerp}\nAanwezig: {deelnemers}\n\nBespreking\n- \n\nBesluiten\n- "
+   ],
+   [
+    "Offerte opvolgen",
+    "Hoi {naam}, hierbij de offerte waar je om vroeg.\nLaat gerust weten wat je ervan vindt."
+   ],
+   [
+    "Wifi kantoor",
+    "Netwerk Example-Guest\nWachtwoord example1234"
+   ],
+   [
+    "Bedrijfsgegevens",
+    "Voorbeeld B.V. / KvK 00000000\nVoorbeeldstraat 0, 1000 AA Amsterdam"
+   ],
+   [
+    "Bankrekening",
+    "Voorbeeldbank\nIBAN NL00 BANK 0000 0000 00\nSanne de Vries"
+   ],
+   [
+    "Huisadres",
+    "Voorbeeldlaan 0\n3500 AA Utrecht"
+   ],
+   [
+    "Bezorgnotitie",
+    "Pakketje graag afgeven bij de receptie."
+   ],
+   [
+    "Paspoortgegevens",
+    "Paspoort NX0000000\nSANNE DE VRIES"
+   ],
+   [
+    "Vluchtbevestiging",
+    "ABC000 / AMS → NRT"
+   ],
+   [
+    "Hoteladres",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "sanne.devries@example.com",
+   "Helemaal goed – heel erg bedankt!",
+   "https://meet.example.com/sanne",
+   "IBAN NL00 BANK 0000 0000 00",
+   "[09-09-2026] Sprint-check-in\nAanwezig: Sanne, Daan",
+   "Voorbeeldlaan 0, 3500 AA Utrecht",
+   "ABC000 / AMS → NRT",
+   "Example-Guest / example1234",
+   "sanne.devries@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{naam}",
+    "{datum}"
+   ],
+   [
+    "{datum}",
+    "{onderwerp}",
+    "{deelnemers}"
+   ],
+   [
+    "{naam}"
+   ]
+  ]
+ },
+ "pl": {
+  "categories": [
+   "Praca",
+   "Prywatne",
+   "Podróże"
+  ],
+  "memos": [
+   [
+    "E-mail służbowy",
+    "anna.nowak@example.com"
+   ],
+   [
+    "E-mail prywatny",
+    "anna.nowak@example.org"
+   ],
+   [
+    "Numer komórki",
+    "+48 500 000 000"
+   ],
+   [
+    "Krótkie dzięki",
+    "Jasne, bardzo dziękuję!"
+   ],
+   [
+    "O mnie",
+    "Dzień dobry, nazywam się Anna Nowak.\nMenedżerka produktu w zespole platformy.\nKontakt: anna.nowak@example.org"
+   ],
+   [
+    "Podpis e-mail",
+    "Anna Nowak · Produkt\nPrzykład sp. z o.o.\nanna.nowak@example.com"
+   ],
+   [
+    "Link do spotkania",
+    "https://meet.example.com/anna"
+   ],
+   [
+    "Profil GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Nieobecność",
+    "Nie ma mnie teraz przy biurku. Zostaw wiadomość, a odezwę się później."
+   ],
+   [
+    "Szablon odpowiedzi",
+    "Dzień dobry, {imię}, dziękuję za wiadomość.\nOdpowiem do {data}.\n\nPozdrawiam\nAnna",
+    "Odpowiedzi dla klientów"
+   ],
+   [
+    "Nagłówek notatki",
+    "[{data}] {temat}\nUczestnicy: {osoby}\n\nDyskusja\n- \n\nUstalenia\n- "
+   ],
+   [
+    "Przypomnienie o ofercie",
+    "Cześć {imię}, w załączniku przesyłam ofertę, o którą prosiłeś.\nDaj znać, co o niej myślisz."
+   ],
+   [
+    "Wi-Fi w biurze",
+    "Sieć Example-Guest\nHasło example1234"
+   ],
+   [
+    "Dane firmy",
+    "Przykład sp. z o.o. / NIP 000-000-00-00\nul. Przykładowa 0, 00-000 Warszawa"
+   ],
+   [
+    "Konto bankowe",
+    "Przykładowy Bank 00 0000 0000 0000 0000 0000 0000\nAnna Nowak"
+   ],
+   [
+    "Adres domowy",
+    "ul. Przykładowa 0/0\n00-000 Kraków"
+   ],
+   [
+    "Dla kuriera",
+    "Proszę zostawić paczkę w recepcji."
+   ],
+   [
+    "Paszport",
+    "Paszport EA0000000\nANNA NOWAK"
+   ],
+   [
+    "Rezerwacja lotu",
+    "ABC000 / WAW → NRT"
+   ],
+   [
+    "Adres hotelu",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "anna.nowak@example.com",
+   "Jasne, bardzo dziękuję!",
+   "https://meet.example.com/anna",
+   "Przykładowy Bank 00 0000 0000 0000 0000 0000 0000",
+   "[2026-09-09] Przegląd sprintu\nUczestnicy: Anna, Piotr",
+   "ul. Przykładowa 0/0, 00-000 Kraków",
+   "ABC000 / WAW → NRT",
+   "Example-Guest / example1234",
+   "anna.nowak@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{imię}",
+    "{data}"
+   ],
+   [
+    "{data}",
+    "{temat}",
+    "{osoby}"
+   ],
+   [
+    "{imię}"
+   ]
+  ]
+ },
+ "sv": {
+  "categories": [
+   "Jobb",
+   "Privat",
+   "Resor"
+  ],
+  "memos": [
+   [
+    "Jobbmejl",
+    "emma.lindqvist@example.com"
+   ],
+   [
+    "Privat mejl",
+    "emma.lindqvist@example.org"
+   ],
+   [
+    "Mobilnummer",
+    "+46 70 000 00 00"
+   ],
+   [
+    "Snabbt tack",
+    "Uppfattat – tack så mycket!"
+   ],
+   [
+    "Presentation",
+    "Hej, jag heter Emma Lindqvist.\nProduktchef i plattformsteamet.\nNå mig på emma.lindqvist@example.org"
+   ],
+   [
+    "E-postsignatur",
+    "Emma Lindqvist · Produkt\nExempelbolaget AB\nemma.lindqvist@example.com"
+   ],
+   [
+    "Möteslänk",
+    "https://meet.example.com/emma"
+   ],
+   [
+    "GitHub-profil",
+    "https://github.com/example"
+   ],
+   [
+    "Frånvaromeddelande",
+    "Jag är inte vid skrivbordet just nu. Lämna ett meddelande så återkommer jag."
+   ],
+   [
+    "Svarsmall",
+    "Hej {namn}, tack för ditt meddelande.\nJag återkommer senast {datum}.\n\nVänliga hälsningar\nEmma",
+    "För svar på kundmejl"
+   ],
+   [
+    "Mötesanteckningar",
+    "[{datum}] {ämne}\nDeltagare: {deltagare}\n\nDiskussion\n- \n\nBeslut\n- "
+   ],
+   [
+    "Uppföljning av offert",
+    "Hej {namn}, här kommer offerten du bad om.\nHör gärna av dig med vad du tycker."
+   ],
+   [
+    "Kontorets wifi",
+    "Nätverk Example-Guest\nLösenord example1234"
+   ],
+   [
+    "Företagsuppgifter",
+    "Exempelbolaget AB / Org.nr 000000-0000\nExempelgatan 0, 111 00 Stockholm"
+   ],
+   [
+    "Bankkonto",
+    "Exempelbanken\nKonto 0000-00 000 00\nEmma Lindqvist"
+   ],
+   [
+    "Hemadress",
+    "Provvägen 0\n411 00 Göteborg"
+   ],
+   [
+    "Leveransinstruktion",
+    "Lämna gärna paketet i receptionen."
+   ],
+   [
+    "Passuppgifter",
+    "Pass 00000000\nEMMA LINDQVIST"
+   ],
+   [
+    "Flygbokning",
+    "ABC000 / ARN → NRT"
+   ],
+   [
+    "Hotelladress",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "emma.lindqvist@example.com",
+   "Uppfattat – tack så mycket!",
+   "https://meet.example.com/emma",
+   "Konto 0000-00 000 00",
+   "[2026-09-09] Sprintavstämning\nDeltagare: Emma, Oskar",
+   "Provvägen 0, 411 00 Göteborg",
+   "ABC000 / ARN → NRT",
+   "Example-Guest / example1234",
+   "emma.lindqvist@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{namn}",
+    "{datum}"
+   ],
+   [
+    "{datum}",
+    "{ämne}",
+    "{deltagare}"
+   ],
+   [
+    "{namn}"
+   ]
+  ]
+ },
+ "th": {
+  "categories": [
+   "งาน",
+   "ส่วนตัว",
+   "เดินทาง"
+  ],
+  "memos": [
+   [
+    "อีเมลที่ทำงาน",
+    "somchai.jaidee@example.com"
+   ],
+   [
+    "อีเมลส่วนตัว",
+    "somchai.jaidee@example.org"
+   ],
+   [
+    "เบอร์มือถือ",
+    "08-0000-0000"
+   ],
+   [
+    "ขอบคุณสั้น ๆ",
+    "รับทราบครับ ขอบคุณมากครับ!"
+   ],
+   [
+    "แนะนำตัว",
+    "สวัสดีครับ ผมชื่อสมชาย ใจดี\nดูแลงานวางแผนผลิตภัณฑ์ในทีมแพลตฟอร์ม\nติดต่อได้ที่ somchai.jaidee@example.org"
+   ],
+   [
+    "ลายเซ็นอีเมล",
+    "สมชาย ใจดี · ทีมผลิตภัณฑ์\nบริษัท ตัวอย่าง จำกัด\nsomchai.jaidee@example.com"
+   ],
+   [
+    "ลิงก์ประชุมออนไลน์",
+    "https://meet.example.com/somchai"
+   ],
+   [
+    "โปรไฟล์ GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "แจ้งไม่อยู่ที่โต๊ะ",
+    "ตอนนี้ไม่อยู่ที่โต๊ะครับ ฝากข้อความไว้ได้เลย แล้วจะรีบติดต่อกลับ"
+   ],
+   [
+    "เทมเพลตตอบกลับ",
+    "สวัสดีคุณ{ชื่อ} ขอบคุณที่ติดต่อมาครับ\nจะตอบกลับภายใน {วันที่}\n\nสมชาย",
+    "ใช้ตอบลูกค้า"
+   ],
+   [
+    "หัวบันทึกการประชุม",
+    "[{วันที่}] {หัวข้อ}\nผู้เข้าร่วม: {ผู้เข้าร่วม}\n\nประเด็นที่คุย\n- \n\nข้อสรุป\n- "
+   ],
+   [
+    "ส่งใบเสนอราคา",
+    "สวัสดีคุณ{ชื่อ} แนบใบเสนอราคาที่ขอไว้มาให้ครับ\nมีอะไรสอบถามได้เลยครับ"
+   ],
+   [
+    "Wi-Fi ออฟฟิศ",
+    "เครือข่าย Example-Guest\nรหัสผ่าน example1234"
+   ],
+   [
+    "ข้อมูลบริษัท",
+    "บริษัท ตัวอย่าง จำกัด / เลขผู้เสียภาษี 0000000000000\n000 ถนนตัวอย่าง กรุงเทพฯ 10000"
+   ],
+   [
+    "เลขบัญชี",
+    "ธนาคารตัวอย่าง 000-0-00000-0\nสมชาย ใจดี"
+   ],
+   [
+    "ที่อยู่บ้าน",
+    "00/0 หมู่บ้านตัวอย่าง ถนนตัวอย่าง\nเชียงใหม่ 50000"
+   ],
+   [
+    "โน้ตสำหรับคนส่งของ",
+    "ถ้าไม่อยู่ ฝากไว้ที่ป้อม รปภ. ได้เลยครับ"
+   ],
+   [
+    "ข้อมูลหนังสือเดินทาง",
+    "หนังสือเดินทาง AA0000000\nSOMCHAI JAIDEE"
+   ],
+   [
+    "รหัสจองตั๋วเครื่องบิน",
+    "ABC000 / BKK → NRT"
+   ],
+   [
+    "ที่อยู่โรงแรม",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "somchai.jaidee@example.com",
+   "รับทราบครับ ขอบคุณมากครับ!",
+   "https://meet.example.com/somchai",
+   "ธนาคารตัวอย่าง 000-0-00000-0",
+   "[2026-09-09] ทบทวนสปรินต์\nผู้เข้าร่วม: สมชาย, มานี",
+   "00/0 หมู่บ้านตัวอย่าง เชียงใหม่",
+   "ABC000 / BKK → NRT",
+   "Example-Guest / example1234",
+   "somchai.jaidee@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{ชื่อ}",
+    "{วันที่}"
+   ],
+   [
+    "{วันที่}",
+    "{หัวข้อ}",
+    "{ผู้เข้าร่วม}"
+   ],
+   [
+    "{ชื่อ}"
+   ]
+  ]
+ },
+ "tr": {
+  "categories": [
+   "İş",
+   "Kişisel",
+   "Seyahat"
+  ],
+  "memos": [
+   [
+    "İş E-postası",
+    "elif.yilmaz@example.com"
+   ],
+   [
+    "Kişisel E-posta",
+    "elif.yilmaz@example.org"
+   ],
+   [
+    "Cep Telefonu",
+    "+90 500 000 00 00"
+   ],
+   [
+    "Kısa Teşekkür",
+    "Tamamdır, çok teşekkürler!"
+   ],
+   [
+    "Tanıtım",
+    "Merhaba, ben Elif Yılmaz.\nPlatform ekibinde ürün yöneticisiyim.\nBana elif.yilmaz@example.org adresinden ulaşabilirsiniz."
+   ],
+   [
+    "E-posta İmzası",
+    "Elif Yılmaz · Ürün\nÖrnek A.Ş.\nelif.yilmaz@example.com"
+   ],
+   [
+    "Toplantı Bağlantısı",
+    "https://meet.example.com/elif"
+   ],
+   [
+    "GitHub Profili",
+    "https://github.com/example"
+   ],
+   [
+    "Masada Değilim",
+    "Şu an masamda değilim. Not bırakın, size dönüş yapacağım."
+   ],
+   [
+    "Yanıt Şablonu",
+    "Merhaba {ad}, mesajınız için teşekkürler.\n{tarih} tarihine kadar size dönüş yapacağım.\n\nSaygılarımla,\nElif",
+    "Müşteri e-postalarına yanıt"
+   ],
+   [
+    "Toplantı Notu Başlığı",
+    "[{tarih}] {konu}\nKatılımcılar: {kişiler}\n\nGörüşülenler\n- \n\nKararlar\n- "
+   ],
+   [
+    "Teklif Takibi",
+    "Merhaba {ad}, istediğiniz teklifi ekte gönderiyorum.\nDüşüncelerinizi bekliyorum."
+   ],
+   [
+    "Ofis Wi-Fi",
+    "Ağ Example-Guest\nParola example1234"
+   ],
+   [
+    "Şirket Bilgileri",
+    "Örnek A.Ş. / Vergi No 0000000000\nÖrnek Sok. No: 0, 34000 İstanbul"
+   ],
+   [
+    "Banka Hesabı",
+    "Örnek Bank TR00 0000 0000 0000 0000 0000 00\nElif Yılmaz"
+   ],
+   [
+    "Ev Adresi",
+    "Örnek Mah. Örnek Sok. No: 0 D: 0\n06000 Çankaya/Ankara"
+   ],
+   [
+    "Teslimat Notu",
+    "Lütfen paketi resepsiyona bırakın."
+   ],
+   [
+    "Pasaport Bilgileri",
+    "Pasaport U00000000\nELIF YILMAZ"
+   ],
+   [
+    "Uçuş Rezervasyonu",
+    "ABC000 / IST → NRT"
+   ],
+   [
+    "Otel Adresi",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "elif.yilmaz@example.com",
+   "Tamamdır, çok teşekkürler!",
+   "https://meet.example.com/elif",
+   "Örnek Bank TR00 0000 0000 0000 0000 0000 00",
+   "[2026-09-09] Sprint değerlendirmesi\nKatılımcılar: Elif, Mehmet",
+   "Örnek Mah. Örnek Sok. No: 0 D: 0, Ankara",
+   "ABC000 / IST → NRT",
+   "Example-Guest / example1234",
+   "elif.yilmaz@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{ad}",
+    "{tarih}"
+   ],
+   [
+    "{tarih}",
+    "{konu}",
+    "{kişiler}"
+   ],
+   [
+    "{ad}"
+   ]
+  ]
+ },
+ "vi": {
+  "categories": [
+   "Công việc",
+   "Cá nhân",
+   "Du lịch"
+  ],
+  "memos": [
+   [
+    "Email công việc",
+    "an.nguyen@example.com"
+   ],
+   [
+    "Email cá nhân",
+    "an.nguyen@example.org"
+   ],
+   [
+    "Số điện thoại",
+    "090 000 0000"
+   ],
+   [
+    "Cảm ơn nhanh",
+    "Mình đã nhận được, cảm ơn bạn nhiều!"
+   ],
+   [
+    "Giới thiệu bản thân",
+    "Xin chào, mình là Nguyễn Văn An.\nPhụ trách sản phẩm ở nhóm nền tảng.\nLiên hệ an.nguyen@example.org"
+   ],
+   [
+    "Chữ ký email",
+    "Nguyễn Văn An · Sản phẩm\nCông ty TNHH Mẫu\nan.nguyen@example.com"
+   ],
+   [
+    "Link họp trực tuyến",
+    "https://meet.example.com/an"
+   ],
+   [
+    "Hồ sơ GitHub",
+    "https://github.com/example"
+   ],
+   [
+    "Tin nhắn vắng mặt",
+    "Mình đang không ở bàn làm việc. Bạn cứ để lại lời nhắn, mình sẽ liên hệ lại."
+   ],
+   [
+    "Mẫu trả lời",
+    "Chào {tên}, cảm ơn bạn đã liên hệ.\nMình sẽ phản hồi trước {ngày}.\n\nThân mến,\nAn",
+    "Dùng khi trả lời khách hàng"
+   ],
+   [
+    "Đầu biên bản họp",
+    "[{ngày}] {chủ đề}\nThành phần: {người dự}\n\nThảo luận\n- \n\nKết luận\n- "
+   ],
+   [
+    "Gửi báo giá",
+    "Chào {tên}, mình gửi bạn báo giá như đã trao đổi.\nBạn xem rồi cho mình ý kiến nhé."
+   ],
+   [
+    "Wi-Fi văn phòng",
+    "Mạng Example-Guest\nMật khẩu example1234"
+   ],
+   [
+    "Thông tin công ty",
+    "Công ty TNHH Mẫu / MST 0000000000\n00 Đường Mẫu, Quận 1, TP. Hồ Chí Minh"
+   ],
+   [
+    "Số tài khoản",
+    "Ngân hàng Mẫu 0000 0000 0000\nNguyễn Văn An"
+   ],
+   [
+    "Địa chỉ nhà",
+    "00 Ngõ Mẫu, Phường Mẫu\nHà Nội"
+   ],
+   [
+    "Ghi chú giao hàng",
+    "Nếu không có nhà, vui lòng gửi ở bảo vệ giúp mình."
+   ],
+   [
+    "Thông tin hộ chiếu",
+    "Hộ chiếu C0000000\nNGUYEN VAN AN"
+   ],
+   [
+    "Mã đặt vé máy bay",
+    "ABC000 / SGN → NRT"
+   ],
+   [
+    "Địa chỉ khách sạn",
+    "Example Hotel Tokyo\n0-0-0 Example, Shibuya, Tokyo"
+   ]
+  ],
+  "clips": [
+   "an.nguyen@example.com",
+   "Mình đã nhận được, cảm ơn bạn nhiều!",
+   "https://meet.example.com/an",
+   "Ngân hàng Mẫu 0000 0000 0000",
+   "[2026-09-09] Rà soát sprint\nThành phần: An, Minh",
+   "00 Ngõ Mẫu, Hà Nội",
+   "ABC000 / SGN → NRT",
+   "Example-Guest / example1234",
+   "an.nguyen@example.org"
+  ],
+  "templateVariables": [
+   [
+    "{tên}",
+    "{ngày}"
+   ],
+   [
+    "{ngày}",
+    "{chủ đề}",
+    "{người dự}"
+   ],
+   [
+    "{tên}"
+   ]
+  ]
+ }
+}

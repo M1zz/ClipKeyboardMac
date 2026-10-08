@@ -2,7 +2,7 @@
 """앱스토어 촬영 준비 / 원복 — 실데이터를 지키면서 데모 상태로 갈아끼운다.
 
     python3 scripts/shoot_prepare.py backup            # 컨테이너 통째로 백업(체크섬 포함)
-    python3 scripts/shoot_prepare.py demo ko|en        # 데모 데이터 + 촬영용 설정 적용
+    python3 scripts/shoot_prepare.py demo <로케일>        # 데모 데이터 + 촬영용 설정 적용 (ko, en, ja …)
     python3 scripts/shoot_prepare.py verify            # 동기화가 정말 멎었는지 확인
     python3 scripts/shoot_prepare.py restore           # 백업에서 원상복구 + 체크섬 대조
 
@@ -32,6 +32,10 @@ BACKUP_ROOT = os.path.expanduser("~/ClipKeyboard-촬영백업")
 DATA_FILES = ("memos.data", "clipboard.history.data")
 
 CATEGORIES = {"ko": ["업무", "개인", "여행"], "en": ["Work", "Personal", "Travel"]}
+# 그 밖의 언어는 데모 데이터와 같은 파일에서 카테고리 이름을 가져온다.
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "demo_locales.json"), encoding="utf-8") as _f:
+    for _loc, _spec in json.load(_f).items():
+        CATEGORIES[_loc] = _spec["categories"]
 
 
 def sh(*args):
