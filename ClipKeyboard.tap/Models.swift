@@ -505,6 +505,9 @@ class MemoStore: ObservableObject {
     }
 
     func save(memos: [Memo], type: MemoType) throws {
+        #if DEBUG
+        if MacShotMode.isOn { return }  // 촬영 모드는 디스크(실데이터)에 아무것도 쓰지 않는다
+        #endif
         let data = try JSONEncoder().encode(memos)
         guard let outfile = try Self.fileURL(type: type) else { return }
         try data.write(to: outfile, options: .atomic)
@@ -516,12 +519,22 @@ class MemoStore: ObservableObject {
     }
 
     func saveClipboardHistory(history: [ClipboardHistory]) throws {
+        #if DEBUG
+        if MacShotMode.isOn { return }
+        #endif
         let data = try JSONEncoder().encode(history)
         guard let outfile = try Self.fileURL(type: .clipboardHistory) else { return }
         try data.write(to: outfile, options: .atomic)
     }
 
     func load(type: MemoType) throws -> [Memo] {
+        #if DEBUG
+        // 촬영 모드: 실데이터 대신 실행 인자로 받은 데모 단축어를 보여 준다.
+        if MacShotMode.isOn {
+            guard type == .memo, let data = MacShotMode.demoData("ClipShotDemoMemos") else { return [] }
+            return (try? JSONDecoder().decode([Memo].self, from: data)) ?? []
+        }
+        #endif
         guard let fileURL = try Self.fileURL(type: type) else {
             return []
         }
@@ -544,6 +557,12 @@ class MemoStore: ObservableObject {
     }
 
     func loadClipboardHistory() throws -> [ClipboardHistory] {
+        #if DEBUG
+        if MacShotMode.isOn {
+            guard let data = MacShotMode.demoData("ClipShotDemoClips") else { return [] }
+            return (try? JSONDecoder().decode([ClipboardHistory].self, from: data)) ?? []
+        }
+        #endif
         guard let fileURL = try Self.fileURL(type: .clipboardHistory) else { return [] }
         guard let data = try? Data(contentsOf: fileURL) else { return [] }
 

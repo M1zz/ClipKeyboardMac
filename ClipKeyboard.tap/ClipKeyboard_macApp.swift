@@ -76,6 +76,13 @@ struct ClipKeyboard_macApp: App {
 // App Delegate
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
+        #if DEBUG
+        // 스토어 스크린샷 촬영 — iCloud·통계·클립보드 감시를 하나도 세우지 않고 화면 하나만 연다.
+        if MacShotMode.isOn {
+            MacShotMode.launch()
+            return
+        }
+        #endif
         print("🚀 [APP] ClipKeyboard 시작")
 
         // ⚠️ 무엇보다 먼저. 동기화 엔진도, 백업 자동 복원도 서기 전에 비워야 한다
@@ -144,6 +151,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
+        #if DEBUG
+        if MacShotMode.isOn { return }
+        #endif
         // 맥앱이 다시 활성화되면 즉시 동기화 — 아이폰의 최신 변경을 바로 반영.
         // (다른 기기에서 토글이 켜져 KV로 전파된 경우 여기서 비로소 시작될 수 있어 start 먼저 호출.)
         MemoSyncEngine.shared.startIfEnabled()
@@ -199,3 +209,90 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return false
     }
 }
+
+#if DEBUG
+/// 앱스토어 스크린샷 촬영 모드 (Debug 빌드에만 있다).
+///
+///     ClipKeyboard.tap -ClipShotScreen panel|popover|list|clipboard|prefs|backup [-ClipShotSize 460x530]
+///                      -ClipShotDemoMemos '<json>' -ClipShotDemoClips '<json>' …
+///
+/// 단축어·클립보드 기록은 실행 인자(`-ClipShotDemoMemos` · `-ClipShotDemoClips`)로 받은 데모를 보여 주고
+/// 디스크에는 쓰지 않는다. 카테고리 구성도 실행 인자(인자 도메인)로 덮어 읽는다 — `scripts/shoot_mac.py`.
+/// 이 모드는 **iCloud 를 건드리는 길을 하나도 세우지 않는다** — 동기화 엔진·백업 자동 복원·
+///    자동 백업 타이머·푸시 등록·사용 통계·클립보드 감시·예시 심기 전부 건너뛴다.
+///    메뉴바 앱이라 창을 열려면 아이콘을 눌러야 하는데, 그 대신 인자로 받은 화면을 곧바로 연다.
+enum MacShotMode {
+    static var screen: String? { UserDefaults.standard.string(forKey: "ClipShotScreen") }
+    static var isOn: Bool { screen != nil }
+    /// 실행 인자로 받은 데모 데이터(base64 JSON — memos.data / clipboard.history.data 와 같은 형식).
+    /// 촬영은 실제 App Group 의 파일을 읽지도 쓰지도 않는다 (`MemoStore` 의 촬영 모드 분기).
+    /// 인자 도메인은 값을 plist 로 읽으려 들어 JSON 을 그대로 못 넘긴다 — base64 로 받는다.
+    static func demoData(_ key: String) -> Data? {
+        UserDefaults.standard.string(forKey: key).flatMap { Data(base64Encoded: $0) }
+    }
+
+    /// 환경설정 창을 열 때 처음 보일 탭 (prefs 화면은 단축키 탭).
+    static var initialPrefsTab: Int { screen == "prefs" ? 2 : 0 }
+
+    @MainActor
+    static func launch() {
+        NSApp.setActivationPolicy(.accessory)
+        MenuBarManager.shared.setupMenuBar()
+        _ = WindowManager.shared
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            switch screen {
+            case "panel": MemoFloatingPanelController.shared.show()
+            case "popover": MenuBarManager.shared.debugOpenPopover()
+            case "list": WindowManager.shared.openMemoListWindow()
+            case "clipboard": WindowManager.shared.openClipboardHistoryWindow()
+            case "prefs": WindowManager.shared.openSettingsWindow()
+            case "backup": WindowManager.shared.openCloudBackupWindow()
+            default: break
+            }
+            NSApp.activate(ignoringOtherApps: true)
+            if let size = UserDefaults.standard.string(forKey: "ClipShotSize")?
+                .split(separator: "x").compactMap({ Double($0) }), size.count == 2 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    for window in NSApp.windows where window.isVisible && window.styleMask.contains(.titled) {
+                        window.setContentSize(NSSize(width: size[0], height: size[1]))
+                        window.center()
+                    }
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.4) { captureAndQuit() }
+        }
+    }
+
+    /// 자기 창을 그려 표준 출력으로 내보내고 끝낸다 — `CLIPSHOT:<base64 PNG>` 한 줄.
+    /// 파일로 쓰지 않는 것은 샌드박스라서다.
+    @MainActor
+    private static func captureAndQuit() {
+        let target = NSApp.windows
+            .filter { $0.isVisible && $0.frame.height > 60 && $0.className != "NSStatusBarWindow" }
+            .max { $0.frame.width * $0.frame.height < $1.frame.width * $1.frame.height }
+        if let target, let png = windowPNG(target) {
+            FileHandle.standardOutput.write(("CLIPSHOT:" + png.base64EncodedString() + "\n").data(using: .utf8)!)
+        } else {
+            FileHandle.standardOutput.write("CLIPSHOT:FAIL\n".data(using: .utf8)!)
+        }
+        exit(0)
+    }
+
+    /// 창을 앱 안에서 그려 PNG 로 만든다. 화면을 찍는 게 아니라서 화면 기록 권한이 필요 없다
+    /// (권한 없이 `CGWindowListCreateImage` 로 찍으면 내용이 빈 칸으로 나온다).
+    /// 제목 막대·신호등까지 나오도록 contentView 의 부모(창 테두리 뷰)를 그린다.
+    @MainActor
+    private static func windowPNG(_ window: NSWindow) -> Data? {
+        guard let content = window.contentView else { return nil }
+        // 제목 막대가 있는 창은 테두리 뷰까지, 팝오버·패널은 내용만 (유리 테두리가 제대로 안 그려진다).
+        // 환경설정은 선택된 탭의 유리 캡슐이 글자를 덮어 그려져 내용만 그린다.
+        let framed = window.styleMask.contains(.titled) && !(window is MemoFloatingPanel)
+            && screen != "prefs"
+        let view = framed ? (content.superview ?? content) : content
+        view.layoutSubtreeIfNeeded()
+        guard let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds) else { return nil }
+        view.cacheDisplay(in: view.bounds, to: rep)
+        return rep.representation(using: .png, properties: [:])
+    }
+}
+#endif

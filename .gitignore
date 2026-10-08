@@ -20,4 +20,4 @@ Packages/
 fastlane/report.xml
 
 # 앱스토어 스크린샷 합성 중간 산출물
-appstore/.html/
+docs/screenshots/.html/

@@ -24,20 +24,33 @@ struct MacPreferencesView: View {
     @State private var diagnostics: String = ""
     @State private var isDiagnosing = false
     @State private var isResetting = false
+    @State private var selectedTab: Int = Self.initialTab
+
+    private static var initialTab: Int {
+        #if DEBUG
+        return MacShotMode.initialPrefsTab
+        #else
+        return 0
+        #endif
+    }
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             generalTab
                 .tabItem { Label(NSLocalizedString("General", comment: "Prefs: general"), systemImage: AppSymbol.gear) }
+                .tag(0)
 
             reorderTab
                 .tabItem { Label(NSLocalizedString("Order", comment: "Prefs: reorder"), systemImage: "arrow.up.arrow.down") }
+                .tag(1)
 
             shortcutsTab
                 .tabItem { Label(NSLocalizedString("Shortcuts", comment: "Prefs: shortcuts"), systemImage: AppSymbol.command) }
+                .tag(2)
 
             aboutTab
                 .tabItem { Label(NSLocalizedString("About", comment: "Prefs: about"), systemImage: AppSymbol.infoCircle) }
+                .tag(3)
         }
         .frame(minWidth: 580, minHeight: 460)
         .padding(MacSpacing.lg)

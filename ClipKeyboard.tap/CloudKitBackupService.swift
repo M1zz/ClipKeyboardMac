@@ -269,6 +269,9 @@ class CloudKitBackupService: ObservableObject {
 
     private func startAutoBackupTimer() {
         stopAutoBackupTimer() // 기존 타이머 제거
+        #if DEBUG
+        if MacShotMode.isOn { return }  // 촬영용 데모 데이터를 iCloud 로 올리지 않는다
+        #endif
 
         autoBackupTimer = Timer.scheduledTimer(withTimeInterval: autoBackupInterval, repeats: true) { [weak self] _ in
             guard let self = self else { return }

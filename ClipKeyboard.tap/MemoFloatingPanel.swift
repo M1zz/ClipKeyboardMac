@@ -52,8 +52,15 @@ final class MemoFloatingPanelController: NSObject {
 
         // 이 패널은 앱을 활성화하지 않는다 - `applicationDidBecomeActive` 의 동기화가 돌지 않아
         // 아이폰에서 지운 단축어가 그대로 보였다. 열 때마다 직접 받아온다.
-        MemoSyncEngine.shared.startIfEnabled()
-        MemoSyncEngine.shared.syncNow()
+        #if DEBUG
+        let syncs = !MacShotMode.isOn   // 촬영 모드에서는 iCloud 를 건드리지 않는다
+        #else
+        let syncs = true
+        #endif
+        if syncs {
+            MemoSyncEngine.shared.startIfEnabled()
+            MemoSyncEngine.shared.syncNow()
+        }
 
         // 매 표시마다 콘텐츠를 새로 주입 → SwiftUI .onAppear 재호출 → 최신 메모 reload.
         // (패널은 1회 생성 후 orderFront로 재사용되므로, 콘텐츠를 갈아끼우지 않으면

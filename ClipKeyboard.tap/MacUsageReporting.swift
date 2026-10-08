@@ -33,7 +33,10 @@ enum MacUsageReporting {
     static let appOpenEvent = "app_open"
 
     private static var isReportingAllowed: Bool {
-        RemoteFlagsService.cachedValue(.usageReportingEnabled)
+        #if DEBUG
+        if MacShotMode.isOn { return false }  // 촬영 중의 클릭은 통계가 아니다
+        #endif
+        return RemoteFlagsService.cachedValue(.usageReportingEnabled)
     }
 
     // MARK: - 전송

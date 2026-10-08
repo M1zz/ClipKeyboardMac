@@ -1,0 +1,600 @@
+{
+ "ko": [
+  [
+   "어디서나 ⌃⇧V",
+   "쓰던 앱 위에 떠서, 고르면 곧바로 복사됩니다"
+  ],
+  [
+   "메뉴바에서 바로",
+   "검색하거나 ⌘1~9 로 골라 꺼냅니다"
+  ],
+  [
+   "자주 쓰는 말을 모아 둡니다",
+   "카테고리로 나누고, 손이 자주 가는 것은 위로"
+  ],
+  [
+   "복사한 것이 사라지지 않게",
+   "지나간 클립보드를 다시 꺼내 씁니다"
+  ],
+  [
+   "손이 기억하는 단축키",
+   "패널·목록·기록을 한 손으로 엽니다"
+  ],
+  [
+   "아이폰과 같은 단축어",
+   "iCloud 로 백업하고 어느 기기에서나 씁니다"
+  ]
+ ],
+ "en": [
+  [
+   "⌃⇧V, anywhere",
+   "It floats over your app — click once to copy"
+  ],
+  [
+   "Right from the menu bar",
+   "Search, or press ⌘1–9 to grab one"
+  ],
+  [
+   "Keep what you type often",
+   "Sort into categories, star the ones you reach for"
+  ],
+  [
+   "Nothing you copy is lost",
+   "Reach back for anything you copied earlier"
+  ],
+  [
+   "Shortcuts your hands learn",
+   "Panel, list and history — all one-handed"
+  ],
+  [
+   "The same shortcuts as your iPhone",
+   "Back them up to iCloud and use them anywhere"
+  ]
+ ],
+ "zh-Hans": [
+  [
+   "随处 ⌃⇧V",
+   "浮在你正在用的 App 上，点一下就复制"
+  ],
+  [
+   "菜单栏一点即用",
+   "搜索，或按 ⌘1–9 直接取出"
+  ],
+  [
+   "常用的话都在这里",
+   "按分类整理，常用的放在最上面"
+  ],
+  [
+   "复制过的不会丢",
+   "刚才复制的内容随时再用"
+  ],
+  [
+   "顺手的快捷键",
+   "面板、列表、历史，一只手就能打开"
+  ],
+  [
+   "和 iPhone 同一套短语",
+   "用 iCloud 备份，在哪台设备都能用"
+  ]
+ ],
+ "zh-Hant": [
+  [
+   "隨處 ⌃⇧V",
+   "浮在你正在用的 App 上，點一下就複製"
+  ],
+  [
+   "選單列一點即用",
+   "搜尋，或按 ⌘1–9 直接取出"
+  ],
+  [
+   "常用的字都在這裡",
+   "依分類整理，常用的放最上面"
+  ],
+  [
+   "複製過的不會不見",
+   "剛才複製的內容隨時再用"
+  ],
+  [
+   "順手的快速鍵",
+   "面板、列表、歷史，一隻手就能打開"
+  ],
+  [
+   "和 iPhone 同一套短語",
+   "用 iCloud 備份，在哪台裝置都能用"
+  ]
+ ],
+ "ja": [
+  [
+   "どこでも ⌃⇧V",
+   "使っているアプリの手前に開いて、選べばすぐコピー"
+  ],
+  [
+   "メニューバーからすぐ",
+   "検索するか、⌘1–9で選んで取り出せます"
+  ],
+  [
+   "よく使う言葉をひとまとめに",
+   "カテゴリで分けて、よく使うものは上に"
+  ],
+  [
+   "コピーしたものを逃さない",
+   "さっきのクリップボードをもう一度使えます"
+  ],
+  [
+   "手が覚えるショートカット",
+   "パネルも一覧も履歴も片手で開けます"
+  ],
+  [
+   "iPhoneと同じスニペット",
+   "iCloudでバックアップして、どのデバイスでも"
+  ]
+ ],
+ "de": [
+  [
+   "⌃⇧V, überall",
+   "Erscheint über deiner App – ein Klick, und es ist kopiert"
+  ],
+  [
+   "Direkt aus der Menüleiste",
+   "Suchen oder mit ⌘1–9 sofort zugreifen"
+  ],
+  [
+   "Was du oft tippst, griffbereit",
+   "In Kategorien sortiert, Favoriten ganz oben"
+  ],
+  [
+   "Nichts Kopiertes geht verloren",
+   "Hol dir zurück, was du vorhin kopiert hast"
+  ],
+  [
+   "Kürzel, die sitzen",
+   "Fenster, Liste und Verlauf – alles mit einer Hand"
+  ],
+  [
+   "Dieselben Bausteine wie am iPhone",
+   "In iCloud gesichert und auf jedem Gerät da"
+  ]
+ ],
+ "es": [
+  [
+   "⌃⇧V, en cualquier lugar",
+   "Aparece sobre tu app: un clic y queda copiado"
+  ],
+  [
+   "Desde la barra de menús",
+   "Busca o pulsa ⌘1–9 para copiar al instante"
+  ],
+  [
+   "Lo que más escribes, a mano",
+   "Ordenado por categorías, tus favoritos arriba"
+  ],
+  [
+   "Nada de lo que copias se pierde",
+   "Recupera lo que copiaste hace un rato"
+  ],
+  [
+   "Atajos que se vuelven reflejo",
+   "Panel, lista e historial con una sola mano"
+  ],
+  [
+   "Los mismos fragmentos que en tu iPhone",
+   "Con copia en iCloud y en todos tus dispositivos"
+  ]
+ ],
+ "fr": [
+  [
+   "⌃⇧V, partout",
+   "Il s’affiche par-dessus votre app : un clic et c’est copié"
+  ],
+  [
+   "Depuis la barre des menus",
+   "Cherchez, ou appuyez sur ⌘1–9 pour copier"
+  ],
+  [
+   "Vos textes fréquents, rangés",
+   "Classés par catégorie, vos favoris en tête"
+  ],
+  [
+   "Rien de ce que vous copiez ne se perd",
+   "Retrouvez ce que vous avez copié plus tôt"
+  ],
+  [
+   "Des raccourcis qui deviennent réflexes",
+   "Panneau, liste et historique d’une seule main"
+  ],
+  [
+   "Les mêmes extraits que sur l’iPhone",
+   "Sauvegardés dans iCloud, partout avec vous"
+  ]
+ ],
+ "it": [
+  [
+   "⌃⇧V, ovunque",
+   "Compare sopra la tua app: un clic ed è copiato"
+  ],
+  [
+   "Dalla barra dei menu",
+   "Cerca o premi ⌘1–9 per copiare al volo"
+  ],
+  [
+   "I testi di sempre, a portata",
+   "Divisi per categoria, i preferiti in cima"
+  ],
+  [
+   "Niente di ciò che copi va perso",
+   "Recupera quello che hai copiato poco fa"
+  ],
+  [
+   "Abbreviazioni che diventano gesti",
+   "Pannello, elenco e cronologia con una mano"
+  ],
+  [
+   "Gli stessi frammenti di iPhone",
+   "Backup su iCloud, a portata su ogni dispositivo"
+  ]
+ ],
+ "pt-BR": [
+  [
+   "⌃⇧V, em qualquer lugar",
+   "Aparece sobre o seu app: um clique e está copiado"
+  ],
+  [
+   "Direto da barra de menus",
+   "Busque ou pressione ⌘1–9 para copiar na hora"
+  ],
+  [
+   "O que você mais digita, à mão",
+   "Separado por categorias, favoritos no topo"
+  ],
+  [
+   "Nada do que você copia se perde",
+   "Recupere o que você copiou há pouco"
+  ],
+  [
+   "Atalhos que viram reflexo",
+   "Painel, lista e histórico com uma mão só"
+  ],
+  [
+   "Os mesmos trechos do iPhone",
+   "Com backup no iCloud e em todos os aparelhos"
+  ]
+ ],
+ "ru": [
+  [
+   "⌃⇧V — где угодно",
+   "Поверх вашего приложения: один щелчок, и текст скопирован"
+  ],
+  [
+   "Прямо из строки меню",
+   "Ищите или нажмите ⌘1–9, чтобы взять нужное"
+  ],
+  [
+   "Всё, что вы часто пишете",
+   "Разложите по категориям, самое нужное — наверх"
+  ],
+  [
+   "Скопированное не теряется",
+   "Верните всё, что копировали раньше"
+  ],
+  [
+   "Сочетания под рукой",
+   "Панель, список и история — одной рукой"
+  ],
+  [
+   "Заготовки как на iPhone",
+   "Резервная копия в iCloud и доступ с любого устройства"
+  ]
+ ],
+ "cs": [
+  [
+   "⌃⇧V, kdekoli",
+   "Objeví se nad aplikací – jedno kliknutí a je zkopírováno"
+  ],
+  [
+   "Přímo z řádku nabídek",
+   "Hledejte, nebo stiskněte ⌘1–9 a vezměte si úryvek"
+  ],
+  [
+   "Co často píšete, po ruce",
+   "Rozdělte do kategorií, oblíbené nechte nahoře"
+  ],
+  [
+   "Nic zkopírovaného nezmizí",
+   "Vraťte se ke všemu, co jste zkopírovali dřív"
+  ],
+  [
+   "Zkratky, které ruce znají",
+   "Panel, seznam i historie – vše jednou rukou"
+  ],
+  [
+   "Stejné úryvky jako na iPhonu",
+   "Záloha na iCloud a přístup z každého zařízení"
+  ]
+ ],
+ "da": [
+  [
+   "⌃⇧V, overalt",
+   "Svæver over din app – ét klik, så er det kopieret"
+  ],
+  [
+   "Lige fra menulinjen",
+   "Søg, eller tryk på ⌘1–9 for at hente et"
+  ],
+  [
+   "Det, du skriver tit, samlet",
+   "Opdelt i kategorier, favoritterne øverst"
+  ],
+  [
+   "Intet, du kopierer, går tabt",
+   "Hent det, du kopierede tidligere, frem igen"
+  ],
+  [
+   "Genveje, fingrene husker",
+   "Panel, liste og historik – med én hånd"
+  ],
+  [
+   "De samme som på din iPhone",
+   "Sikkerhedskopiér til iCloud, og brug dem overalt"
+  ]
+ ],
+ "el": [
+  [
+   "⌃⇧V, παντού",
+   "Πάνω από την εφαρμογή σας — ένα κλικ και αντιγράφεται"
+  ],
+  [
+   "Από τη γραμμή μενού",
+   "Αναζητήστε ή πατήστε ⌘1–9 για να πάρετε ένα"
+  ],
+  [
+   "Όσα γράφετε συχνά",
+   "Χωρίστε σε κατηγορίες, τα αγαπημένα στην κορυφή"
+  ],
+  [
+   "Τίποτα δεν χάνεται",
+   "Βρείτε ξανά ό,τι αντιγράψατε νωρίτερα"
+  ],
+  [
+   "Συντομεύσεις στο χέρι",
+   "Πλαίσιο, λίστα και ιστορικό — με ένα χέρι"
+  ],
+  [
+   "Ίδια αποσπάσματα με iPhone",
+   "Αντίγραφο στο iCloud και πρόσβαση από κάθε συσκευή"
+  ]
+ ],
+ "fi": [
+  [
+   "⌃⇧V, missä vain",
+   "Ilmestyy sovelluksesi päälle – yksi klikkaus ja kopioitu"
+  ],
+  [
+   "Suoraan valikkoriviltä",
+   "Etsi tai nappaa painamalla ⌘1–9"
+  ],
+  [
+   "Usein kirjoitetut tallessa",
+   "Kategorioihin jaettuna, suosikit ylimpänä"
+  ],
+  [
+   "Mikään kopioitu ei katoa",
+   "Ota esiin se, minkä kopioit aiemmin"
+  ],
+  [
+   "Näppäimet, jotka muistat",
+   "Paneeli, luettelo ja historia – yhdellä kädellä"
+  ],
+  [
+   "Samat kuin iPhonessa",
+   "Varmuuskopioi iCloudiin ja käytä missä vain"
+  ]
+ ],
+ "id": [
+  [
+   "⌃⇧V, di mana saja",
+   "Muncul di atas aplikasi Anda, sekali klik langsung tersalin"
+  ],
+  [
+   "Langsung dari bar menu",
+   "Cari, atau tekan ⌘1–9 untuk langsung mengambil"
+  ],
+  [
+   "Teks andalan, siap pakai",
+   "Dikelompokkan per kategori, favorit di atas"
+  ],
+  [
+   "Tak ada salinan yang hilang",
+   "Ambil lagi apa yang tadi Anda salin"
+  ],
+  [
+   "Pintasan yang cepat dihafal",
+   "Panel, daftar, dan riwayat dengan satu tangan"
+  ],
+  [
+   "Cuplikan yang sama dengan iPhone",
+   "Dicadangkan ke iCloud, siap di perangkat mana pun"
+  ]
+ ],
+ "nb": [
+  [
+   "⌃⇧V, overalt",
+   "Svever over appen din – ett klikk, så er det kopiert"
+  ],
+  [
+   "Rett fra menylinjen",
+   "Søk, eller trykk på ⌘1–9 for å hente en"
+  ],
+  [
+   "Det du skriver ofte, samlet",
+   "Delt inn i kategorier, favorittene øverst"
+  ],
+  [
+   "Ingen kopier går tapt",
+   "Hent fram det du kopierte tidligere"
+  ],
+  [
+   "Hurtigtaster i fingrene",
+   "Panel, liste og historikk – med én hånd"
+  ],
+  [
+   "De samme som på iPhonen",
+   "Sikkerhetskopier til iCloud, og bruk dem overalt"
+  ]
+ ],
+ "nl": [
+  [
+   "⌃⇧V, overal",
+   "Verschijnt boven je app – één klik en het is gekopieerd"
+  ],
+  [
+   "Direct vanuit de menubalk",
+   "Zoek, of druk op ⌘1–9 om er meteen een te pakken"
+  ],
+  [
+   "Wat je vaak typt, bij de hand",
+   "Ingedeeld in categorieën, favorieten bovenaan"
+  ],
+  [
+   "Nooit meer een kopie kwijt",
+   "Haal terug wat je eerder hebt gekopieerd"
+  ],
+  [
+   "Sneltoetsen die je onthoudt",
+   "Paneel, lijst en geschiedenis – met één hand"
+  ],
+  [
+   "Gelijk met je iPhone",
+   "Reservekopie in iCloud en op elk apparaat bij de hand"
+  ]
+ ],
+ "pl": [
+  [
+   "⌃⇧V, gdziekolwiek jesteś",
+   "Pojawia się nad aplikacją – jedno kliknięcie i skopiowane"
+  ],
+  [
+   "Prosto z paska menu",
+   "Szukaj albo naciśnij ⌘1–9, by sięgnąć po fragment"
+  ],
+  [
+   "To, co często piszesz",
+   "Podziel na kategorie, ulubione trzymaj na górze"
+  ],
+  [
+   "Nic skopiowanego nie ginie",
+   "Wróć do wszystkiego, co skopiowałeś wcześniej"
+  ],
+  [
+   "Skróty, które zapamiętasz",
+   "Panel, lista i historia – wszystko jedną ręką"
+  ],
+  [
+   "Te same co na iPhonie",
+   "Kopia zapasowa w iCloud i dostęp na każdym urządzeniu"
+  ]
+ ],
+ "sv": [
+  [
+   "⌃⇧V, överallt",
+   "Svävar ovanpå din app – ett klick så är det kopierat"
+  ],
+  [
+   "Direkt från menyraden",
+   "Sök, eller tryck på ⌘1–9 för att hämta en"
+  ],
+  [
+   "Det du skriver ofta, samlat",
+   "Sorterat i kategorier, favoriterna överst"
+  ],
+  [
+   "Inget du kopierar försvinner",
+   "Hämta fram det du kopierade tidigare"
+  ],
+  [
+   "Kortkommandon i fingrarna",
+   "Panel, lista och historik – med en hand"
+  ],
+  [
+   "Samma som på din iPhone",
+   "Säkerhetskopiera till iCloud och använd överallt"
+  ]
+ ],
+ "th": [
+  [
+   "⌃⇧V ได้ทุกที่",
+   "ลอยเหนือแอปที่ใช้อยู่ เลือกปุ๊บคัดลอกปั๊บ"
+  ],
+  [
+   "เรียกจากแถบเมนู",
+   "ค้นหา หรือกด ⌘1–9 เพื่อหยิบใช้ทันที"
+  ],
+  [
+   "รวมข้อความที่ใช้บ่อย",
+   "แยกตามหมวดหมู่ ข้อความโปรดอยู่ด้านบน"
+  ],
+  [
+   "คัดลอกแล้วไม่หาย",
+   "หยิบสิ่งที่คัดลอกไว้เมื่อครู่กลับมาใช้"
+  ],
+  [
+   "ปุ่มลัดที่มือจำได้",
+   "เปิดแผง รายการ และประวัติได้ด้วยมือเดียว"
+  ],
+  [
+   "ข้อความชุดเดียวกับ iPhone",
+   "สำรองไว้ใน iCloud ใช้ได้ทุกเครื่อง"
+  ]
+ ],
+ "tr": [
+  [
+   "Her yerde ⌃⇧V",
+   "Uygulamanızın üzerinde açılır, tek tıkla kopyalanır"
+  ],
+  [
+   "Doğrudan menü çubuğundan",
+   "Arayın ya da ⌘1–9 ile hemen alın"
+  ],
+  [
+   "Sık yazdıklarınız elinizde",
+   "Kategorilere ayırın, en sevdiklerinizi öne alın"
+  ],
+  [
+   "Kopyaladığınız kaybolmaz",
+   "Daha önce kopyaladığınız her şeye geri dönün"
+  ],
+  [
+   "Elinize yatan kısayollar",
+   "Panel, liste ve geçmiş tek elle açılır"
+  ],
+  [
+   "iPhone’dakiyle aynı metinler",
+   "iCloud’a yedekleyin, her aygıtta kullanın"
+  ]
+ ],
+ "vi": [
+  [
+   "⌃⇧V ở mọi nơi",
+   "Hiện trên ứng dụng bạn đang dùng, bấm là sao chép"
+  ],
+  [
+   "Ngay trên thanh menu",
+   "Tìm kiếm hoặc nhấn ⌘1–9 để lấy ngay"
+  ],
+  [
+   "Gom chữ hay dùng một chỗ",
+   "Chia theo danh mục, mục ưa thích lên đầu"
+  ],
+  [
+   "Sao chép rồi không lo mất",
+   "Lấy lại những gì bạn vừa sao chép"
+  ],
+  [
+   "Phím tắt quen tay",
+   "Mở bảng, danh sách và lịch sử chỉ bằng một tay"
+  ],
+  [
+   "Đoạn văn bản giống iPhone",
+   "Sao lưu lên iCloud, dùng trên mọi thiết bị"
+  ]
+ ]
+}

@@ -132,6 +132,11 @@ class MenuBarManager: NSObject {
         popover?.performClose(nil)
     }
 
+    #if DEBUG
+    /// 스크린샷 촬영 모드에서 아이콘을 누르지 않고 팝오버를 연다 (`MacShotMode`).
+    func debugOpenPopover() { openPopover() }
+    #endif
+
     /// 우클릭 시 표시되는 경량 메뉴 (팝오버 대신 간단 액션만 노출).
     private func showContextMenu() {
         let menu = NSMenu()
