@@ -605,7 +605,7 @@ class MemoStore: ObservableObject {
 
         // 새 항목 추가
         let newItem = ClipboardHistory(
-            content: "이미지",
+            content: NSLocalizedString("이미지", comment: "Image type"),
             copiedAt: Date(),
             isTemporary: true,
             imageFileName: fileName,
