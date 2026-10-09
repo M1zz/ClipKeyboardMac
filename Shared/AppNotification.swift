@@ -42,6 +42,8 @@ extension Notification.Name {
     /// 단축어당 한 번뿐이다(`EditPattern.markAsked`).
     static let editPatternSuggestion = Notification.Name("editPatternSuggestion")
     static let openMainAppPaywall = Notification.Name("openMainAppPaywall")
+    /// 키보드의 "의견 보내기" → 앱을 열어 의견 창을 띄운다. object = `FeedbackOrigin.rawValue` 문자열.
+    static let openMainAppFeedback = Notification.Name("openMainAppFeedback")
     /// 빠른 메모(Inbox) 보관함이 변경됨(추가/삭제/승격) → 열려 있는 화면·배지 새로고침.
     static let quickNotesChanged = Notification.Name("quickNotesChanged")
     static let openMemoListWindow = Notification.Name("openMemoListWindow")
@@ -92,6 +94,14 @@ extension Notification.Name {
     static let showSettings = Notification.Name("showSettings")
     static let showTemplateInput = Notification.Name("showTemplateInput")
     static let templateInputComplete = Notification.Name("templateInputComplete")
+
+    #if DEBUG
+    // MARK: - 스토어 촬영 전용 (`-ScreenshotScene`, docs/screenshots/README.md)
+    /// 키보드 탭을 고른다. object = Bool(true 면 '최근' 탭, false 면 단축어 탭).
+    static let demoKeyboardTab = Notification.Name("demoKeyboardTab")
+    /// 열려 있는 빈칸 채우기 판에서 첫 빈칸의 저장된 값을 골라 넣는다. object = 값의 순번(Int).
+    static let demoTemplatePick = Notification.Name("demoTemplatePick")
+    #endif
 }
 
 // MARK: - 알림은 메인에서 쏜다

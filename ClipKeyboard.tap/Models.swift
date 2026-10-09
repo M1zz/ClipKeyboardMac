@@ -484,6 +484,15 @@ struct Combo: Identifiable, Codable {
 class MemoStore: ObservableObject {
     static let shared = MemoStore()
 
+    /// `memoDataChanged` 의 userInfo 열쇠. iOS `MemoStore.changeKindKey` 와 같은 값이다.
+    static let changeKindKey = "MemoStore.change"
+
+    /// 쓴 횟수만 바뀐 저장의 알림인가. 공유 파일(`MemoSyncEngine`)이 iOS 와 같은 이름으로 부른다.
+    /// Mac 저장은 아직 변경 종류를 싣지 않으므로 늘 내용 변경으로 본다(지금처럼 매번 동기화한다).
+    static func isUsageOnly(_ note: Notification) -> Bool {
+        (note.userInfo?[changeKindKey] as? String) == "usage"
+    }
+
     @Published var memos: [Memo] = []
     @Published var clipboardHistory: [ClipboardHistory] = []
 

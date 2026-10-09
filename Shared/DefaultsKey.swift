@@ -72,6 +72,9 @@ enum DefaultsKey {
     static let personaInferred = "persona.inferred.v1"
     /// 앱이 알아본 쓰임새에 확신이 있는가 (App Group, Bool).
     static let personaInferredConfident = "persona.inferred.confident.v1"
+    /// 쓰임새를 마지막으로 알아볼 때 넣은 값들의 지문 (App Group, SHA256 hex).
+    /// 같으면 판정을 다시 돌리지 않는다. 자세한 이유: ClipKeyboard/Service/PersonaResolver.swift
+    static let personaInferredFingerprint = "persona.inferred.fingerprint.v1"
     /// 같은 글을 몇 번 복사했는지 (표준, `[RepeatCopyLedger.Entry]` JSON). 글은 담지 않고 지문만.
     static let repeatCopyLedger = "repeat.copy.ledger.v1"
     /// 친구에게 알리기를 이미 권했는가 (App Group, Bool). 평생 한 번.
@@ -94,6 +97,9 @@ enum DefaultsKey {
     static let editionShelfDismissed = "persona.edition.shelfDismissed.v1"
     /// 키보드 빠른 줄에 붙박아 세울 단축어 (App Group, `[UUID문자열]`). 앱이 적고 키보드가 읽는다.
     static let quickRowAnchors = "quick.row.anchors.v1"
+    /// 붙박이를 마지막으로 잴 때 넣은 값들의 지문 (App Group). 같으면 다시 재지 않는다.
+    /// 자세한 이유: ClipKeyboard/Service/PersonaEdition.swift 의 `PersonaEditionStore.refresh`
+    static let editionAnchorsFingerprint = "edition.anchors.fingerprint.v1"
     static let enabledBuiltInCategoriesV1 = "enabledBuiltInCategories_v1"
     /// 앱을 처음 연 날 (standard UD, Date). 리뷰 요청·붙여넣기 안내·반값 제안이 모두 이 값을 본다.
     /// ⚠️ 읽기만 하는 자리에서 값을 쓰지 말 것 - 남의 초기화를 조용히 되돌린다.
@@ -111,6 +117,8 @@ enum DefaultsKey {
     /// What's-New(새 기능) 시트를 마지막으로 보여준 기능 버전. 다르면 업데이트 유저에게 1회 노출.
     static let lastSeenWhatsNewVersion = "lastSeenWhatsNewVersion"
     static let hiddenCategoryTabsV1 = "hiddenCategoryTabs_v1"
+    /// 앱이 깔아 준 카테고리 - 비어도 페이지로 선다. 앱 목록과 키보드가 같이 본다(`CategoryStore`).
+    static let defaultCategoriesV1 = "defaultCategories_v1"
     static let kbBeaconLastUse = "kb.beacon.lastUse"
     static let kbBeaconPendingCount = "kb.beacon.pendingCount"
     /// 키보드 비콘 누적 사용 횟수 (App Group) - flush 때마다 pendingCount를 더한다. 사용 통계 지표용.
@@ -240,6 +248,10 @@ enum DefaultsKey {
     ///    붙여넣기는 시스템 키보드에도 있고 길게 눌러도 나온다. 이 앱에서만 할 수 있는
     ///    일(단축어·숫자 판)에 자리를 먼저 준다. 쓰던 사람은 설정에서 도로 켠다.
     static let keyboardShowClipboardKey = "keyboardShowClipboardKey"
+    /// 키보드 맨 앞의 '최근'(복사해 담아 둔 것) 탭을 세울지. App Group. **기본 켬.**
+    /// 잠깐 쓸 글을 담아 두는 사람에게는 이 탭이 가장 자주 열리는 자리라, 있는 줄 알아야 쓴다.
+    /// 단축어만 쓰는 사람은 설정 > 키보드 > 키보드 레이아웃 > 표시 옵션에서 끈다.
+    static let keyboardShowRecentClipsTab = "keyboardShowRecentClipsTab.v1"
     /// 위줄에 **숫자 판으로 건너가는 키**를 세울지 (App Group). 값이 없으면 켜짐.
     ///
     /// 숫자만 몇 자 넣으려고 다른 키보드로 건너갔다 오는 일을 없애려고 둔 키다.
@@ -261,6 +273,14 @@ enum DefaultsKey {
     /// 수십 번 같은 갈래를 다시 찾아 들어가야 한다.
     /// 갈래가 지워져 번호가 넘치는 경우는 읽는 쪽에서 잘라 낸다.
     static let keyboardLastCategoryPage = "keyboardLastCategoryPage.v1"
+    /// 키보드를 마지막으로 닫을 때 맨 앞의 '최근'(복사한 것) 탭을 보고 있었는가. App Group.
+    ///
+    /// 갈래 번호(`keyboardLastCategoryPage`)와 **따로 둔다.** '최근' 을 0번에 끼워 넣으면
+    /// 이미 저장된 번호가 모두 한 칸씩 밀려, 업데이트한 날 모두가 엉뚱한 갈래에서 열린다.
+    static let keyboardShowsRecentClips = "keyboardShowsRecentClips.v1"
+    /// 키보드가 지금 보고 있는 페이지의 **열쇠**(사용자 카테고리면 그 이름, 아니면 ★ 로 시작).
+    /// 번호만으로는 앱이 어느 카테고리인지 모른다. 키보드 탭의 + 가 이걸 읽어 그 카테고리에 만든다.
+    static let keyboardCurrentCategoryKey = "keyboardCurrentCategoryKey.v1"
     static let keyboardTypingLang = "keyboardTypingLang"
     // 아래 다섯은 예전부터 문자열로만 적던 키다. 값은 그대로 두고 이름만 꺼낸다.
     static let keyboardButtonFontSize = "keyboardButtonFontSize"
@@ -272,6 +292,9 @@ enum DefaultsKey {
     static let memoCardHeight = "memoCardHeight"
     static let koreanEnabledMigratedV1 = "koreanEnabledMigrated_v1"
     static let lastBackupDate = "lastBackupDate"
+    /// 마지막으로 올린 백업 내용의 지문 (표준, SHA256 hex). 같으면 자동 백업을 건너뛴다.
+    /// 자세한 이유: ClipKeyboard/Service/CloudKitBackupService.swift 의 `contentFingerprint`
+    static let lastBackupFingerprint = "backup.lastFingerprint.v1"
     static let memoCopyCount = "memoCopyCount"
     /// '순서 바꾸기'로 지정한 수동 순서(메모 id 문자열 배열). App Group - 키보드 익스텐션도 이 순서를 따른다.
     static let memoManualOrderV1 = "memoManualOrder_v1"
@@ -349,7 +372,7 @@ enum DefaultsKey {
     /// 사용자가 직접 적어 넣은 `{시간}` 서식들 (JSON `[String]`).
     static let templateTimeCustomFormats = "clipkeyboard_template_time_custom_formats"
 
-    /// 마스터(개발자) 모드 - 설정 > 앱 정보의 버전 행 7번 탭으로 토글 (standard UD)
+    /// 마스터(개발자) 모드 - 설정 > 사용법과 문의 맨 아래 버전 행 7번 탭으로 토글 (standard UD)
     static let masterModeEnabled = "masterModeEnabled"
 
     // MARK: - 익명 사용 통계 (FeedbackHub 전송, 항상 켜짐)
@@ -579,6 +602,7 @@ enum KeyboardPrefs {
     static let showReturnKey = Pref(key: DefaultsKey.keyboardShowReturnKey, fallback: true)
     static let showNumberPad = Pref(key: DefaultsKey.keyboardShowNumberPad, fallback: true)
     static let showClipboardKey = Pref(key: DefaultsKey.keyboardShowClipboardKey, fallback: false)
+    static let showRecentClipsTab = Pref(key: DefaultsKey.keyboardShowRecentClipsTab, fallback: true)
 
     // 입력
     static let koreanEnabled = Pref(key: DefaultsKey.keyboardKoreanEnabled, fallback: false)

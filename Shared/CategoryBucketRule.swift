@@ -79,4 +79,64 @@ enum CategoryBucketRule {
     static func showsBasicTab(basicCount: Int, otherTabCount: Int) -> Bool {
         basicCount > 0 || otherTabCount == 0
     }
+
+    // MARK: - 사용자 카테고리로 쓸 수 없는 이름
+
+    /// 늘 서 있는 탭의 **번역 열쇠**. 화면에는 이 열쇠의 번역이 탭 이름으로 나간다.
+    private static let builtInTabTitleKeys = ["기본", "즐겨찾기"]
+
+    /// 저장 센티널 - `Memo.category` 의 기본값과 내용 갈래. 목록에 들어가면 안 된다.
+    static let protectedNames: Set<String> = ["기본", "텍스트", "이미지"]
+
+    /// 이 이름으로 **새** 카테고리를 만들 수 없는가.
+    ///
+    /// 영어 화면에서 기본 탭은 "General" 로 보인다. 그런데 사용자가 "General" 카테고리를
+    /// 만들 수 있었다. 그러면 키보드 탭 바에 `General` 이 둘 서고, 앞의 것을 누르면 기본 칸이
+    /// 나와서 방금 만든 카테고리의 단축어가 안 보인다(신고: General 로 만들었는데 키보드에서
+    /// 카테고리가 안 보여). 그래서 앱이 아는 **모든 언어**의 탭 이름을 막는다. 지금 언어만
+    /// 막으면 언어를 바꾸는 날 다시 겹친다.
+    static func isReservedName(_ name: String) -> Bool {
+        let key = normalized(name)
+        guard !key.isEmpty else { return true }
+        if protectedNames.contains(name.trimmingCharacters(in: .whitespacesAndNewlines)) { return true }
+        return reservedTitles.contains(key)
+    }
+
+    /// 이미 만들어 둔 카테고리가 **지금 화면의** 늘 서 있는 탭 이름과 겹치는가.
+    ///
+    /// ⚠️ 이건 모든 언어가 아니라 지금 언어만 본다. 한국어 화면에서 "General" 을 만들어
+    ///    쓰던 사람은 겹치는 탭이 없으니 그대로 둔다. 겹칠 때만 목록에서 뺀다. 빼도 단축어는
+    ///    그대로이고, 갈 페이지가 없으니 기본 칸이 받는다(위의 약속). 그 기본 칸이 바로
+    ///    같은 이름으로 보이는 칸이라, 사용자가 뜻한 자리와 같다.
+    static func collidesWithBuiltInTab(_ name: String) -> Bool {
+        let key = normalized(name)
+        if protectedNames.contains(name.trimmingCharacters(in: .whitespacesAndNewlines)) { return true }
+        return builtInTabTitleKeys.contains { normalized(NSLocalizedString($0, comment: "")) == key }
+    }
+
+    /// 저장된 사용자 카테고리 목록에서 탭으로 세우면 안 되는 이름을 뺀다.
+    static func usableCategories(_ names: [String]) -> [String] {
+        names.filter { !collidesWithBuiltInTab($0) }
+    }
+
+    /// 앱 번들에 든 모든 언어의 탭 이름(소문자·앞뒤 공백 없음).
+    private static let reservedTitles: Set<String> = {
+        var titles = Set(builtInTabTitleKeys.map(normalized))
+        for language in Bundle.main.localizations {
+            guard let path = Bundle.main.path(forResource: language, ofType: "lproj"),
+                  let bundle = Bundle(path: path) else { continue }
+            for key in builtInTabTitleKeys {
+                titles.insert(normalized(bundle.localizedString(forKey: key, value: key, table: nil)))
+            }
+        }
+        // 현재 언어 판도 넣는다 - 번들 경로를 못 찾는 환경(시험)에서도 지금 보이는 이름은 막는다.
+        for key in builtInTabTitleKeys {
+            titles.insert(normalized(NSLocalizedString(key, comment: "")))
+        }
+        return titles
+    }()
+
+    private static func normalized(_ name: String) -> String {
+        name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
 }

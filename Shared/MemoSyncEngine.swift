@@ -255,8 +255,11 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         enqueueCategoryItemChanges()
     }
 
-    @objc private func localDataChanged() {
+    @objc private func localDataChanged(_ note: Notification) {
         guard !isApplyingRemoteChanges else { return }
+        // 쓴 횟수만 바뀐 저장은 동기화할 것이 없다(지문이 그 값을 뺀다). 넣을 때마다 오는 알림이라
+        // 여기서 단축어 전부의 지문을 다시 내던 것이 메인을 25~40ms 씩 막았다.
+        guard !MemoStore.isUsageOnly(note) else { return }
         enqueueLocalChanges()
     }
 
