@@ -23,6 +23,9 @@
 		59003CB74CFDC3B6DCCE0E79 /* MacTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22C7148DD0D10FD7FCB6CBC /* MacTheme.swift */; };
 		5954639339528540CF03C058 /* MacSampleSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33E4737F122ACE032FFE1F1 /* MacSampleSeeder.swift */; };
 		61452259913D6736BD13A8AD /* MacTemplateFillSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F0B5BC71BA56275D0B7D2F /* MacTemplateFillSheet.swift */; };
+		58AA00000000000000000005 /* MacRecentClips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AA00000000000000000006 /* MacRecentClips.swift */; };
+		58AA00000000000000000003 /* ChecksumVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AA00000000000000000004 /* ChecksumVerifier.swift */; };
+		58AA00000000000000000001 /* ValueFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AA00000000000000000002 /* ValueFormat.swift */; };
 		6A80519B01389BA0999E84CE /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B16AA18829D40F3D34C0C3 /* MemoListView.swift */; };
 		6C16D269D206EDBDE5BD6CDD /* MacSecureAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675FEFABBF707DAC48E5DC46 /* MacSecureAccess.swift */; };
 		731EACC2BD79D8AD8C1FD38D /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55EFED8CEE7715CF8F3688 /* AppGroup.swift */; };
@@ -111,6 +114,9 @@
 		CF7F8F61DA1F45856006E0D6 /* WindowManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		D1EB53D0BD0E25A78BF1D6F6 /* MemoAddView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoAddView.swift; sourceTree = "<group>"; };
 		D1F0B5BC71BA56275D0B7D2F /* MacTemplateFillSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacTemplateFillSheet.swift; sourceTree = "<group>"; };
+		58AA00000000000000000006 /* MacRecentClips.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacRecentClips.swift; sourceTree = "<group>"; };
+		58AA00000000000000000004 /* ChecksumVerifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChecksumVerifier.swift; sourceTree = "<group>"; };
+		58AA00000000000000000002 /* ValueFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ValueFormat.swift; sourceTree = "<group>"; };
 		D314A4F6B4E1F7BA131DE8C0 /* ClipKeyboard_macApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClipKeyboard_macApp.swift; sourceTree = "<group>"; };
 		D6E417E7EB435189A393C2C0 /* OnboardingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DEE4A6195BC3B986E7EB5233 /* ko */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -227,6 +233,9 @@
 				E33E4737F122ACE032FFE1F1 /* MacSampleSeeder.swift */,
 				675FEFABBF707DAC48E5DC46 /* MacSecureAccess.swift */,
 				D1F0B5BC71BA56275D0B7D2F /* MacTemplateFillSheet.swift */,
+				58AA00000000000000000006 /* MacRecentClips.swift */,
+				58AA00000000000000000004 /* ChecksumVerifier.swift */,
+				58AA00000000000000000002 /* ValueFormat.swift */,
 				E5031D7725342984C32E5191 /* MacTemplateSupport.swift */,
 				E22C7148DD0D10FD7FCB6CBC /* MacTheme.swift */,
 				MACCATTAB0000000000000F04 /* MacCategoryTabs.swift */,
@@ -371,6 +380,9 @@
 				5954639339528540CF03C058 /* MacSampleSeeder.swift in Sources */,
 				6C16D269D206EDBDE5BD6CDD /* MacSecureAccess.swift in Sources */,
 				61452259913D6736BD13A8AD /* MacTemplateFillSheet.swift in Sources */,
+				58AA00000000000000000005 /* MacRecentClips.swift in Sources */,
+				58AA00000000000000000003 /* ChecksumVerifier.swift in Sources */,
+				58AA00000000000000000001 /* ValueFormat.swift in Sources */,
 				5136E7868B8D3054A8D473FE /* MacTemplateSupport.swift in Sources */,
 				59003CB74CFDC3B6DCCE0E79 /* MacTheme.swift in Sources */,
 				47FB32E9F16CEE864E9E909D /* MemoAddView.swift in Sources */,

@@ -201,7 +201,14 @@ struct MemoFloatingPanelView: View {
     /// 카테고리 칩 + 닫기. 제목·안내 문구는 뺐다 - 무엇을 하는 창인지는 행이 말해 준다.
     private var topBar: some View {
         HStack(spacing: 0) {
-            MacCategoryChipBar(tabs: viewModel.tabs, selected: viewModel.selectedTab) { tab in
+            MacCategoryChipBar(tabs: viewModel.tabs,
+                               selected: viewModel.selectedTab,
+                               recentSelected: viewModel.showingRecent,
+                               onSelectRecent: {
+                                   viewModel.showingRecent = true
+                                   viewModel.reloadClips()
+                               }) { tab in
+                viewModel.showingRecent = false
                 viewModel.selectedTab = tab
             }
             .padding(.leading, -MacSpacing.sm)
@@ -224,7 +231,25 @@ struct MemoFloatingPanelView: View {
 
     @ViewBuilder
     private var content: some View {
-        if viewModel.filtered.isEmpty {
+        if viewModel.showingRecent {
+            MacRecentClipsList(
+                clips: viewModel.clips,
+                selectedIndex: nil,
+                copiedID: copiedID,
+                isFiltering: false,
+                onPick: copyClip,
+                onDelete: { clip in
+                    MacRecentClips.delete(clip)
+                    withAnimation(.easeOut(duration: 0.2)) { viewModel.clips.removeAll { $0.id == clip.id } }
+                }
+            )
+            .task {
+                while !Task.isCancelled {
+                    viewModel.reloadClips()
+                    try? await Task.sleep(for: .seconds(1.5))
+                }
+            }
+        } else if viewModel.filtered.isEmpty {
             emptyState
         } else {
             memoList
@@ -255,6 +280,13 @@ struct MemoFloatingPanelView: View {
                 copiedID = memo.id
             }
         }
+    }
+
+    /// 최근 항목을 다시 담고, 체크를 잠깐 보인 뒤 닫는다(단축어를 고를 때와 같은 0.9초).
+    private func copyClip(_ clip: ClipboardHistory) {
+        guard MacRecentClips.copy(clip) else { return }
+        withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = clip.id }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { onDismiss() }
     }
 
     private var emptyState: some View {

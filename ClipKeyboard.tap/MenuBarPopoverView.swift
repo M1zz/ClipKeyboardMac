@@ -19,6 +19,25 @@ final class PopoverViewModel: ObservableObject {
     @Published var selectedIndex: Int = 0
     /// 선택된 카테고리 탭. 첫 탭은 구성에 따라 다르다(아이폰 구성=기본 / 예전 구성=전체).
     @Published var selectedTab: CategoryTab = .all
+    /// '최근' 탭을 보고 있는가(`MacRecentClips`). 카테고리 칩을 누르면 꺼진다.
+    @Published var showingRecent = false
+    /// 이 맥에서 복사해 담긴 것. '최근' 탭을 보는 동안 가끔 다시 읽는다.
+    @Published var clips: [ClipboardHistory] = []
+
+    var filteredClips: [ClipboardHistory] {
+        MacRecentClips.filtered(clips, query: searchText)
+    }
+
+    /// 지금 보이는 목록의 길이(화살표로 고를 범위).
+    var visibleCount: Int { showingRecent ? filteredClips.count : filtered.count }
+
+    func reloadClips() {
+        let fresh = MacRecentClips.load()
+        // 같으면 건드리지 않는다. 그대로 덮으면 목록이 1.5초마다 다시 그려진다.
+        guard fresh.map(\.id) != clips.map(\.id) else { return }
+        clips = fresh
+        if showingRecent, selectedIndex >= filteredClips.count { selectedIndex = max(0, filteredClips.count - 1) }
+    }
 
     /// 아이폰에서 넘어온 카테고리 설정(순서·아이콘·숨김·기본제공) — 메모 목록 창과 같은 구성을 쓴다.
     private(set) var categorySettings: CategorySnapshot = CategorySnapshotStore.current()
@@ -115,7 +134,23 @@ struct MenuBarPopoverView: View {
             categoryTabs
             Divider()
 
-            if viewModel.filtered.isEmpty {
+            if viewModel.showingRecent {
+                MacRecentClipsList(
+                    clips: viewModel.filteredClips,
+                    selectedIndex: viewModel.selectedIndex,
+                    copiedID: copiedID,
+                    isFiltering: !viewModel.searchText.isEmpty,
+                    onPick: copyClip,
+                    onDelete: deleteClip
+                )
+                // 보는 동안 복사한 것도 담긴다. 팝오버를 띄운 채 다른 앱에서 복사할 수 있다.
+                .task {
+                    while !Task.isCancelled {
+                        viewModel.reloadClips()
+                        try? await Task.sleep(for: .seconds(1.5))
+                    }
+                }
+            } else if viewModel.filtered.isEmpty {
                 emptyState
             } else {
                 memoList
@@ -181,8 +216,9 @@ struct MenuBarPopoverView: View {
                 Button {
                     viewModel.searchText = ""
                 } label: {
+                    // 다 지우는 단추는 빨강이다(아이폰 키보드와 같다).
                     Image(systemName: AppSymbol.xmarkCircleFill)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.red)
                 }
                 .buttonStyle(.plain)
             }
@@ -194,18 +230,27 @@ struct MenuBarPopoverView: View {
             onArrowUp: { moveSelection(by: -1) },
             onArrowDown: { moveSelection(by: 1) },
             onEscape: { dismiss() },
-            onReturn: { activateSelected() }
+            onReturn: { activateSelected() },
+            onCommandDelete: { deleteSelectedClip() }
         ))
     }
 
     /// 카테고리 탭 — 아이폰이 설정한 목록·순서·이름·아이콘 그대로.
     /// 카테고리 기능이 꺼져 있으면(탭 없음) 줄 자체가 사라진다.
     private var categoryTabs: some View {
-        MacCategoryChipBar(tabs: viewModel.tabs, selected: viewModel.selectedTab) { tab in
+        MacCategoryChipBar(tabs: viewModel.tabs,
+                           selected: viewModel.selectedTab,
+                           recentSelected: viewModel.showingRecent,
+                           onSelectRecent: {
+                               viewModel.showingRecent = true
+                               viewModel.selectedIndex = 0
+                               viewModel.reloadClips()
+                           }) { tab in
+            viewModel.showingRecent = false
             viewModel.selectedTab = tab
             viewModel.selectedIndex = 0
         }
-        .padding(.bottom, viewModel.tabs.count > 1 ? MacSpacing.sm : 0)
+        .padding(.bottom, MacSpacing.sm)
     }
 
     private var memoList: some View {
@@ -371,13 +416,19 @@ struct MenuBarPopoverView: View {
     // MARK: - Actions
 
     private func moveSelection(by delta: Int) {
-        let items = viewModel.filtered
-        guard !items.isEmpty else { return }
-        let next = (viewModel.selectedIndex + delta).clamped(to: 0...(items.count - 1))
+        let count = viewModel.visibleCount
+        guard count > 0 else { return }
+        let next = (viewModel.selectedIndex + delta).clamped(to: 0...(count - 1))
         viewModel.selectedIndex = next
     }
 
     private func activateSelected() {
+        if viewModel.showingRecent {
+            let clips = viewModel.filteredClips
+            guard clips.indices.contains(viewModel.selectedIndex) else { return }
+            copyClip(clips[viewModel.selectedIndex])
+            return
+        }
         let items = viewModel.filtered
         guard viewModel.selectedIndex >= 0, viewModel.selectedIndex < items.count else { return }
         copyMemo(items[viewModel.selectedIndex])
@@ -405,6 +456,32 @@ struct MenuBarPopoverView: View {
     }
 }
 
+// MARK: - 최근
+
+extension MenuBarPopoverView {
+    fileprivate func copyClip(_ clip: ClipboardHistory) {
+        guard MacRecentClips.copy(clip) else { return }
+        withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = clip.id }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { dismiss() }
+    }
+
+    fileprivate func deleteClip(_ clip: ClipboardHistory) {
+        MacRecentClips.delete(clip)
+        withAnimation(.easeOut(duration: 0.2)) { viewModel.clips.removeAll { $0.id == clip.id } }
+        let count = viewModel.filteredClips.count
+        if viewModel.selectedIndex >= count { viewModel.selectedIndex = max(0, count - 1) }
+    }
+
+    /// ⌘⌫ - 고른 최근 항목을 지운다. 그냥 ⌫ 는 검색창의 글자를 지우는 키라 쓰지 않는다.
+    fileprivate func deleteSelectedClip() -> Bool {
+        guard viewModel.showingRecent else { return false }
+        let clips = viewModel.filteredClips
+        guard clips.indices.contains(viewModel.selectedIndex) else { return false }
+        deleteClip(clips[viewModel.selectedIndex])
+        return true
+    }
+}
+
 // MARK: - Category chips
 
 /// 카테고리 칩 줄 — 메뉴바 팝오버와 ⌃⇧V 빠른 붙여넣기 패널이 같은 모양을 쓴다.
@@ -416,6 +493,10 @@ struct MenuBarPopoverView: View {
 struct MacCategoryChipBar: View {
     let tabs: [CategoryTab]
     let selected: CategoryTab
+    /// '최근' 칩을 보고 있는가. 보고 있으면 카테고리 칩은 하나도 눌려 있지 않다.
+    var recentSelected: Bool = false
+    /// 있으면 맨 앞에 '최근' 칩을 세운다(`MacRecentClips`).
+    var onSelectRecent: (() -> Void)? = nil
     let onSelect: (CategoryTab) -> Void
 
     @State private var position = ScrollPosition(edge: .leading)
@@ -424,9 +505,12 @@ struct MacCategoryChipBar: View {
     @State private var isHovering = false
 
     var body: some View {
-        if tabs.count > 1 {
+        if tabs.count + (onSelectRecent == nil ? 0 : 1) > 1 {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: MacSpacing.sm) {
+                    if let onSelectRecent {
+                        recentChip(onSelectRecent).id(-1)
+                    }
                     // 스크롤 목표는 자리 번호로 잡는다 - `scrollTo(id:)` 는 Sendable 한 id 를 요구한다.
                     ForEach(Array(tabs.enumerated()), id: \.element) { index, tab in
                         chip(tab, index: index).id(index)
@@ -451,8 +535,29 @@ struct MacCategoryChipBar: View {
         }
     }
 
+    /// '최근' 칩. 아이폰 키보드처럼 늘 파란색이라 다른 칩과 헷갈리지 않는다.
+    private func recentChip(_ action: @escaping () -> Void) -> some View {
+        Button {
+            action()
+            withAnimation(.easeOut(duration: 0.2)) { position.scrollTo(edge: .leading) }
+        } label: {
+            HStack(spacing: MacSpacing.xs) {
+                Image(systemName: "clock.arrow.circlepath")
+                Text(NSLocalizedString("최근", comment: "Recent"))
+                    .lineLimit(1)
+            }
+            .font(MacFont.body)
+            .foregroundStyle(recentSelected ? AnyShapeStyle(Color.white) : AnyShapeStyle(MacRecentClips.tint))
+            .padding(.horizontal, MacSpacing.md)
+            .padding(.vertical, MacSpacing.xs)
+            .background(recentSelected ? MacRecentClips.tint : MacRecentClips.tint.opacity(0.12), in: Capsule())
+            .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+    }
+
     private func chip(_ tab: CategoryTab, index: Int) -> some View {
-        let isSelected = selected == tab
+        let isSelected = selected == tab && !recentSelected
         return Button {
             onSelect(tab)
             withAnimation(.easeOut(duration: 0.2)) { position.scrollTo(id: index, anchor: .center) }
@@ -612,6 +717,8 @@ private struct KeyboardShortcutCapture: NSViewRepresentable {
     let onArrowDown: () -> Void
     let onEscape: () -> Void
     let onReturn: () -> Void
+    /// 처리했으면 true. false 면 키를 그대로 흘려보낸다(검색창의 ⌘⌫).
+    var onCommandDelete: (() -> Bool)? = nil
 
     func makeNSView(context: Context) -> NSView {
         let view = KeyHandlerView()
@@ -619,6 +726,7 @@ private struct KeyboardShortcutCapture: NSViewRepresentable {
         view.onArrowDown = onArrowDown
         view.onEscape = onEscape
         view.onReturn = onReturn
+        view.onCommandDelete = onCommandDelete
         return view
     }
 
@@ -629,6 +737,7 @@ private struct KeyboardShortcutCapture: NSViewRepresentable {
         var onArrowDown: (() -> Void)?
         var onEscape: (() -> Void)?
         var onReturn: (() -> Void)?
+        var onCommandDelete: (() -> Bool)?
 
         override var acceptsFirstResponder: Bool { true }
 
@@ -650,6 +759,8 @@ private struct KeyboardShortcutCapture: NSViewRepresentable {
                 case 36, 76: // return / keypad enter
                     self.onReturn?()
                     return nil
+                case 51 where event.modifierFlags.contains(.command): // ⌘⌫
+                    return self.onCommandDelete?() == true ? nil : event
                 default:
                     return event
                 }

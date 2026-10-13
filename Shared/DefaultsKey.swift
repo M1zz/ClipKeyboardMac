@@ -48,6 +48,9 @@ enum DefaultsKey {
     /// 두 대째 상품(기기 동기화만 여는 것)을 샀는가 (App Group, Bool).
     /// ⚠️ 이 값이 참이어도 **Pro 는 아니다.** 여는 것은 동기화 하나뿐이다.
     static let twoDevicePurchased = "purchased.twoDevice"
+    /// 산 트림(`AccessTier.rawValue`, App Group, Int). 앱이 결제 권한에서 새기고 키보드가 읽는다.
+    /// ⚠️ 무료 기간 · 체험은 여기 들어가지 않는다. 산 것만이다(`ProFeatureManager.tier` 가 합친다).
+    static let purchasedTier = "purchased.tier"
     /// 결제 순간을 이미 띄운 것들 (App Group, `PurchaseMoment.rawValue` 배열).
     /// 순간은 각각 **평생 한 번**이다. 두 번 보여 준 순간부터 광고가 된다.
     static let purchaseMomentsShown = "purchase.moments.shown"
@@ -278,6 +281,11 @@ enum DefaultsKey {
     /// 갈래 번호(`keyboardLastCategoryPage`)와 **따로 둔다.** '최근' 을 0번에 끼워 넣으면
     /// 이미 저장된 번호가 모두 한 칸씩 밀려, 업데이트한 날 모두가 엉뚱한 갈래에서 열린다.
     static let keyboardShowsRecentClips = "keyboardShowsRecentClips.v1"
+    /// '최근' 탭에 마지막으로 담은 클립보드의 복사 번호(`UIPasteboard.changeCount`). App Group.
+    ///
+    /// 키보드는 뜰 때마다 새로 만들어진다. 번호를 기억해 두지 않으면 사람이 밀어서 지운 글이
+    /// 클립보드에 아직 남아 있는 한, 키보드를 다시 띄울 때마다 도로 담긴다.
+    static let keyboardRecentsCollectedChangeCount = "keyboardRecentsCollectedChangeCount.v1"
     /// 키보드가 지금 보고 있는 페이지의 **열쇠**(사용자 카테고리면 그 이름, 아니면 ★ 로 시작).
     /// 번호만으로는 앱이 어느 카테고리인지 모른다. 키보드 탭의 + 가 이걸 읽어 그 카테고리에 만든다.
     static let keyboardCurrentCategoryKey = "keyboardCurrentCategoryKey.v1"

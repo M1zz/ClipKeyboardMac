@@ -77,6 +77,11 @@ struct MacTemplateFillSheet: View {
                                 TextField(name, text: binding(for: token))
                                     .textFieldStyle(.roundedBorder)
                                     .font(MacFont.body)
+                                // 카드번호 · 여권번호처럼 딱 맞춰 적어야 하는 칸은 모양을 잡고 상태를 한 줄로 말한다.
+                                if let format = ValueFormat(placeholder: token),
+                                   let status = format.check(inputs[token] ?? "") {
+                                    ValueFormatStatusLine(status: status)
+                                }
                             }
                         }
                     }
@@ -136,7 +141,14 @@ struct MacTemplateFillSheet: View {
     private func binding(for token: String) -> Binding<String> {
         Binding(
             get: { inputs[token] ?? "" },
-            set: { inputs[token] = $0 }
+            set: { newValue in
+                // 템플릿 칸(`{`)이 섞인 글은 건드리지 않는다(iOS 와 같은 규칙).
+                if let format = ValueFormat(placeholder: token), !newValue.contains("{") {
+                    inputs[token] = format.format(newValue)
+                } else {
+                    inputs[token] = newValue
+                }
+            }
         )
     }
 }

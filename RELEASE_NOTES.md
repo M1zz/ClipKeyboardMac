@@ -9,6 +9,146 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 
 확인: `DeployBar --reponotes 탭클립키보드 5.1.7`
 
+## 5.1.8
+
+### 앱스토어 (한국어)
+
+최근 탭에서 복사한 글을 다시 꺼내 쓸 수 있어요.
+최근 항목은 밀거나 오른쪽 클릭으로 지워요.
+카드번호, 여권번호를 맞는 모양으로 적어 줘요.
+
+### App Store (English)
+
+A new Recent tab keeps what you copied.
+Swipe or right-click to delete a recent item.
+Card and passport numbers auto-format.
+
+### 앱스토어 (중국어 간체)
+
+新增“最近”标签，复制过的内容随时可用。
+滑动或右键点按即可删除最近项目。
+卡号、护照号会自动排成正确格式。
+
+### 앱스토어 (중국어 번체)
+
+新增「最近」標籤，複製過的內容隨時可用。
+滑動或按右鍵即可刪除最近項目。
+卡號、護照號碼會自動排成正確格式。
+
+### 앱스토어 (일본어, ja)
+
+新しい「最近」タブでコピーした内容を再利用できます。
+最近の項目はスワイプか右クリックで削除できます。
+カード番号やパスポート番号を正しい形に整えます。
+
+### 앱스토어 (독일어, de)
+
+Neuer Tab „Zuletzt“ mit allem, was du kopiert hast.
+Wischen oder Rechtsklick löscht einen Eintrag.
+Karten- und Passnummern werden richtig formatiert.
+
+### 앱스토어 (스페인어, es)
+
+Nueva pestaña Recientes con lo que copiaste.
+Desliza o haz clic derecho para borrar un reciente.
+Tarjetas y pasaportes se formatean solos.
+
+### 앱스토어 (프랑스어, fr)
+
+Nouvel onglet Récents avec ce que vous copiez.
+Balayez ou clic droit pour supprimer un élément.
+Numéros de carte et de passeport bien formatés.
+
+### 앱스토어 (이탈리아어, it)
+
+Nuova scheda Recenti con ciò che hai copiato.
+Scorri o fai clic destro per eliminare un elemento.
+Numeri di carta e passaporto formattati da soli.
+
+### 앱스토어 (포르투갈어(브라질), pt-BR)
+
+Nova aba Recentes com o que você copiou.
+Deslize ou clique com o botão direito para apagar.
+Cartão e passaporte já saem formatados.
+
+### 앱스토어 (러시아어, ru)
+
+Новая вкладка «Недавние» со всем скопированным.
+Смахните или нажмите правой кнопкой, чтобы удалить.
+Номера карт и паспортов форматируются сами.
+
+### 앱스토어 (체코어, cs)
+
+Nová karta Nedávné se vším, co jste zkopírovali.
+Položku smažete přejetím nebo pravým kliknutím.
+Čísla karet a pasů se naformátují sama.
+
+### 앱스토어 (덴마크어, da)
+
+Ny fane Seneste med det, du har kopieret.
+Stryg eller højreklik for at slette et element.
+Kort- og pasnumre formateres automatisk.
+
+### 앱스토어 (그리스어, el)
+
+Νέα καρτέλα Πρόσφατα με ό,τι αντιγράψατε.
+Σύρετε ή κάντε δεξί κλικ για διαγραφή.
+Κάρτες και διαβατήρια μορφοποιούνται σωστά.
+
+### 앱스토어 (핀란드어, fi)
+
+Uusi Viimeisimmät-välilehti kopioimillesi.
+Poista kohde pyyhkäisemällä tai oikealla klikillä.
+Kortin- ja passinnumerot muotoillaan oikein.
+
+### 앱스토어 (인도네시아어, id)
+
+Tab Terbaru baru berisi teks yang Anda salin.
+Geser atau klik kanan untuk menghapus item.
+Nomor kartu dan paspor diformat otomatis.
+
+### 앱스토어 (노르웨이어(보크말), nb)
+
+Ny fane Nylige med det du har kopiert.
+Sveip eller høyreklikk for å slette et element.
+Kort- og passnumre formateres automatisk.
+
+### 앱스토어 (네덜란드어, nl)
+
+Nieuw tabblad Recent met wat je hebt gekopieerd.
+Veeg of klik met rechts om te verwijderen.
+Kaart- en paspoortnummers netjes opgemaakt.
+
+### 앱스토어 (폴란드어, pl)
+
+Nowa karta Ostatnie z tym, co skopiowano.
+Przesuń lub kliknij prawym, aby usunąć element.
+Numery kart i paszportów formatują się same.
+
+### 앱스토어 (스웨덴어, sv)
+
+Ny flik Senaste med det du har kopierat.
+Svep eller högerklicka för att radera ett objekt.
+Kort- och passnummer formateras automatiskt.
+
+### 앱스토어 (태국어, th)
+
+แท็บล่าสุดใหม่ เก็บข้อความที่คุณคัดลอกไว้
+ปัดหรือคลิกขวาเพื่อลบรายการล่าสุด
+เลขบัตรและหนังสือเดินทางจัดรูปแบบให้อัตโนมัติ
+
+### 앱스토어 (튀르키예어, tr)
+
+Kopyaladıklarınız için yeni Son Kullanılanlar sekmesi.
+Silmek için kaydırın veya sağ tıklayın.
+Kart ve pasaport numaraları kendiliğinden biçimlenir.
+
+### 앱스토어 (베트남어, vi)
+
+Thẻ Gần đây mới lưu những gì bạn đã sao chép.
+Vuốt hoặc nhấp chuột phải để xóa một mục.
+Số thẻ và số hộ chiếu tự định dạng đúng.
+
 ## 5.1.7
 
 ### 앱스토어 (한국어)

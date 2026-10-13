@@ -235,7 +235,7 @@ struct MemoListView: View {
                     searchText = ""
                 } label: {
                     Image(systemName: AppSymbol.xmarkCircleFill)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.red)
                 }
                 .buttonStyle(.plain)
             }
