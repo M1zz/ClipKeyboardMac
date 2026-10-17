@@ -37,6 +37,7 @@
 		978F52CCFC2F9B07F26B3629 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3358EE221E408AB025F1BF04 /* Cocoa.framework */; };
 		A11L0G0000000000000000B1 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11L0G0000000000000000F1 /* AppLog.swift */; };
 		AAD91F0825BBE26588073ABE /* ClipKeyboardTapSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */; };
+		6A09DFCA7ECB4ED786794C81 /* ClipKeyboardTapRoadmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55C4C5A070E4552B3F30221 /* ClipKeyboardTapRoadmap.swift */; };
 		AD0A1F1AC7E33C7CCF57C7EA /* SampleMemoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FB37FAC03ED87F334754B /* SampleMemoStorage.swift */; };
 		BD2A0EE0816091EC84002DB3 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7F8F61DA1F45856006E0D6 /* WindowManager.swift */; };
 		C572F383D90B7F7D7BF3ED50 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EF282126415A431418587379 /* Localizable.xcstrings */; };
@@ -90,6 +91,7 @@
 		CKG00022F0000000000000002 /* CloudKitContainerGate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudKitContainerGate.swift; sourceTree = "<group>"; };
 		8E307EF1A65000000000F003 /* RemoteFlagsService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteFlagsService.swift; sourceTree = "<group>"; };
 		9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClipKeyboardTapSpec.swift; sourceTree = "<group>"; };
+		C55C4C5A070E4552B3F30221 /* ClipKeyboardTapRoadmap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClipKeyboardTapRoadmap.swift; sourceTree = "<group>"; };
 		A11L0G0000000000000000F1 /* AppLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		A1C26372726AFC85F4249E6A /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
 		ABBBEDB8FF82221F95A69EBF /* AppNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				28BD1F084A2AED7850F8CDF5 /* ClipKeyboard.tap.entitlements */,
 				EF282126415A431418587379 /* Localizable.xcstrings */,
 				9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */,
+				C55C4C5A070E4552B3F30221 /* ClipKeyboardTapRoadmap.swift */,
 			);
 			path = ClipKeyboard.tap;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				CKG00012F0000000000000001 /* CloudKitContainerGate.swift in Sources */,
 				17DC93EED0FD5E5F5FEE0B22 /* StorageFile.swift in Sources */,
 				AAD91F0825BBE26588073ABE /* ClipKeyboardTapSpec.swift in Sources */,
+				6A09DFCA7ECB4ED786794C81 /* ClipKeyboardTapRoadmap.swift in Sources */,
 				AD0A1F1AC7E33C7CCF57C7EA /* SampleMemoStorage.swift in Sources */,
 				A11L0G0000000000000000B1 /* AppLog.swift in Sources */,
 				CA7EG0R00000000000000B02 /* CategorySnapshot.swift in Sources */,

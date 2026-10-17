@@ -433,6 +433,578 @@
         }
       }
     },
+    "Siri로 바로 꺼내 쓰기" : {
+      "comment" : "Roadmap item: Siri and the Shortcuts app",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použití se Siri"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brug med Siri"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Siri nutzen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρήση με το Siri"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use with Siri"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar con Siri"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käyttö Sirin kanssa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisation avec Siri"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gunakan dengan Siri"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa con Siri"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siriからすぐ呼び出す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri로 바로 꺼내 쓰기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruk med Siri"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruiken met Siri"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korzystanie z Siri"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar com a Siri"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Работа с Siri"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Använd med Siri"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ใช้กับ Siri"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri ile kullanın"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dùng với Siri"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过 Siri 快速调用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透過 Siri 快速叫出"
+          }
+        }
+      }
+    },
+    "Siri에게 말하거나 단축어 앱에서 저장한 글을 바로 불러와요." : {
+      "comment" : "Roadmap item detail: Siri and the Shortcuts app",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložený text vyvoláte hned – stačí říct Siri nebo použít aplikaci Zkratky."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spørg Siri, eller brug appen Genveje til straks at hente din gemte tekst."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frag Siri oder nutze die Kurzbefehle-App, um gespeicherten Text sofort abzurufen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ζητήστε το από το Siri ή χρησιμοποιήστε την εφαρμογή Συντομεύσεις για να φέρετε αμέσως το αποθηκευμένο κείμενο."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask Siri or use the Shortcuts app to pull up your saved text instantly."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pídeselo a Siri o usa la app Atajos para recuperar al instante tu texto guardado."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pyydä Siriä tai käytä Pikakomennot-appia, niin tallennettu teksti tulee heti esiin."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demandez à Siri ou utilisez l’app Raccourcis pour retrouver aussitôt votre texte enregistré."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minta Siri atau gunakan app Pintasan untuk langsung memanggil teks tersimpan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiedi a Siri o usa l’app Comandi Rapidi per richiamare subito il testo salvato."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siriに話しかけるか、ショートカットAppから保存した文章をすぐに呼び出せます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri에게 말하거나 단축어 앱에서 저장한 글을 바로 불러와요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spør Siri eller bruk Snarveier-appen for å hente lagret tekst med en gang."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vraag het aan Siri of gebruik de Opdrachten-app om bewaarde tekst meteen op te halen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poproś Siri lub użyj aplikacji Skróty, by od razu przywołać zapisany tekst."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peça à Siri ou use o app Atalhos para chamar na hora o texto salvo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попросите Siri или используйте «Быстрые команды», чтобы сразу вставить сохранённый текст."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fråga Siri eller använd appen Genvägar för att hämta sparad text direkt."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สั่ง Siri หรือใช้แอปคำสั่งลัดเพื่อเรียกข้อความที่บันทึกไว้ได้ทันที"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri’ye söyleyin ya da Kestirmeler uygulamasıyla kayıtlı metninizi anında getirin."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hỏi Siri hoặc dùng ứng dụng Phím tắt để gọi ngay văn bản đã lưu."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "对 Siri 说一声，或用“快捷指令”App，立即调出保存的文字。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跟 Siri 說一聲，或使用「捷徑」App，立即叫出儲存的文字。"
+          }
+        }
+      }
+    },
+    "VoiceOver가 단추와 단축어를 빠짐없이, 알맞은 순서로 읽어 줘요." : {
+      "comment" : "Roadmap item detail: better VoiceOver support",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver přečte všechna tlačítka i úryvky ve správném pořadí."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver læser alle knapper og tekststykker op i den rigtige rækkefølge."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver liest alle Tasten und Textbausteine in der richtigen Reihenfolge vor."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το VoiceOver διαβάζει όλα τα κουμπιά και τα αποσπάσματα με τη σωστή σειρά."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver reads every button and snippet, in the right order."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver lee todos los botones y fragmentos en el orden correcto."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver lukee kaikki painikkeet ja tekstinpätkät oikeassa järjestyksessä."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver lit chaque bouton et chaque extrait, dans le bon ordre."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver membacakan semua tombol dan cuplikan dengan urutan yang tepat."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver legge tutti i pulsanti e i frammenti nell’ordine giusto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOverがボタンやスニペットを漏れなく、正しい順番で読み上げます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver가 단추와 단축어를 빠짐없이, 알맞은 순서로 읽어 줘요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver leser opp alle knapper og tekstbiter i riktig rekkefølge."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver leest alle knoppen en fragmenten in de juiste volgorde voor."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver odczyta wszystkie przyciski i fragmenty we właściwej kolejności."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O VoiceOver lê todos os botões e trechos na ordem certa."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver прочитает все кнопки и заготовки в правильном порядке."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver läser upp alla knappar och textsnuttar i rätt ordning."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver อ่านปุ่มและข้อความทุกรายการได้ครบและถูกลำดับ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver tüm düğmeleri ve hazır metinleri doğru sırayla okur."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver đọc đủ mọi nút và đoạn văn bản theo đúng thứ tự."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver 会按正确顺序完整朗读所有按钮和短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver 會依正確順序完整朗讀所有按鈕與短語。"
+          }
+        }
+      }
+    },
+    "VoiceOver로 더 편하게" : {
+      "comment" : "Roadmap item: better VoiceOver support",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lepší podpora VoiceOver"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedre VoiceOver-understøttelse"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bessere VoiceOver-Unterstützung"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Καλύτερη υποστήριξη VoiceOver"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Better VoiceOver support"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mejor compatibilidad con VoiceOver"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parempi VoiceOver-tuki"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meilleure prise en charge de VoiceOver"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dukungan VoiceOver lebih baik"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver più comodo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOverをもっと快適に"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver로 더 편하게"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedre støtte for VoiceOver"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betere ondersteuning voor VoiceOver"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lepsza obsługa VoiceOver"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver mais confortável"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удобнее с VoiceOver"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bättre stöd för VoiceOver"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "รองรับ VoiceOver ได้ดีขึ้น"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha iyi VoiceOver desteği"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hỗ trợ VoiceOver tốt hơn"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更好地支持 VoiceOver"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更完善的 VoiceOver 支援"
+          }
+        }
+      }
+    },
     "[%@] 클립보드에 복사되었습니다" : {
       "comment" : "Clipboard copy toast",
       "localizations" : {
@@ -2721,6 +3293,2151 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "⚠️ 回復會用備份資料取代目前的資料"
+          }
+        }
+      }
+    },
+    "글자 크게 보기" : {
+      "comment" : "Roadmap item: larger text",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Větší písmo"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Større tekst"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Größere Schrift"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μεγαλύτερο κείμενο"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Larger text"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto más grande"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suurempi teksti"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texte plus grand"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks lebih besar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testo più grande"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字を大きく表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "글자 크게 보기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Større tekst"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grotere tekst"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Większy tekst"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto maior"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Крупный текст"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Större text"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ตัวอักษรใหญ่ขึ้น"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha büyük yazı"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chữ lớn hơn"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "放大文字"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "放大文字"
+          }
+        }
+      }
+    },
+    "단축어 한 번에 지우기" : {
+      "comment" : "Roadmap item: delete all data",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat všechny úryvky najednou"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slet alle tekststykker på én gang"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Textbausteine auf einmal löschen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγραφή όλων των αποσπασμάτων μαζί"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete all snippets at once"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar todos los fragmentos a la vez"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poista kaikki tekstinpätkät kerralla"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer tous les extraits d’un coup"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus semua cuplikan sekaligus"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina tutti i frammenti in una volta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スニペットをまとめて削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축어 한 번에 지우기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slett alle tekstbiter på én gang"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle fragmenten in één keer wissen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń wszystkie fragmenty naraz"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar todos os trechos de uma vez"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить все заготовки сразу"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radera alla textsnuttar på en gång"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ลบข้อความทั้งหมดในครั้งเดียว"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm hazır metinleri tek seferde silin"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xóa tất cả đoạn văn bản cùng lúc"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次删除所有短语"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次刪除所有短語"
+          }
+        }
+      }
+    },
+    "닫기" : {
+      "comment" : "Roadmap: close sheet button",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zavřít"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luk"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κλείσιμο"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sulje"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiudi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閉じる"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닫기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lukk"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sluit"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamknij"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fechar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stäng"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ปิด"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapat"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đóng"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "关闭"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關閉"
+          }
+        }
+      }
+    },
+    "대비를 높이거나 색을 구별하기 어려워도 내용을 알아볼 수 있어요." : {
+      "comment" : "Roadmap item detail: contrast and color",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vše zůstane čitelné i se zvýšeným kontrastem nebo při potížích s rozlišováním barev."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alt er let at læse med Øg kontrast slået til, eller hvis farver er svære at skelne."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles bleibt lesbar – mit erhöhtem Kontrast oder wenn Farben schwer zu unterscheiden sind."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όλα διαβάζονται άνετα με αυξημένη αντίθεση ή αν δυσκολεύεστε να ξεχωρίσετε χρώματα."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything stays readable with Increase Contrast on or if colors are hard to tell apart."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todo se lee bien con más contraste o si te cuesta distinguir colores."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaikki pysyy luettavana lisätyllä kontrastilla tai jos värien erottaminen on vaikeaa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout reste lisible avec le contraste augmenté ou si vous distinguez mal les couleurs."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua tetap terbaca dengan kontras tinggi atau jika sulit membedakan warna."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutto resta leggibile con il contrasto aumentato o se fai fatica a distinguere i colori."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コントラストを上げても、色の区別が難しくても、内容をしっかり読み取れます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대비를 높이거나 색을 구별하기 어려워도 내용을 알아볼 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alt er lett å lese med Øk kontrast på, eller hvis farger er vanskelige å skille."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles blijft leesbaar met meer contrast of als je kleuren moeilijk uit elkaar houdt."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wszystko pozostaje czytelne przy zwiększonym kontraście lub gdy trudno odróżnić kolory."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tudo fica legível com o contraste aumentado ou se for difícil distinguir cores."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всё читается даже с повышенным контрастом или если трудно различать цвета."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allt går att läsa med Öka kontrast påslaget eller om färger är svåra att skilja åt."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "อ่านได้ชัดเจนแม้เปิดเพิ่มความต่างของสี หรือแยกสีได้ยาก"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontrastı artırsanız da renkleri ayırt etmekte zorlansanız da her şey okunur kalır."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vẫn dễ đọc khi bật tăng tương phản hoặc khi khó phân biệt màu."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无论是否增强对比度、是否难以分辨颜色，内容都清晰可读。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無論是否增加對比、是否難以分辨顏色，內容都清楚易讀。"
+          }
+        }
+      }
+    },
+    "데스크톱 위젯" : {
+      "comment" : "Roadmap item: desktop widgets",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgety na ploše"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets på skrivebordet"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets auf dem Schreibtisch"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widget στο γραφείο εργασίας"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desktop widgets"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets en el escritorio"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Työpöydän widgetit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets sur le bureau"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widget di desktop"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widget sulla scrivania"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デスクトップウィジェット"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "데스크톱 위젯"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgeter på skrivebordet"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets op het bureaublad"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widżety na biurku"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets na mesa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виджеты на рабочем столе"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgetar på skrivbordet"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "วิดเจ็ตบนเดสก์ท็อป"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masaüstü widget’ları"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiện ích trên màn hình nền"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "桌面小组件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "桌面小工具"
+          }
+        }
+      }
+    },
+    "보기 편한 색과 대비" : {
+      "comment" : "Roadmap item: contrast and color",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lépe čitelné barvy a kontrast"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tydeligere farver og kontrast"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besser lesbare Farben und Kontraste"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πιο ευανάγνωστα χρώματα και αντίθεση"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Easier-to-see colors and contrast"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colores y contraste más legibles"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selkeämmät värit ja kontrasti"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couleurs et contraste plus lisibles"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warna dan kontras yang lebih jelas"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colori e contrasto più leggibili"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "見やすい色とコントラスト"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보기 편한 색과 대비"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tydeligere farger og kontrast"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duidelijkere kleuren en contrast"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czytelniejsze kolory i kontrast"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cores e contraste mais legíveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удобные цвета и контраст"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tydligare färger och kontrast"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สีและความคมชัดที่ดูง่ายขึ้น"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha okunaklı renkler ve kontrast"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Màu sắc và độ tương phản dễ nhìn hơn"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更易辨认的颜色与对比度"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更易辨識的顏色與對比"
+          }
+        }
+      }
+    },
+    "새 단축어를 쓰다가 창을 닫아도 쓰던 내용이 남아 있어요." : {
+      "comment" : "Roadmap item detail: keep unsaved drafts",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Když zavřete okno uprostřed psaní úryvku, text vám zůstane."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lukker du vinduet midt i et tekststykke, er teksten der stadig."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließt du das Fenster mitten im Schreiben, bleibt dein Text erhalten."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αν κλείσετε το παράθυρο ενώ γράφετε ένα απόσπασμα, το κείμενο θα παραμείνει."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close the window mid-snippet and your text will still be there."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si cierras la ventana a mitad de un fragmento, tu texto seguirá ahí."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jos suljet ikkunan kesken kirjoittamisen, teksti säilyy."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermez la fenêtre en pleine rédaction : votre texte sera toujours là."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup jendela saat menulis cuplikan, teksnya tetap tersimpan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se chiudi la finestra mentre scrivi un frammento, il testo resta lì."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しいスニペットを書いている途中でウインドウを閉じても、内容は残ります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 단축어를 쓰다가 창을 닫아도 쓰던 내용이 남아 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lukker du vinduet midt i en tekstbit, er teksten der fortsatt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sluit je het venster halverwege een fragment, dan blijft je tekst bewaard."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamknij okno w trakcie pisania fragmentu – tekst nie zniknie."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feche a janela no meio de um trecho e o texto continua lá."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закройте окно посреди набора — текст сохранится."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stänger du fönstret mitt i en textsnutt finns texten kvar."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ปิดหน้าต่างระหว่างพิมพ์ข้อความใหม่ ข้อความที่เขียนไว้ก็ยังอยู่"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hazır metin yazarken pencereyi kapatsanız da yazdıklarınız kaybolmaz."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đóng cửa sổ giữa chừng thì nội dung đang viết vẫn còn nguyên."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "写新短语时即使关闭窗口，已写的内容也会保留。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "寫新短語時即使關閉視窗，已寫的內容也會保留。"
+          }
+        }
+      }
+    },
+    "쓰는 요령 알려 주기" : {
+      "comment" : "Roadmap item: tips",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Užitečné tipy"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyttige tips"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfreiche Tipps"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρήσιμες συμβουλές"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helpful tips"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consejos útiles"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyödyllisiä vinkkejä"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Astuces utiles"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tips berguna"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suggerimenti utili"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使い方のヒント"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "쓰는 요령 알려 주기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyttige tips"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handige tips"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przydatne wskazówki"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dicas úteis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полезные подсказки"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Användbara tips"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เคล็ดลับการใช้งาน"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faydalı ipuçları"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mẹo sử dụng"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用小技巧"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用小技巧"
+          }
+        }
+      }
+    },
+    "쓰던 단축어 이어 쓰기" : {
+      "comment" : "Roadmap item: keep unsaved drafts",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokračujte, kde jste skončili"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsæt, hvor du slap"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dort weitermachen, wo du aufgehört hast"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συνεχίστε από εκεί που σταματήσατε"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pick up where you left off"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retoma donde lo dejaste"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jatka siitä, mihin jäit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reprenez là où vous en étiez"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjutkan dari terakhir kali"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riprendi da dove avevi lasciato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書きかけのスニペットを再開"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "쓰던 단축어 이어 쓰기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsett der du slapp"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ga verder waar je was"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontynuuj od miejsca, w którym skończyłeś"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue de onde parou"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить с того же места"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsätt där du slutade"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เขียนต่อจากที่ค้างไว้"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaldığınız yerden devam edin"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viết tiếp chỗ còn dang dở"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "接着写未完成的短语"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "接著寫未完成的短語"
+          }
+        }
+      }
+    },
+    "알아 두면 편한 기능을 알맞은 때에 살짝 알려 줘요." : {
+      "comment" : "Roadmap item detail: tips",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Šikovné funkce vám nenápadně ukážeme právě ve chvíli, kdy se hodí."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smarte funktioner bliver vist diskret, lige når de er nyttige."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Praktische Funktionen werden dezent gezeigt – genau dann, wenn sie nützen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σας δείχνουμε διακριτικά χρήσιμες λειτουργίες, τη στιγμή που τις χρειάζεστε."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handy features are pointed out gently, right when they’re useful."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te mostramos funciones prácticas con discreción, justo cuando te sirven."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kätevät toiminnot esitellään huomaamattomasti juuri silloin, kun niistä on hyötyä."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les fonctions pratiques vous sont suggérées discrètement, au bon moment."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitur praktis ditunjukkan secara halus, tepat saat berguna."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le funzioni più comode ti vengono suggerite con discrezione, al momento giusto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "知っておくと便利な機能を、ちょうどよいタイミングでさりげなくお知らせします。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알아 두면 편한 기능을 알맞은 때에 살짝 알려 줘요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smarte funksjoner blir vist diskret, akkurat når de er nyttige."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handige functies worden subtiel getoond, precies wanneer ze van pas komen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przydatne funkcje podpowiemy dyskretnie, właśnie wtedy, gdy się przydadzą."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostramos recursos práticos com discrição, na hora em que forem úteis."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удобные функции подскажем ненавязчиво — как раз тогда, когда они пригодятся."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smarta funktioner visas diskret, precis när de kommer till nytta."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "แนะนำฟีเจอร์ที่มีประโยชน์อย่างแนบเนียนในจังหวะที่เหมาะสม"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İşinize yarayacak özellikleri tam zamanında, rahatsız etmeden gösteririz."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gợi ý nhẹ nhàng các tính năng hữu ích vào đúng lúc cần."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在合适的时候，轻轻提示实用的小功能。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在適當的時候，輕輕提示實用的小功能。"
+          }
+        }
+      }
+    },
+    "앱 안의 글자를 더 크게 키워 볼 수 있어요." : {
+      "comment" : "Roadmap item detail: larger text",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text v aplikaci si můžete zvětšit."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gør teksten i appen større, når du vil."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergrößere die Schrift in der App nach Bedarf."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μεγαλώστε το κείμενο της εφαρμογής όποτε θέλετε."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make the text in the app bigger whenever you like."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agranda el texto de la app cuando quieras."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voit suurentaa sovelluksen tekstiä halutessasi."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agrandissez le texte de l’app quand vous le souhaitez."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perbesar teks di aplikasi kapan pun Anda mau."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingrandisci il testo dell’app quando vuoi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリ内の文字をもっと大きくして見られます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 안의 글자를 더 크게 키워 볼 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjør teksten i appen større når du vil."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak de tekst in de app groter wanneer je wilt."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiększ tekst w aplikacji, kiedy chcesz."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aumente o texto do app quando quiser."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст в приложении можно сделать крупнее."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gör texten i appen större när du vill."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ขยายตัวอักษรในแอปให้ใหญ่ขึ้นได้ตามต้องการ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamadaki yazıları dilediğinizde büyütebilirsiniz."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phóng to chữ trong ứng dụng bất cứ khi nào bạn muốn."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可以把应用里的文字调得更大。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可以把 App 裡的文字調得更大。"
+          }
+        }
+      }
+    },
+    "앱을 열지 않고 데스크톱에서 단축어를 바로 꺼내 써요." : {
+      "comment" : "Roadmap item detail: desktop widgets",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úryvky použijete přímo z plochy, bez otevírání aplikace."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brug dine tekststykker direkte fra skrivebordet uden at åbne appen."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Greif direkt auf dem Schreibtisch auf deine Textbausteine zu, ohne die App zu öffnen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρησιμοποιήστε τα αποσπάσματά σας απευθείας από το γραφείο εργασίας, χωρίς να ανοίξετε την εφαρμογή."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grab your snippets right from the desktop without opening the app."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa tus fragmentos directamente desde el escritorio, sin abrir la app."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käytä tekstinpätkiä suoraan työpöydältä avaamatta sovellusta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisez vos extraits directement depuis le bureau, sans ouvrir l’app."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pakai cuplikan langsung dari desktop tanpa membuka aplikasi."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa i tuoi frammenti direttamente dalla scrivania, senza aprire l’app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリを開かずに、デスクトップからすぐにスニペットを使えます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱을 열지 않고 데스크톱에서 단축어를 바로 꺼내 써요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruk tekstbitene dine rett fra skrivebordet uten å åpne appen."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruik je fragmenten direct vanaf het bureaublad, zonder de app te openen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korzystaj z fragmentów prosto z biurka, bez otwierania aplikacji."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use seus trechos direto da mesa, sem abrir o app."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Берите заготовки прямо с рабочего стола, не открывая приложение."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Använd dina textsnuttar direkt från skrivbordet utan att öppna appen."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หยิบข้อความที่บันทึกไว้มาใช้จากเดสก์ท็อปได้ทันทีโดยไม่ต้องเปิดแอป"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamayı açmadan hazır metinlerinizi doğrudan masaüstünden kullanın."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dùng ngay đoạn văn bản từ màn hình nền mà không cần mở ứng dụng."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无需打开应用，直接在桌面上取用短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不必打開 App，直接在桌面上取用短語。"
+          }
+        }
+      }
+    },
+    "움직임 줄이기" : {
+      "comment" : "Roadmap item: reduce motion",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omezit pohyb"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reducer bevægelse"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewegung reduzieren"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μείωση κίνησης"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduce Motion"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reducir movimiento"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vähennä liikettä"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réduire les animations"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurangi Gerakan"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riduci movimento"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "視差効果を減らす"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "움직임 줄이기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduser bevegelse"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verminder beweging"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ogranicz ruch"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduzir Movimento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уменьшение движения"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minska rörelse"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ลดการเคลื่อนไหว"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hareketi Azalt"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giảm chuyển động"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "减弱动态效果"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "減少動態效果"
+          }
+        }
+      }
+    },
+    "움직임 줄이기를 켜면 화면 효과가 차분해져요." : {
+      "comment" : "Roadmap item detail: reduce motion",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se zapnutým omezením pohybu budou animace klidnější."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når Reducer bevægelse er slået til, bliver animationerne roligere."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ist „Bewegung reduzieren“ aktiv, werden Animationen ruhiger."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Με τη Μείωση κίνησης, τα εφέ γίνονται πιο ήπια."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With Reduce Motion on, animations become calmer."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con Reducir movimiento activado, las animaciones son más suaves."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kun Vähennä liikettä on päällä, animaatiot ovat rauhallisempia."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avec Réduire les animations activé, les effets se font plus discrets."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saat Kurangi Gerakan aktif, animasi jadi lebih tenang."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con Riduci movimento attivo, le animazioni diventano più tranquille."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「視差効果を減らす」をオンにすると、画面の動きが控えめになります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "움직임 줄이기를 켜면 화면 효과가 차분해져요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når Reduser bevegelse er på, blir animasjonene roligere."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Met Verminder beweging aan worden animaties rustiger."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Po włączeniu ograniczenia ruchu animacje będą spokojniejsze."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Com Reduzir Movimento ativado, as animações ficam mais suaves."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если включить «Уменьшение движения», анимации станут спокойнее."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med Minska rörelse påslaget blir animeringarna lugnare."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เมื่อเปิดลดการเคลื่อนไหว เอฟเฟกต์บนหน้าจอจะนุ่มนวลลง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hareketi Azalt açıkken animasyonlar daha sakin olur."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khi bật Giảm chuyển động, hiệu ứng trên màn hình sẽ nhẹ nhàng hơn."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开“减弱动态效果”后，界面动画会更柔和。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟「減少動態效果」後，畫面動畫會更柔和。"
+          }
+        }
+      }
+    },
+    "원하면 이 맥에 저장한 단축어를 모두 지울 수 있어요." : {
+      "comment" : "Roadmap item detail: delete all data",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kdykoli můžete smazat všechny úryvky uložené v tomto Macu."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slet alle tekststykker på denne Mac, når du vil."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lösche bei Bedarf alle auf diesem Mac gespeicherten Textbausteine."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγράψτε όποτε θέλετε όλα τα αποσπάσματα που είναι αποθηκευμένα σε αυτό το Mac."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase every snippet saved on this Mac whenever you want."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borra cuando quieras todos los fragmentos guardados en este Mac."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voit milloin tahansa poistaa kaikki tähän Maciin tallennetut tekstinpätkät."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacez quand vous voulez tous les extraits enregistrés sur ce Mac."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus semua cuplikan yang tersimpan di Mac ini kapan pun Anda mau."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancella quando vuoi tutti i frammenti salvati su questo Mac."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このMacに保存したスニペットを、いつでもすべて削除できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "원하면 이 맥에 저장한 단축어를 모두 지울 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slett alle tekstbiter på denne Macen når du vil."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis wanneer je wilt alle fragmenten die op deze Mac zijn bewaard."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W każdej chwili usuniesz wszystkie fragmenty zapisane na tym Macu."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apague quando quiser todos os trechos salvos neste Mac."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все заготовки на этом Mac можно стереть в любой момент."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radera alla textsnuttar som sparats på den här Macen när du vill."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ลบข้อความทั้งหมดที่บันทึกไว้ใน Mac เครื่องนี้ได้ทุกเมื่อ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu Mac’te kayıtlı tüm hazır metinleri dilediğiniz zaman silebilirsiniz."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xóa toàn bộ đoạn văn bản đã lưu trên máy Mac này bất cứ lúc nào."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "随时可以清空这台 Mac 上保存的全部短语。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隨時可以清空這台 Mac 上儲存的全部短語。"
           }
         }
       }

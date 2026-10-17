@@ -25,6 +25,7 @@ struct MacPreferencesView: View {
     @State private var isDiagnosing = false
     @State private var isResetting = false
     @State private var selectedTab: Int = Self.initialTab
+    @State private var showRoadmap = false
 
     private static var initialTab: Int {
         #if DEBUG
@@ -147,12 +148,19 @@ struct MacPreferencesView: View {
 
             Section {
                 LeeoSupportSection<ClipKeyboardTapSpec>()
+                // 앞으로 만들 기능 — 환경설정 창에는 내비게이션이 없어 시트로 연다.
+                Button {
+                    showRoadmap = true
+                } label: {
+                    Label(LeeoRoadmapText.entry, systemImage: "map")
+                }
             } header: {
                 Text(NSLocalizedString("Feedback & Review", comment: "Prefs section: feedback"))
                     .font(MacFont.sectionTitle)
             }
         }
         .formStyle(.grouped)
+        .sheet(isPresented: $showRoadmap) { RoadmapScreen() }
         .onAppear {
             syncEnabled = MemoSyncFlags.enabled
             refreshSyncStatus()
