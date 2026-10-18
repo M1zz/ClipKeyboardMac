@@ -56,7 +56,7 @@ iCloud 백업과 복원, 최근 15개 시점으로 되돌리기, 파일로 내�
 ### 키워드
 
 ```
-클립보드,복사,복붙,상용구,자주쓰는문구,템플릿,스니펫,클립보드기록,계좌번호,이메일서명,자기소개,반복입력,텍스트확장,문구저장,생산성,메모,자동완성,인사말,주소,고객응대
+이메일서명,반복입력,문구저장,고객응대,자주쓰는문구,자기소개,인사말,상용구,계좌번호,빠른붙여넣기,복붙,클립보드,텍스트대치,템플릿,메모,복사,텍스트확장,자동완성,클립보드기록,주소
 ```
 
 ### 프로모션 텍스트
@@ -128,7 +128,7 @@ Available in 23 languages, including English, Japanese, Korean, Chinese, German,
 ### 키워드
 
 ```
-clipboard,snippets,text,expander,boilerplate,template,canned,replies,signature,history,hotkey,copy
+history,clipboard,replies,text,signature,snippet,template,boilerplate,canned,expander,phrases
 ```
 
 ### 프로모션 텍스트
