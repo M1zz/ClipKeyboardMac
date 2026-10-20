@@ -208,6 +208,16 @@ enum DefaultsKey {
     /// ⚠️ 그 값은 키보드가 **뜬 뒤에야** 읽는다. 뜨기 전에 읽으면 UIKit 안에서 예외로 죽는다
     ///    (docs/postmortem/KEYBOARD_INPUT_MODE_SWITCH_CRASH.md). 그래서 첫 그림은 지난번 값으로 그린다.
     static let keyboardNeedsGlobeKey = "keyboardNeedsGlobeKey.v1"
+    /// 키보드가 마지막으로 뜰 때 본 "전체 접근 허용" (App Group, Bool). 앱의 키보드 설정이 읽는다.
+    ///
+    /// ⚠️ 꺼져 있으면 iOS 가 키보드의 App Group **쓰기**를 막을 수 있다. 그래서 `false` 가
+    ///    안 적힐 수 있다. 앱은 `true` 일 때만 "켜져 있다" 고 믿고, 없거나 `false` 면 꺼진 것으로 본다.
+    static let keyboardFullAccessGranted = "keyboardFullAccessGranted.v1"
+    /// 키보드의 전체 접근 안내 줄을 닫은 시각(timeIntervalSince1970). **익스텐션의 표준 UserDefaults.**
+    ///
+    /// ⚠️ App Group 에 두지 않는다. 이 값을 쓰는 때는 전체 접근이 꺼진 때뿐이고,
+    ///    그때는 App Group 쓰기가 막힐 수 있다. 키보드 혼자 기억하면 되는 값이다.
+    static let keyboardFullAccessNoticeDismissedAt = "keyboardFullAccessNoticeDismissedAt.v1"
 
     // MARK: 무료로 쓰는 기간 (FreeUse)
 
@@ -296,6 +306,14 @@ enum DefaultsKey {
     static let keyboardCustomBgHex = "keyboardCustomBgHex"
     static let keyboardCustomKeyHex = "keyboardCustomKeyHex"
     static let keyboardKoreanLayout = "keyboardKoreanLayout"
+    /// 자판에 켜 둔 언어들(순서대로, 쉼표로 이은 `TypingLanguage.rawValue`). 비어 있으면 기기 언어에서 고른다.
+    static let keyboardTypingLanguages = "keyboardTypingLanguages.v1"
+    /// 자판에서 지금 치는 언어(`TypingLanguage.rawValue`).
+    ///
+    /// ⚠️ `keyboardTypingLang` 과 따로 둔다. 그쪽은 검색칸 자판이 "english" · "korean" 으로 쓰고 있다.
+    static let keyboardTypingCurrent = "keyboardTypingCurrent.v1"
+    /// 키보드를 열면 먼저 보일 판(`KeyboardInputMode`: typing · snippets). 마지막에 보던 판을 따른다.
+    static let keyboardInputMode = "keyboardInputMode.v1"
     /// 목록 카드의 최소 높이(pt). 표준 UserDefaults (앱 전용).
     static let memoCardHeight = "memoCardHeight"
     static let koreanEnabledMigratedV1 = "koreanEnabledMigrated_v1"
@@ -328,6 +346,9 @@ enum DefaultsKey {
     /// Control Center 빠른 메모 컨트롤·quicknote 딥링크가 켠 "빠른 메모 입력 시트 열기" 보류 플래그.
     /// 위젯 타겟은 같은 문자열 리터럴 사용(QuickNoteControl.swift).
     static let pendingQuickNoteAdd = "pendingQuickNoteAdd"
+    /// 동작 버튼 · 제어 센터의 '클립보드 담기'(`CaptureClipboardIntent`)가 켠 "복사한 글 담기" 보류 플래그.
+    /// 콜드 런치에서는 알림보다 목록이 늦게 뜨므로 목록이 활성화될 때 소비한다(`ClipboardCapture`).
+    static let pendingClipboardCapture = "pendingClipboardCapture"
     static let proValueNudgeDismissedV1 = "proValueNudgeDismissed_v1"
     static let recentEmojis = "recentEmojis"
     static let recentlyUsedCategories = "recentlyUsedCategories"

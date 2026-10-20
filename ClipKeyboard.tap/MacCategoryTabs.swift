@@ -72,6 +72,9 @@ enum BuiltInCategory: String, CaseIterable, Hashable {
 }
 
 enum CategoryTab: Hashable, Equatable {
+    /// 맨 앞 '최근' - 복사해 담아 둔 것(단축어가 아니다). 키보드 '최근' 탭과 같은 것을 같은 설정으로 세운다
+    /// (`KeyboardPrefs.showRecentClipsTab`). 사용자: "키보드에는 최근이 생겼는데 목록 탭에는 안 생겼네".
+    case recent
     /// "전체" 탭 제거 후 기본 홈 탭 - 어떤 사용자 카테고리에도 속하지 않은(기본/미분류) 메모 모음.
     case basic
     /// 카테고리 기능이 꺼져 있을 때의 단일 "모든 메모" 페이지 전용. 탭 바에는 노출되지 않음.
@@ -82,6 +85,7 @@ enum CategoryTab: Hashable, Equatable {
 
     var displayName: String {
         switch self {
+        case .recent:    return NSLocalizedString("최근", comment: "Recent")
         case .basic:     return NSLocalizedString("기본", comment: "Category tab: default/basic")
         case .all:       return NSLocalizedString("전체", comment: "Category tab: all")
         case .favorites: return NSLocalizedString("즐겨찾기", comment: "Category tab: favorites")
@@ -93,6 +97,7 @@ enum CategoryTab: Hashable, Equatable {
     /// UserDefaults 저장용 안정 키 (마지막 본 탭 복원).
     var storageKey: String {
         switch self {
+        case .recent:           return "__recent__"
         case .basic:            return "__basic__"
         case .all:              return "__all__"
         case .favorites:        return "__favorites__"
@@ -103,6 +108,7 @@ enum CategoryTab: Hashable, Equatable {
 
     init?(storageKey: String) {
         switch storageKey {
+        case "__recent__":    self = .recent
         case "__basic__":     self = .basic
         case "__all__":       self = .all
         case "__favorites__": self = .favorites
@@ -123,6 +129,7 @@ enum CategoryTab: Hashable, Equatable {
 
     var icon: String {
         switch self {
+        case .recent:    return AppSymbol.clockArrowCirclepath
         case .basic:     return "tray.full.fill"
         case .all:       return "square.grid.2x2"
         case .favorites: return "heart.fill"
@@ -256,6 +263,10 @@ enum MacCategoryTabs {
             return memos.filter { builtIn.matches($0) }
         case .custom(let name):
             return memos.filter { $0.category == name }
+        case .recent:
+            // '최근'은 복사해 담아 둔 것이지 단축어가 아니다. 맥은 이 탭을 세우지 않는다(`tabs` 참고).
+            // 선언은 아이폰과 같아야 해서(`check_shared_drift.sh`) 경우만 받아 둔다.
+            return []
         }
     }
 

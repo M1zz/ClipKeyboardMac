@@ -42,8 +42,13 @@ extension Notification.Name {
     /// 단축어당 한 번뿐이다(`EditPattern.markAsked`).
     static let editPatternSuggestion = Notification.Name("editPatternSuggestion")
     static let openMainAppPaywall = Notification.Name("openMainAppPaywall")
-    /// 키보드의 "의견 보내기" → 앱을 열어 의견 창을 띄운다. object = `FeedbackOrigin.rawValue` 문자열.
-    static let openMainAppFeedback = Notification.Name("openMainAppFeedback")
+    /// 키보드의 전체 접근 안내 줄 → 앱을 열어 켜는 법(`FullAccessGuideView`)을 띄운다.
+    static let openFullAccessGuide = Notification.Name("openFullAccessGuide")
+    /// 키보드 빈칸 채우기의 + → 앱을 열어 그 빈칸의 값 추가 칸을 띄운다. object = 빈칸 토큰(`{이름}`).
+    static let openPlaceholderValueAdd = Notification.Name("openPlaceholderValueAdd")
+    /// 키보드 '최근' 줄의 + → 그 글을 단축어로 저장하는 시트를 띄운다. object = 복사 기록 id(`UUID.uuidString`).
+    /// 앱 안 미리보기에서는 앱 루트가 바로 받고, 진짜 키보드에서는 키보드가 앱을 연다(`clipkeyboard://saveclip?id=`).
+    static let saveRecentClipAsSnippet = Notification.Name("saveRecentClipAsSnippet")
     /// 빠른 메모(Inbox) 보관함이 변경됨(추가/삭제/승격) → 열려 있는 화면·배지 새로고침.
     static let quickNotesChanged = Notification.Name("quickNotesChanged")
     static let openMemoListWindow = Notification.Name("openMemoListWindow")
@@ -51,6 +56,8 @@ extension Notification.Name {
     static let openQuickNoteInbox = Notification.Name("openQuickNoteInbox")
     /// 빠른 메모 입력 시트를 연다(Control Center 컨트롤의 clipkeyboard://quicknote 딥링크).
     static let openQuickNoteAdd = Notification.Name("openQuickNoteAdd")
+    /// 방금 복사한 글을 복사 기록에 담는다(동작 버튼 · 제어 센터의 '클립보드 담기').
+    static let captureClipboard = Notification.Name("captureClipboard")
     static let reviewTriggerClipSaved = Notification.Name("reviewTriggerClipSaved")
     static let reviewTriggerStackCompleted = Notification.Name("reviewTriggerComboCompleted")
     /// 사용 기록 탭을 연다. 새 단장 안내가 "내가 아낀 시간 보기"로 데려갈 때 쓴다.
