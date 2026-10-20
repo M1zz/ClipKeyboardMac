@@ -108,6 +108,8 @@ enum DefaultsKey {
     /// ⚠️ 읽기만 하는 자리에서 값을 쓰지 말 것 - 남의 초기화를 조용히 되돌린다.
     static let appInstallDate = "app_install_date"
     static let appLaunchCount = "appLaunchCount"
+    /// 설정 ▸ 화면의 "모든 기능 바로 보기" (standard UD, Bool). 켜면 감춘 기능이 조용히 보인다.
+    static let showsAllFeatures = "userState.showsAllFeatures.v1"
     /// 사용자가 고른 앱 언어 (App Group, `AppLanguage.rawValue`). 값이 없으면 기기 설정을 따른다.
     /// ⚠️ App Group 이어야 한다. 키보드 익스텐션은 다른 프로세스라 표준 UserDefaults 를 못 본다.
     static let appLanguage = "app.language.v1"
@@ -213,6 +215,9 @@ enum DefaultsKey {
     /// ⚠️ 꺼져 있으면 iOS 가 키보드의 App Group **쓰기**를 막을 수 있다. 그래서 `false` 가
     ///    안 적힐 수 있다. 앱은 `true` 일 때만 "켜져 있다" 고 믿고, 없거나 `false` 면 꺼진 것으로 본다.
     static let keyboardFullAccessGranted = "keyboardFullAccessGranted.v1"
+    /// 이 앱이 전체 접근을 켜러 설정을 열어 준 시각(standard UD, timeIntervalSince1970).
+    /// 돌아온 뒤 잠시 "꺼짐" 대신 "확인 중" 이라 말하는 데 쓴다(`FullAccessStatus`).
+    static let fullAccessSettingsOpenedAt = "fullAccessSettingsOpenedAt.v1"
     /// 키보드의 전체 접근 안내 줄을 닫은 시각(timeIntervalSince1970). **익스텐션의 표준 UserDefaults.**
     ///
     /// ⚠️ App Group 에 두지 않는다. 이 값을 쓰는 때는 전체 접근이 꺼진 때뿐이고,
@@ -314,6 +319,11 @@ enum DefaultsKey {
     static let keyboardTypingCurrent = "keyboardTypingCurrent.v1"
     /// 키보드를 열면 먼저 보일 판(`KeyboardInputMode`: typing · snippets). 마지막에 보던 판을 따른다.
     static let keyboardInputMode = "keyboardInputMode.v1"
+    /// 단축어를 넣은 뒤 쓰던 키보드로 돌아갈지. App Group. **기본 켬**(`KeyboardPrefs.returnAfterSnippet`).
+    ///
+    /// 사용자 요청에서 왔다: "단축어 입력하면 쓰던 키보드로 돌아오게 해줘. 누구는 다시 안 돌아가고 싶을 수 있으니까 설정으로."
+    /// ⚠️ iOS 에는 '앞 키보드로' 가는 API 가 없다. 목록의 **다음** 키보드로 간다(대개 쓰던 키보드).
+    static let keyboardReturnAfterSnippet = "keyboardReturnAfterSnippet.v1"
     /// 목록 카드의 최소 높이(pt). 표준 UserDefaults (앱 전용).
     static let memoCardHeight = "memoCardHeight"
     static let koreanEnabledMigratedV1 = "koreanEnabledMigrated_v1"
@@ -531,6 +541,15 @@ enum DefaultsKey {
     static let userStateWasDormant = "userstate.wasDormant.v1"
     /// 휴면에서 깬 시각 (App Group, epoch 초). 이때부터 7일이 "돌아온 사람"이다.
     static let userStateReturnedAt = "userstate.returnedAt.v1"
+    /// 말 거는 자리 원장 (App Group, JSON). 종류마다 마지막으로 말한 때·거절한 때.
+    ///
+    /// ⚠️ 앱과 키보드가 **같이** 쓴다. 키보드가 오늘 돈 이야기를 했으면 앱은 하지 않는다.
+    static let promptLedger = "prompt.ledger.v1"
+    /// 키보드가 먼저 돈 이야기를 해도 되는 사람인가 (App Group, Bool). **앱이 적고 키보드가 읽는다.**
+    ///
+    /// 키보드는 사용자 상태(휴면 · 결)와 쓰임새를 판정하지 못한다. 앱이 판정해 한 값으로 내려 둔다.
+    /// 없으면 예전처럼 말해도 되는 것으로 본다.
+    static let promptKeyboardMayTalkMoney = "prompt.keyboardMayTalkMoney.v1"
 
     /// 지금 흉내 내는 사용 단계 (App Group, `UserStage.rawValue`). 비어 있으면 진짜 상태를 쓴다.
     ///
@@ -637,10 +656,34 @@ enum KeyboardPrefs {
     static let koreanEnabled = Pref(key: DefaultsKey.keyboardKoreanEnabled, fallback: false)
     static let typingLang = Pref(key: DefaultsKey.keyboardTypingLang, fallback: "english")
     static let koreanLayout = Pref(key: DefaultsKey.keyboardKoreanLayout, fallback: "dubeolsik")
+    /// 단축어를 넣으면 쓰던 키보드로 돌아간다. 기본 켬(앱 주인이 바란 동작). 이유는 `DefaultsKey` 에.
+    static let returnAfterSnippet = Pref(key: DefaultsKey.keyboardReturnAfterSnippet, fallback: true)
 
     // 앱과 같이 쓰는 표시 (기본값이 다르면 앱에서는 안 보이고 키보드에서만 보인다)
     static let showVisualCues = Pref(key: DefaultsKey.showVisualCues, fallback: false)
     static let contentHintEnabled = Pref(key: DefaultsKey.contentHintEnabled, fallback: false)
+}
+
+/// 단축어를 넣은 뒤 쓰던 키보드로 넘길지 가르는 곳. 키보드(`KeyboardViewController`)가 부르고 시험이 지킨다.
+///
+/// ⚠️ 넘기는 것은 **단축어 하나를 다 넣었을 때**뿐이다.
+///    스택의 중간 단계에서 넘기면 남은 값이 들어갈 키보드가 사라지고,
+///    스택 키의 값 하나만 넣는 오른쪽 칸은 다음 칸에 다음 값을 넣으러 다시 올 자리라 넘기지 않는다.
+enum SnippetReturnPolicy {
+    enum Insertion {
+        /// 단축어 · 템플릿 · 스택의 마지막 값까지 다 들어갔다.
+        case snippetFinished
+        /// 스택 순서 입력의 중간 단계.
+        case stackStep
+        /// 스택 키에서 값 하나만 넣었다.
+        case stackSingleValue
+    }
+
+    /// - Parameter typedOnTypingPanel: 이 판에서 우리 자판으로 글을 쳤는가. 그렇다면 우리가 쓰던 키보드다.
+    static func shouldSwitch(after insertion: Insertion, enabled: Bool, typedOnTypingPanel: Bool) -> Bool {
+        guard enabled, !typedOnTypingPanel else { return false }
+        return insertion == .snippetFinished
+    }
 }
 
 /// 앱 화면 설정 중 여러 화면이 같이 읽는 것.
