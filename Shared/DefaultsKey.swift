@@ -311,10 +311,13 @@ enum DefaultsKey {
     static let keyboardCustomBgHex = "keyboardCustomBgHex"
     static let keyboardCustomKeyHex = "keyboardCustomKeyHex"
     static let keyboardKoreanLayout = "keyboardKoreanLayout"
-    /// 자판에 켜 둔 언어들(순서대로, 쉼표로 이은 `TypingLanguage.rawValue`). 비어 있으면 영어 하나다.
+    /// 자판에 켜 둔 언어들(순서대로, 쉼표로 이은 `TypingLanguage.rawValue`). 비어 있으면 그 사람의 언어 + 영어.
     static let keyboardTypingLanguages = "keyboardTypingLanguages.v1"
     /// 기존 사용자의 입력 언어를 저장해 두는 일을 마쳤는가(App Group, Bool). `TypingPrefs.keepLegacyDefaultIfNeeded`.
     static let keyboardTypingDefaultsSettled = "keyboardTypingDefaultsSettled.v1"
+    /// iOS 에 켜 둔 키보드의 언어 코드들(App Group, [String]). 앱이 `AppleKeyboards` 에서 뽑아 적고,
+    /// 키보드가 처음 자판 언어를 고를 때 본다(`TypingPrefs.userLanguageCodes`).
+    static let keyboardUserKeyboardLanguages = "keyboardUserKeyboardLanguages.v1"
     /// 자판에서 지금 치는 언어(`TypingLanguage.rawValue`).
     ///
     /// ⚠️ `keyboardTypingLang` 과 따로 둔다. 그쪽은 검색칸 자판이 "english" · "korean" 으로 쓰고 있다.
