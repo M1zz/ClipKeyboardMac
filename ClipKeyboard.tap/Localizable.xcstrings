@@ -37,6 +37,12 @@
             "value" : "No items match '%@'"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No items match '%@'"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -175,6 +181,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%@' will be removed from this Mac and every synced device."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "'%@' will be removed from this Mac and every synced device."
@@ -323,6 +335,12 @@
             "value" : "(%d snippets)"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(%d snippets)"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -461,6 +479,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use with Siri"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Use with Siri"
@@ -609,6 +633,12 @@
             "value" : "Ask Siri or use the Shortcuts app to pull up your saved text instantly."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask Siri or use the Shortcuts app to pull up your saved text instantly."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -747,6 +777,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VoiceOver reads every button and snippet, in the right order."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "VoiceOver reads every button and snippet, in the right order."
@@ -895,6 +931,12 @@
             "value" : "Better VoiceOver support"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Better VoiceOver support"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1038,6 +1080,12 @@
             "value" : "[%@] copied to clipboard"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[%@] copied to clipboard"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1176,6 +1224,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrap text in { } to make a fill-in field"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wrap text in { } to make a fill-in field"
@@ -1325,6 +1379,12 @@
             "value" : "%1$@ (⌘%2$@)"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (⌘%2$@)"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1463,6 +1523,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restored to the version from %@."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restored to the version from %@."
@@ -1611,6 +1677,12 @@
             "value" : "%1$@ — %2$@ (⌃⇧V)"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ — %2$@ (⌃⇧V)"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1749,6 +1821,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restores the version from %1$@ (%2$d shortcuts). Your current data will be replaced with that version."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restores the version from %1$@ (%2$d shortcuts). Your current data will be replaced with that version."
@@ -1897,6 +1975,12 @@
             "value" : "%d"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2035,6 +2119,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete %d"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete %d"
@@ -2183,6 +2273,12 @@
             "value" : "%d items"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d items"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2321,6 +2417,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Step %d"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Step %d"
@@ -2470,6 +2572,12 @@
             "value" : "%lld"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2614,6 +2722,12 @@
             "value" : "+%lld"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2752,6 +2866,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick access anywhere with ⌃⇧V"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quick access anywhere with ⌃⇧V"
@@ -2901,6 +3021,12 @@
             "value" : "⌘%lld"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌘%lld"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3039,6 +3165,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ Restoring replaces your current data with that version. The 15 most recent versions are kept."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "⚠️ Restoring replaces your current data with that version. The 15 most recent versions are kept."
@@ -3187,6 +3319,12 @@
             "value" : "⚠️ Restoring replaces your current data with the backup"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠️ Restoring replaces your current data with the backup"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3325,6 +3463,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Larger text"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Larger text"
@@ -3473,6 +3617,12 @@
             "value" : "Delete all snippets at once"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete all snippets at once"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3611,6 +3761,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Close"
@@ -3759,6 +3915,12 @@
             "value" : "Everything stays readable with Increase Contrast on or if colors are hard to tell apart."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything stays readable with Increase Contrast on or if colours are hard to tell apart."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3897,6 +4059,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desktop widgets"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desktop widgets"
@@ -4045,6 +4213,12 @@
             "value" : "Easier-to-see colors and contrast"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Easier-to-see colours and contrast"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4183,6 +4357,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close the window mid-snippet and your text will still be there."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Close the window mid-snippet and your text will still be there."
@@ -4331,6 +4511,12 @@
             "value" : "Helpful tips"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helpful tips"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4469,6 +4655,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pick up where you left off"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pick up where you left off"
@@ -4617,6 +4809,12 @@
             "value" : "Handy features are pointed out gently, right when they’re useful."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handy features are pointed out gently, right when they’re useful."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4755,6 +4953,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make the text in the app bigger whenever you like."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Make the text in the app bigger whenever you like."
@@ -4903,6 +5107,12 @@
             "value" : "Grab your snippets right from the desktop without opening the app."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grab your snippets right from the desktop without opening the app."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5041,6 +5251,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduce Motion"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reduce Motion"
@@ -5189,6 +5405,12 @@
             "value" : "With Reduce Motion on, animations become calmer."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With Reduce Motion on, animations become calmer."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5327,6 +5549,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase every snippet saved on this Mac whenever you want."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erase every snippet saved on this Mac whenever you want."
@@ -5475,6 +5703,12 @@
             "value" : "📁 File backup is the most reliable way to keep your data as a file, separate from iCloud. Importing merges into your current data without erasing it."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "📁 File backup is the most reliable way to keep your data as a file, separate from iCloud. Importing merges into your current data without erasing it."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5613,6 +5847,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "About"
@@ -5761,6 +6001,12 @@
             "value" : "Categories"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categories"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5899,6 +6145,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Category"
@@ -6048,6 +6300,12 @@
             "value" : "Click to copy"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click to copy"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6186,6 +6444,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clipboard history"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clipboard history"
@@ -6334,6 +6598,12 @@
             "value" : "Clipboard History"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clipboard History"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6472,6 +6742,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ClipKeyboard"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ClipKeyboard"
@@ -6620,6 +6896,12 @@
             "value" : "ClipKeyboard Help"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ClipKeyboard Help"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6758,6 +7040,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to ClipKeyboard"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to ClipKeyboard"
@@ -6906,6 +7194,12 @@
             "value" : "Copied — press ⌘V to paste"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copied — press ⌘V to paste"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7044,6 +7338,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copy"
@@ -7192,6 +7492,12 @@
             "value" : "Crypto Wallet"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crypto Wallet"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7330,6 +7636,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback & Review"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Feedback & Review"
@@ -7478,6 +7790,12 @@
             "value" : "General"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7616,6 +7934,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Global Shortcuts"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Global Shortcuts"
@@ -7764,6 +8088,12 @@
             "value" : "Good afternoon"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good afternoon"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7902,6 +8232,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good evening"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Good evening"
@@ -8050,6 +8386,12 @@
             "value" : "Good morning"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good morning"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8188,6 +8530,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IBAN"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IBAN"
@@ -8336,6 +8684,12 @@
             "value" : "iCloud Backup"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Backup"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8474,6 +8828,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please make sure iCloud Drive is enabled: System Settings > [your name] > iCloud > iCloud Drive."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please make sure iCloud Drive is enabled: System Settings > [your name] > iCloud > iCloud Drive."
@@ -8622,6 +8982,12 @@
             "value" : "Could not check iCloud account: %@"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not check iCloud account: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8760,6 +9126,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud account: %@"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud account: %@"
@@ -8908,6 +9280,12 @@
             "value" : "iCloud sync"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud sync"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9046,6 +9424,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not read iCloud: %@"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Could not read iCloud: %@"
@@ -9194,6 +9578,12 @@
             "value" : "iCloud Backup & Restore"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Backup & Restore"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9332,6 +9722,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud status:"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud status:"
@@ -9480,6 +9876,12 @@
             "value" : "iCloud is having a temporary issue. Please try again in a moment."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud is having a temporary issue. Please try again in a moment."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9618,6 +10020,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspect iCloud"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inspect iCloud"
@@ -9766,6 +10174,12 @@
             "value" : "Snippets in iCloud: %1$d (%2$d delete markers)"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snippets in iCloud: %1$d (%2$d delete markers)"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9904,6 +10318,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no snippets in iCloud to pull, so nothing on this Mac was erased."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "There are no snippets in iCloud to pull, so nothing on this Mac was erased."
@@ -10052,6 +10472,12 @@
             "value" : "Your iCloud storage is full. Check System Settings > [your name] > iCloud > Manage."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your iCloud storage is full. Check System Settings > [your name] > iCloud > Manage."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10190,6 +10616,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You're not signed in to iCloud. Sign in at System Settings > [your name] > iCloud."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "You're not signed in to iCloud. Sign in at System Settings > [your name] > iCloud."
@@ -10338,6 +10770,12 @@
             "value" : "Instagram DM (@lee25_ios)"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instagram DM (@lee25_ios)"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10476,6 +10914,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP Address"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IP Address"
@@ -10624,6 +11068,12 @@
             "value" : "Launch at login"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch at login"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10762,6 +11212,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A snippet app made for macOS"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "A snippet app made for macOS"
@@ -10910,6 +11366,12 @@
             "value" : "The fastest, most convenient\nsnippet and clipboard manager on macOS"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The fastest, most convenient\nsnippet and clipboard manager on macOS"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11048,6 +11510,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memo List"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memo List"
@@ -11196,6 +11664,12 @@
             "value" : "Monitor clipboard in background"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monitor clipboard in background"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11334,6 +11808,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Move down"
@@ -11482,6 +11962,12 @@
             "value" : "Move up"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11620,6 +12106,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New memo"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "New memo"
@@ -11768,6 +12260,12 @@
             "value" : "New Memo"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Memo"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11906,6 +12404,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No matches"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No matches"
@@ -12054,6 +12558,12 @@
             "value" : "No memos yet"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No memos yet"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12192,6 +12702,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open memo list"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open memo list"
@@ -12340,6 +12856,12 @@
             "value" : "Order"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Order"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12478,6 +13000,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PayPal Link"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "PayPal Link"
@@ -12626,6 +13154,12 @@
             "value" : "Preferences"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferences"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12764,6 +13298,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferences…"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Preferences…"
@@ -12912,6 +13452,12 @@
             "value" : "Quick Paste Panel"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Paste Panel"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13050,6 +13596,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quit ClipKeyboard"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quit ClipKeyboard"
@@ -13198,6 +13750,12 @@
             "value" : "Search memos"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search memos"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13336,6 +13894,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send Feedback"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Send Feedback"
@@ -13484,6 +14048,12 @@
             "value" : "Shortcuts"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shortcuts"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13622,6 +14192,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Onboarding"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Show Onboarding"
@@ -13770,6 +14346,12 @@
             "value" : "Snippet order"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snippet order"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13908,6 +14490,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startup"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Startup"
@@ -14056,6 +14644,12 @@
             "value" : "SWIFT/BIC"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SWIFT/BIC"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14194,6 +14788,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sync"
@@ -14342,6 +14942,12 @@
             "value" : "The quick paste panel (⌃⇧V) stays over your current app without stealing focus — click a memo to copy it, then press ⌘V right where your cursor was."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The quick paste panel (⌃⇧V) stays over your current app without stealing focus — click a memo to copy it, then press ⌘V right where your cursor was."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14480,6 +15086,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL"
@@ -14628,6 +15240,12 @@
             "value" : "VAT Number"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VAT Number"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14766,6 +15384,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version %@"
@@ -14914,6 +15538,12 @@
             "value" : "View User Guide"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View User Guide"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15052,6 +15682,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to ClipKeyboard"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to ClipKeyboard"
@@ -15200,6 +15836,12 @@
             "value" : "Most recent upload: %@"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Most recent upload: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15338,6 +15980,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import failed"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Import failed"
@@ -15486,6 +16134,12 @@
             "value" : "Import complete"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import complete"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15624,6 +16278,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fill in values"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fill in values"
@@ -15772,6 +16432,12 @@
             "value" : "Tap a value to copy"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap a value to copy"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15910,6 +16576,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search"
@@ -16058,6 +16730,12 @@
             "value" : "No search results"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No search results"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16196,6 +16874,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search..."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search..."
@@ -16344,6 +17028,12 @@
             "value" : "Continue"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16482,6 +17172,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account Number"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Account Number"
@@ -16630,6 +17326,12 @@
             "value" : "Could not read the zone: %@"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not read the zone: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16768,6 +17470,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "General"
@@ -16916,6 +17624,12 @@
             "value" : "Tabs like General and Favorites will look just like they do on iPhone. Your snippets stay exactly where they are."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabs like General and Favourites will look just like they do on iPhone. Your snippets stay exactly where they are."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17054,6 +17768,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This would overwrite your existing backup of %1$d shortcuts with %2$d. The difference would be gone from the backup."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "This would overwrite your existing backup of %1$d shortcuts with %2$d. The difference would be gone from the backup."
@@ -17202,6 +17922,12 @@
             "value" : "Existing backup kept"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Existing backup kept"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17340,6 +18066,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your backup would shrink"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your backup would shrink"
@@ -17488,6 +18220,12 @@
             "value" : "Later"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17626,6 +18364,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date"
@@ -17774,6 +18518,12 @@
             "value" : "Export failed"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export failed"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17912,6 +18662,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export complete"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Export complete"
@@ -18060,6 +18816,12 @@
             "value" : "Content"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Content"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18198,6 +18960,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please check your network connection and try again."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please check your network connection and try again."
@@ -18347,6 +19115,12 @@
             "value" : "Erased. The app will reopen."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erased. The app will reopen."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18485,6 +19259,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not pull again"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Could not pull again"
@@ -18633,6 +19413,12 @@
             "value" : "Reopen"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reopen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18771,6 +19557,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The moment it reopens, this Mac is emptied and %d snippets are pulled from iCloud from scratch."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The moment it reopens, this Mac is emptied and %d snippets are pulled from iCloud from scratch."
@@ -18919,6 +19711,12 @@
             "value" : "Snippets"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snippets"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19057,6 +19855,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added %1$d snippets, updated %2$d (total %3$d).\nImported %4$d stacks and %5$d images."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Added %1$d snippets, updated %2$d (total %3$d).\nImported %4$d stacks and %5$d images."
@@ -19205,6 +20009,12 @@
             "value" : "%d shortcuts"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d shortcuts"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19343,6 +20153,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backed up %d snippets to iCloud."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Backed up %d snippets to iCloud."
@@ -19491,6 +20307,12 @@
             "value" : "Show snippet list"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show snippet list"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19629,6 +20451,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Snippet"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit Snippet"
@@ -19777,6 +20605,12 @@
             "value" : "No snippets"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No snippets"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19915,6 +20749,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snippets + Templates"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snippets + Templates"
@@ -20063,6 +20903,12 @@
             "value" : "Snippet saved"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snippet saved"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20201,6 +21047,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save as snippet"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save as snippet"
@@ -20349,6 +21201,12 @@
             "value" : "Saved as a snippet"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved as a snippet"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20487,6 +21345,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the content to show in the snippet"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enter the content to show in the snippet"
@@ -20635,6 +21499,12 @@
             "value" : "Back up your data safely to iCloud"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back up your data safely to iCloud"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20773,6 +21643,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong preparing your data. Please restart the app and try again."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Something went wrong preparing your data. Please restart the app and try again."
@@ -20921,6 +21797,12 @@
             "value" : "Your data was saved to a file. Keep it somewhere safe."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your data was saved to a file. Keep it somewhere safe."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21059,6 +21941,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "City"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "City"
@@ -21207,6 +22095,12 @@
             "value" : "The sync zone does not exist yet, which means no device has ever uploaded."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The sync zone does not exist yet, which means no device has ever uploaded."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21345,6 +22239,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync error: %@"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sync error: %@"
@@ -21493,6 +22393,12 @@
             "value" : "Turn On Sync"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn On Sync"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21631,6 +22537,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restore"
@@ -21779,6 +22691,12 @@
             "value" : "Restore failed"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore failed"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21917,6 +22835,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore complete"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restore complete"
@@ -22065,6 +22989,12 @@
             "value" : "Drag to reorder"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drag to reorder"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22203,6 +23133,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep only one copy of each identical snippet"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keep only one copy of each identical snippet"
@@ -22351,6 +23287,12 @@
             "value" : "Not signed in"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not signed in"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22489,6 +23431,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last backup:"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last backup:"
@@ -22637,6 +23585,12 @@
             "value" : "Last checked: %@"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last checked: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22775,6 +23729,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Match"
@@ -22923,6 +23883,12 @@
             "value" : "Menu bar icon: 🛶"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu bar icon: 🛶"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23061,6 +24027,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync data across all your devices"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sync data across all your devices"
@@ -23209,6 +24181,12 @@
             "value" : "All features"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All features"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23347,6 +24325,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong. Check your network connection and iCloud status, then try again."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Something went wrong. Check your network connection and iCloud status, then try again."
@@ -23495,6 +24479,12 @@
             "value" : "Preview"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23633,6 +24623,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to pull"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nothing to pull"
@@ -23781,6 +24777,12 @@
             "value" : "Backup data deleted."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backup data deleted."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23919,6 +24921,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backup data restored successfully."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Backup data restored successfully."
@@ -24067,6 +25075,12 @@
             "value" : "No backup found. Please create a backup first."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No backup found. Please create a backup first."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24205,6 +25219,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't read the backup data. Make sure you're on the latest version of the app."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn't read the backup data. Make sure you're on the latest version of the app."
@@ -24353,6 +25373,12 @@
             "value" : "Delete backup"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete backup"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24491,6 +25517,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backup failed"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Backup failed"
@@ -24639,6 +25671,12 @@
             "value" : "Backup complete"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backup complete"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24777,6 +25815,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backing up..."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Backing up..."
@@ -24925,6 +25969,12 @@
             "value" : "Back up"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back up"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25063,6 +26113,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to back up"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nothing to back up"
@@ -25211,6 +26267,12 @@
             "value" : "No saved versions yet. They start accumulating after your first backup."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No saved versions yet. They start accumulating after your first backup."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25349,6 +26411,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secure snippet"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Secure snippet"
@@ -25497,6 +26565,12 @@
             "value" : "Authentication is required to access secure snippets"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authentication is required to access secure snippets"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25635,6 +26709,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The contents of a secure snippet can only be changed on iPhone. Here you can edit the title and category."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The contents of a secure snippet can only be changed on iPhone. Here you can edit the title and category."
@@ -25783,6 +26863,12 @@
             "value" : "Insurance Number"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insurance Number"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25921,6 +27007,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restore"
@@ -26069,6 +27161,12 @@
             "value" : "Restore failed"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore failed"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26207,6 +27305,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore complete"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restore complete"
@@ -26355,6 +27459,12 @@
             "value" : "Restoring..."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restoring..."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26493,6 +27603,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restore"
@@ -26641,6 +27757,12 @@
             "value" : "Copy"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26779,6 +27901,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatically save and manage what you copy"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatically save and manage what you copy"
@@ -26927,6 +28055,12 @@
             "value" : "What you copy is saved here automatically\n(up to 100 items, kept for 7 days)"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What you copy is saved here automatically\n(up to 100 items, kept for 7 days)"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27065,6 +28199,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading…"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Loading…"
@@ -27213,6 +28353,12 @@
             "value" : "Employee/Student ID"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Employee/Student ID"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27351,6 +28497,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Available"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Available"
@@ -27499,6 +28651,12 @@
             "value" : "Delete"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27637,6 +28795,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deletion failed"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deletion failed"
@@ -27785,6 +28949,12 @@
             "value" : "Deleted"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27923,6 +29093,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete…"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete…"
@@ -28071,6 +29247,12 @@
             "value" : "Inspecting…"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspecting…"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28209,6 +29391,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check status"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Check status"
@@ -28357,6 +29545,12 @@
             "value" : "New Snippet"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Snippet"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28495,6 +29689,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New snippet screen"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "New snippet screen"
@@ -28643,6 +29843,12 @@
             "value" : "New Category"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Category"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28781,6 +29987,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Category…"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "New Category…"
@@ -28929,6 +30141,12 @@
             "value" : "Refresh"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29067,6 +30285,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date of Birth"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date of Birth"
@@ -29215,6 +30439,12 @@
             "value" : "Settings screen"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings screen"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29353,6 +30583,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tax ID"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tax ID"
@@ -29501,6 +30737,12 @@
             "value" : "Tracking Number"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracking Number"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29639,6 +30881,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit…"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit…"
@@ -29787,6 +31035,12 @@
             "value" : "Stack"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stack"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29925,6 +31179,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Time"
@@ -30073,6 +31333,12 @@
             "value" : "Get Started"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30211,6 +31477,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syncing with iPhone"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syncing with iPhone"
@@ -30359,6 +31631,12 @@
             "value" : "Sync with iPhone is off"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync with iPhone is off"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30497,6 +31775,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync with iPhone in real time"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sync with iPhone in real time"
@@ -30645,6 +31929,12 @@
             "value" : "Follow iPhone category setup"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow iPhone category setup"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30783,6 +32073,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match the categories you set on iPhone?"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Match the categories you set on iPhone?"
@@ -30931,6 +32227,12 @@
             "value" : "Apply deletions from iPhone"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply deletions from iPhone"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31069,6 +32371,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No snippets deleted on iPhone are still on this Mac."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No snippets deleted on iPhone are still on this Mac."
@@ -31217,6 +32525,12 @@
             "value" : "Deleted %d snippets on this Mac that were deleted on iPhone."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted %d snippets on this Mac that were deleted on iPhone."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31355,6 +32669,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted on iPhone but still here: %d"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deleted on iPhone but still here: %d"
@@ -31503,6 +32823,12 @@
             "value" : "Nothing has been received yet."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing has been received yet."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31641,6 +32967,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unknown"
@@ -31789,6 +33121,12 @@
             "value" : "Enter password"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter password"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31927,6 +33265,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't find the app's shared storage."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn't find the app's shared storage."
@@ -32075,6 +33419,12 @@
             "value" : "App menu: ClipKeyboard"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App menu: ClipKeyboard"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32213,6 +33563,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app will reopen."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The app will reopen."
@@ -32362,6 +33718,12 @@
             "value" : "When the app reopens, it will pull %d snippets from iCloud."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When the app reopens, it will pull %d snippets from iCloud."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32500,6 +33862,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Always accessible"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Always accessible"
@@ -32648,6 +34016,12 @@
             "value" : "Passport Number"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passport Number"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32786,6 +34160,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The order you set here syncs to your iPhone and keyboard."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The order you set here syncs to your iPhone and keyboard."
@@ -32934,6 +34314,12 @@
             "value" : "This snippet holds several values. The list of values can be edited on iPhone."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This snippet holds several values. The list of values can be edited on iPhone."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33072,6 +34458,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not connected"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Not connected"
@@ -33220,6 +34612,12 @@
             "value" : "Connected"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33358,6 +34756,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For example: %@"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "For example: %@"
@@ -33506,6 +34910,12 @@
             "value" : "Confirmation Code"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmation Code"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33644,6 +35054,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Too many requests. Please try again in a moment."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Too many requests. Please try again in a moment."
@@ -33792,6 +35208,12 @@
             "value" : "Postal Code"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Postal Code"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33930,6 +35352,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This Mac has %d shortcuts. Restoring replaces all of them with the ones from the backup."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "This Mac has %d shortcuts. Restoring replaces all of them with the ones from the backup."
@@ -34078,6 +35506,12 @@
             "value" : "This device has only %2$d shortcuts, so the existing backup of %1$d was left untouched."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This device has only %2$d shortcuts, so the existing backup of %1$d was left untouched."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34216,6 +35650,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete this snippet?"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete this snippet?"
@@ -34364,6 +35804,12 @@
             "value" : "Erase this Mac and pull from iPhone"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase this Mac and pull from iPhone"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34502,6 +35948,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d snippets on this Mac will be erased, and %2$d from iCloud will be pulled from scratch. A copy of the current data is saved to a file first. iCloud and your iPhone are left untouched."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$d snippets on this Mac will be erased, and %2$d from iCloud will be pulled from scratch. A copy of the current data is saved to a file first. iCloud and your iPhone are left untouched."
@@ -34650,6 +36102,12 @@
             "value" : "Snippets on this Mac: %d"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snippets on this Mac: %d"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34788,6 +36246,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase this Mac's snippets and pull again?"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erase this Mac's snippets and pull again?"
@@ -34936,6 +36400,12 @@
             "value" : "Could not erase this Mac's data: %@"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not erase this Mac's data: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35074,6 +36544,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore to this version?"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restore to this version?"
@@ -35222,6 +36698,12 @@
             "value" : "This file isn't a ClipKeyboard backup, or it's corrupted."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file isn't a ClipKeyboard backup, or it's corrupted."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35360,6 +36842,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
@@ -35508,6 +36996,12 @@
             "value" : "Email"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35646,6 +37140,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Image"
@@ -35794,6 +37294,12 @@
             "value" : "Image snippet"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image snippet"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35932,6 +37438,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image attachment"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Image attachment"
@@ -36080,6 +37592,12 @@
             "value" : "Couldn't convert the image to PNG."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't convert the image to PNG."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36218,6 +37736,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't load the image"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn't load the image"
@@ -36366,6 +37890,12 @@
             "value" : "Choose an image"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an image"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36504,6 +38034,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try adding an image"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Try adding an image"
@@ -36652,6 +38188,12 @@
             "value" : "Restore an earlier version"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore an earlier version"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36790,6 +38332,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Greeting"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Greeting"
@@ -36938,6 +38486,12 @@
             "value" : "Temporary"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temporary"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37076,6 +38630,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-filled values"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Auto-filled values"
@@ -37224,6 +38784,12 @@
             "value" : "Save frequently used text and paste it quickly"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save frequently used text and paste it quickly"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37362,6 +38928,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temporarily unavailable"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Temporarily unavailable"
@@ -37510,6 +39082,12 @@
             "value" : "Could not check zones: %@"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not check zones: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37648,6 +39226,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save failed: %@"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save failed: %@"
@@ -37796,6 +39380,12 @@
             "value" : "Couldn't save — snippet not found"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't save — snippet not found"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37934,6 +39524,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storage not found."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Storage not found."
@@ -38082,6 +39678,12 @@
             "value" : "ago"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ago"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38220,6 +39822,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save"
@@ -38368,6 +39976,12 @@
             "value" : "Zones: %@"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zones: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38506,6 +40120,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no saved shortcuts, so nothing was backed up."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "There are no saved shortcuts, so nothing was backed up."
@@ -38654,6 +40274,12 @@
             "value" : "Global shortcuts"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Global shortcuts"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38792,6 +40418,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Global shortcut: ⌃⇧V"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Global shortcut: ⌃⇧V"
@@ -38940,6 +40572,12 @@
             "value" : "All"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39078,6 +40716,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear All"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clear All"
@@ -39226,6 +40870,12 @@
             "value" : "Phone Number"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phone Number"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39364,6 +41014,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cleanup failed"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cleanup failed"
@@ -39512,6 +41168,12 @@
             "value" : "Cleaned up"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cleaned up"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39650,6 +41312,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Title"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Title"
@@ -39798,6 +41466,12 @@
             "value" : "Keeps a single copy of each snippet with identical title and content — favorites and frequently used ones are the ones kept."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keeps a single copy of each snippet with identical title and content — favourites and frequently used ones are the ones kept."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39936,6 +41610,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restricted"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restricted"
@@ -40084,6 +41764,12 @@
             "value" : "Address"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Address"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40222,6 +41908,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d duplicates"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d duplicates"
@@ -40370,6 +42062,12 @@
             "value" : "Clean up duplicate snippets?"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clean up duplicate snippets?"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40511,6 +42209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Favorites"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourites"
           }
         },
         "es" : {
@@ -40656,6 +42360,12 @@
             "value" : "Remove from Favorites"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from Favourites"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40794,6 +42504,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync Now"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sync Now"
@@ -40942,6 +42658,12 @@
             "value" : "Keep as is"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep as is"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41080,6 +42802,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace your current shortcuts?"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Replace your current shortcuts?"
@@ -41228,6 +42956,12 @@
             "value" : "Erase and Pull"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase and Pull"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41366,6 +43100,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy saved before erasing: %@"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copy saved before erasing: %@"
@@ -41514,6 +43254,12 @@
             "value" : "Nothing to delete"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to delete"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41652,6 +43398,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medical Record Number"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Medical Record Number"
@@ -41800,6 +43552,12 @@
             "value" : "Vehicle Plate"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vehicle Plate"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41938,6 +43696,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app keeps running in the background even when you close the window"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The app keeps running in the background even when you close the window"
@@ -42086,6 +43850,12 @@
             "value" : "Add"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42229,6 +43999,12 @@
             "value" : "Cancel"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42367,6 +44143,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Card Number"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Card Number"
@@ -42516,6 +44298,12 @@
             "value" : "Category"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42654,6 +44442,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category settings: none"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Category settings: none"
@@ -42802,6 +44596,12 @@
             "value" : "Category settings: present"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category settings: present"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42940,6 +44740,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category Name"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Category Name"
@@ -43088,6 +44894,12 @@
             "value" : "When on, tabs like General and Favorites mirror your iPhone exactly. When off, you see only categories that already contain snippets, along with an All tab."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When on, tabs like General and Favourites mirror your iPhone exactly. When off, you see only categories that already contain snippets, along with an All tab."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43226,6 +45038,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When on, snippets you add or delete on iPhone show up on this Mac right away. When off, this Mac keeps its snippets to itself."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "When on, snippets you add or delete on iPhone show up on this Mac right away. When off, this Mac keeps its snippets to itself."
@@ -43374,6 +45192,12 @@
             "value" : "Turn it on and this Mac will receive snippets you add or delete on iPhone."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn it on and this Mac will receive snippets you add or delete on iPhone."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43512,6 +45336,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clipboard"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clipboard"
@@ -43660,6 +45490,12 @@
             "value" : "Clipboard History"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clipboard History"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43798,6 +45634,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No clipboard history"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No clipboard history"
@@ -43946,6 +45788,12 @@
             "value" : "Copy to clipboard"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy to clipboard"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44084,6 +45932,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No image in the clipboard"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "No image in the clipboard"
@@ -44232,6 +46086,12 @@
             "value" : "Paste from clipboard"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste from clipboard"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44370,6 +46230,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added an image from the clipboard"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Added an image from the clipboard"
@@ -44518,6 +46384,12 @@
             "value" : "ClipKeyboard"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ClipKeyboard"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44656,6 +46528,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time Zone"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Time Zone"
@@ -44804,6 +46682,12 @@
             "value" : "Tap to copy"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to copy"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44942,6 +46826,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Text"
@@ -45090,6 +46980,12 @@
             "value" : "Template"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Template"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45228,6 +47124,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Declaration Number"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Declaration Number"
@@ -45376,6 +47278,12 @@
             "value" : "Currency"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currency"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45514,6 +47422,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export to file"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Export to file"
@@ -45662,6 +47576,12 @@
             "value" : "Import from file"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import from file"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45800,6 +47720,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose from file"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choose from file"
@@ -45948,6 +47874,12 @@
             "value" : "OK"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46086,6 +48018,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membership Number"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Membership Number"
@@ -46234,6 +48172,12 @@
             "value" : "Cross-device sync is off or hasn't started yet."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cross-device sync is off or hasn't started yet."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46372,6 +48316,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verified"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verified"
@@ -46520,6 +48470,12 @@
             "value" : "Enter it in full, starting with the country code"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter it in full, starting with the country code"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46658,6 +48614,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The last digit doesn't match. Compare it with your registration certificate."
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The last digit doesn't match. Compare it with your registration certificate."
@@ -46806,6 +48768,12 @@
             "value" : "Business number"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Business number"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46944,6 +48912,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your birth date as 8 digits (e.g. 19900101)"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enter your birth date as 8 digits (e.g. 19900101)"
@@ -47092,6 +49066,12 @@
             "value" : "One digit is off. Compare it with the number on your card."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One digit is off. Compare it with the number on your card."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47230,6 +49210,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing saved yet"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nothing saved yet"
@@ -47378,6 +49364,12 @@
             "value" : "Check the first 4 characters (country code + check digits). The rest looks right."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the first 4 characters (country code + check digits). The rest looks right."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47516,6 +49508,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That date doesn't exist. Please check it again"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "That date doesn't exist. Please check it again"
@@ -47664,6 +49662,12 @@
             "value" : "Passport numbers are 6 to 9 letters and digits"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passport numbers are 6 to 9 letters and digits"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47802,6 +49806,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phone numbers have 7 to 15 digits"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Phone numbers have 7 to 15 digits"
@@ -47950,6 +49960,12 @@
             "value" : "Checksum passed."
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checksum passed."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48088,6 +50104,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recent"
@@ -48236,6 +50258,12 @@
             "value" : "Enter every digit on the card"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter every digit on the card"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48379,6 +50407,12 @@
             "value" : "Format looks right"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format looks right"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48517,6 +50551,12 @@
           }
         },
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs checking"
+          }
+        },
+        "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Needs checking"

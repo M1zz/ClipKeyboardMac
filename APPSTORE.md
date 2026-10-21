@@ -149,6 +149,78 @@ https://m1zz.github.io/ClipKeyboard/en/
 
 https://m1zz.github.io/ClipKeyboard/en/privacy.html
 
+## 영어(영국) (en-GB)
+
+### 이름
+
+```
+ClipKeyboard: Quick Paste
+```
+
+### 부제
+
+```
+One shortcut, paste anywhere
+```
+
+### 설명
+
+```
+Save the text you type over and over, and pull it from the menu bar in a second.
+Press Control-Shift-V and your snippets float over whatever app you are using.
+
+Bank details, addresses, email signatures, a short intro, the reply you send every day. Save them once. Pick one and it is on your clipboard, ready to paste with Command-V right where you were typing.
+
+What you get
+
+Quick paste panel: Control-Shift-V opens it over your current app without stealing focus.
+Lives in the menu bar: no Dock icon. Search from the menu bar icon, or press Command-1 to 9 to grab a snippet.
+Categories and favourites: group snippets into Work, Personal, Travel or anything you like, star the ones you use most, and drag to set the order.
+Templates: leave the parts that change in { } and fill them in when you copy. Date, time, time zone, currency, greeting and city fill in on their own.
+Stacks: keep several values in one snippet and copy just the one you need.
+Clipboard history: up to 100 recent copies, kept for 7 days, so the line you copied earlier is still there.
+Image snippets: save business cards, signature images and pictures you send often, and copy them in one click.
+Secure snippets: sensitive details like a passport number stay locked until you confirm with Touch ID or your Mac password.
+
+Works with your iPhone
+
+Turn on real-time sync with ClipKeyboard on iPhone and your snippets, categories and order stay the same on both through iCloud. The order you set on your Mac is the order you see in your iPhone keyboard.
+
+Backups
+
+Back up to iCloud and restore, roll back to any of your 15 most recent versions, or export and import a file. Duplicate snippets can be tidied up in one go.
+
+Privacy
+
+Your snippets are stored only on this Mac and in your own iCloud. No account needed, and what you save is never sent to us.
+
+Available in 24 languages, including English, Japanese, Korean, Chinese, German, French and Spanish.
+```
+
+### 키워드
+
+```
+history,clipboard,replies,text,signature,snippet,template,boilerplate,canned,expander,phrases,mac
+```
+
+### 프로모션 텍스트
+
+```
+Now in 24 languages, with British English joining. Your first-launch starter snippets now speak your language too.
+```
+
+### 지원 URL
+
+https://m1zz.github.io/ClipKeyboard/en/tutorial.html
+
+### 마케팅 URL
+
+https://m1zz.github.io/ClipKeyboard/en/
+
+### 개인정보처리방침 URL
+
+https://m1zz.github.io/ClipKeyboard/en/privacy.html
+
 ## 중국어(간체) (zh-Hans)
 
 ### 이름

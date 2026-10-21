@@ -95,6 +95,7 @@
 		A11L0G0000000000000000F1 /* AppLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		A1C26372726AFC85F4249E6A /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
 		ABBBEDB8FF82221F95A69EBF /* AppNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
+		DEE4A6195BC3B986E7EB5313 /* en-GB */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		BB64F64A0C9C27556BDCA2EA /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BB74D5379D27F6F7AB84A227 /* ClipboardMonitorService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClipboardMonitorService.swift; sourceTree = "<group>"; };
 		BC17B4AE4A98F4C7E51F3D6E /* MenuBarManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuBarManager.swift; sourceTree = "<group>"; };
@@ -315,6 +316,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"en-GB",
 				Base,
 				ko,
 				"zh-Hans",
@@ -433,6 +435,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				BB64F64A0C9C27556BDCA2EA /* en */,
+				DEE4A6195BC3B986E7EB5313 /* en-GB */,
 				DEE4A6195BC3B986E7EB5233 /* ko */,
 				DEE4A6195BC3B986E7EB5234 /* zh-Hans */,
 				DEE4A6195BC3B986E7EB5235 /* zh-Hant */,
