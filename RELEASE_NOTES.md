@@ -7,7 +7,153 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 3~5줄, 한 줄 40자 이내. 내부 리팩터링·빌드 설정·의존성은 쓰지 않고
 사용자에게 무엇이 좋아졌는지만 쓴다. 언어마다 따로 쓰되 항목 수와 순서는 맞춘다.
 
-확인: `DeployBar --reponotes 탭클립키보드 5.1.7`
+확인: `DeployBar --reponotes 탭클립키보드 5.1.9`
+
+## 5.1.9
+
+### 앱스토어 (한국어)
+
+이제 영국 영어로도 앱을 쓸 수 있어요.
+환경설정에서 앞으로 만들 기능을 미리 볼 수 있어요.
+바라는 기능이 있으면 그 자리에서 바로 제안해 주세요.
+
+### App Store (English)
+
+Now available in British English.
+See what's coming next in Preferences.
+Suggest a feature you'd love from there.
+
+### App Store (en-GB)
+
+Now available in British English.
+See what's on the way in Preferences.
+Suggest a feature you'd like from there.
+
+### 앱스토어 (중국어 간체)
+
+现已支持英式英语。
+可在设置中查看即将推出的功能。
+想要什么功能，可以当场提出建议。
+
+### 앱스토어 (중국어 번체)
+
+現已支援英式英文。
+可在設定中查看即將推出的功能。
+想要什麼功能，可以當場提出建議。
+
+### 앱스토어 (일본어, ja)
+
+イギリス英語に対応しました。
+環境設定でこれから作る機能を確認できます。
+ほしい機能をその場でリクエストできます。
+
+### 앱스토어 (독일어, de)
+
+Jetzt auch auf britischem Englisch.
+Kommende Funktionen in den Einstellungen.
+Wunschfunktion direkt dort vorschlagen.
+
+### 앱스토어 (스페인어, es)
+
+Ahora disponible en inglés británico.
+Mira lo que viene en Preferencias.
+Propón la función que quieras desde ahí.
+
+### 앱스토어 (프랑스어, fr)
+
+Désormais en anglais britannique.
+Les nouveautés à venir dans Préférences.
+Proposez-y la fonction qui vous manque.
+
+### 앱스토어 (이탈리아어, it)
+
+Ora anche in inglese britannico.
+Le funzioni in arrivo nelle Preferenze.
+Proponi da lì la funzione che vorresti.
+
+### 앱스토어 (포르투갈어(브라질), pt-BR)
+
+Agora disponível em inglês britânico.
+Veja o que vem por aí em Preferências.
+Sugira ali o recurso que você quer.
+
+### 앱스토어 (러시아어, ru)
+
+Теперь есть британский английский.
+В Настройках видно, что скоро появится.
+Предложите нужную функцию прямо там.
+
+### 앱스토어 (체코어, cs)
+
+Aplikace je nyní i v britské angličtině.
+Připravované funkce najdete v Nastavení.
+Odtud rovnou navrhnete novou funkci.
+
+### 앱스토어 (덴마크어, da)
+
+Appen findes nu også på britisk engelsk.
+Se kommende funktioner i Indstillinger.
+Foreslå en ønsket funktion direkte der.
+
+### 앱스토어 (그리스어, el)
+
+Τώρα και στα βρετανικά αγγλικά.
+Δείτε τι έρχεται στις Ρυθμίσεις.
+Προτείνετε από εκεί μια νέα λειτουργία.
+
+### 앱스토어 (핀란드어, fi)
+
+Sovellus on nyt myös brittienglanniksi.
+Näe tulevat ominaisuudet Asetuksista.
+Ehdota toiveitasi suoraan sieltä.
+
+### 앱스토어 (인도네시아어, id)
+
+Kini tersedia dalam bahasa Inggris (UK).
+Lihat fitur mendatang di Preferensi.
+Usulkan fitur impian Anda dari sana.
+
+### 앱스토어 (노르웨이어(보크말), nb)
+
+Appen finnes nå også på britisk engelsk.
+Se kommende funksjoner i Innstillinger.
+Foreslå en ønsket funksjon rett derfra.
+
+### 앱스토어 (네덜란드어, nl)
+
+De app is nu ook in het Brits-Engels.
+Bekijk komende functies in Instellingen.
+Stel daar meteen een functie voor.
+
+### 앱스토어 (폴란드어, pl)
+
+Aplikacja jest teraz także po brytyjsku.
+Nadchodzące funkcje w Ustawieniach.
+Zaproponuj stamtąd wymarzoną funkcję.
+
+### 앱스토어 (스웨덴어, sv)
+
+Nu även på brittisk engelska.
+Se kommande funktioner i Inställningar.
+Föreslå en funktion du saknar där.
+
+### 앱스토어 (태국어, th)
+
+รองรับภาษาอังกฤษแบบบริติชแล้ว
+ดูฟีเจอร์ที่กำลังจะมาได้ในการตั้งค่า
+เสนอฟีเจอร์ที่อยากได้จากตรงนั้นได้เลย
+
+### 앱스토어 (튀르키예어, tr)
+
+Artık İngiliz İngilizcesi de var.
+Gelecek özellikleri Ayarlar'da görün.
+İstediğiniz özelliği oradan önerin.
+
+### 앱스토어 (베트남어, vi)
+
+Ứng dụng nay đã có tiếng Anh kiểu Anh.
+Xem các tính năng sắp có trong Tùy chọn.
+Đề xuất ngay tính năng bạn muốn từ đó.
 
 ## 5.1.8
 

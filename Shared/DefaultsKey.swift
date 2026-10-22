@@ -276,6 +276,12 @@ enum DefaultsKey {
     /// 자리가 아까운 사람은 끌 수 있게 한다(설정 ▸ 키보드 ▸ 키보드 레이아웃).
     static let keyboardShowNumberPad = "keyboardShowNumberPad"
     static let keyboardShowReturnKey = "keyboardShowReturnKey"
+    /// 보내기 키를 … 서랍 밖, 접힌 줄 맨 오른쪽에 늘 세울지. App Group. **기본 끔.**
+    ///
+    /// 기본 모양은 서랍 안이다(혼자 튀어나온 키가 "왜 이것만 밖에 있지" 로 읽혔다, `626ae755`).
+    /// 다만 넣자마자 보내는 사람에게는 … 를 한 번 더 누르는 것이 매번의 수고라
+    /// ("发送按钮不要放到二级菜单里面", 2026-10-22), 그런 사람이 직접 꺼낼 수 있게 둔다.
+    static let keyboardPinReturnKey = "keyboardPinReturnKey.v1"
     /// 키보드에 검색줄을 세울지. App Group. 기본 끔(자리를 한 줄 먹는다).
     static let keyboardShowSearch = "keyboardShowSearch"
     /// 키보드에 '최근 사용' 줄을 세울지. App Group.
@@ -653,6 +659,7 @@ enum KeyboardPrefs {
     // 위줄의 키 (기본값의 이유는 `DefaultsKey` 각 항목에)
     static let showSearch = Pref(key: DefaultsKey.keyboardShowSearch, fallback: false)
     static let showReturnKey = Pref(key: DefaultsKey.keyboardShowReturnKey, fallback: true)
+    static let pinReturnKey = Pref(key: DefaultsKey.keyboardPinReturnKey, fallback: false)
     static let showNumberPad = Pref(key: DefaultsKey.keyboardShowNumberPad, fallback: true)
     static let showClipboardKey = Pref(key: DefaultsKey.keyboardShowClipboardKey, fallback: false)
     static let showRecentClipsTab = Pref(key: DefaultsKey.keyboardShowRecentClipsTab, fallback: true)
