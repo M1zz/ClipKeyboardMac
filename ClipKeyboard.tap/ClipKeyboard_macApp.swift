@@ -104,6 +104,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 전역 핫키 등록
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             GlobalHotkeyManager.shared.registerGlobalHotkey()
+            // 노치(메뉴바 가운데)에 마우스를 올려 패널을 여는 입구
+            MacTopEdgeTrigger.shared.refresh()
         }
 
         // WindowManager 초기화 (알림 리스너 등록)

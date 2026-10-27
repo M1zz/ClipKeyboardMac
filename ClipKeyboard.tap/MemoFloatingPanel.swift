@@ -42,7 +42,14 @@ final class MemoFloatingPanelController: NSObject {
         }
     }
 
-    func show() {
+    /// 보이는 동안의 패널 자리 - 위쪽 입구(`MacTopEdgeTrigger`)가 마우스가 떠났는지 볼 때 쓴다.
+    var visibleFrame: NSRect? {
+        guard let panel, panel.isVisible else { return nil }
+        return panel.frame
+    }
+
+    /// `anchor` 를 주면 그 바로 아래(노치·메뉴바 가운데)에, 없으면 마우스가 있는 화면 가운데 조금 위에 띄운다.
+    func show(below anchor: NSRect? = nil) {
         if panel == nil {
             panel = buildPanel()
         }
@@ -67,13 +74,22 @@ final class MemoFloatingPanelController: NSObject {
         //  첫 표시 시점의 stale 메모가 그대로 남는다 — 메뉴바 팝오버와 동일한 이슈.)
         panel.contentViewController = makeContentViewController()
 
-        // 활성 스크린 중앙 상단 가까이에 배치.
-        if let screen = NSScreen.main {
-            let panelSize = panel.frame.size
-            let screenFrame = screen.visibleFrame
-            let x = screenFrame.midX - panelSize.width / 2
-            let y = screenFrame.midY - panelSize.height / 2 + 80 // 약간 위쪽
-            panel.setFrameOrigin(NSPoint(x: x, y: y))
+        // 마우스가 있는 화면에 둔다. `NSScreen.main` 은 키보드 포커스 쪽 화면이라
+        // 모니터가 여럿이면 보고 있지 않은 화면에 떴다.
+        let mouse = NSEvent.mouseLocation
+        if let screen = NSScreen.screens.first(where: { NSMouseInRect(mouse, $0.frame, false) }) ?? NSScreen.main {
+            let size = panel.frame.size
+            let visible = screen.visibleFrame
+            var origin: NSPoint
+            if let anchor {
+                origin = NSPoint(x: anchor.midX - size.width / 2, y: anchor.minY - size.height)
+            } else {
+                origin = NSPoint(x: visible.midX - size.width / 2,
+                                 y: visible.midY - size.height / 2 + 80) // 약간 위쪽
+            }
+            origin.x = min(max(origin.x, visible.minX), visible.maxX - size.width)
+            origin.y = max(origin.y, visible.minY)
+            panel.setFrameOrigin(origin)
         }
 
         // 포커스를 뺏지 않고 보이게 하기: orderFrontRegardless()
@@ -97,7 +113,10 @@ final class MemoFloatingPanelController: NSObject {
             defer: false
         )
         panel.isFloatingPanel = true
-        panel.level = .floating
+        // 노치 아래로 내릴 때 메뉴바에 가리지 않게 메뉴바보다 위에 둔다.
+        panel.level = .statusBar
+        // 전체 화면 앱 위에서도, 어느 데스크톱에서도 뜬다.
+        panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
         panel.hidesOnDeactivate = false
         panel.isMovableByWindowBackground = true
         panel.isOpaque = false

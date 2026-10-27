@@ -13,6 +13,7 @@ struct MacPreferencesView: View {
     @AppStorage("macLaunchAtLogin") private var launchAtLogin: Bool = false
     @AppStorage("macClipboardMonitoring") private var clipboardMonitoring: Bool = true
     @AppStorage("macMenuBarIconStyle") private var iconStyle: String = "symbol"
+    @AppStorage(MacTopEdgeTrigger.defaultsKey) private var topEdgeTrigger: Bool = true
     /// 카테고리 탭을 아이폰 구성으로 따를지 — 배너로 물어본 뒤에도 여기서 언제든 바꿀 수 있다.
     @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
     @State private var orderedMemos: [Memo] = []
@@ -388,6 +389,18 @@ struct MacPreferencesView: View {
                     .font(MacFont.sectionTitle)
             } footer: {
                 Text(NSLocalizedString("The quick paste panel (⌃⇧V) stays over your current app without stealing focus — click a memo to copy it, then press ⌘V right where your cursor was.", comment: "Quick paste explainer (3-key)"))
+                    .font(MacFont.secondary)
+                    .foregroundStyle(.secondary)
+            }
+
+            Section {
+                Toggle(NSLocalizedString("화면 위 가운데에 마우스를 올리면 열기", comment: "Prefs: open quick paste panel by hovering the notch / top center"),
+                       isOn: $topEdgeTrigger)
+                    .onChange(of: topEdgeTrigger) { _ in
+                        MacTopEdgeTrigger.shared.refresh()
+                    }
+            } footer: {
+                Text(NSLocalizedString("노치나 메뉴바 가운데에 마우스를 잠깐 올려 두면 빠른 붙여넣기 패널이 내려와요. 마우스를 치우면 닫혀요.", comment: "Prefs footer: notch hover trigger explainer"))
                     .font(MacFont.secondary)
                     .foregroundStyle(.secondary)
             }
