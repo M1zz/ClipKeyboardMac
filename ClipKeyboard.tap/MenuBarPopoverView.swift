@@ -197,6 +197,7 @@ struct MenuBarPopoverView: View {
         HStack(spacing: MacSpacing.sm) {
             Image(systemName: AppSymbol.magnifyingglass)
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
 
             TextField(
                 NSLocalizedString("Search memos", comment: "Popover search placeholder"),
@@ -221,6 +222,7 @@ struct MenuBarPopoverView: View {
                         .foregroundStyle(.red)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(NSLocalizedString("검색어 지우기", comment: "Clear search button"))
             }
         }
         .font(MacFont.body)
@@ -299,7 +301,7 @@ struct MenuBarPopoverView: View {
             .onChange(of: viewModel.selectedIndex) { newValue in
                 let items = viewModel.filtered
                 guard items.indices.contains(newValue) else { return }
-                withAnimation(.linear(duration: 0.08)) {
+                macWithAnimation(.linear(duration: 0.08)) {
                     proxy.scrollTo(items[newValue].id, anchor: .center)
                 }
             }
@@ -311,6 +313,7 @@ struct MenuBarPopoverView: View {
             Image(systemName: AppSymbol.docOnClipboard)
                 .font(.system(size: MacIcon.hero))
                 .foregroundStyle(.tertiary)
+                .accessibilityHidden(true)
             Text(
                 viewModel.searchText.isEmpty
                 ? NSLocalizedString("No memos yet", comment: "Popover empty state")
@@ -448,9 +451,10 @@ struct MenuBarPopoverView: View {
             NSPasteboard.general.setString(resolved, forType: .string)
             print("✅ [Popover] 복사: \(memo.title)")
             MacUsageReporting.record(event: "memo_copy:popover")
+            MacA11y.announceCopied()
             // 닫기 전에 "복사됨 · ⌘V로 붙여넣으세요" 를 잠깐 보여 준다 - 그냥 사라지면
             // 복사가 된 것인지 알 수 없다(빠른 붙여넣기 패널과 같은 시간).
-            withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = memo.id }
+            macWithAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = memo.id }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { dismiss() }
         }
     }
@@ -461,13 +465,14 @@ struct MenuBarPopoverView: View {
 extension MenuBarPopoverView {
     fileprivate func copyClip(_ clip: ClipboardHistory) {
         guard MacRecentClips.copy(clip) else { return }
-        withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = clip.id }
+        MacA11y.announceCopied()
+        macWithAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = clip.id }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { dismiss() }
     }
 
     fileprivate func deleteClip(_ clip: ClipboardHistory) {
         MacRecentClips.delete(clip)
-        withAnimation(.easeOut(duration: 0.2)) { viewModel.clips.removeAll { $0.id == clip.id } }
+        macWithAnimation(.easeOut(duration: 0.2)) { viewModel.clips.removeAll { $0.id == clip.id } }
         let count = viewModel.filteredClips.count
         if viewModel.selectedIndex >= count { viewModel.selectedIndex = max(0, count - 1) }
     }
@@ -503,6 +508,7 @@ struct MacCategoryChipBar: View {
     @State private var offsetX: CGFloat = 0
     @State private var maxOffsetX: CGFloat = 0
     @State private var isHovering = false
+    @Environment(\.accessibilityDifferentiateWithoutColor) private var differentiateWithoutColor
 
     var body: some View {
         if tabs.count + (onSelectRecent == nil ? 0 : 1) > 1 {
@@ -539,7 +545,7 @@ struct MacCategoryChipBar: View {
     private func recentChip(_ action: @escaping () -> Void) -> some View {
         Button {
             action()
-            withAnimation(.easeOut(duration: 0.2)) { position.scrollTo(edge: .leading) }
+            macWithAnimation(.easeOut(duration: 0.2)) { position.scrollTo(edge: .leading) }
         } label: {
             HStack(spacing: MacSpacing.xs) {
                 Image(systemName: "clock.arrow.circlepath")
@@ -551,16 +557,18 @@ struct MacCategoryChipBar: View {
             .padding(.horizontal, MacSpacing.md)
             .padding(.vertical, MacSpacing.xs)
             .background(recentSelected ? MacRecentClips.tint : MacRecentClips.tint.opacity(0.12), in: Capsule())
+            .overlay(selectedOutline(recentSelected))
             .contentShape(Capsule())
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(recentSelected ? .isSelected : [])
     }
 
     private func chip(_ tab: CategoryTab, index: Int) -> some View {
         let isSelected = selected == tab && !recentSelected
         return Button {
             onSelect(tab)
-            withAnimation(.easeOut(duration: 0.2)) { position.scrollTo(id: index, anchor: .center) }
+            macWithAnimation(.easeOut(duration: 0.2)) { position.scrollTo(id: index, anchor: .center) }
         } label: {
             HStack(spacing: MacSpacing.xs) {
                 Image(systemName: tab.icon)
@@ -572,9 +580,19 @@ struct MacCategoryChipBar: View {
             .padding(.horizontal, MacSpacing.md)
             .padding(.vertical, MacSpacing.xs)
             .background(isSelected ? MacColor.selection : MacColor.surface, in: Capsule())
+            .overlay(selectedOutline(isSelected))
             .contentShape(Capsule())
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
+    }
+
+    /// 고른 칩은 색으로만 다르다 - '색상 없이 구별' 을 켜면 테두리를 더해 모양으로도 구별한다.
+    @ViewBuilder
+    private func selectedOutline(_ isSelected: Bool) -> some View {
+        if isSelected && differentiateWithoutColor {
+            Capsule().strokeBorder(Color.primary, lineWidth: 1.5)
+        }
     }
 }
 
@@ -652,7 +670,7 @@ private struct PopoverRow: View {
                         .foregroundStyle(.green)
                         .font(MacFont.body.weight(.semibold))
                         .frame(width: 28, alignment: .center)
-                        .transition(.scale(scale: 0.3).combined(with: .opacity))
+                        .transition(MacMotion.pop)
                 } else if memo.isFavorite {
                     Image(systemName: AppSymbol.heartFill)
                         .foregroundStyle(.pink)
@@ -674,7 +692,7 @@ private struct PopoverRow: View {
                     if isCopied {
                         Text(NSLocalizedString("Copied — press ⌘V to paste", comment: "Quick paste panel: shown on a row right after copying it"))
                             .font(MacFont.secondary.weight(.medium))
-                            .foregroundStyle(.green)
+                            .macSuccessText()
                             .lineLimit(1)
                     }
                     // 보안 메모는 값을 마스킹(인증 전 노출 금지). 템플릿은 칸이 보이게 여러 줄.
@@ -705,6 +723,7 @@ private struct PopoverRow: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(memo.macAccessibilityLabel)
         .accessibilityHint(NSLocalizedString("탭하면 복사", comment: "Tap to copy hint"))
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 

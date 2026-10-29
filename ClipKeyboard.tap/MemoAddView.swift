@@ -26,6 +26,7 @@ struct MemoAddView: View {
                 HStack {
                     Text(NSLocalizedString("새 단축어", comment: "Add memo title"))
                         .font(MacFont.screenTitle)
+                        .accessibilityAddTraits(.isHeader)
 
                     Spacer()
 
@@ -37,6 +38,7 @@ struct MemoAddView: View {
                             .foregroundStyle(.secondary)
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel(NSLocalizedString("닫기", comment: "Close button"))
                 }
 
                 // 제목 입력
@@ -66,9 +68,11 @@ struct MemoAddView: View {
                     VStack(alignment: .leading, spacing: MacSpacing.sm) {
                         Text(NSLocalizedString("내용", comment: "Content section header"))
                             .font(MacFont.sectionTitle)
+                            .accessibilityAddTraits(.isHeader)
 
                         TextEditor(text: $textContent)
                             .font(MacFont.body)
+                        .accessibilityLabel(NSLocalizedString("내용", comment: "Content section header"))
                             .scrollContentBackground(.hidden)
                             .frame(minHeight: 150)
                             .padding(MacSpacing.sm)
@@ -79,6 +83,7 @@ struct MemoAddView: View {
                                     Text(NSLocalizedString("단축어에 보일 내용을 입력하세요", comment: "Content placeholder"))
                                         .font(MacFont.body)
                                         .foregroundStyle(.secondary)
+                                        .accessibilityHidden(true)
                                         .padding(.horizontal, 13)
                                         .padding(.vertical, 16)
                                         .allowsHitTesting(false)
@@ -103,6 +108,7 @@ struct MemoAddView: View {
                         HStack {
                             Text(NSLocalizedString("이미지 첨부", comment: "Image attachment section header"))
                                 .font(MacFont.sectionTitle)
+                                .accessibilityAddTraits(.isHeader)
 
                             Spacer()
 
@@ -154,6 +160,7 @@ struct MemoAddView: View {
                                 Image(systemName: AppSymbol.photoOnRectangleAngled)
                                     .font(.system(size: MacIcon.hero))
                                     .foregroundStyle(.tertiary)
+                                    .accessibilityHidden(true)
                                 Text(NSLocalizedString("이미지를 추가해보세요", comment: "Empty image hint"))
                                     .font(MacFont.secondary)
                                     .foregroundStyle(.secondary)
@@ -202,10 +209,10 @@ struct MemoAddView: View {
                         .background(.black.opacity(0.8), in: Capsule())
                         .foregroundStyle(.white)
                         .padding(.bottom, MacSpacing.xl)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                        .transition(MacMotion.toast)
                 }
             }
-            .animation(.easeInOut, value: showToast)
+            .animation(MacMotion.animation(.easeInOut), value: showToast)
         )
         .onTapGesture {
             // 빈 공간 탭 시 키보드 내리기
@@ -372,6 +379,7 @@ struct MemoAddView: View {
     private func showToastMessage(_ message: String) {
         toastMessage = message
         showToast = true
+        MacA11y.announce(message)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             showToast = false
@@ -416,6 +424,11 @@ struct ImageAttachmentView: View {
         .onHover { hovering in
             isHovering = hovering
         }
+        // 지우기 단추는 마우스를 올려야 보인다 - VoiceOver 에서는 동작으로 지운다.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(NSLocalizedString("이미지", comment: "Image type"))
+        .accessibilityAddTraits(.isImage)
+        .accessibilityAction(named: Text(NSLocalizedString("삭제", comment: "Delete button")), onRemove)
     }
 }
 

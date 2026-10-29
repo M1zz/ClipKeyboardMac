@@ -30,6 +30,7 @@ struct ClipboardHistoryView: View {
                         VStack(alignment: .leading, spacing: MacSpacing.xs) {
                             Text(NSLocalizedString("클립보드 히스토리", comment: "Clipboard history title"))
                                 .font(MacFont.screenTitle)
+                                .accessibilityAddTraits(.isHeader)
 
                             Text(String(format: NSLocalizedString("%d개의 항목", comment: "Item count"), clipboardHistory.count))
                                 .font(MacFont.secondary)
@@ -49,6 +50,7 @@ struct ClipboardHistoryView: View {
                     HStack(spacing: MacSpacing.sm) {
                         Image(systemName: AppSymbol.magnifyingglass)
                             .foregroundStyle(.secondary)
+                            .accessibilityHidden(true)
 
                         TextField(NSLocalizedString("검색...", comment: "Search placeholder"), text: $searchText)
                             .textFieldStyle(.plain)
@@ -61,6 +63,7 @@ struct ClipboardHistoryView: View {
                                     .foregroundStyle(.red)
                             }
                             .buttonStyle(.plain)
+                            .accessibilityLabel(NSLocalizedString("검색어 지우기", comment: "Clear search button"))
                         }
                     }
                     .padding(.horizontal, MacSpacing.md)
@@ -111,13 +114,13 @@ struct ClipboardHistoryView: View {
                         .background(.black.opacity(0.8), in: Capsule())
                         .foregroundStyle(.white)
                         .padding(.bottom, MacSpacing.xl)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                        .transition(MacMotion.toast)
                         .onTapGesture {
                             showToast = false
                         }
                 }
             }
-            .animation(.easeInOut, value: showToast)
+            .animation(MacMotion.animation(.easeInOut), value: showToast)
         }
         .frame(minWidth: 600, minHeight: 500)
         .onAppear {
@@ -132,6 +135,7 @@ struct ClipboardHistoryView: View {
             Image(systemName: searchText.isEmpty ? "doc.on.clipboard" : "magnifyingglass")
                 .font(.system(size: MacIcon.hero))
                 .foregroundStyle(.tertiary)
+                .accessibilityHidden(true)
 
             Text(searchText.isEmpty ? NSLocalizedString("클립보드 히스토리 없음", comment: "No clipboard history") : NSLocalizedString("검색 결과 없음", comment: "No search results"))
                 .font(MacFont.sectionTitle)
@@ -177,6 +181,7 @@ struct ClipboardHistoryView: View {
         let preview = message.prefix(30)
         toastMessage = String(format: NSLocalizedString("[%@] 클립보드에 복사되었습니다", comment: "Clipboard copy toast"), String(preview) + (message.count > 30 ? "..." : ""))
         showToast = true
+        MacA11y.announce(toastMessage)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             showToast = false
@@ -218,6 +223,7 @@ struct ClipboardHistoryView: View {
 
             toastMessage = NSLocalizedString("단축어로 저장되었습니다", comment: "Saved as memo toast")
             showToast = true
+            MacA11y.announce(toastMessage)
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 showToast = false
@@ -302,6 +308,7 @@ struct ClipboardItemRow: View {
                     }
                     .buttonStyle(.plain)
                     .help(NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip"))
+                    .accessibilityLabel(NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip"))
 
                     Button {
                         onCopy()
@@ -311,6 +318,7 @@ struct ClipboardItemRow: View {
                     }
                     .buttonStyle(.plain)
                     .help(NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"))
+                    .accessibilityLabel(NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"))
 
                     Button {
                         onDelete()
@@ -320,6 +328,7 @@ struct ClipboardItemRow: View {
                     }
                     .buttonStyle(.plain)
                     .help(NSLocalizedString("삭제", comment: "Delete tooltip"))
+                    .accessibilityLabel(NSLocalizedString("삭제", comment: "Delete tooltip"))
                 }
                 .font(MacFont.body)
             }
@@ -334,6 +343,17 @@ struct ClipboardItemRow: View {
         .onTapGesture {
             onCopy()
         }
+        // 누르기와 마우스를 올려야 보이는 단추뿐이라, VoiceOver 에서는 한 줄을 단추로 읽고 동작을 단다.
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(item.contentType == .image ? NSLocalizedString("이미지", comment: "Image type") : item.content)
+        .accessibilityValue(item.isTemporary
+                            ? formatDate(item.copiedAt) + ", " + NSLocalizedString("임시", comment: "Temporary tag")
+                            : formatDate(item.copiedAt))
+        .accessibilityHint(NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"))
+        .accessibilityAction { onCopy() }
+        .accessibilityAction(named: Text(NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip")), onSave)
+        .accessibilityAction(named: Text(NSLocalizedString("삭제", comment: "Delete tooltip")), onDelete)
     }
 
     private func formatDate(_ date: Date) -> String {

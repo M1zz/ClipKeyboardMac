@@ -325,6 +325,7 @@ struct MacPreferencesView: View {
                             .buttonStyle(.borderless)
                             .disabled(index == 0)
                             .help(NSLocalizedString("Move up", comment: "Reorder: move up"))
+                            .accessibilityLabel(NSLocalizedString("Move up", comment: "Reorder: move up"))
 
                             Button {
                                 move(memo, by: 1)
@@ -334,6 +335,7 @@ struct MacPreferencesView: View {
                             .buttonStyle(.borderless)
                             .disabled(index == orderedMemos.count - 1)
                             .help(NSLocalizedString("Move down", comment: "Reorder: move down"))
+                            .accessibilityLabel(NSLocalizedString("Move down", comment: "Reorder: move down"))
                         }
                         .padding(.vertical, MacSpacing.xs / 2)
                     }
@@ -416,6 +418,7 @@ struct MacPreferencesView: View {
             Image(systemName: AppSymbol.docOnClipboardFill)
                 .font(.system(size: MacIcon.hero))
                 .foregroundStyle(.tint)
+                .accessibilityHidden(true)
 
             Text("ClipKeyboard")
                 .font(MacFont.screenTitle)

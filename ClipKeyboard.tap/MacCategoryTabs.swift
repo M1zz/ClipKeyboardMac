@@ -306,7 +306,7 @@ struct MacCategoryPicker: View {
     private static let newCategoryTag = "\u{0}new-category"
 
     var body: some View {
-        Picker("", selection: pickerBinding) {
+        Picker(NSLocalizedString("카테고리", comment: "Category"), selection: pickerBinding) {
             Text(MacCategoryName.localizedBasic).tag(MacCategoryName.basicSentinel)
             ForEach(options, id: \.self) { name in
                 Text(name).tag(name)

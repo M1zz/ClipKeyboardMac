@@ -1732,3 +1732,15 @@ https://m1zz.github.io/ClipKeyboard/vi/
 ### 개인정보처리방침 URL
 
 https://m1zz.github.io/ClipKeyboard/vi/privacy.html
+
+## 손쉬운 사용
+
+<!-- DeployBar 가 App Store Connect '앱의 손쉬운 사용' 에 올린다. 실제로 확인한 것만 적는다. -->
+
+### Mac
+voiceOver
+voiceControl
+darkInterface
+differentiateWithoutColor
+sufficientContrast
+reducedMotion

@@ -70,6 +70,7 @@ struct MemoEditView: View {
             HStack {
                 Text(NSLocalizedString("단축어 수정", comment: "Edit memo title"))
                     .font(MacFont.screenTitle)
+                    .accessibilityAddTraits(.isHeader)
 
                 Spacer()
 
@@ -83,6 +84,8 @@ struct MemoEditView: View {
                 }
                 .buttonStyle(.plain)
                 .help(NSLocalizedString("즐겨찾기", comment: "Favorite toggle"))
+                .accessibilityLabel(NSLocalizedString("즐겨찾기", comment: "Favorite toggle"))
+                .accessibilityAddTraits(isFavorite ? .isSelected : [])
             }
 
             TextField(NSLocalizedString("제목", comment: "Title placeholder"), text: $title)
@@ -109,6 +112,7 @@ struct MemoEditView: View {
         VStack(alignment: .leading, spacing: MacSpacing.sm) {
             Text(NSLocalizedString("내용", comment: "Content section header"))
                 .font(MacFont.sectionTitle)
+                .accessibilityAddTraits(.isHeader)
 
             if memo.isSecure {
                 // 보안 단축어의 값은 이 기기에 암호문으로만 있다. 평문으로 열어 되쓰면
@@ -117,6 +121,7 @@ struct MemoEditView: View {
             } else {
                 TextEditor(text: $textContent)
                     .font(MacFont.body)
+                    .accessibilityLabel(NSLocalizedString("내용", comment: "Content section header"))
                     .scrollContentBackground(.hidden)
                     .frame(minHeight: 150)
                     .padding(MacSpacing.sm)
@@ -156,6 +161,9 @@ struct MemoEditView: View {
             .padding(MacSpacing.md)
             .frame(maxWidth: .infinity, alignment: .leading)
             .macSurface()
+            // 점(•)을 하나하나 읽지 않게 - 가려진 내용이라고만 말한다.
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(NSLocalizedString("보안 단축어", comment: "VoiceOver: secure memo badge"))
 
             noticeRow(symbol: AppSymbol.infoCircle,
                       text: NSLocalizedString("보안 단축어의 내용은 아이폰에서만 바꿀 수 있습니다. 여기서는 제목·카테고리만 수정돼요.",
@@ -181,6 +189,7 @@ struct MemoEditView: View {
             HStack {
                 Text(NSLocalizedString("이미지 첨부", comment: "Image attachment section header"))
                     .font(MacFont.sectionTitle)
+                    .accessibilityAddTraits(.isHeader)
 
                 Spacer()
 
@@ -275,10 +284,10 @@ struct MemoEditView: View {
                     .background(.black.opacity(0.8), in: Capsule())
                     .foregroundStyle(.white)
                     .padding(.bottom, MacSpacing.xl)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .transition(MacMotion.toast)
             }
         }
-        .animation(.easeInOut, value: showToast)
+        .animation(MacMotion.animation(.easeInOut), value: showToast)
     }
 
     // MARK: - Actions
@@ -380,6 +389,7 @@ struct MemoEditView: View {
     private func showToastMessage(_ message: String) {
         toastMessage = message
         showToast = true
+        MacA11y.announce(message)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { showToast = false }
     }
 }

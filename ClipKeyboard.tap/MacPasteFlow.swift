@@ -67,6 +67,7 @@ private final class TemplateFillWindow: NSObject, NSWindowDelegate {
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(resolved, forType: .string)
                 MacUsageReporting.record(event: "template_fill")
+                MacA11y.announceCopied()
                 // 창은 시트가 "복사됨" 을 잠깐 보여 준 뒤 `onClose` 로 닫는다.
             },
             onClose: { [weak self] in self?.finish() }
@@ -231,7 +232,7 @@ private struct StackPasteView: View {
                     .padding(MacSpacing.sm)
                 }
                 .onChange(of: current) { newValue in
-                    withAnimation(.easeOut(duration: 0.15)) { proxy.scrollTo(newValue, anchor: .center) }
+                    macWithAnimation(.easeOut(duration: 0.15)) { proxy.scrollTo(newValue, anchor: .center) }
                 }
                 .onAppear { proxy.scrollTo(current, anchor: .center) }
             }
@@ -246,9 +247,11 @@ private struct StackPasteView: View {
         HStack(spacing: MacSpacing.sm) {
             Image(systemName: AppSymbol.squareStack3dUpFill)
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
             Text(memo.title)
                 .font(MacFont.sectionTitle)
                 .lineLimit(1)
+                .accessibilityAddTraits(.isHeader)
             Text(verbatim: "\(min(done.count, values.count))/\(values.count)")
                 .font(MacFont.mono)
                 .foregroundStyle(.secondary)
@@ -259,6 +262,7 @@ private struct StackPasteView: View {
                     .foregroundStyle(.secondary)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel(NSLocalizedString("닫기", comment: "Close button"))
         }
         .padding(.horizontal, MacSpacing.md)
         .padding(.vertical, MacSpacing.sm)
@@ -290,7 +294,7 @@ private struct StackPasteView: View {
                     if justCopied == index {
                         Text(NSLocalizedString("Copied — press ⌘V to paste", comment: "Quick paste panel: shown on a row right after copying it"))
                             .font(MacFont.body.weight(.medium))
-                            .foregroundStyle(.green)
+                            .macSuccessText()
                             .lineLimit(1)
                     } else {
                         Text(memo.isSecure ? "••••••••" : (value.isEmpty ? "-" : value))
@@ -316,6 +320,12 @@ private struct StackPasteView: View {
         .buttonStyle(.plain)
         .disabled(value.isEmpty)
         .help(memo.isSecure ? memo.displayKey(at: index) : value)
+        // 칸 이름 + 값(보안이면 이름만). 복사한 칸은 체크로만 보여 소리로도 말한다.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(memo.isSecure ? memo.displayKey(at: index)
+                            : memo.displayKey(at: index) + ", " + (value.isEmpty ? "-" : value))
+        .accessibilityValue(isDone ? NSLocalizedString("복사됨", comment: "VoiceOver: stack item already copied") : "")
+        .accessibilityAddTraits(isCurrent ? .isSelected : [])
     }
 
     private func copy(_ index: Int) {
@@ -329,7 +339,8 @@ private struct StackPasteView: View {
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(resolved, forType: .string)
             MacUsageReporting.record(event: "stack_paste")
-            withAnimation(.spring(response: 0.25, dampingFraction: 0.7)) {
+            MacA11y.announceCopied()
+            macWithAnimation(.spring(response: 0.25, dampingFraction: 0.7)) {
                 done.insert(index)
                 justCopied = index
                 current = min(index + 1, values.count - 1)

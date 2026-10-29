@@ -20,12 +20,14 @@ struct OnboardingView: View {
                     Image(systemName: AppSymbol.docOnClipboardFill)
                         .font(.system(size: MacIcon.hero))
                         .foregroundStyle(.tint)
+                        .accessibilityHidden(true)
                         .padding(.top, MacSpacing.xl)
 
                     // Welcome Text — fixedSize로 길이에 관계없이 세로 확장
                     VStack(spacing: MacSpacing.sm) {
                         Text(NSLocalizedString("ClipKeyboard에 오신 것을 환영합니다", comment: "Welcome title"))
                             .font(MacFont.screenTitle)
+                            .accessibilityAddTraits(.isHeader)
                             .multilineTextAlignment(.center)
                             .fixedSize(horizontal: false, vertical: true)
 
@@ -105,6 +107,7 @@ struct MacFeatureRow: View {
                 .font(.title3)
                 .foregroundStyle(.tint)
                 .frame(width: 32)
+                .accessibilityHidden(true)
 
             // Text
             VStack(alignment: .leading, spacing: MacSpacing.xs / 2) {
@@ -119,6 +122,7 @@ struct MacFeatureRow: View {
 
             Spacer(minLength: 0)
         }
+        .accessibilityElement(children: .combine)
     }
 }
 

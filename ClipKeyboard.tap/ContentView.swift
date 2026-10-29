@@ -21,6 +21,7 @@ struct ContentView: View {
                     Image(systemName: AppSymbol.docOnClipboard)
                         .font(.system(size: MacIcon.hero))
                         .foregroundStyle(.tint)
+                        .accessibilityHidden(true)
 
                     Text(NSLocalizedString("클립키보드", comment: "App name"))
                         .font(MacFont.screenTitle)
@@ -90,11 +91,13 @@ struct ContentView: View {
             Image(systemName: symbol)
                 .foregroundStyle(.secondary)
                 .frame(width: MacIcon.glyph)
+                .accessibilityHidden(true)
             Text(title)
             Spacer()
             Text(detail)
                 .foregroundStyle(.secondary)
         }
+        .accessibilityElement(children: .combine)
     }
 
     private func setupNotifications() {

@@ -174,6 +174,7 @@ struct MemoListView: View {
             HStack(spacing: MacSpacing.sm) {
                 Text(NSLocalizedString("단축어", comment: "Snippets section header"))
                     .font(MacFont.sectionTitle)
+                    .accessibilityAddTraits(.isHeader)
 
                 Text("\(filteredMemos.count)")
                     .font(MacFont.secondary)
@@ -216,7 +217,7 @@ struct MemoListView: View {
     @ViewBuilder
     private var categoryPicker: some View {
         if !tabs.isEmpty {
-            Picker("", selection: $selectedTab) {
+            Picker(NSLocalizedString("카테고리", comment: "Category"), selection: $selectedTab) {
                 ForEach(tabs, id: \.self) { tab in
                     Label(MacCategoryName.display(tab.displayName), systemImage: tab.icon).tag(tab)
                 }
@@ -231,6 +232,7 @@ struct MemoListView: View {
         HStack(spacing: MacSpacing.sm) {
             Image(systemName: AppSymbol.magnifyingglass)
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
 
             TextField(NSLocalizedString("검색", comment: "Search placeholder"), text: $searchText)
                 .textFieldStyle(.plain)
@@ -243,6 +245,7 @@ struct MemoListView: View {
                         .foregroundStyle(.red)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(NSLocalizedString("검색어 지우기", comment: "Clear search button"))
             }
         }
         .font(MacFont.body)
@@ -258,7 +261,8 @@ struct MemoListView: View {
             CompactEmptyListView
         } else {
             List {
-                ForEach(filteredMemos) { memo in
+                let visible = filteredMemos
+                ForEach(Array(visible.enumerated()), id: \.element.id) { index, memo in
                     CompactMemoItemRow(
                         memo: memo,
                         onCopy: { handleMemoTap(memo) },
@@ -267,7 +271,12 @@ struct MemoListView: View {
                         onToggleFavorite: {
                             MacMemoActions.toggleFavorite(memo)
                             loadMemos()
-                        }
+                        },
+                        // 드래그를 못 쓰는 사람(VoiceOver·음성 명령)도 순서를 바꿀 수 있게 한 칸씩 옮기는 길.
+                        onMoveUp: canReorder && index > 0
+                            ? { moveMemos(from: IndexSet(integer: index), to: index - 1) } : nil,
+                        onMoveDown: canReorder && index < visible.count - 1
+                            ? { moveMemos(from: IndexSet(integer: index), to: index + 2) } : nil
                     )
                 }
                 // 드래그로 순서 변경 — 지정한 순서는 App Group을 통해 iOS·키보드와 공유된다.
@@ -315,6 +324,7 @@ struct MemoListView: View {
             Image(systemName: searchText.isEmpty ? "doc.text.magnifyingglass" : "magnifyingglass")
                 .font(.system(size: MacIcon.hero))
                 .foregroundStyle(.tertiary)
+                .accessibilityHidden(true)
 
             Text(searchText.isEmpty ? NSLocalizedString("단축어 없음", comment: "No memos") : NSLocalizedString("검색 결과 없음", comment: "No search results"))
                 .font(MacFont.body)
@@ -363,6 +373,7 @@ struct MemoListView: View {
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(text, forType: .string)
         MacUsageReporting.record(event: "memo_copy:list")
+        MacA11y.announceCopied()
         print("✅ [MemoListView] copyToClipboard - 클립보드 복사 완료")
     }
 
@@ -376,6 +387,7 @@ struct MemoListView: View {
         print("📸 [MemoListView] copyImageToClipboard - 이미지 클립보드 복사 시작")
         NSPasteboard.general.clearContents()
         NSPasteboard.general.writeObjects([image])
+        MacA11y.announceCopied()
         print("✅ [MemoListView] copyImageToClipboard - 이미지 클립보드 복사 완료")
     }
 }
@@ -454,6 +466,8 @@ struct CompactMemoItemRow: View {
     let onEdit: () -> Void
     let onDelete: () -> Void
     let onToggleFavorite: () -> Void
+    var onMoveUp: (() -> Void)? = nil
+    var onMoveDown: (() -> Void)? = nil
 
     @State private var isHovering = false
 
@@ -588,6 +602,20 @@ struct CompactMemoItemRow: View {
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(memo.macAccessibilityLabel)
         .accessibilityHint(NSLocalizedString("탭하면 복사", comment: "Tap to copy hint"))
+        // 수정·삭제 단추는 마우스를 올려야 나타난다 - VoiceOver 에서는 동작으로 고른다.
+        .accessibilityAction(named: Text(NSLocalizedString("수정…", comment: "Context: edit")), onEdit)
+        .accessibilityAction(named: Text(memo.isFavorite
+                                         ? NSLocalizedString("즐겨찾기 해제", comment: "Context: unfavorite")
+                                         : NSLocalizedString("즐겨찾기", comment: "Favorite toggle")), onToggleFavorite)
+        .accessibilityAction(named: Text(NSLocalizedString("삭제", comment: "Delete button")), onDelete)
+        .accessibilityActions {
+            if let onMoveUp {
+                Button(NSLocalizedString("Move up", comment: "Reorder: move up"), action: onMoveUp)
+            }
+            if let onMoveDown {
+                Button(NSLocalizedString("Move down", comment: "Reorder: move down"), action: onMoveDown)
+            }
+        }
     }
 }
 

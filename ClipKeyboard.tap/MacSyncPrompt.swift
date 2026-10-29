@@ -69,6 +69,11 @@ struct MacSyncIndicator: View {
             .buttonStyle(.plain)
             .help(tooltip)
             .accessibilityLabel(NSLocalizedString("아이폰과 동기화 켜짐", comment: "Sync indicator label"))
+            // 오류는 기호와 색으로만 보인다 - 소리로도 무슨 오류인지 말한다.
+            .accessibilityValue(hasError ? tooltip : "")
+            .accessibilityHint(NSLocalizedString("지금 동기화", comment: "Prefs: sync now button"))
+            .accessibilityInputLabels([NSLocalizedString("동기화", comment: "Voice Control: sync indicator"),
+                                       NSLocalizedString("지금 동기화", comment: "Prefs: sync now button")])
         }
     }
 

@@ -45,6 +45,7 @@ struct MacTemplateFillSheet: View {
             VStack(alignment: .leading, spacing: MacSpacing.xs) {
                 Text(NSLocalizedString("값 채우기", comment: "Mac template fill sheet title"))
                     .font(MacFont.screenTitle)
+                    .accessibilityAddTraits(.isHeader)
                 Text(memo.title)
                     .font(MacFont.secondary)
                     .foregroundStyle(.secondary)
@@ -112,7 +113,7 @@ struct MacTemplateFillSheet: View {
                     Label(NSLocalizedString("Copied — press ⌘V to paste", comment: "Quick paste panel: shown on a row right after copying it"),
                           systemImage: AppSymbol.checkmarkCircleFill)
                         .font(MacFont.body.weight(.medium))
-                        .foregroundStyle(.green)
+                        .macSuccessText()
                         .transition(.opacity)
                 } else {
                     Button(NSLocalizedString("복사", comment: "Copy")) { copyAndClose() }
@@ -129,7 +130,7 @@ struct MacTemplateFillSheet: View {
     /// 복사하고, 복사됐다고 잠깐 보여 준 뒤 닫는다(패널·팝오버와 같은 0.9초).
     private func copyAndClose() {
         onComplete(resolved)
-        withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copied = true }
+        macWithAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copied = true }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { close() }
     }
 

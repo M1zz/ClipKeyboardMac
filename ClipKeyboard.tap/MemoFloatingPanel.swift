@@ -241,6 +241,7 @@ struct MemoFloatingPanelView: View {
                     .foregroundStyle(.secondary)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel(NSLocalizedString("닫기", comment: "Close button"))
         }
         .padding(.horizontal, MacSpacing.sm)
         .padding(.vertical, MacSpacing.sm)
@@ -259,7 +260,7 @@ struct MemoFloatingPanelView: View {
                 onPick: copyClip,
                 onDelete: { clip in
                     MacRecentClips.delete(clip)
-                    withAnimation(.easeOut(duration: 0.2)) { viewModel.clips.removeAll { $0.id == clip.id } }
+                    macWithAnimation(.easeOut(duration: 0.2)) { viewModel.clips.removeAll { $0.id == clip.id } }
                 }
             )
             .task {
@@ -295,7 +296,8 @@ struct MemoFloatingPanelView: View {
 
     private func copy(_ memo: Memo) {
         onSelect(memo) {
-            withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) {
+            MacA11y.announceCopied()
+            macWithAnimation(.spring(response: 0.25, dampingFraction: 0.6)) {
                 copiedID = memo.id
             }
         }
@@ -304,7 +306,8 @@ struct MemoFloatingPanelView: View {
     /// 최근 항목을 다시 담고, 체크를 잠깐 보인 뒤 닫는다(단축어를 고를 때와 같은 0.9초).
     private func copyClip(_ clip: ClipboardHistory) {
         guard MacRecentClips.copy(clip) else { return }
-        withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = clip.id }
+        MacA11y.announceCopied()
+        macWithAnimation(.spring(response: 0.25, dampingFraction: 0.6)) { copiedID = clip.id }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { onDismiss() }
     }
 
@@ -313,6 +316,7 @@ struct MemoFloatingPanelView: View {
             Image(systemName: AppSymbol.docOnClipboard)
                 .font(.system(size: MacIcon.hero))
                 .foregroundStyle(.tertiary)
+                .accessibilityHidden(true)
             Text(NSLocalizedString("No memos yet", comment: "Popover empty state"))
                 .font(MacFont.body)
                 .foregroundStyle(.secondary)
@@ -394,7 +398,7 @@ private struct FloatingMemoRow: View {
         if isCopied {
             Text(NSLocalizedString("Copied — press ⌘V to paste", comment: "Quick paste panel: shown on a row right after copying it"))
                 .font(MacFont.secondary.weight(.medium))
-                .foregroundStyle(.green)
+                .macSuccessText()
                 .lineLimit(1)
                 .transition(.opacity)
         } else if isStack {
@@ -420,7 +424,7 @@ private struct FloatingMemoRow: View {
             Image(systemName: AppSymbol.checkmarkCircleFill)
                 .foregroundStyle(.green)
                 .font(MacFont.body.weight(.semibold))
-                .transition(.scale(scale: 0.3).combined(with: .opacity))
+                .transition(MacMotion.pop)
         } else if memo.isFavorite {
             Image(systemName: AppSymbol.heartFill)
                 .foregroundStyle(.pink)

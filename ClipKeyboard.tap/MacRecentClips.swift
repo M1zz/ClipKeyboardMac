@@ -126,7 +126,7 @@ struct MacRecentClipsList: View {
                 .scrollContentBackground(.hidden)
                 .onChange(of: selectedIndex) { _, newValue in
                     guard let newValue, clips.indices.contains(newValue) else { return }
-                    withAnimation(.linear(duration: 0.08)) {
+                    macWithAnimation(.linear(duration: 0.08)) {
                         proxy.scrollTo(clips[newValue].id, anchor: .center)
                     }
                 }
@@ -146,7 +146,7 @@ struct MacRecentClipsList: View {
                         Image(systemName: AppSymbol.checkmarkCircleFill)
                             .foregroundStyle(.green)
                             .font(MacFont.body.weight(.semibold))
-                            .transition(.scale(scale: 0.3).combined(with: .opacity))
+                            .transition(MacMotion.pop)
                     } else if selectedIndex != nil, index < 9 {
                         Text(verbatim: "⌘\(index + 1)")
                             .font(MacFont.mono)
@@ -164,12 +164,17 @@ struct MacRecentClipsList: View {
                         .font(MacFont.rowTitle)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                    Text(isCopied
-                         ? NSLocalizedString("Copied — press ⌘V to paste", comment: "Quick paste panel: shown on a row right after copying it")
-                         : Self.relativeFormatter.localizedString(for: clip.copiedAt, relativeTo: Date()))
-                        .font(MacFont.secondary)
-                        .foregroundStyle(isCopied ? AnyShapeStyle(Color.green) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
-                        .lineLimit(1)
+                    Group {
+                        if isCopied {
+                            Text(NSLocalizedString("Copied — press ⌘V to paste", comment: "Quick paste panel: shown on a row right after copying it"))
+                                .macSuccessText()
+                        } else {
+                            Text(Self.relativeFormatter.localizedString(for: clip.copiedAt, relativeTo: Date()))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .font(MacFont.secondary)
+                    .lineLimit(1)
                 }
                 Spacer(minLength: 0)
             }
@@ -189,6 +194,7 @@ struct MacRecentClipsList: View {
         )
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(preview(clip))
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
         .accessibilityHint(NSLocalizedString("탭하면 복사", comment: "Tap to copy hint"))
         .accessibilityAction(named: Text(NSLocalizedString("삭제", comment: "Delete button"))) {
             onDelete(clip)
@@ -211,6 +217,7 @@ struct MacRecentClipsList: View {
             Image(systemName: isFiltering ? AppSymbol.magnifyingglass : AppSymbol.docOnClipboard)
                 .font(.system(size: MacIcon.hero))
                 .foregroundStyle(.tertiary)
+                .accessibilityHidden(true)
             Text(isFiltering
                  ? NSLocalizedString("No matches", comment: "Popover empty state (searching)")
                  : NSLocalizedString("아직 담아 둔 것이 없어요", comment: "Keyboard recent tab: empty title"))
