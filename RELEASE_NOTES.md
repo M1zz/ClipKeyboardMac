@@ -9,6 +9,200 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 
 확인: `DeployBar --reponotes 탭클립키보드 5.1.9`
 
+## 5.1.10
+
+### 앱스토어 (한국어)
+
+메뉴 막대 가운데에 마우스를 올리면 빠른 붙여넣기가 열려요.
+고마울 때 개발자에게 작은 팁을 보낼 수 있어요.
+화면 읽기와 음성 명령으로도 편하게 쓸 수 있어요.
+다크 모드와 고대비 화면에서도 잘 보여요.
+색을 구별하기 어려워도 알아보기 쉬워졌어요.
+
+### App Store (English)
+
+Hover at the top center for quick paste.
+Thank the developer with a small tip.
+Better with VoiceOver and Voice Control.
+Clearer in Dark Mode and high contrast.
+Easier to use if you're color-blind.
+
+### App Store (en-GB)
+
+Hover at the top centre for quick paste.
+Thank the developer with a small tip.
+Better with VoiceOver and Voice Control.
+Clearer in Dark Mode and high contrast.
+Easier to use if you're colour-blind.
+
+### 앱스토어 (중국어 간체)
+
+指针移到菜单栏中央即可打开快速粘贴。
+可以给开发者送上一点小费表达感谢。
+更好地支持旁白和语音控制。
+深色模式和高对比度下也清晰易读。
+难以分辨颜色时也更容易看清。
+
+### 앱스토어 (중국어 번체)
+
+指標移到選單列中央即可打開快速貼上。
+可以給開發者一點小費表達謝意。
+更好地支援旁白和語音控制。
+深色模式和高對比下也清楚易讀。
+難以分辨顏色時也更容易看清。
+
+### 앱스토어 (일본어, ja)
+
+メニューバー中央にポインタを置くと貼り付け画面が開きます。
+開発者にささやかなチップを送れます。
+VoiceOverと音声コントロールで使いやすくなりました。
+ダークモードや高コントラストでも見やすくなりました。
+色の見分けが苦手でもわかりやすくなりました。
+
+### 앱스토어 (독일어, de)
+
+Zeiger oben mittig öffnet das Einfügen.
+Sag Danke mit einem kleinen Trinkgeld.
+Besser mit VoiceOver und Sprachbefehlen.
+Klarer bei Dunkelmodus und Kontrast.
+Einfacher bei Farbsehschwäche.
+
+### 앱스토어 (스페인어, es)
+
+Apunta arriba al centro para pegar.
+Deja una propina al desarrollador.
+Mejor con VoiceOver y Control por voz.
+Más legible en modo oscuro y contraste.
+Más fácil si confundes los colores.
+
+### 앱스토어 (프랑스어, fr)
+
+Pointez en haut au centre pour coller.
+Offrez un pourboire au développeur.
+Mieux avec VoiceOver et Commande vocale.
+Lisible en mode sombre et contrasté.
+Plus simple pour les daltoniens.
+
+### 앱스토어 (이탈리아어, it)
+
+Punta in alto al centro per incollare.
+Offri una mancia allo sviluppatore.
+Meglio con VoiceOver e Controllo vocale.
+Più chiaro con tema scuro e contrasto.
+Più facile se distingui male i colori.
+
+### 앱스토어 (포르투갈어(브라질), pt-BR)
+
+Aponte no alto ao centro para colar.
+Mande uma gorjeta para o desenvolvedor.
+Melhor com VoiceOver e Controle por Voz.
+Legível no modo escuro e alto contraste.
+Mais fácil para quem confunde cores.
+
+### 앱스토어 (러시아어, ru)
+
+Наведите на центр меню, чтобы вставить.
+Можно отправить разработчику чаевые.
+Поддержка VoiceOver и голосовых команд.
+Тёмная тема и контраст стали удобнее.
+Понятнее, если трудно различать цвета.
+
+### 앱스토어 (체코어, cs)
+
+Najeďte nahoru doprostřed a vložte.
+Pošlete vývojáři malé spropitné.
+Lepší s VoiceOverem a Ovládáním hlasem.
+Čitelnější v tmavém režimu a kontrastu.
+Snazší, když špatně rozlišujete barvy.
+
+### 앱스토어 (덴마크어, da)
+
+Peg øverst i midten for at indsætte.
+Giv udvikleren lidt drikkepenge som tak.
+Bedre med VoiceOver og Stemmestyring.
+Tydelig i mørk tilstand og høj kontrast.
+Lettere, hvis du har svært ved farver.
+
+### 앱스토어 (그리스어, el)
+
+Δείξτε πάνω στη μέση για επικόλληση.
+Στείλτε φιλοδώρημα στον δημιουργό.
+Πιο εύκολο με VoiceOver και φωνή.
+Καθαρό σε σκούρο θέμα και αντίθεση.
+Πιο εύκολο αν μπερδεύετε τα χρώματα.
+
+### 앱스토어 (핀란드어, fi)
+
+Osoita ylös keskelle ja liitä nopeasti.
+Lähetä kehittäjälle pieni tippi.
+Tuki VoiceOverille ja puheohjaukselle.
+Selkeä tummana ja suurella kontrastilla.
+Helpompi, jos värejä on vaikea erottaa.
+
+### 앱스토어 (인도네시아어, id)
+
+Arahkan ke tengah atas untuk menempel.
+Kirim tip kecil untuk pengembang.
+Mendukung VoiceOver dan Kontrol Suara.
+Jelas di mode gelap dan kontras tinggi.
+Lebih mudah jika sulit membedakan warna.
+
+### 앱스토어 (노르웨이어(보크말), nb)
+
+Pek øverst på midten for å lime inn.
+Gi utvikleren litt tips som takk.
+Bedre med VoiceOver og Talestyring.
+Tydelig i mørk modus og høy kontrast.
+Enklere om du blander farger.
+
+### 앱스토어 (네덜란드어, nl)
+
+Wijs boven in het midden om te plakken.
+Geef de ontwikkelaar een kleine fooi.
+Beter met VoiceOver en Stembediening.
+Helder in donkere modus en contrast.
+Makkelijker als je kleuren slecht ziet.
+
+### 앱스토어 (폴란드어, pl)
+
+Wskaż środek u góry, by szybko wkleić.
+Wyślij twórcy mały napiwek.
+Lepiej z VoiceOver i Sterowaniem głosem.
+Wyraźne w trybie ciemnym i z kontrastem.
+Łatwiej, gdy trudno rozróżnić kolory.
+
+### 앱스토어 (스웨덴어, sv)
+
+Peka överst i mitten och klistra in.
+Ge utvecklaren lite dricks som tack.
+Bättre med VoiceOver och Röststyrning.
+Tydlig i mörkt läge och hög kontrast.
+Enklare om färger är svåra att skilja.
+
+### 앱스토어 (태국어, th)
+
+ชี้เมาส์กลางแถบเมนูเพื่อวางได้ทันที
+ส่งทิปเล็กๆ ให้นักพัฒนาเพื่อขอบคุณได้
+ใช้ VoiceOver และสั่งด้วยเสียงได้ดีขึ้น
+อ่านง่ายในโหมดมืดและคอนทราสต์สูง
+แยกแยะง่ายขึ้นแม้มองสีได้ไม่ชัด
+
+### 앱스토어 (튀르키예어, tr)
+
+İmleci üst ortaya getirip yapıştırın.
+Geliştiriciye küçük bir bahşiş gönderin.
+VoiceOver ve Sesle Denetim ile daha iyi.
+Koyu mod ve kontrastta net görünür.
+Renkleri ayırt etmek zorsa daha kolay.
+
+### 앱스토어 (베트남어, vi)
+
+Trỏ chuột giữa thanh menu để dán nhanh.
+Gửi nhà phát triển chút tiền tip cảm ơn.
+Dùng tốt hơn với VoiceOver và Khẩu lệnh.
+Dễ đọc ở chế độ tối và tương phản cao.
+Dễ nhận biết hơn nếu khó phân biệt màu.
+
 ## 5.1.9
 
 ### 앱스토어 (한국어)
