@@ -155,6 +155,7 @@ struct MacPreferencesView: View {
                 } label: {
                     Label(LeeoRoadmapText.entry, systemImage: "map")
                 }
+                MacTipJarRow()
             } header: {
                 Text(NSLocalizedString("Feedback & Review", comment: "Prefs section: feedback"))
                     .font(MacFont.sectionTitle)
@@ -479,6 +480,36 @@ struct MacPreferencesView: View {
             // 실패 시 UI 토글을 원래대로 되돌려 사용자 혼란 방지.
             DispatchQueue.main.async {
                 self.launchAtLogin = (service.status == .enabled)
+            }
+        }
+    }
+}
+
+// MARK: - 응원하기 (팁)
+
+/// 환경설정의 '개발자 응원하기' 줄. 판매 중인 팁이 있어야 선다.
+/// 환경설정 창에는 내비게이션이 없어 `LeeoTipJarLink` 대신 시트로 연다(앞으로 만들 기능과 같다).
+private struct MacTipJarRow: View {
+    @ObservedObject private var tipJar = ClipKeyboardTapSpec.tipJar
+    @State private var showTipJar = false
+
+    var body: some View {
+        if tipJar.isAvailable {
+            Button {
+                showTipJar = true
+            } label: {
+                Label(LeeoTipText.entry, systemImage: "heart.fill")
+            }
+            .sheet(isPresented: $showTipJar) {
+                NavigationStack {
+                    LeeoTipJarView<ClipKeyboardTapSpec>(tipJar: tipJar)
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button(NSLocalizedString("닫기", comment: "Close button")) { showTipJar = false }
+                            }
+                        }
+                }
+                .frame(minWidth: 420, minHeight: 480)
             }
         }
     }

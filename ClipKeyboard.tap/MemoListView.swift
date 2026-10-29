@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AppKit
+import LeeoKit
 
 struct MemoListView: View {
     @State private var memos: [Memo] = []
@@ -86,6 +87,10 @@ struct MemoListView: View {
                 MacCategoryAdoptBanner(preference: tabPreference)
                 Divider()
             }
+            // 클립키보드를 여러 번 써서 덕을 본 사람에게, 목록을 연 자리에서 드물게 응원을 부탁한다.
+            LeeoTipAskSlot<ClipKeyboardTapSpec>(tipJar: ClipKeyboardTapSpec.tipJar,
+                                                reached: TapTipMoments.reachedNow)
+                .padding(MacSpacing.md)
             listSection
         }
         .frame(minWidth: 360, minHeight: 420)
@@ -588,4 +593,22 @@ struct CompactMemoItemRow: View {
 
 #Preview {
     MemoListView()
+}
+
+// MARK: - 응원 부탁 순간
+
+/// 팁을 부탁할 순간 — 이 맥에서 클립키보드를 쓴 횟수(복사·채워 넣기·새 단축어, `LeeoEngagement` 가 센다). 큰 것부터.
+enum TapTipMoments {
+    static let uses = [1000, 300, 100]
+
+    static func reached(uses count: Int) -> [LeeoTipMoment] {
+        uses.filter { count >= $0 }.map {
+            LeeoTipMoment(id: "uses.\($0)",
+                          message: String(format: NSLocalizedString("이 맥에서 클립키보드를 %lld번 쓰셨어요",
+                                                                    comment: "Tip ask card: how many times ClipKeyboard was used on this Mac"),
+                                          count))
+        }
+    }
+
+    static var reachedNow: [LeeoTipMoment] { reached(uses: LeeoEngagement.shared.significantEventCount) }
 }

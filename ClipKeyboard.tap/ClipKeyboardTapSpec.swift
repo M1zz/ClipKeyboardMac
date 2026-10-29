@@ -48,4 +48,13 @@ enum ClipKeyboardTapSpec: LeeoAppSpec {
     ///    맥에서 추가 결제를 받게 되는 날에는 `.freemium` 으로 바꾸고 **이 타겟에**
     ///    StoreKit·페이월·복원을 넣을 것. 아이폰 구매를 비추는 방식은 심사를 통과하지 못한다.
     static let monetization = LeeoMonetization.paidUpfront
+
+    /// 개발자 응원하기(팁, 소모성 세 가지 — 작은 것부터). 기능을 열지 않는다.
+    /// 유료 다운로드라 LeeoStore 가 없다 — 앱이 뜰 때 `startStandalone()` 으로 혼자 선다.
+    /// ⚠️ 상품 ID 에는 하이픈을 쓸 수 없어 번들 ID(`com.ysoup.TokenMemo-tap`)의 `-` 를 `.` 으로 바꿨다.
+    @MainActor static let tipJar = LeeoTipJar(config: LeeoTipJarConfig(productIDs: [
+        "com.ysoup.TokenMemo.tap.tip.small",
+        "com.ysoup.TokenMemo.tap.tip.medium",
+        "com.ysoup.TokenMemo.tap.tip.large"
+    ]))
 }

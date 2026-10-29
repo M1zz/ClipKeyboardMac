@@ -2839,6 +2839,311 @@
         }
       }
     },
+    "이 맥에서 클립키보드를 %lld번 쓰셨어요" : {
+      "comment" : "Tip ask card: how many times ClipKeyboard was used on this Mac",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "You've used ClipKeyboard %lld time on this Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "You've used ClipKeyboard %lld times on this Mac"
+                }
+              }
+            }
+          }
+        },
+        "en-GB" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "You've used ClipKeyboard %lld time on this Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "You've used ClipKeyboard %lld times on this Mac"
+                }
+              }
+            }
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 맥에서 클립키보드를 %lld번 쓰셨어요"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このMacでClipKeyboardを%lld回使いました"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你已在这台 Mac 上使用 ClipKeyboard %lld 次"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你已在這台 Mac 上使用 ClipKeyboard %lld 次"
+          }
+        },
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Du hast ClipKeyboard auf diesem Mac schon %lld-mal genutzt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Du hast ClipKeyboard auf diesem Mac schon %lld-mal genutzt"
+                }
+              }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ya has usado ClipKeyboard %lld vez en este Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ya has usado ClipKeyboard %lld veces en este Mac"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Vous avez déjà utilisé ClipKeyboard %lld fois sur ce Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Vous avez déjà utilisé ClipKeyboard %lld fois sur ce Mac"
+                }
+              }
+            }
+          }
+        },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Hai già usato ClipKeyboard %lld volta su questo Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Hai già usato ClipKeyboard %lld volte su questo Mac"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Você já usou o ClipKeyboard %lld vez neste Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Você já usou o ClipKeyboard %lld vezes neste Mac"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использований ClipKeyboard на этом Mac: %lld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użycia ClipKeyboard na tym Macu: %lld"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ClipKeyboard jste na tomto Macu použili už %lld×"
+          }
+        },
+        "da" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Du har brugt ClipKeyboard %lld gang på denne Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Du har brugt ClipKeyboard %lld gange på denne Mac"
+                }
+              }
+            }
+          }
+        },
+        "nb" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Du har brukt ClipKeyboard %lld gang på denne Macen"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Du har brukt ClipKeyboard %lld ganger på denne Macen"
+                }
+              }
+            }
+          }
+        },
+        "sv" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Du har använt ClipKeyboard %lld gång på den här Macen"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Du har använt ClipKeyboard %lld gånger på den här Macen"
+                }
+              }
+            }
+          }
+        },
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Je hebt ClipKeyboard al %lld keer gebruikt op deze Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Je hebt ClipKeyboard al %lld keer gebruikt op deze Mac"
+                }
+              }
+            }
+          }
+        },
+        "fi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Olet käyttänyt ClipKeyboardia tällä Macilla jo %lld kerran"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Olet käyttänyt ClipKeyboardia tällä Macilla jo %lld kertaa"
+                }
+              }
+            }
+          }
+        },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Έχετε χρησιμοποιήσει το ClipKeyboard %lld φορά σε αυτό το Mac"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Έχετε χρησιμοποιήσει το ClipKeyboard %lld φορές σε αυτό το Mac"
+                }
+              }
+            }
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu sudah memakai ClipKeyboard %lld kali di Mac ini"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "คุณใช้ ClipKeyboard บน Mac เครื่องนี้มาแล้ว %lld ครั้ง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu Mac'te ClipKeyboard'u %lld kez kullandın"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã dùng ClipKeyboard %lld lần trên máy Mac này"
+          }
+        }
+      }
+    },
     "📁 파일 백업은 iCloud와 별개로 데이터를 파일로 보관하는 가장 확실한 방법입니다. 가져오기는 현재 데이터를 지우지 않고 합칩니다." : {
       "comment" : "File backup info",
       "localizations" : {
