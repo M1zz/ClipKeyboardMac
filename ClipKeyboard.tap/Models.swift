@@ -562,7 +562,14 @@ class MemoStore: ObservableObject {
             return oldMemos.map { Memo(from: $0) }
         }
 
+        // 못 읽은 원본을 옆에 남긴다 — 빈 목록으로 시작해 다음 저장이 덮어써도 되찾을 수 있게
+        Self.keepUnreadable(fileURL)
         return []
+    }
+
+    /// 깨진 파일을 지우지 않고 `.unreadable` 사본으로 남긴다. 이미 있으면 첫 사본을 지킨다.
+    static func keepUnreadable(_ url: URL) {
+        try? FileManager.default.copyItem(at: url, to: url.appendingPathExtension("unreadable"))
     }
 
     func loadClipboardHistory() throws -> [ClipboardHistory] {
@@ -748,6 +755,7 @@ class MemoStore: ObservableObject {
         if let combos = try? JSONDecoder().decode([Combo].self, from: data) {
             return combos
         }
+        Self.keepUnreadable(fileURL)
         return []
     }
 
