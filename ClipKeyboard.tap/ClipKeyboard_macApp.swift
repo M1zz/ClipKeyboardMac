@@ -122,6 +122,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Spotlight 에서 어느 나라 이름으로 검색해도 앱이 나오게 한다 (MacSpotlightIndexer 주석 참고)
         MacSpotlightIndexer.indexAppNames()
 
+        // 단축어를 Siri · Spotlight 에 싣고, 바뀔 때마다 다시 싣는다 (→ MacClipMemoIntents.swift)
+        ClipMemoEntity.scheduleReindex()
+        NotificationCenter.default.addObserver(forName: .memoDataChanged, object: nil, queue: .main) { note in
+            guard !MemoStore.isUsageOnly(note) else { return }
+            MainActor.assumeIsolated { ClipMemoEntity.scheduleReindex() }
+        }
+
         // 아이폰의 변경 알림(푸시)을 받는다.
         // ⚠️ 이게 없으면 맥은 **실행할 때와 앱이 활성화될 때만** 받아온다. 메뉴바 앱이라
         //    ⌃⇧V 패널만 쓰면 앱이 활성화되지 않아, 아이폰에서 지운 단축어가 계속 남아 보였다.
