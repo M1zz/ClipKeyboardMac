@@ -13,6 +13,11 @@ import LeeoKit
 struct ClipKeyboard_macApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
+    init() {
+        // 백업 금고: 예약된 복원 적용, 업데이트 직전 백업. 저장소를 읽기 전(applicationDidFinishLaunching 보다 앞)에.
+        LeeoVault.start(ClipKeyboardTapSpec.self)
+    }
+
     var body: some Scene {
         Settings {
             EmptyView()

@@ -12,6 +12,8 @@ import LeeoKit
 enum ClipKeyboardTapSpec: LeeoAppSpec {
     static let appName = "ClipKeyboard"
     static let developerEmail = "leeo@kakao.com"
+    /// 키보드와 나눠 쓰는 기록. 백업 금고가 함께 떠 둔다.
+    static let appGroups = ["group.com.Ysoup.TokenMemo"]
 
     /// ClipKeyboard.tap.entitlements에 iCloud.com.Ysoup.FeedbackHub 컨테이너가 있어야 한다.
     /// 공용 피드백 허브(FeedbackHub)로 수집 — appIdentifier로 앱을 구분한다.
