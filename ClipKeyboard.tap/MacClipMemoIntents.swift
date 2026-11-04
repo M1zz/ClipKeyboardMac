@@ -112,6 +112,7 @@ struct CopyClipMemoIntent: AppIntent {
     static let openAppWhenRun = false
 
     @Parameter(title: LocalizedStringResource("Snippet", comment: "Siri: snippet parameter"),
+               description: LocalizedStringResource("The snippet whose value to copy", comment: "Siri: snippet parameter description"),
                requestValueDialog: IntentDialog(LocalizedStringResource("Which snippet should I copy?", comment: "Siri: ask which snippet")))
     var memo: ClipMemoEntity
 
@@ -127,8 +128,12 @@ struct CopyClipMemoIntent: AppIntent {
 /// Spotlight 에서 단축어를 누르면 복사된다.
 struct OpenClipMemoIntent: OpenIntent {
     static let title = LocalizedStringResource("Open Snippet", comment: "Siri/Spotlight: open a snippet")
+    static let description = IntentDescription(
+        LocalizedStringResource("Copies a saved snippet to the clipboard.", comment: "Siri: copy snippet description")
+    )
 
-    @Parameter(title: LocalizedStringResource("Snippet", comment: "Siri: snippet parameter"))
+    @Parameter(title: LocalizedStringResource("Snippet", comment: "Siri: snippet parameter"),
+               description: LocalizedStringResource("The snippet whose value to copy", comment: "Siri: snippet parameter description"))
     var target: ClipMemoEntity
 
     @MainActor
