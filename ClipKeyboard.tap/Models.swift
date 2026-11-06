@@ -599,9 +599,10 @@ class MemoStore: ObservableObject {
         let newItem = ClipboardHistory(content: content)
         history.insert(newItem, at: 0)
 
-        // 최대 100개까지만 유지
-        if history.count > 100 {
-            history = Array(history.prefix(100))
+        // 칸이 정한 개수까지만 유지 (무료 50 · Plus 100)
+        let limit = MacPlan.shared.historyLimit
+        if history.count > limit {
+            history = Array(history.prefix(limit))
         }
 
         // 7일 이상 된 임시 항목 자동 삭제
@@ -629,15 +630,16 @@ class MemoStore: ObservableObject {
         )
         history.insert(newItem, at: 0)
 
-        // 최대 100개까지만 유지
-        if history.count > 100 {
+        // 칸이 정한 개수까지만 유지 (무료 50 · Plus 100)
+        let limit = MacPlan.shared.historyLimit
+        if history.count > limit {
             // 삭제되는 항목의 이미지 파일도 삭제
-            for item in history[100...] {
+            for item in history[limit...] {
                 if let imageFileName = item.imageFileName {
                     try? deleteImage(fileName: imageFileName)
                 }
             }
-            history = Array(history.prefix(100))
+            history = Array(history.prefix(limit))
         }
 
         // 7일 이상 된 임시 항목 자동 삭제
@@ -766,21 +768,14 @@ class MemoStore: ObservableObject {
     }
 }
 
-// MARK: - 결제 게이트가 없는 이유
+// MARK: - 무료 · Plus · Pro
 
-/// 이 맥 앱은 **스토어 유료 다운로드**다. 앱을 산 것 자체가 전체 권한이므로
-/// 무료 티어도, 해제할 Pro 도 없다 — `ClipKeyboardTapSpec.monetization = .paidUpfront`.
+/// 이 맥 앱의 칸과 한도는 `MacPlan` 한 곳에 있다(무료 한도 · 클립보드 기록 개수 · 동기화 · 백업 · 보안 단축어).
+/// 이 앱이 스스로 파는 상품(StoreKit 2)만 권한이 된다.
 ///
-/// 5.0.5(20) 까지는 `MacProManager` 가 아이폰의 결제 키(`proStatus` 등)를 iCloud KV 로
-/// 받아 맥의 단축어 10개·iCloud 백업을 잠갔다. 그래서 **맥 앱을 제값 주고 산 사용자가
-/// 아이폰에서 Pro 를 사지 않았다는 이유로 "무료 플랜" 취급**을 받았다.
-/// 심사도 같은 곳에서 걸렸다 — Guideline 2.1(b), "Pro 를 참조하는데 해당 IAP 가
-/// 제출되지 않았다"(이 앱 레코드엔 IAP 자체가 없다. 아이폰과 번들 ID 가 다르다).
-/// 잠금과 그 문구를 전부 걷어내면서 `MacProManager` 도 함께 지웠다.
-///
-/// ⚠️ 맥에서 부분유료로 방향을 틀 일이 생기면, 게이트를 되살리기 전에
-///    이 타겟에 StoreKit 과 페이월·복원부터 넣어야 한다. 아이폰 구매를 비추는
-///    방식으로는 다시 심사를 통과하지 못한다.
+/// ⚠️ 5.0.5(20) 까지는 `MacProManager` 가 아이폰의 결제 키를 iCloud KV 로 받아 맥을 잠갔고,
+///    Guideline 2.1(b)("Pro 를 참조하는데 해당 IAP 가 제출되지 않았다")로 거절됐다.
+///    아이폰 구매를 비추는 방식으로 되돌리지 않는다.
 
 // MARK: - MacMemoOrder
 

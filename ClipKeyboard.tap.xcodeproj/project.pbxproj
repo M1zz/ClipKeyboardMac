@@ -65,6 +65,8 @@
 		MACSPOTLIT00000000000B01 /* MacSpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */; };
 		MACSYNCDIAG000000000B01X /* MacSyncDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */; };
 		MACSYNCPROMPT00000000B01 /* MacSyncPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */; };
+		MACPAYWALLVIEW000000B01 /* MacPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACPAYWALLVIEW000000F01 /* MacPaywallView.swift */; };
+		MACPLAN0000000000000B01 /* MacPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACPLAN0000000000000F01 /* MacPlan.swift */; };
 		MACSYNCRESET00000000B01X /* MacSyncReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACSYNCRESET00000000F01X /* MacSyncReset.swift */; };
 		MACUSAGEREPORT0000000B01 /* MacUsageReporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = MACUSAGEREPORT0000000F01 /* MacUsageReporting.swift */; };
 		MEMOEDITVIEW000000000B07 /* MemoEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = MEMOEDITVIEW000000000F07 /* MemoEditView.swift */; };
@@ -153,7 +155,10 @@
 		MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPasteFlow.swift; sourceTree = "<group>"; };
 		MACSPOTLIT00000000000F01 /* MacSpotlightIndexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSpotlightIndexer.swift; sourceTree = "<group>"; };
 		MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSyncDiagnostics.swift; sourceTree = "<group>"; };
+		MACSTOREKITCONFIG0000F01 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSyncPrompt.swift; sourceTree = "<group>"; };
+		MACPAYWALLVIEW000000F01 /* MacPaywallView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPaywallView.swift; sourceTree = "<group>"; };
+		MACPLAN0000000000000F01 /* MacPlan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPlan.swift; sourceTree = "<group>"; };
 		MACSYNCRESET00000000F01X /* MacSyncReset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacSyncReset.swift; sourceTree = "<group>"; };
 		MACUSAGEREPORT0000000F01 /* MacUsageReporting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacUsageReporting.swift; sourceTree = "<group>"; };
 		MEMOEDITVIEW000000000F07 /* MemoEditView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoEditView.swift; sourceTree = "<group>"; };
@@ -253,6 +258,9 @@
 				MACPASTEFLOW000000000F01 /* MacPasteFlow.swift */,
 				MACUSAGEREPORT0000000F01 /* MacUsageReporting.swift */,
 				MACSYNCPROMPT00000000F01 /* MacSyncPrompt.swift */,
+				MACSTOREKITCONFIG0000F01 /* Products.storekit */,
+				MACPAYWALLVIEW000000F01 /* MacPaywallView.swift */,
+				MACPLAN0000000000000F01 /* MacPlan.swift */,
 				MACSYNCDIAG000000000F01X /* MacSyncDiagnostics.swift */,
 				MACSYNCRESET00000000F01X /* MacSyncReset.swift */,
 				MACCATPREF00000000000F06 /* MacCategoryTabPreference.swift */,
@@ -431,6 +439,8 @@
 				MACPASTEFLOW000000000B01 /* MacPasteFlow.swift in Sources */,
 				MACUSAGEREPORT0000000B01 /* MacUsageReporting.swift in Sources */,
 				MACSYNCPROMPT00000000B01 /* MacSyncPrompt.swift in Sources */,
+				MACPAYWALLVIEW000000B01 /* MacPaywallView.swift in Sources */,
+				MACPLAN0000000000000B01 /* MacPlan.swift in Sources */,
 				MACSYNCDIAG000000000B01X /* MacSyncDiagnostics.swift in Sources */,
 				MACSYNCRESET00000000B01X /* MacSyncReset.swift in Sources */,
 				MACCATPREF00000000000B06 /* MacCategoryTabPreference.swift in Sources */,

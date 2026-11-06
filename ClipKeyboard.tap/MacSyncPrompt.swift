@@ -32,9 +32,11 @@ final class MacSyncPrompt: ObservableObject {
         needsAsk = !dismissed && !MemoSyncFlags.enabled
     }
 
+    /// 아이폰과 잇는 것은 Pro 다 — 아니면 그 자리에서 Pro 칸을 보인다.
     func enableSync() {
+        guard MacPlan.shared.require(.sync, .sync) else { return }
         MemoSyncFlags.setEnabled(true)
-        MemoSyncEngine.shared.startIfEnabled()
+        MemoSyncEngine.shared.startIfAllowed()
         MemoSyncEngine.shared.syncNow()
         refresh()
     }
@@ -55,9 +57,9 @@ struct MacSyncIndicator: View {
     @State private var syncedAt = Date()
 
     var body: some View {
-        if MemoSyncFlags.enabled {
+        if MemoSyncFlags.enabled && MacPlan.shared.allows(.sync) {
             Button {
-                MemoSyncEngine.shared.startIfEnabled()
+                MemoSyncEngine.shared.startIfAllowed()
                 MemoSyncEngine.shared.syncNow()
                 syncedAt = Date()
             } label: {

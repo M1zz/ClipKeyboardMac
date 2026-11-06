@@ -16,6 +16,7 @@ struct MemoListView: View {
     @State private var selectedTab: CategoryTab = .all
     /// 아이폰 구성을 따를지 — 기존 사용자에겐 배너로 묻고, 승낙 전까진 예전 구성을 유지한다.
     @ObservedObject private var tabPreference = MacCategoryTabPreference.shared
+    @ObservedObject private var plan = MacPlan.shared
     @State private var isViewActive: Bool = true
     /// 커스텀 플레이스홀더 값 채우기 시트 대상 메모.
     @State private var fillMemo: Memo?
@@ -88,9 +89,12 @@ struct MemoListView: View {
                 Divider()
             }
             // 클립키보드를 여러 번 써서 덕을 본 사람에게, 목록을 연 자리에서 드물게 응원을 부탁한다.
-            LeeoTipAskSlot<ClipKeyboardTapSpec>(tipJar: ClipKeyboardTapSpec.tipJar,
-                                                reached: TapTipMoments.reachedNow)
-                .padding(MacSpacing.md)
+            // 응원 부탁은 이미 Pro 를 가진 사람에게만 — 아직 무료인 사람에게는 칸을 먼저 보인다.
+            if plan.owned == .pro {
+                LeeoTipAskSlot<ClipKeyboardTapSpec>(tipJar: ClipKeyboardTapSpec.tipJar,
+                                                    reached: TapTipMoments.reachedNow)
+                    .padding(MacSpacing.md)
+            }
             listSection
         }
         .frame(minWidth: 360, minHeight: 420)
@@ -308,7 +312,8 @@ struct MemoListView: View {
                 if let resolved { copyToClipboard(resolved) }
             }
         } else if memo.isStack && !memo.stackValues.isEmpty {
-            // 여러 값(콤보) — 값 하나를 골라 복사하는 시트.
+            // 여러 값(콤보) — 값 하나를 골라 복사하는 시트. 스택을 꺼내 쓰는 것은 Pro 다.
+            guard MacPlan.shared.require(.stacksAndSecure, .stacksAndSecure) else { return }
             comboPickMemo = memo
         } else if memo.hasCustomPlaceholders {
             fillMemo = memo

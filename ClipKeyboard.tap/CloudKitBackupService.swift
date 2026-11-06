@@ -445,6 +445,9 @@ class CloudKitBackupService: ObservableObject {
     func backupData(isAutomatic: Bool = false, allowReduce: Bool = false) async throws -> BackupOutcome {
         print("☁️ [CloudKit] 백업 시작... (자동=\(isAutomatic), 축소동의=\(allowReduce))")
 
+        // iCloud 백업은 Pro 다. 사람이 누른 백업은 화면이 먼저 막고(페이월), 예약된 자동 백업은 여기서 조용히 쉰다.
+        if isAutomatic, !MacPlan.shared.allows(.cloudBackup) { return .nothingToBackUp }
+
         try await ensureAuthenticated()
 
         await MainActor.run { isBackingUp = true }

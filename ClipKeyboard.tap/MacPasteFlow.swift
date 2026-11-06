@@ -30,6 +30,8 @@ enum MacPasteFlow {
 
     static func open(_ memo: Memo) {
         if memo.isStack && !memo.pasteStackValues.isEmpty {
+            // 스택을 꺼내 쓰는 것은 Pro 다.
+            guard MacPlan.shared.require(.stacksAndSecure, .stacksAndSecure) else { return }
             StackPasteWindow.shared.show(memo)
         } else {
             TemplateFillWindow.shared.show(memo)

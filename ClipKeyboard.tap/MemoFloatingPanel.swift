@@ -65,7 +65,7 @@ final class MemoFloatingPanelController: NSObject {
         let syncs = true
         #endif
         if syncs {
-            MemoSyncEngine.shared.startIfEnabled()
+            MemoSyncEngine.shared.startIfAllowed()
             MemoSyncEngine.shared.syncNow()
         }
 

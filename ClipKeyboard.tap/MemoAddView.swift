@@ -315,6 +315,11 @@ struct MemoAddView: View {
         do {
             var memos = try MemoStore.shared.load(type: .memo)
 
+            // 무료 한도 — 넘었으면 페이월을 띄우고 창은 그대로 둔다(쓰던 글이 남아 산 뒤 바로 저장한다).
+            let kind: MacItemKind = !attachedImages.isEmpty ? .image
+                : (textContent.extractTemplatePlaceholders().isEmpty ? .snippet : .template)
+            guard MacPlan.shared.requireRoom(for: kind, among: memos) else { return }
+
             // 이미지들을 파일로 저장
             var savedImageFileNames: [String] = []
             for image in attachedImages {

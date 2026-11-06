@@ -20,6 +20,11 @@ enum MacSecureAccess {
             completion(memo.resolvedForPaste())
             return
         }
+        // 보안 단축어를 꺼내는 것은 Pro 다. 지우기 · 내보내기는 막지 않는다.
+        guard MacPlan.shared.require(.stacksAndSecure, .stacksAndSecure) else {
+            completion(nil)
+            return
+        }
         let context = LAContext()
         context.localizedFallbackTitle = NSLocalizedString("암호 입력", comment: "Password fallback")
         var error: NSError?

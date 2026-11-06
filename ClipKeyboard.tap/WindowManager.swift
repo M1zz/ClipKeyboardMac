@@ -220,6 +220,20 @@ class WindowManager {
         )
     }
 
+    /// 무료 · Plus · Pro 페이월. 이미 열려 있으면 그 창을 앞으로 가져온다.
+    func openPaywallWindow(_ reason: MacPaywallReason) {
+        let key = "paywall"
+        openWindow(
+            key: key,
+            title: NSLocalizedString("클립키보드 Plus · Pro", comment: "Paywall: title"),
+            size: NSSize(width: 860, height: 760),
+            minSize: NSSize(width: 720, height: 520),
+            content: MacPaywallView(reason: reason) { [weak self] in
+                self?.windows[key]?.performClose(nil)
+            }
+        )
+    }
+
     func openCloudBackupWindow() {
         openWindow(
             key: "cloud-backup",

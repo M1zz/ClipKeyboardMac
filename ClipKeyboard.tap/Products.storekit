@@ -1,0 +1,342 @@
+{
+  "identifier": "75A0B3F1-EE99-4EC6-9707-7AAD7C3D429A",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "29.99",
+      "familyShareable": true,
+      "internalID": "C816F3C4-7780-4714-A6A2-F431E68B4342",
+      "localizations": [
+        {
+          "description": "단축어 · 템플릿 무제한, 클립보드 기록 100개",
+          "displayName": "클립키보드 Plus 평생",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Unlimited snippets and templates, 100 clips",
+          "displayName": "ClipKeyboard Plus Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.ysoup.TokenMemo.tap.plus",
+      "referenceName": "ClipKeyboard Mac Plus Lifetime",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "44.99",
+      "familyShareable": true,
+      "internalID": "7F05B67C-472A-4159-BF44-8ABD57E66198",
+      "localizations": [
+        {
+          "description": "Plus에 iCloud 백업 · 아이폰 동기화 · 보안 단축어",
+          "displayName": "클립키보드 Pro 평생",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Plus, iCloud backup, iPhone sync, Touch ID",
+          "displayName": "ClipKeyboard Pro Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.ysoup.TokenMemo.tap.pro",
+      "referenceName": "ClipKeyboard Mac Pro Lifetime",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "14.99",
+      "familyShareable": true,
+      "internalID": "CF80F8D8-D9C4-408B-B5A9-67F8CC2F2154",
+      "localizations": [
+        {
+          "description": "Plus 평생을 산 분이 Pro 평생으로 올립니다",
+          "displayName": "Plus 평생에서 Pro 평생으로",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "For Plus Lifetime owners: move up to Pro",
+          "displayName": "Plus to Pro Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.ysoup.TokenMemo.tap.pro.upgrade",
+      "referenceName": "ClipKeyboard Mac Pro Upgrade from Plus Lifetime",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "29.99",
+      "familyShareable": true,
+      "internalID": "D82E96B9-61EF-4276-8488-755FE9480570",
+      "localizations": [
+        {
+          "description": "구독하던 분께 드리는 Pro 평생입니다",
+          "displayName": "클립키보드 Pro 평생 (구독 졸업)",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Pro Lifetime, priced for current subscribers",
+          "displayName": "Pro Lifetime for Subscribers",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.ysoup.TokenMemo.tap.pro.graduate",
+      "referenceName": "ClipKeyboard Mac Pro Graduate Lifetime",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "596EE5D4-5BC9-4F60-8FD5-E47CA2367ACE",
+      "localizations": [
+        {
+          "description": "개발자에게 커피 한 잔을 보냅니다",
+          "displayName": "작은 응원",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Send the developer a cup of coffee",
+          "displayName": "Small Tip",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.ysoup.TokenMemo.tap.tip.small",
+      "referenceName": "ClipKeyboard Mac Tip small",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "0E6C1925-75A7-4371-BDE3-0CE6F2F9F228",
+      "localizations": [
+        {
+          "description": "클립키보드를 계속 다듬을 힘을 보탭니다",
+          "displayName": "든든한 응원",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Help keep ClipKeyboard getting better",
+          "displayName": "Medium Tip",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.ysoup.TokenMemo.tap.tip.medium",
+      "referenceName": "ClipKeyboard Mac Tip medium",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "64E28822-DA5C-4FE3-AA2A-901C6DA10BFE",
+      "localizations": [
+        {
+          "description": "클립키보드의 다음 기능을 함께 만듭니다",
+          "displayName": "큰 응원",
+          "locale": "ko_KR"
+        },
+        {
+          "description": "Help build what comes next in ClipKeyboard",
+          "displayName": "Large Tip",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.ysoup.TokenMemo.tap.tip.large",
+      "referenceName": "ClipKeyboard Mac Tip large",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_applicationInternalID": "0",
+    "_developerTeamID": "QGAQ3AY3R3",
+    "_failTransactionsEnabled": false,
+    "_lastSynchronizedDate": 0,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "6645E61E-624F-46F6-844E-16FCAD925A64",
+      "localizations": [],
+      "name": "ClipKeyboard Mac",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "14.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "C38AF2AE-D366-428B-A065-422DF0BFCC17",
+          "introductoryOffer": {
+            "displayPrice": "7.49",
+            "internalID": "628B5FD1-9A7E-45CD-BF7F-2B17A4395764",
+            "numberOfPeriods": 1,
+            "paymentMode": "payUpFront",
+            "subscriptionPeriod": "P1Y"
+          },
+          "localizations": [
+            {
+              "description": "Plus에 iCloud 백업 · 아이폰 동기화 · 보안 단축어",
+              "displayName": "클립키보드 Pro 연간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Plus, iCloud backup, iPhone sync, Touch ID",
+              "displayName": "ClipKeyboard Pro Yearly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.ysoup.TokenMemo.tap.pro.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "ClipKeyboard Mac Pro Yearly",
+          "subscriptionGroupID": "6645E61E-624F-46F6-844E-16FCAD925A64",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "4.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "4E38ACD7-A224-408E-8B2E-E1DA5B218079",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "Plus에 iCloud 백업 · 아이폰 동기화 · 보안 단축어",
+              "displayName": "클립키보드 Pro 월간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Plus, iCloud backup, iPhone sync, Touch ID",
+              "displayName": "ClipKeyboard Pro Monthly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.ysoup.TokenMemo.tap.pro.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "ClipKeyboard Mac Pro Monthly",
+          "subscriptionGroupID": "6645E61E-624F-46F6-844E-16FCAD925A64",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "1.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "ACE27CA0-99C5-4786-AB66-EC075C33AFF3",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "Plus에 iCloud 백업 · 아이폰 동기화 · 보안 단축어",
+              "displayName": "클립키보드 Pro 주간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Plus, iCloud backup, iPhone sync, Touch ID",
+              "displayName": "ClipKeyboard Pro Weekly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.ysoup.TokenMemo.tap.pro.weekly",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "ClipKeyboard Mac Pro Weekly",
+          "subscriptionGroupID": "6645E61E-624F-46F6-844E-16FCAD925A64",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "9.99",
+          "familyShareable": true,
+          "groupNumber": 2,
+          "internalID": "1EC26E87-B3A3-40A2-A7BD-CB606B82BCC9",
+          "introductoryOffer": {
+            "displayPrice": "4.99",
+            "internalID": "249833FB-4EB8-4673-AEA9-C02993AC0364",
+            "numberOfPeriods": 1,
+            "paymentMode": "payUpFront",
+            "subscriptionPeriod": "P1Y"
+          },
+          "localizations": [
+            {
+              "description": "단축어 · 템플릿 무제한, 클립보드 기록 100개",
+              "displayName": "클립키보드 Plus 연간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Unlimited snippets and templates, 100 clips",
+              "displayName": "ClipKeyboard Plus Yearly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.ysoup.TokenMemo.tap.plus.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "ClipKeyboard Mac Plus Yearly",
+          "subscriptionGroupID": "6645E61E-624F-46F6-844E-16FCAD925A64",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "3.49",
+          "familyShareable": true,
+          "groupNumber": 2,
+          "internalID": "E6A0A81C-79E7-4613-9DE8-421E4DBECA8C",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "단축어 · 템플릿 무제한, 클립보드 기록 100개",
+              "displayName": "클립키보드 Plus 월간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Unlimited snippets and templates, 100 clips",
+              "displayName": "ClipKeyboard Plus Monthly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.ysoup.TokenMemo.tap.plus.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "ClipKeyboard Mac Plus Monthly",
+          "subscriptionGroupID": "6645E61E-624F-46F6-844E-16FCAD925A64",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "1.49",
+          "familyShareable": true,
+          "groupNumber": 2,
+          "internalID": "58BD82AB-2150-4532-994C-A8820EF83A25",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "단축어 · 템플릿 무제한, 클립보드 기록 100개",
+              "displayName": "클립키보드 Plus 주간",
+              "locale": "ko_KR"
+            },
+            {
+              "description": "Unlimited snippets and templates, 100 clips",
+              "displayName": "ClipKeyboard Plus Weekly",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.ysoup.TokenMemo.tap.plus.weekly",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "ClipKeyboard Mac Plus Weekly",
+          "subscriptionGroupID": "6645E61E-624F-46F6-844E-16FCAD925A64",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

@@ -36,6 +36,10 @@ struct MacPreferencesView: View {
         #endif
     }
 
+    @ObservedObject private var plan = MacPlan.shared
+    /// 켜 두었어도 Pro 가 아니면 엔진이 서지 않는다 — 꺼진 것으로 보인다(다시 받기 같은 일도 막는다).
+    private var syncOn: Bool { syncEnabled && plan.allows(.sync) }
+
     var body: some View {
         TabView(selection: $selectedTab) {
             generalTab
@@ -62,6 +66,8 @@ struct MacPreferencesView: View {
 
     private var generalTab: some View {
         Form {
+            MacPlanSettingsSection()
+
             Section {
                 Toggle(NSLocalizedString("Launch at login", comment: "Prefs: launch at login"), isOn: $launchAtLogin)
                     .onChange(of: launchAtLogin) { newValue in
@@ -79,18 +85,18 @@ struct MacPreferencesView: View {
             //    켤 자리가 없으면 잠든 채로 남는다.
             Section {
                 Toggle(NSLocalizedString("아이폰과 실시간으로 동기화", comment: "Prefs: realtime sync toggle"),
-                       isOn: Binding(get: { syncEnabled }, set: { setSyncEnabled($0) }))
+                       isOn: Binding(get: { syncOn }, set: { setSyncEnabled($0) }))
                 if !syncStatus.isEmpty {
                     Text(syncStatus)
                         .font(MacFont.secondary)
                         .foregroundStyle(.secondary)
                 }
                 Button(NSLocalizedString("지금 동기화", comment: "Prefs: sync now button")) {
-                    MemoSyncEngine.shared.startIfEnabled()
+                    MemoSyncEngine.shared.startIfAllowed()
                     MemoSyncEngine.shared.syncNow()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { refreshSyncStatus() }
                 }
-                .disabled(!syncEnabled)
+                .disabled(!syncOn)
 
                 // 동기화가 겉으로는 도는데 데이터가 안 맞을 때, iCloud 안을 직접 읽어 센다.
                 Button(isDiagnosing
@@ -109,14 +115,14 @@ struct MacPreferencesView: View {
                 Button(NSLocalizedString("아이폰에서 지운 것 반영하기", comment: "Prefs: apply cloud deletions")) {
                     applyCloudDeletions()
                 }
-                .disabled(!syncEnabled || isResetting)
+                .disabled(!syncOn || isResetting)
 
                 // 되돌릴 수 없는 일이라 아래쪽에, 빨갛게, 두 번 묻고 실행한다.
                 Button(NSLocalizedString("이 맥 것을 지우고 아이폰에서 다시 받기", comment: "Prefs: wipe and pull button")) {
                     confirmWipeAndPull()
                 }
                 .tint(.red)
-                .disabled(!syncEnabled || isResetting)
+                .disabled(!syncOn || isResetting)
 
                 if !diagnostics.isEmpty {
                     Text(diagnostics)
@@ -249,10 +255,12 @@ struct MacPreferencesView: View {
     }
 
     private func setSyncEnabled(_ on: Bool) {
+        // 아이폰과 잇는 것은 Pro 다 — 켜려는 순간 Pro 칸을 보인다. 끄는 것은 늘 된다.
+        if on, !MacPlan.shared.require(.sync, .sync) { return }
         syncEnabled = on
         MemoSyncFlags.setEnabled(on)
         if on {
-            MemoSyncEngine.shared.startIfEnabled()
+            MemoSyncEngine.shared.startIfAllowed()
             MemoSyncEngine.shared.syncNow()
         }
         refreshSyncStatus()

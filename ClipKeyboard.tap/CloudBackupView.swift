@@ -284,6 +284,7 @@ struct CloudBackupView: View {
     /// 되돌리기는 현재 데이터를 지우는 동작이라 반드시 한 번 묻는다.
     @MainActor
     private func confirmRestoreSnapshot(_ snap: BackupSnapshotInfo) {
+        guard MacPlan.shared.require(.cloudBackup, .backup) else { return }
         let alert = NSAlert()
         alert.messageText = NSLocalizedString("이 시점으로 되돌릴까요?", comment: "Restore snapshot confirm title")
         alert.informativeText = String(
@@ -337,6 +338,7 @@ struct CloudBackupView: View {
 
     /// - Parameter allowReduce: 축소 경고에 사용자가 "계속"을 눌러 다시 부를 때 true.
     private func performBackup(allowReduce: Bool = false) {
+        guard MacPlan.shared.require(.cloudBackup, .backup) else { return }
         Task {
             do {
                 let outcome = try await cloudService.backupData(allowReduce: allowReduce)
@@ -416,6 +418,7 @@ struct CloudBackupView: View {
 
     /// - Parameter overwrite: 덮어쓰기 확인에 사용자가 "복구"를 눌러 다시 부를 때 true.
     private func performRestore(overwrite: Bool = false) {
+        guard MacPlan.shared.require(.cloudBackup, .backup) else { return }
         Task {
             do {
                 try await cloudService.restoreData(forceOverwrite: overwrite)

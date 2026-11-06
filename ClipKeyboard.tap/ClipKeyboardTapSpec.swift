@@ -38,21 +38,23 @@ enum ClipKeyboardTapSpec: LeeoAppSpec {
         marketingURL: URL(string: "https://m1zz.github.io/ClipKeyboard/")!
     )
 
-    /// 수익모델 — 이 맥 앱은 **스토어 유료 다운로드**다.
+    /// 수익모델 — 무료 다운로드 + 무료 · Plus · Pro(주 · 월 · 연 구독과 평생). 상품과 권한은 `MacPlan`.
     ///
-    /// 아이폰(`ClipKeyboardSpec`)은 `.freemium` 이지만 맥은 다르다. 이 타겟에는 StoreKit 이
-    /// 없고 팔 것도 없다 — 앱을 산 순간 모든 기능이 열린다. 그래서 페이월도, 복원 버튼도
-    /// 필요 없다(복원 의무는 앱 안에서 파는 상품이 있을 때 생긴다).
+    /// 5.1.9 까지는 스토어 유료 다운로드였다. 그때 산 사람은 `AppTransaction.originalAppVersion` 으로
+    /// 확인해 Pro 평생을 준다(`MacPlan.boughtBeforeFree`).
     ///
-    /// ⚠️ 5.0.5(20) 까지는 여기가 `.free` 였고, 화면에는 아이폰 결제를 비추는 Pro 게이트가
-    ///    남아 있었다. 유료로 산 사용자에게 "무료 플랜 · 단축어 10개"를 띄우던 그 코드가
-    ///    Guideline 2.1(b) 리젝의 원인이다. 선언과 화면을 실제 판매 형태에 맞췄다.
-    ///    맥에서 추가 결제를 받게 되는 날에는 `.freemium` 으로 바꾸고 **이 타겟에**
-    ///    StoreKit·페이월·복원을 넣을 것. 아이폰 구매를 비추는 방식은 심사를 통과하지 못한다.
-    static let monetization = LeeoMonetization.paidUpfront
+    /// ⚠️ 5.0.5(20) 은 아이폰 결제를 비추는 Pro 게이트 때문에 Guideline 2.1(b) 로 거절됐다(이 앱 레코드에
+    ///    제출된 IAP 가 없었다). 이제 이 타겟이 StoreKit 으로 직접 팔고, 페이월 · 복원 · 약관이 이 타겟에 있다.
+    ///    심사에 낼 때 이 상품들을 같은 버전과 함께 제출할 것.
+    static let monetization = LeeoMonetization.freemiumSubscription(
+        LeeoSubscriptionConfig(
+            productIDs: MacPlan.allProductIDs,
+            termsURL: URL(string: "https://m1zz.github.io/ClipKeyboard/terms.html")!
+        )
+    )
 
     /// 개발자 응원하기(팁, 소모성 세 가지 — 작은 것부터). 기능을 열지 않는다.
-    /// 유료 다운로드라 LeeoStore 가 없다 — 앱이 뜰 때 `startStandalone()` 으로 혼자 선다.
+    /// 권한 상품은 `MacPlan` 이 따로 다뤄 LeeoStore 가 없다 — 앱이 뜰 때 `startStandalone()` 으로 혼자 선다.
     /// ⚠️ 상품 ID 에는 하이픈을 쓸 수 없어 번들 ID(`com.ysoup.TokenMemo-tap`)의 `-` 를 `.` 으로 바꿨다.
     @MainActor static let tipJar = LeeoTipJar(config: LeeoTipJarConfig(productIDs: [
         "com.ysoup.TokenMemo.tap.tip.small",

@@ -29,6 +29,9 @@ enum MacUsageReporting {
     /// 같은 이벤트 이름을 다시 보내기까지의 최소 간격 - 공개 DB 쓰기 폭주 방지.
     nonisolated private static let eventThrottle: TimeInterval = 6 * 3600
 
+    /// 단축어 하나를 붙여넣을 수 있게 담은 일(복사 · 템플릿 채우기 · 스택 칸). 클립보드 기록 다시 쓰기는 뺀다.
+    private static let pasteEvents = ["memo_copy", "template_fill", "stack_paste"]
+
     /// "이 설치가 오늘 활동했다" - 일간 활성 사용자 차트의 근거. 아이폰과 같은 이름이다.
     static let appOpenEvent = "app_open"
 
@@ -64,6 +67,8 @@ enum MacUsageReporting {
                        minInterval: TimeInterval = eventThrottle,
                        countsAsEngagement: Bool = true) {
         if countsAsEngagement { LeeoEngagement.shared.registerSignificantEvent() }
+        // 단축어를 붙여넣은 횟수 — 무료 체험의 문턱(100번)과 영수증 페이월이 이 값을 본다.
+        if pasteEvents.contains(where: { name.hasPrefix($0) }) { MacPlan.shared.recordPaste() }
         guard isReportingAllowed else { return }
 
         let key = DefaultsKey.usageEventLastSentPrefix + name

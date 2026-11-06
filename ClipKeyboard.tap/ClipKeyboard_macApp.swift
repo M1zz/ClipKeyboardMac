@@ -150,14 +150,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // (덮어쓸 로컬 데이터가 없을 때만 동작 — 사용자 데이터 보호)
         // 복원이 끝난 뒤에도 여전히 비어있으면(맥 단독 신규 유저) 더미를 시드한다.
         Task {
+            // 무료 · Plus · Pro — 산 것을 먼저 읽는다. iCloud 복원 · 동기화가 그 권한을 본다.
+            await MacPlan.shared.start()
+            if MacPlan.shared.takeGraduationOfferIfDue() { MacPaywall.present(.graduation) }
+
             // 방금 비운 실행에서는 백업 자동 복원·예시 심기를 건너뛴다. 비운 자리는
             // 동기화가 채워야 하고, 여기서 백업을 덮어쓰면 무엇이 들어왔는지 알 수 없다.
             if !didReset {
-                await CloudKitBackupService.shared.autoRestoreIfLocalEmpty()
+                if MacPlan.shared.allows(.cloudBackup) {
+                    await CloudKitBackupService.shared.autoRestoreIfLocalEmpty()
+                }
                 await MainActor.run { MacSampleSeeder.seedIfNeeded() }
             }
             // 첫 부팅 부트스트랩(autoRestore) 이후에는 실시간 동기화 엔진이 인계한다.
-            await MainActor.run { MemoSyncEngine.shared.startIfEnabled() }
+            await MainActor.run { MemoSyncEngine.shared.startIfAllowed() }
 
             // iCloud 안에 무엇이 들어 있는지 시작할 때 한 번 시스템 로그에 남긴다.
             // ⚠️ 화면(환경설정 ▸ 동기화)에도 같은 것이 있지만, 이쪽은 **다시 켜진 뒤**를 볼 수 있다.
@@ -173,7 +179,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
         // 맥앱이 다시 활성화되면 즉시 동기화 — 아이폰의 최신 변경을 바로 반영.
         // (다른 기기에서 토글이 켜져 KV로 전파된 경우 여기서 비로소 시작될 수 있어 start 먼저 호출.)
-        MemoSyncEngine.shared.startIfEnabled()
+        MemoSyncEngine.shared.startIfAllowed()
         MemoSyncEngine.shared.syncNow()
     }
 
@@ -190,7 +196,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func application(_ application: NSApplication,
                      didReceiveRemoteNotification userInfo: [String: Any]) {
-        MemoSyncEngine.shared.startIfEnabled()
+        MemoSyncEngine.shared.startIfAllowed()
         MemoSyncEngine.shared.syncNow()
     }
 
