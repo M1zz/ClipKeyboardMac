@@ -10,6 +10,7 @@
 
 import AppKit
 import SwiftUI
+import LeeoKit
 
 class MenuBarManager: NSObject {
     static let shared = MenuBarManager()
@@ -79,7 +80,8 @@ class MenuBarManager: NSObject {
         let rootView = MenuBarPopoverView(dismiss: { [weak self] in
             self?.closePopover()
         })
-        return NSHostingController(rootView: rootView)
+        // 개발자가 보낸 의견에 답장하면, 팝오버를 열 때 답장을 시트로 보여 준다 (LeeoKit).
+        return NSHostingController(rootView: rootView.leeoFeedbackReplyNotice(ClipKeyboardTapSpec.self))
     }
 
     /// 팝오버 밖 클릭 감지 → 자동 닫기 (behavior .transient로도 처리되지만 보조).
