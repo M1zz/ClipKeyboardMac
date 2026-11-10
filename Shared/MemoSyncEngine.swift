@@ -272,11 +272,24 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     ///
     /// ⚠️ **병합(applyFetched)의 기준 목록에는 쓰지 말 것.** 거기서 샘플을 빼면
     ///    병합 결과를 저장할 때 로컬 샘플이 통째로 지워진다. 업로드 산출에만 쓴다.
-    private func syncableMemos() -> [Memo] {
-        let all = (try? MemoStore.shared.load(type: .memo)) ?? []
+    ///
+    /// ⚠️ **읽지 못하면 nil 이다. 빈 목록이 아니다.** 빈 목록으로 두면 "이 기기에서 전부 지웠다" 로 읽혀
+    ///    모든 단축어의 삭제가 iCloud 로 올라가고, 다른 기기에서도 지워진다. nil 이면 이번 차례는 건너뛴다.
+    private func syncableMemos() -> [Memo]? {
+        guard let all = allLocalMemos() else { return nil }
         let sampleIDs = SampleMemoStorage.load()
         guard !sampleIDs.isEmpty else { return all }
         return all.filter { !sampleIDs.contains($0.id) }
+    }
+
+    /// 이 기기의 단축어 전부(샘플 포함). 읽지 못하면 nil.
+    private func allLocalMemos() -> [Memo]? {
+        do {
+            return try MemoStore.shared.load(type: .memo)
+        } catch {
+            log.error("local memos unreadable, skipping this sync step: \(error.localizedDescription)")
+            return nil
+        }
     }
 
     private func enqueueLocalChanges() {
@@ -284,7 +297,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         enqueueCategorySettingsIfChanged()
         enqueueCategoryItemChanges()
 
-        let current = syncableMemos()
+        guard let all = allLocalMemos(), let current = syncableMemos() else { return }
         let changes = MemoSyncCore.localChanges(
             current: current, shadow: loadShadow(),
             knownTombstones: loadTombstones(), now: Date())
@@ -294,7 +307,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         for (id, at) in changes.newTombstones { tombstones[id] = at }
         // 살아있는 단축어의 툼스톤은 남아 있으면 안 된다 - 남으면 그 id 로 오는 원격 메모를
         // "이미 지운 것"으로 보고 계속 무시한다(되살린 단축어가 다른 기기에서 안 보이는 원인).
-        let aliveIDs = Set(((try? MemoStore.shared.load(type: .memo)) ?? []).map(\.id))
+        let aliveIDs = Set(all.map(\.id))
         tombstones = tombstones.filter { !aliveIDs.contains($0.key) }
         saveTombstones(tombstones)
 
@@ -361,7 +374,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                                    syncEngine: CKSyncEngine) async -> CKSyncEngine.RecordZoneChangeBatch? {
         let scope = context.options.scope
         let pending = syncEngine.state.pendingRecordZoneChanges.filter { scope.contains($0) }
-        let current = syncableMemos()
+        // 못 읽었으면 이번에는 보내지 않는다. 큐는 그대로 남아 다음 차례에 다시 온다.
+        guard let current = syncableMemos() else { return nil }
         let byId = Dictionary(current.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let tombstones = loadTombstones()
         let categoryItems = CategoryItemStore.load()
@@ -396,16 +410,18 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
     /// 서버 저장이 확정된 레코드만 섀도에 기록한다 - 확정 전에는 계속 "보낼 것"으로 남겨 재시도되게 한다.
     private func confirmSent(_ records: [CKRecord]) {
+        // 못 읽었으면 단축어 섀도는 건드리지 않는다(다음에 다시 보내는 것이 지우는 것보다 낫다).
         let current = syncableMemos()
-        let byId = Dictionary(current.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        let byId = Dictionary((current ?? []).map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         var shadow = loadShadow()
         var categoryShadow = CategoryItemStore.loadShadow()
         defer { CategoryItemStore.saveShadow(categoryShadow) }
         for record in records {
             // 카테고리 설정 업로드 확정 - 지문을 기록해 같은 내용이 다시 올라가지 않게 한다.
             if record.recordID.recordName == Self.categoryRecordName {
-                AppGroup.defaults?
-                    .set(categoryFingerprint(currentSyncableCategories()), forKey: Self.categoryShadowKey)
+                if let snapshot = currentSyncableCategories() {
+                    AppGroup.defaults?.set(categoryFingerprint(snapshot), forKey: Self.categoryShadowKey)
+                }
                 continue
             }
             // 카테고리 항목 - **보낸 레코드의 내용**으로 기록한다. 그 사이 또 바뀌었으면 다음에 다시 간다.
@@ -416,7 +432,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                 }
                 continue
             }
-            guard let id = UUID(uuidString: record.recordID.recordName) else { continue }
+            guard current != nil, let id = UUID(uuidString: record.recordID.recordName) else { continue }
             if let memo = byId[id] {
                 shadow[id] = MemoSyncCore.fingerprint(memo)
             } else {
@@ -467,7 +483,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
         applyRemoteCategoryItems(remoteCategoryItems)
 
-        let local = (try? MemoStore.shared.load(type: .memo)) ?? []
+        // 못 읽은 채로 병합하면 받은 것만 남은 목록이 저장된다. 저장소도 거절하지만 여기서 먼저 멈춘다.
+        guard let local = allLocalMemos() else { return }
         let result = MemoSyncCore.merge(local: local, localTombstones: loadTombstones(), remote: remotes)
 
         isApplyingRemoteChanges = true
@@ -550,7 +567,14 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     // 값 필드는 담기지 않으므로(암호화된 payload 포함) 여기 저장해도 내용이 새지 않는다.
 
     private static let recordMetaKey = "memo.sync.recordMeta"
-    /// serverRecordChanged 재시도 횟수 - 서버와 계속 어긋날 때 무한 재전송을 막는다.
+    /// `recordMetaCache` · `conflictRetries` 를 지키는 잠금.
+    ///
+    /// ⚠️ 두 값은 CKSyncEngine 콜백(엔진의 스레드)과 "이 기기를 정본으로"(협력 스레드풀)가
+    ///    **동시에** 고친다. 잠금 없이 사전을 함께 고치면 메모리가 깨져 앱이 죽는다.
+    ///    `loadRecordMeta` · `saveRecordMeta` 는 이 잠금을 쥔 채로만 부른다.
+    private let metaLock = NSLock()
+
+    /// serverRecordChanged 재시도 횟수 - 서버와 계속 어긋날 때 무한 재전송을 막는다. `metaLock` 안에서만.
     nonisolated(unsafe) private var conflictRetries: [String: Int] = [:]
     private static let maxConflictRetries = 3
 
@@ -584,25 +608,31 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     /// 여러 건을 한 번에 - 첫 동기화처럼 수백 건이 몰릴 때 건건이 전체 사전을 다시 쓰지 않도록.
     private func cacheRecordMetas(_ records: [CKRecord]) {
         guard !records.isEmpty else { return }
-        var meta = loadRecordMeta()
+        var encoded: [String: Data] = [:]
         for record in records {
             let coder = NSKeyedArchiver(requiringSecureCoding: true)
             record.encodeSystemFields(with: coder)
             coder.finishEncoding()
-            meta[record.recordID.recordName] = coder.encodedData
+            encoded[record.recordID.recordName] = coder.encodedData
         }
-        saveRecordMeta(meta)
+        metaLock.withLock {
+            var meta = loadRecordMeta()
+            meta.merge(encoded) { _, new in new }
+            saveRecordMeta(meta)
+        }
     }
 
     private func forgetRecordMeta(_ recordID: CKRecord.ID) {
-        var meta = loadRecordMeta()
-        guard meta.removeValue(forKey: recordID.recordName) != nil else { return }
-        saveRecordMeta(meta)
+        metaLock.withLock {
+            var meta = loadRecordMeta()
+            guard meta.removeValue(forKey: recordID.recordName) != nil else { return }
+            saveRecordMeta(meta)
+        }
     }
 
     /// 캐시된 시스템 필드로 되살린 빈 레코드(값 필드는 비어 있다).
     private func cachedRecord(for recordID: CKRecord.ID) -> CKRecord? {
-        guard let data = loadRecordMeta()[recordID.recordName],
+        guard let data = metaLock.withLock({ loadRecordMeta()[recordID.recordName] }),
               let coder = try? NSKeyedUnarchiver(forReadingFrom: data) else { return nil }
         coder.requiresSecureCoding = true
         let record = CKRecord(coder: coder)
@@ -633,16 +663,18 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                 let serverEdited = Self.editedDate(of: serverRecord)
                 let mineEdited = Self.editedDate(of: failure.record)
                 guard mineEdited >= serverEdited else {
-                    conflictRetries[name] = nil
+                    metaLock.withLock { conflictRetries[name] = nil }
                     continue
                 }
-                let count = (conflictRetries[name] ?? 0) + 1
+                let count = metaLock.withLock {
+                    let next = (conflictRetries[name] ?? 0) + 1
+                    conflictRetries[name] = next > Self.maxConflictRetries ? nil : next
+                    return next
+                }
                 guard count <= Self.maxConflictRetries else {
                     log.error("conflict retry limit reached: \(name, privacy: .public)")
-                    conflictRetries[name] = nil
                     continue
                 }
-                conflictRetries[name] = count
                 retry.append(.saveRecord(recordID))
             case .unknownItem:
                 // 들고 있던 태그가 가리키는 레코드가 서버에 없다(존 삭제·계정 전환 등).
@@ -755,7 +787,9 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         guard let engine,
               let epoch = defaults?.string(forKey: Self.epochKey),
               defaults?.string(forKey: Self.tombstonesAnnouncedKey) != epoch else { return }
-        let aliveIDs = Set(((try? MemoStore.shared.load(type: .memo)) ?? []).map(\.id))
+        // 못 읽으면 살아 있는 단축어의 옛 툼스톤까지 "지움" 으로 알리게 된다. 다음 차례로 미룬다.
+        guard let all = allLocalMemos() else { return }
+        let aliveIDs = Set(all.map(\.id))
         let ids = loadTombstones().keys.filter { !aliveIDs.contains($0) }
         if !ids.isEmpty {
             engine.state.add(pendingRecordZoneChanges: ids.map { .saveRecord(recordID($0)) })
@@ -772,11 +806,14 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     private func resetBaseline(reason: String) {
         defaults?.removeObject(forKey: DefaultsKey.syncEngineState)
         defaults?.removeObject(forKey: DefaultsKey.syncShadow)
-        defaults?.removeObject(forKey: Self.recordMetaKey)
         defaults?.removeObject(forKey: Self.categoryShadowKey)
         // 카테고리 항목은 남기고 "올린 것"만 비운다 - 새 데이터베이스에 전부(지운 것 포함) 다시 올라간다.
         defaults?.removeObject(forKey: CategoryItemStore.shadowKey)
-        recordMetaCache = nil
+        // 디스크와 메모리 사본을 **한 번에** 비운다. 사이가 벌어지면 낡은 태그가 다시 쓰인다.
+        metaLock.withLock {
+            defaults?.removeObject(forKey: Self.recordMetaKey)
+            recordMetaCache = nil
+        }
         log.info("sync baseline reset: \(reason, privacy: .public)")
     }
 
@@ -804,9 +841,16 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
     enum AuthorityError: LocalizedError {
         case notRunning
+        case localUnreadable
         var errorDescription: String? {
-            NSLocalizedString("기기 간 동기화가 꺼져 있거나 아직 시작되지 않았어요.",
-                              comment: "Make-authoritative error: sync engine is not running")
+            switch self {
+            case .notRunning:
+                return NSLocalizedString("기기 간 동기화가 꺼져 있거나 아직 시작되지 않았어요.",
+                                         comment: "Make-authoritative error: sync engine is not running")
+            case .localUnreadable:
+                return NSLocalizedString("이 기기의 단축어를 읽지 못했어요. 잠시 뒤 다시 해 주세요.",
+                                         comment: "Make-authoritative error: could not read this device's snippets, try again later")
+            }
         }
     }
 
@@ -852,9 +896,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             }
         }
 
-        let local = syncableMemos()
+        // 못 읽은 채로 계획을 세우면 iCloud 의 단축어 전부가 "지울 것" 이 된다. 계획을 세우지 않는다.
+        guard let all = allLocalMemos(), let local = syncableMemos() else { throw AuthorityError.localUnreadable }
         // 지울 것은 **샘플까지 포함한** 이 기기 목록으로 가른다 - 샘플은 올리지 않을 뿐 여기 있다.
-        let localIDs = Set(((try? MemoStore.shared.load(type: .memo)) ?? []).map(\.id))
+        let localIDs = Set(all.map(\.id))
         let updates = local.filter { memo in
             guard let remote = remoteAlive[memo.id] else { return true }   // 없거나 지워진 것으로 있음
             return MemoSyncCore.fingerprint(remote) != MemoSyncCore.fingerprint(memo)
@@ -929,7 +974,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     @discardableResult
     private func refreshCategoryItems() -> [UUID: CategoryItem] {
         let snapshot = CategorySnapshotStore.current()
-        let memos = (try? MemoStore.shared.load(type: .memo)) ?? []
+        // 못 읽으면 "쓰는 카테고리" 가 비어 보인다. 지금 항목을 그대로 둔다.
+        guard let memos = allLocalMemos() else { return CategoryItemStore.load() }
         let sampleIDs = SampleMemoStorage.load()
         let used = Set(memos.filter { !sampleIDs.contains($0.id) }.map(\.category))
         let hidden = Set(snapshot.hiddenTabs)
@@ -1036,9 +1082,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     private static let categoryShadowKey = "memo.sync.categoryShadow"
 
     /// 동기화에 실을 카테고리 - 실제 쓰이는 것만(페르소나 시드·언어별 중복 방지).
-    private func currentSyncableCategories() -> CategorySnapshot {
-        CategorySnapshotStore.syncable(memos: (try? MemoStore.shared.load(type: .memo)) ?? [],
-                                       sampleIDs: SampleMemoStorage.load())
+    /// 단축어를 읽지 못하면 nil. 빈 스냅샷으로 올리면 다른 기기의 카테고리가 비어 보인다.
+    private func currentSyncableCategories() -> CategorySnapshot? {
+        guard let memos = allLocalMemos() else { return nil }
+        return CategorySnapshotStore.syncable(memos: memos, sampleIDs: SampleMemoStorage.load())
     }
 
     private var categoryRecordID: CKRecord.ID {
@@ -1060,8 +1107,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     /// 로컬 카테고리 설정이 바뀌었으면 업로드 큐에 올린다.
     private func enqueueCategorySettingsIfChanged() {
         guard let engine else { return }
-        let snapshot = currentSyncableCategories()
-        guard !snapshot.isEmpty else { return }
+        guard let snapshot = currentSyncableCategories(), !snapshot.isEmpty else { return }
 
         let fingerprint = categoryFingerprint(snapshot)
         let defaults = AppGroup.defaults
@@ -1073,8 +1119,7 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
     /// 업로드용 레코드. `nextRecordZoneChangeBatch` 에서 이 recordID 를 만나면 여기로 온다.
     private func makeCategoryRecord() -> CKRecord? {
-        var snapshot = currentSyncableCategories()
-        guard !snapshot.isEmpty else { return nil }
+        guard var snapshot = currentSyncableCategories(), !snapshot.isEmpty else { return nil }
 
         // 메모 레코드와 같은 이유로 서버 버전 위에 얹는다(태그 없이 올리면 두 번째부터 거절당한다).
         let record = cachedRecord(for: categoryRecordID)
@@ -1121,8 +1166,9 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             CategorySnapshotStore.apply(snapshot, strategy: .sync)
         }
         // 방금 받은 상태를 그대로 섀도에 기록 - 받자마자 되올리는 핑퐁을 막는다.
-        AppGroup.defaults?
-            .set(categoryFingerprint(currentSyncableCategories()), forKey: Self.categoryShadowKey)
+        if let snapshot = currentSyncableCategories() {
+            AppGroup.defaults?.set(categoryFingerprint(snapshot), forKey: Self.categoryShadowKey)
+        }
         log.info("remote category settings applied")
     }
 

@@ -23,6 +23,8 @@ extension Notification.Name {
     /// 기존 사용자가 데모 샘플 체험을 수락해 샘플이 삽입됨 → 리스트 리로드 트리거
     static let demoSamplesInserted = Notification.Name("demoSamplesInserted")
     static let draftsChanged = Notification.Name("draftsChanged")
+    /// 설정 ▸ 기능 더하기의 스위치가 바뀌었다(`FeatureSet`). 목록 · 새 단축어가 그 자리를 다시 그린다
+    static let featureSetChanged = Notification.Name("featureSetChanged")
     static let filterChanged = Notification.Name("filterChanged")
     static let memoDataChanged = Notification.Name("MemoDataChanged")
     /// 단축어를 **방금 저장했다.** `object` 에 저장된 단축어의 `UUID`.
