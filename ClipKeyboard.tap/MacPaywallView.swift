@@ -214,7 +214,6 @@ private struct MacPlanCard: View {
     @ObservedObject private var plan = MacPlan.shared
     @Environment(\.purchase) private var purchase
     @State private var term: MacTerm
-    @State private var showsShortTerms = false
     @State private var buying = false
     @State private var introEligible = false
 
@@ -255,14 +254,7 @@ private struct MacPlanCard: View {
             } else {
                 option(.yearly)
                 option(.lifetime)
-                if product(.weekly) != nil || product(.monthly) != nil {
-                    DisclosureGroup(NSLocalizedString("주 · 월 구독 보기", comment: "Paywall: show weekly and monthly plans"),
-                                    isExpanded: $showsShortTerms) {
-                        option(.monthly)
-                        option(.weekly)
-                    }
-                    .font(MacFont.body)
-                }
+                option(.monthly)
                 if let note {
                     Text(note)
                         .font(MacFont.body)
@@ -314,7 +306,6 @@ private struct MacPlanCard: View {
 
     private func title(_ value: MacTerm) -> String {
         switch value {
-        case .weekly: return NSLocalizedString("주 구독", comment: "Pricing: weekly subscription option")
         case .monthly: return NSLocalizedString("월 구독", comment: "Pricing: monthly subscription option")
         case .yearly: return LeeoLadderText.yearly
         case .lifetime: return LeeoLadderText.lifetime
@@ -323,7 +314,6 @@ private struct MacPlanCard: View {
 
     private func price(_ value: MacTerm, _ product: Product) -> String {
         switch value {
-        case .weekly: return String(format: NSLocalizedString("%@ / 주", comment: "Pricing: weekly price. %@ = price"), product.displayPrice)
         case .monthly: return String(format: NSLocalizedString("%@ / 월", comment: "Pricing: monthly price. %@ = price"), product.displayPrice)
         case .yearly: return String(format: LeeoLadderText.perYearFormat, product.displayPrice)
         case .lifetime: return product.displayPrice
@@ -344,7 +334,7 @@ private struct MacPlanCard: View {
             guard let yearly = plan.product(tier, .yearly), let lifetime = plan.product(tier, .lifetime), yearly.price > 0 else { return nil }
             let years = Int(NSDecimalNumber(decimal: lifetime.price / yearly.price).doubleValue.rounded(.down))
             return years >= 2 ? String(format: LeeoLadderText.lifetimeWorthFormat, years) : nil
-        case .weekly, .monthly:
+        case .monthly:
             return nil
         }
     }
@@ -498,9 +488,6 @@ struct MacPlanSettingsSection: View {
     }
 
     private var status: String {
-        if plan.isPaidDownloadOwner {
-            return NSLocalizedString("Pro 평생 · 앱을 사 주셔서 고마워요", comment: "Settings plan status: bought the app when it was paid")
-        }
         let name = plan.owned == .pro ? "Pro" : "Plus"
         if plan.owned > .free {
             return plan.subscription != nil

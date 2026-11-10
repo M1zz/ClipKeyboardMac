@@ -1,7 +1,7 @@
 # 탭클립키보드 App Store 페이지
 
-DeployBar 가 이 파일을 읽어 맥 앱(com.ysoup.TokenMemo-tap) 레코드의 스토어 페이지를 채운다.
-이 파일이 원본이다. 스토어 문구를 고칠 때는 여기를 고친다. 아이폰 앱(클립키보드)과는 **다른 레코드**라 문구를 공유하지 않는다.
+DeployBar 가 이 파일을 읽어 클립키보드 레코드(com.Ysoup.TokenMemo)의 **맥 페이지**를 채운다. 아이폰 앱과 번들 ID · 레코드가 같다(유니버설 구매).
+⚠️ 이름 · 부제 · 개인정보처리방침 URL 은 레코드에 하나뿐이라 아이폰 앱(`클립키보드/APPSTORE.md`)과 **글자 하나까지 같아야 한다.** 다르게 적으면 맥 배포가 아이폰 페이지를 바꾼다. 바꿀 때는 아이폰 쪽을 먼저 고치고 여기를 맞춘다. 설명 · 키워드 · 프로모션 · 스크린샷은 맥 것이 따로다.
 본문은 코드펜스 안이 원문이다. 설명에 마크다운·이모지를 쓰지 않는다. 이 맥 앱은 무료 다운로드 + 무료 · Plus · Pro(앱 내 결제, `MacPlan`)다. 설명 끝의 '무료 · Plus · Pro' 단락이 칸과 한도를 말한다 — 한도를 바꾸면 모든 언어에서 함께 고친다.
 웹 페이지(지원·개인정보·마케팅)는 아이폰 앱과 같은 것을 쓴다. 페이지는 ClipKeyboard 레포 main 의 docs/<언어>/ 에서 나간다.
 
@@ -10,13 +10,13 @@ DeployBar 가 이 파일을 읽어 맥 앱(com.ysoup.TokenMemo-tap) 레코드의
 ### 이름
 
 ```
-클립키보드: 빠른 붙여넣기
+클립키보드: 상용구 키보드·자주쓰는문구
 ```
 
 ### 부제
 
 ```
-메뉴바와 단축키로 어디서나
+자주 쓰는 문구 복사 붙여넣기·빠른 답장
 ```
 
 ### 설명
@@ -57,14 +57,15 @@ iCloud 백업과 복원, 최근 15개 시점으로 되돌리기, 파일로 내�
 무료로 받아 단축어를 100번 붙여넣을 때까지 모든 기능을 씁니다. 그 뒤에도 이미 만든 단축어는 그대로 쓰고, 새로 만들기는 단축어 10개, 템플릿 3개, 이미지 단축어 5개, 클립보드 기록은 50개까지 무료입니다.
 Plus는 단축어와 템플릿, 이미지 단축어를 마음껏 만들고 클립보드 기록을 100개까지 남깁니다.
 Pro는 여기에 iCloud 백업과 되돌리기, 아이폰과 실시간 동기화, 스택과 보안 단축어를 더합니다.
-Plus와 Pro는 주, 월, 연 구독이나 평생 구매로 쓸 수 있습니다. 구독은 기간이 끝나기 24시간 전까지 해지하지 않으면 자동으로 갱신됩니다.
+Plus와 Pro는 월, 연 구독이나 평생 구매로 쓸 수 있습니다. 구독은 기간이 끝나기 24시간 전까지 해지하지 않으면 자동으로 갱신됩니다.
 이용약관: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-이메일서명,반복입력,문구저장,고객응대,자주쓰는문구,자기소개,인사말,상용구,계좌번호,빠른붙여넣기,복붙,클립보드,텍스트대치,템플릿,메모,복사,텍스트확장,자동완성,클립보드기록,주소
+이메일서명,반복입력,문구저장,고객응대,자기소개,인사말,계좌번호,빠른붙여넣기,복붙,클립보드,텍스트대치,템플릿,메모,복사,텍스트확장,자동완성,클립보드기록,주소
 ```
 
 ### 프로모션 텍스트
@@ -90,13 +91,13 @@ https://m1zz.github.io/ClipKeyboard/ko/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Quick Paste
+Clip Keyboard: Paste Snippets
 ```
 
 ### 부제
 
 ```
-One shortcut, paste anywhere
+Clipboard Manager, Quick Reply
 ```
 
 ### 설명
@@ -137,8 +138,9 @@ Free, Plus and Pro
 Download free and use every feature until you have pasted 100 times. After that, the snippets you made keep working, and Free lets you make 10 snippets, 3 templates and 5 image snippets, with 50 clipboard history items.
 Plus lets you make as many snippets, templates and image snippets as you like, and keeps 100 clipboard history items.
 Pro adds iCloud backup with restore points, live sync with your iPhone, and stacks and secure snippets.
-Plus and Pro are available as weekly, monthly or yearly subscriptions, or as a one-time lifetime purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period.
+Plus and Pro are available as monthly or yearly subscriptions, or as a one-time lifetime purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period.
 Terms of Use: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -170,13 +172,13 @@ https://m1zz.github.io/ClipKeyboard/en/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Quick Paste
+Clip Keyboard: Paste Snippets
 ```
 
 ### 부제
 
 ```
-One shortcut, paste anywhere
+Clipboard Manager, Quick Reply
 ```
 
 ### 설명
@@ -217,8 +219,9 @@ Free, Plus and Pro
 Download free and use every feature until you have pasted 100 times. After that, the snippets you made keep working, and Free lets you make 10 snippets, 3 templates and 5 image snippets, with 50 clipboard history items.
 Plus lets you make as many snippets, templates and image snippets as you like, and keeps 100 clipboard history items.
 Pro adds iCloud backup with restore points, live sync with your iPhone, and stacks and secure snippets.
-Plus and Pro are available as weekly, monthly or yearly subscriptions, or as a one-off lifetime purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period.
+Plus and Pro are available as monthly or yearly subscriptions, or as a one-off lifetime purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period.
 Terms of Use: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -250,13 +253,13 @@ https://m1zz.github.io/ClipKeyboard/en/privacy.html
 ### 이름
 
 ```
-ClipKeyboard - 菜单栏快捷粘贴
+ClipKeyboard: 快捷短语·常用语键盘
 ```
 
 ### 부제
 
 ```
-常用语、模板、剪贴板一键复制
+剪贴板·快捷回复·话术，一键输入
 ```
 
 ### 설명
@@ -297,8 +300,9 @@ ClipKeyboard - 菜单栏快捷粘贴
 免费下载，粘贴满 100 次之前可使用全部功能。之后已有的短语照常可用，免费版可新建 10 个短语、3 个模板、5 个图片短语，并保留 50 条剪贴板历史。
 Plus 可随意新建短语、模板和图片短语，并保留 100 条剪贴板历史。
 Pro 在此基础上加入 iCloud 备份与恢复点、与 iPhone 实时同步，以及短语堆和安全短语。
-Plus 和 Pro 可按周、按月、按年订阅，也可一次买断永久使用。除非在当前周期结束前至少 24 小时取消，订阅将自动续订。
+Plus 和 Pro 可按月、按年订阅，也可一次买断永久使用。除非在当前周期结束前至少 24 小时取消，订阅将自动续订。
 使用条款：https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -330,13 +334,13 @@ https://m1zz.github.io/ClipKeyboard/zh-Hans/privacy.html
 ### 이름
 
 ```
-ClipKeyboard - 選單列快捷貼上
+ClipKeyboard: 常用語·快速回覆鍵盤
 ```
 
 ### 부제
 
 ```
-常用語、範本、剪貼簿一鍵複製
+剪貼簿·罐頭訊息·複製貼上一鍵輸入
 ```
 
 ### 설명
@@ -377,8 +381,9 @@ ClipKeyboard - 選單列快捷貼上
 免費下載，貼上滿 100 次之前可使用全部功能。之後已有的短語照常可用，免費版可新增 10 個短語、3 個範本、5 個圖片短語，並保留 50 筆剪貼板歷史。
 Plus 可隨意新增短語、範本和圖片短語，並保留 100 筆剪貼板歷史。
 Pro 在此之上加入 iCloud 備份與還原點、與 iPhone 即時同步，以及短語堆和安全短語。
-Plus 和 Pro 可按週、按月、按年訂閱，也可一次買斷永久使用。除非在目前週期結束前至少 24 小時取消，訂閱將自動續訂。
+Plus 和 Pro 可按月、按年訂閱，也可一次買斷永久使用。除非在目前週期結束前至少 24 小時取消，訂閱將自動續訂。
 使用條款：https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -410,13 +415,13 @@ https://m1zz.github.io/ClipKeyboard/zh-Hant/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: 定型文をすぐ貼り付け
+Clip Keyboard: 定型文キーボード
 ```
 
 ### 부제
 
 ```
-メニューバーとショートカットで
+コピペ・クリップボード履歴をワンタップ入力
 ```
 
 ### 설명
@@ -457,8 +462,9 @@ iCloudへのバックアップと復元、直近15件の時点への巻き戻し
 無料でダウンロードでき、100回貼り付けるまですべての機能を使えます。その後も作成済みのスニペットはそのまま使え、無料ではスニペット10個、テンプレート3個、画像スニペット5個を新しく作れ、クリップボード履歴は50件まで残ります。
 Plusではスニペット、テンプレート、画像スニペットを好きなだけ作れ、クリップボード履歴を100件まで残せます。
 Proではさらに、iCloudバックアップと復元ポイント、iPhoneとのリアルタイム同期、スタックと保護されたスニペットが使えます。
-PlusとProは週額・月額・年額のサブスクリプション、または買い切りで利用できます。サブスクリプションは期間終了の24時間前までに解約しない限り自動更新されます。
+PlusとProは月額・年額のサブスクリプション、または買い切りで利用できます。サブスクリプションは期間終了の24時間前までに解約しない限り自動更新されます。
 利用規約：https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -490,13 +496,13 @@ https://m1zz.github.io/ClipKeyboard/ja/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Textbausteine
+Clip Keyboard: Textbausteine
 ```
 
 ### 부제
 
 ```
-Ein Kürzel, überall eingefügt
+Tastatur mit Zwischenablage
 ```
 
 ### 설명
@@ -537,8 +543,9 @@ Kostenlos, Plus und Pro
 Lade die App kostenlos und nutze alle Funktionen bis zum 100. Einfügen. Danach funktionieren deine Textbausteine weiter, und kostenlos kannst du 10 Textbausteine, 3 Vorlagen und 5 Bild-Textbausteine anlegen, mit 50 Einträgen im Verlauf der Zwischenablage.
 Mit Plus legst du so viele Textbausteine, Vorlagen und Bild-Textbausteine an, wie du willst, und behältst 100 Einträge im Verlauf.
 Pro ergänzt iCloud-Backup mit Wiederherstellungspunkten, Echtzeit-Synchronisierung mit dem iPhone sowie Stapel und geschützte Textbausteine.
-Plus und Pro gibt es als Wochen-, Monats- oder Jahresabo oder als einmaligen Kauf auf Lebenszeit. Abos verlängern sich automatisch, wenn sie nicht mindestens 24 Stunden vor Ablauf gekündigt werden.
+Plus und Pro gibt es als Monats- oder Jahresabo oder als einmaligen Kauf auf Lebenszeit. Abos verlängern sich automatisch, wenn sie nicht mindestens 24 Stunden vor Ablauf gekündigt werden.
 Nutzungsbedingungen: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -565,18 +572,18 @@ https://m1zz.github.io/ClipKeyboard/de/
 
 https://m1zz.github.io/ClipKeyboard/de/privacy.html
 
-## 스페인어 (es)
+## 스페인어(멕시코) (es-MX)
 
 ### 이름
 
 ```
-ClipKeyboard: Pegado rápido
+Clip Keyboard: Portapapeles
 ```
 
 ### 부제
 
 ```
-Tus textos con un solo atajo
+Copiar y pegar, frases rápidas
 ```
 
 ### 설명
@@ -617,14 +624,15 @@ Gratis, Plus y Pro
 Descárgala gratis y usa todas las funciones hasta pegar 100 veces. Después, los fragmentos que ya creaste siguen funcionando, y gratis puedes crear 10 fragmentos, 3 plantillas y 5 fragmentos de imagen, con 50 elementos en el historial del portapapeles.
 Plus te permite crear todos los fragmentos, plantillas y fragmentos de imagen que quieras, y guarda 100 elementos en el historial.
 Pro añade copias en iCloud con puntos de restauración, sincronización en tiempo real con el iPhone, y pilas y fragmentos protegidos.
-Plus y Pro están disponibles como suscripción semanal, mensual o anual, o como compra única de por vida. Las suscripciones se renuevan automáticamente salvo que se cancelen al menos 24 horas antes de que termine el periodo.
+Plus y Pro están disponibles como suscripción mensual o anual, o como compra única de por vida. Las suscripciones se renuevan automáticamente salvo que se cancelen al menos 24 horas antes de que termine el periodo.
 Condiciones de uso: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-portapapeles,historial,fragmentos,plantillas,copiar,pegar,firma,correo,respuestas,productividad
+historial,fragmentos,plantillas,copiar,pegar,firma,correo,respuestas,productividad
 ```
 
 ### 프로모션 텍스트
@@ -650,13 +658,13 @@ https://m1zz.github.io/ClipKeyboard/es/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Collage rapide
+Clip Keyboard: Presse-papiers
 ```
 
 ### 부제
 
 ```
-Vos textes en un raccourci
+Clavier copier-coller rapide
 ```
 
 ### 설명
@@ -697,8 +705,9 @@ Gratuit, Plus et Pro
 Téléchargez l’app gratuitement et profitez de toutes les fonctions jusqu’à votre 100e collage. Ensuite, vos extraits restent utilisables, et la version gratuite permet de créer 10 extraits, 3 modèles et 5 extraits image, avec 50 éléments dans l’historique du presse-papiers.
 Plus permet de créer autant d’extraits, de modèles et d’extraits image que vous voulez, et conserve 100 éléments dans l’historique.
 Pro ajoute la sauvegarde iCloud avec points de restauration, la synchronisation en temps réel avec l’iPhone, ainsi que les piles et les extraits protégés.
-Plus et Pro sont proposés en abonnement hebdomadaire, mensuel ou annuel, ou en achat unique à vie. Les abonnements se renouvellent automatiquement, sauf résiliation au moins 24 heures avant la fin de la période.
+Plus et Pro sont proposés en abonnement mensuel ou annuel, ou en achat unique à vie. Les abonnements se renouvellent automatiquement, sauf résiliation au moins 24 heures avant la fin de la période.
 Conditions d’utilisation : https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -730,13 +739,13 @@ https://m1zz.github.io/ClipKeyboard/fr/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Incolla rapido
+Clip Keyboard: Copia e incolla
 ```
 
 ### 부제
 
 ```
-I tuoi testi con un solo tasto
+Tastiera appunti, testi pronti
 ```
 
 ### 설명
@@ -777,14 +786,15 @@ Gratis, Plus e Pro
 Scaricala gratis e usa tutte le funzioni fino al 100º incolla. Dopo, i frammenti che hai creato continuano a funzionare, e gratis puoi creare 10 frammenti, 3 modelli e 5 frammenti immagine, con 50 elementi nella cronologia appunti.
 Con Plus crei tutti i frammenti, i modelli e i frammenti immagine che vuoi, e la cronologia conserva 100 elementi.
 Pro aggiunge il backup su iCloud con punti di ripristino, la sincronizzazione in tempo reale con iPhone, gli stack e i frammenti protetti.
-Plus e Pro sono disponibili con abbonamento settimanale, mensile o annuale, oppure con acquisto unico a vita. Gli abbonamenti si rinnovano automaticamente se non vengono disdetti almeno 24 ore prima della fine del periodo.
+Plus e Pro sono disponibili con abbonamento mensile o annuale, oppure con acquisto unico a vita. Gli abbonamenti si rinnovano automaticamente se non vengono disdetti almeno 24 ore prima della fine del periodo.
 Termini di utilizzo: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-appunti,cronologia,frammenti,modelli,copia,scorciatoie,firma,email,risposte,produttività,clipboard
+appunti,cronologia,frammenti,modelli,scorciatoie,firma,email,risposte,produttività,clipboard
 ```
 
 ### 프로모션 텍스트
@@ -810,13 +820,13 @@ https://m1zz.github.io/ClipKeyboard/it/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Colar rápido
+Clip Keyboard: Copiar e Colar
 ```
 
 ### 부제
 
 ```
-Seus textos em um só atalho
+Teclado de mensagens prontas
 ```
 
 ### 설명
@@ -857,14 +867,15 @@ Grátis, Plus e Pro
 Baixe grátis e use todos os recursos até colar 100 vezes. Depois disso, os trechos que você criou continuam funcionando, e no plano gratuito você pode criar 10 trechos, 3 modelos e 5 trechos de imagem, com 50 itens no histórico da área de transferência.
 Com o Plus, você cria quantos trechos, modelos e trechos de imagem quiser, e o histórico guarda 100 itens.
 O Pro adiciona backup no iCloud com pontos de restauração, sincronização em tempo real com o iPhone, além de pilhas e trechos protegidos.
-Plus e Pro estão disponíveis como assinatura semanal, mensal ou anual, ou como compra única vitalícia. As assinaturas são renovadas automaticamente, a menos que sejam canceladas pelo menos 24 horas antes do fim do período.
+Plus e Pro estão disponíveis como assinatura mensal ou anual, ou como compra única vitalícia. As assinaturas são renovadas automaticamente, a menos que sejam canceladas pelo menos 24 horas antes do fim do período.
 Termos de Uso: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-área,transferência,histórico,trechos,modelos,copiar,assinatura,respostas,produtividade,clipboard
+área,transferência,histórico,trechos,modelos,assinatura,respostas,produtividade,clipboard
 ```
 
 ### 프로모션 텍스트
@@ -890,13 +901,13 @@ https://m1zz.github.io/ClipKeyboard/pt-BR/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: быстрая вставка
+Clip Keyboard: буфер обмена
 ```
 
 ### 부제
 
 ```
-Заготовки текста в строке меню
+Шаблоны, быстрые ответы, фразы
 ```
 
 ### 설명
@@ -937,14 +948,15 @@ ClipKeyboard: быстрая вставка
 Скачайте бесплатно и пользуйтесь всеми функциями до 100-й вставки. После этого созданные заготовки продолжают работать, а бесплатно можно создать 10 заготовок, 3 шаблона и 5 заготовок-изображений, история буфера обмена хранит 50 записей.
 С Plus можно создавать сколько угодно заготовок, шаблонов и заготовок-изображений, а история хранит 100 записей.
 Pro добавляет резервные копии в iCloud с точками восстановления, синхронизацию с iPhone в реальном времени, наборы и защищённые заготовки.
-Plus и Pro доступны по подписке на неделю, месяц или год либо разовой покупкой навсегда. Подписка продлевается автоматически, если не отменить её минимум за 24 часа до конца периода.
+Plus и Pro доступны по подписке на месяц или год либо разовой покупкой навсегда. Подписка продлевается автоматически, если не отменить её минимум за 24 часа до конца периода.
 Условия использования: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-буфер,обмена,шаблоны,сниппеты,копировать,вставить,история,подпись,автотекст,горячие,клавиши,макрос
+шаблоны,сниппеты,копировать,вставить,история,подпись,автотекст,горячие,клавиши,макрос
 ```
 
 ### 프로모션 텍스트
@@ -970,13 +982,13 @@ https://m1zz.github.io/ClipKeyboard/ru/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: rychlé vkládání
+Clip Keyboard: Schránka
 ```
 
 ### 부제
 
 ```
-Hotové texty z řádku nabídek
+Rychlé odpovědi a hotové texty
 ```
 
 ### 설명
@@ -1017,14 +1029,15 @@ Zdarma, Plus a Pro
 Stáhněte si aplikaci zdarma a používejte všechny funkce až do 100. vložení. Potom vaše úryvky fungují dál a zdarma můžete vytvořit 10 úryvků, 3 šablony a 5 obrázkových úryvků, historie schránky uchová 50 položek.
 S Plus vytvoříte libovolný počet úryvků, šablon i obrázkových úryvků a historie uchová 100 položek.
 Pro přidává zálohu na iCloud s body obnovení, synchronizaci s iPhonem v reálném čase, sady a zabezpečené úryvky.
-Plus a Pro jsou k dispozici jako týdenní, měsíční nebo roční předplatné, nebo jako jednorázový doživotní nákup. Předplatné se automaticky obnovuje, pokud ho nezrušíte alespoň 24 hodin před koncem období.
+Plus a Pro jsou k dispozici jako měsíční nebo roční předplatné, nebo jako jednorázový doživotní nákup. Předplatné se automaticky obnovuje, pokud ho nezrušíte alespoň 24 hodin před koncem období.
 Podmínky použití: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-schránka,historie,úryvky,šablony,kopírovat,vložit,podpis,zkratky,klávesové,produktivita,fráze,makro
+historie,úryvky,šablony,kopírovat,vložit,podpis,zkratky,klávesové,produktivita,fráze,makro
 ```
 
 ### 프로모션 텍스트
@@ -1050,13 +1063,13 @@ https://m1zz.github.io/ClipKeyboard/cs/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Hurtig indsæt
+Clip Keyboard: Udklipsholder
 ```
 
 ### 부제
 
 ```
-Tekststykker fra menulinjen
+Kopiér, indsæt og svar hurtigt
 ```
 
 ### 설명
@@ -1097,14 +1110,15 @@ Gratis, Plus og Pro
 Hent appen gratis, og brug alle funktioner, indtil du har indsat 100 gange. Derefter virker dine tekststykker stadig, og gratis kan du oprette 10 tekststykker, 3 skabeloner og 5 billedstykker med 50 elementer i udklipshistorikken.
 Med Plus opretter du lige så mange tekststykker, skabeloner og billedstykker, du vil, og historikken gemmer 100 elementer.
 Pro tilføjer iCloud-sikkerhedskopi med gendannelsespunkter, synkronisering med iPhone i realtid samt stakke og beskyttede tekststykker.
-Plus og Pro fås som ugentligt, månedligt eller årligt abonnement eller som et engangskøb for livstid. Abonnementer fornyes automatisk, medmindre de opsiges mindst 24 timer før periodens udløb.
+Plus og Pro fås som månedligt eller årligt abonnement eller som et engangskøb for livstid. Abonnementer fornyes automatisk, medmindre de opsiges mindst 24 timer før periodens udløb.
 Vilkår for brug: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-udklipsholder,kopiér,skabeloner,snippets,tekst,signatur,standardtekst,historik,genvej,produktivitet
+kopiér,skabeloner,snippets,tekst,signatur,standardtekst,historik,genvej,produktivitet
 ```
 
 ### 프로모션 텍스트
@@ -1130,13 +1144,13 @@ https://m1zz.github.io/ClipKeyboard/da/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: έτοιμα κείμενα
+Clip Keyboard: Πρόχειρο
 ```
 
 ### 부제
 
 ```
-Γρήγορη επικόλληση παντού
+Αντιγραφή, επικόλληση, φράσεις
 ```
 
 ### 설명
@@ -1177,14 +1191,15 @@ ClipKeyboard: έτοιμα κείμενα
 Κατεβάστε το δωρεάν και χρησιμοποιήστε όλες τις λειτουργίες έως την 100ή επικόλληση. Μετά, τα αποσπάσματα που φτιάξατε συνεχίζουν να λειτουργούν, και δωρεάν μπορείτε να δημιουργήσετε 10 αποσπάσματα, 3 πρότυπα και 5 αποσπάσματα εικόνας, με 50 στοιχεία στο ιστορικό προχείρου.
 Με το Plus δημιουργείτε όσα αποσπάσματα, πρότυπα και αποσπάσματα εικόνας θέλετε, και το ιστορικό κρατά 100 στοιχεία.
 Το Pro προσθέτει αντίγραφα ασφαλείας iCloud με σημεία επαναφοράς, συγχρονισμό με το iPhone σε πραγματικό χρόνο, σύνολα και ασφαλή αποσπάσματα.
-Τα Plus και Pro διατίθενται με εβδομαδιαία, μηνιαία ή ετήσια συνδρομή ή με εφάπαξ αγορά εφ’ όρου ζωής. Οι συνδρομές ανανεώνονται αυτόματα, εκτός αν ακυρωθούν τουλάχιστον 24 ώρες πριν από τη λήξη της περιόδου.
+Τα Plus και Pro διατίθενται με μηνιαία ή ετήσια συνδρομή ή με εφάπαξ αγορά εφ’ όρου ζωής. Οι συνδρομές ανανεώνονται αυτόματα, εκτός αν ακυρωθούν τουλάχιστον 24 ώρες πριν από τη λήξη της περιόδου.
 Όροι χρήσης: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-πρόχειρο,ιστορικό,αποσπάσματα,πρότυπα,αντιγραφή,υπογραφή,συντομεύσεις,παραγωγικότητα,φράσεις
+ιστορικό,αποσπάσματα,πρότυπα,αντιγραφή,υπογραφή,συντομεύσεις,παραγωγικότητα,φράσεις
 ```
 
 ### 프로모션 텍스트
@@ -1210,13 +1225,13 @@ https://m1zz.github.io/ClipKeyboard/el/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Tekstinpätkät
+Clip Keyboard: Leikepöytä
 ```
 
 ### 부제
 
 ```
-Yksi näppäin, liitä minne vain
+Kopioi ja liitä vakiotekstit
 ```
 
 ### 설명
@@ -1257,14 +1272,15 @@ Ilmainen, Plus ja Pro
 Lataa ilmaiseksi ja käytä kaikkia ominaisuuksia 100. liittämiseen asti. Sen jälkeen tekemäsi tekstinpätkät toimivat edelleen, ja ilmaiseksi voit luoda 10 tekstinpätkää, 3 pohjaa ja 5 kuvapätkää, ja leikepöydän historiaan jää 50 kohdetta.
 Plus-tasolla luot tekstinpätkiä, pohjia ja kuvapätkiä niin paljon kuin haluat, ja historiaan jää 100 kohdetta.
 Pro lisää iCloud-varmuuskopioinnin palautuspisteineen, reaaliaikaisen synkronoinnin iPhonen kanssa sekä pinot ja suojatut tekstinpätkät.
-Plus ja Pro ovat saatavilla viikko-, kuukausi- tai vuositilauksena tai kertaostona ikuisiksi ajoiksi. Tilaus uusiutuu automaattisesti, ellei sitä peruta vähintään 24 tuntia ennen jakson päättymistä.
+Plus ja Pro ovat saatavilla kuukausi- tai vuositilauksena tai kertaostona ikuisiksi ajoiksi. Tilaus uusiutuu automaattisesti, ellei sitä peruta vähintään 24 tuntia ennen jakson päättymistä.
 Käyttöehdot: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-leikepöytä,kopioi,pohjat,snippets,teksti,allekirjoitus,historia,pikanäppäin,tuottavuus,vakioteksti
+kopioi,pohjat,snippets,teksti,allekirjoitus,historia,pikanäppäin,tuottavuus,vakioteksti
 ```
 
 ### 프로모션 텍스트
@@ -1290,13 +1306,13 @@ https://m1zz.github.io/ClipKeyboard/fi/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Tempel Cepat
+Clip Keyboard: Salin Tempel
 ```
 
 ### 부제
 
 ```
-Teks rutin cukup satu pintasan
+Papan Klip dan Balas Cepat
 ```
 
 ### 설명
@@ -1337,14 +1353,15 @@ Gratis, Plus, dan Pro
 Unduh gratis dan pakai semua fitur hingga Anda menempel 100 kali. Setelah itu, cuplikan yang sudah dibuat tetap bisa dipakai, dan versi gratis bisa membuat 10 cuplikan, 3 templat, dan 5 cuplikan gambar, dengan 50 item riwayat papan klip.
 Plus memungkinkan Anda membuat cuplikan, templat, dan cuplikan gambar sebanyak yang Anda mau, dan menyimpan 100 item riwayat.
 Pro menambahkan cadangan iCloud dengan titik pemulihan, sinkronisasi langsung dengan iPhone, serta tumpukan dan cuplikan aman.
-Plus dan Pro tersedia sebagai langganan mingguan, bulanan, atau tahunan, atau pembelian sekali seumur hidup. Langganan diperpanjang otomatis kecuali dibatalkan paling lambat 24 jam sebelum periode berakhir.
+Plus dan Pro tersedia sebagai langganan bulanan atau tahunan, atau pembelian sekali seumur hidup. Langganan diperpanjang otomatis kecuali dibatalkan paling lambat 24 jam sebelum periode berakhir.
 Ketentuan Penggunaan: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-clipboard,papan,klip,riwayat,salin,copy,paste,templat,snippet,tanda,tangan,email,balasan,produktif
+clipboard,papan,klip,riwayat,copy,paste,templat,snippet,tanda,tangan,email,balasan,produktif
 ```
 
 ### 프로모션 텍스트
@@ -1370,13 +1387,13 @@ https://m1zz.github.io/ClipKeyboard/id/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Rask innliming
+Clip Keyboard: Utklippstavle
 ```
 
 ### 부제
 
 ```
-Tekstbiter fra menylinjen
+Kopier, lim inn og svar raskt
 ```
 
 ### 설명
@@ -1417,14 +1434,15 @@ Gratis, Plus og Pro
 Last ned gratis og bruk alle funksjoner til du har limt inn 100 ganger. Etterpå fungerer tekstbitene du har laget fortsatt, og gratis kan du lage 10 tekstbiter, 3 maler og 5 bildebiter, med 50 elementer i utklippshistorikken.
 Med Plus lager du så mange tekstbiter, maler og bildebiter du vil, og historikken tar vare på 100 elementer.
 Pro legger til iCloud-sikkerhetskopi med gjenopprettingspunkter, sanntidssynkronisering med iPhone samt stabler og beskyttede tekstbiter.
-Plus og Pro finnes som ukentlig, månedlig eller årlig abonnement, eller som et engangskjøp for livstid. Abonnementer fornyes automatisk med mindre de sies opp minst 24 timer før perioden er over.
+Plus og Pro finnes som månedlig eller årlig abonnement, eller som et engangskjøp for livstid. Abonnementer fornyes automatisk med mindre de sies opp minst 24 timer før perioden er over.
 Bruksvilkår: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-utklippstavle,kopier,maler,snippets,tekst,signatur,historikk,hurtigtast,produktivitet,standardtekst
+kopier,maler,snippets,tekst,signatur,historikk,hurtigtast,produktivitet,standardtekst
 ```
 
 ### 프로모션 텍스트
@@ -1450,13 +1468,13 @@ https://m1zz.github.io/ClipKeyboard/nb/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Snel plakken
+Clip Keyboard: Klembord
 ```
 
 ### 부제
 
 ```
-Tekstfragmenten in je menubalk
+Kopiëren en plakken in één tik
 ```
 
 ### 설명
@@ -1497,14 +1515,15 @@ Gratis, Plus en Pro
 Download gratis en gebruik alle functies tot je 100 keer hebt geplakt. Daarna blijven je fragmenten werken, en gratis maak je 10 fragmenten, 3 sjablonen en 5 afbeeldingsfragmenten, met 50 items in de klembordgeschiedenis.
 Met Plus maak je zoveel fragmenten, sjablonen en afbeeldingsfragmenten als je wilt, en bewaart de geschiedenis 100 items.
 Pro voegt iCloud-reservekopieën met herstelpunten toe, realtime synchronisatie met je iPhone, en stapels en beveiligde fragmenten.
-Plus en Pro zijn beschikbaar als week-, maand- of jaarabonnement, of als eenmalige aankoop voor altijd. Abonnementen worden automatisch verlengd, tenzij je ten minste 24 uur voor het einde van de periode opzegt.
+Plus en Pro zijn beschikbaar als maand- of jaarabonnement, of als eenmalige aankoop voor altijd. Abonnementen worden automatisch verlengd, tenzij je ten minste 24 uur voor het einde van de periode opzegt.
 Gebruiksvoorwaarden: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-klembord,kopiëren,sjablonen,snippets,tekst,handtekening,standaardtekst,geschiedenis,sneltoets,macro
+kopiëren,sjablonen,snippets,tekst,handtekening,standaardtekst,geschiedenis,sneltoets,macro
 ```
 
 ### 프로모션 텍스트
@@ -1530,13 +1549,13 @@ https://m1zz.github.io/ClipKeyboard/nl/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: wklejanie tekstu
+Clip Keyboard: Schowek
 ```
 
 ### 부제
 
 ```
-Gotowe teksty z paska menu
+Kopiuj i wklejaj gotowe teksty
 ```
 
 ### 설명
@@ -1577,14 +1596,15 @@ Za darmo, Plus i Pro
 Pobierz za darmo i korzystaj ze wszystkich funkcji aż do 100. wklejenia. Potem utworzone fragmenty nadal działają, a za darmo można utworzyć 10 fragmentów, 3 szablony i 5 fragmentów z obrazem, a historia schowka przechowuje 50 elementów.
 Plus pozwala tworzyć dowolnie wiele fragmentów, szablonów i fragmentów z obrazem, a historia przechowuje 100 elementów.
 Pro dodaje kopię zapasową w iCloud z punktami przywracania, synchronizację z iPhonem w czasie rzeczywistym oraz zestawy i chronione fragmenty.
-Plus i Pro są dostępne w subskrypcji tygodniowej, miesięcznej lub rocznej albo jako jednorazowy zakup dożywotni. Subskrypcja odnawia się automatycznie, jeśli nie zostanie anulowana co najmniej 24 godziny przed końcem okresu.
+Plus i Pro są dostępne w subskrypcji miesięcznej lub rocznej albo jako jednorazowy zakup dożywotni. Subskrypcja odnawia się automatycznie, jeśli nie zostanie anulowana co najmniej 24 godziny przed końcem okresu.
 Warunki korzystania: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-schowek,historia,fragmenty,szablony,kopiuj,wklej,podpis,skróty,klawiszowe,produktywność,formułki
+historia,fragmenty,szablony,kopiuj,wklej,podpis,skróty,klawiszowe,produktywność,formułki
 ```
 
 ### 프로모션 텍스트
@@ -1610,13 +1630,13 @@ https://m1zz.github.io/ClipKeyboard/pl/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Textsnuttar
+Clip Keyboard: Urklipp
 ```
 
 ### 부제
 
 ```
-Ett kortkommando, överallt
+Kopiera och klistra in snabbt
 ```
 
 ### 설명
@@ -1657,14 +1677,15 @@ Gratis, Plus och Pro
 Ladda ned gratis och använd alla funktioner tills du har klistrat in 100 gånger. Därefter fungerar dina textsnuttar som vanligt, och gratis kan du skapa 10 textsnuttar, 3 mallar och 5 bildsnuttar, med 50 objekt i urklippshistoriken.
 Med Plus skapar du så många textsnuttar, mallar och bildsnuttar du vill, och historiken sparar 100 objekt.
 Pro lägger till säkerhetskopiering till iCloud med återställningspunkter, synkning med iPhone i realtid samt staplar och skyddade textsnuttar.
-Plus och Pro finns som vecko-, månads- eller årsabonnemang, eller som ett engångsköp för livstid. Abonnemang förnyas automatiskt om de inte sägs upp minst 24 timmar innan perioden tar slut.
+Plus och Pro finns som månads- eller årsabonnemang, eller som ett engångsköp för livstid. Abonnemang förnyas automatiskt om de inte sägs upp minst 24 timmar innan perioden tar slut.
 Användarvillkor: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
 
 ```
-urklipp,kopiera,klistra,mallar,snippets,text,signatur,historik,produktivitet,menyrad,snabbkommando
+kopiera,klistra,mallar,snippets,text,signatur,historik,produktivitet,menyrad,snabbkommando
 ```
 
 ### 프로모션 텍스트
@@ -1690,13 +1711,13 @@ https://m1zz.github.io/ClipKeyboard/sv/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: วางข้อความด่วน
+Clip Keyboard ข้อความด่วน
 ```
 
 ### 부제
 
 ```
-ข้อความใช้บ่อยในปุ่มลัดเดียว
+คลิปบอร์ด คัดลอกวางในแตะเดียว
 ```
 
 ### 설명
@@ -1737,8 +1758,9 @@ ClipKeyboard: วางข้อความด่วน
 ดาวน์โหลดฟรีและใช้ได้ทุกฟีเจอร์จนกว่าจะวางครบ 100 ครั้ง หลังจากนั้นข้อความที่สร้างไว้ยังใช้ได้ตามเดิม และใช้ฟรีสร้างข้อความได้ 10 รายการ เทมเพลต 3 รายการ ข้อความแบบรูปภาพ 5 รายการ พร้อมประวัติคลิปบอร์ด 50 รายการ
 Plus สร้างข้อความ เทมเพลต และข้อความแบบรูปภาพได้ไม่จำกัด และเก็บประวัติคลิปบอร์ดได้ 100 รายการ
 Pro เพิ่มการสำรองข้อมูล iCloud พร้อมจุดกู้คืน การซิงค์กับ iPhone แบบเรียลไทม์ รวมถึงสแต็กและข้อความแบบปกป้อง
-Plus และ Pro มีทั้งแบบสมัครสมาชิกรายสัปดาห์ รายเดือน รายปี หรือซื้อครั้งเดียวใช้ตลอดชีพ การสมัครสมาชิกจะต่ออายุอัตโนมัติ เว้นแต่จะยกเลิกอย่างน้อย 24 ชั่วโมงก่อนสิ้นสุดรอบ
+Plus และ Pro มีทั้งแบบสมัครสมาชิกรายเดือน รายปี หรือซื้อครั้งเดียวใช้ตลอดชีพ การสมัครสมาชิกจะต่ออายุอัตโนมัติ เว้นแต่จะยกเลิกอย่างน้อย 24 ชั่วโมงก่อนสิ้นสุดรอบ
 ข้อกำหนดการใช้งาน: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1770,13 +1792,13 @@ https://m1zz.github.io/ClipKeyboard/th/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Hızlı Yapıştır
+Clip Keyboard: Hazır Mesajlar
 ```
 
 ### 부제
 
 ```
-Hazır metinler menü çubuğunda
+Pano ve hızlı kopyala yapıştır
 ```
 
 ### 설명
@@ -1817,8 +1839,9 @@ Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, Japonca ve Çince dahil 
 Ücretsiz indirin ve 100. yapıştırmanıza kadar tüm özellikleri kullanın. Sonrasında oluşturduğunuz hazır metinler çalışmaya devam eder; ücretsiz sürümde 10 hazır metin, 3 şablon ve 5 görüntü hazır metni oluşturabilir, pano geçmişinde 50 öğe saklayabilirsiniz.
 Plus ile istediğiniz kadar hazır metin, şablon ve görüntü hazır metni oluşturur, geçmişte 100 öğe saklarsınız.
 Pro bunlara geri yükleme noktalı iCloud yedeklemeyi, iPhone ile gerçek zamanlı eşzamanlamayı, grupları ve güvenli hazır metinleri ekler.
-Plus ve Pro haftalık, aylık veya yıllık abonelikle ya da tek seferlik ömür boyu satın alımla kullanılabilir. Abonelikler, dönem bitmeden en az 24 saat önce iptal edilmezse otomatik olarak yenilenir.
+Plus ve Pro aylık veya yıllık abonelikle ya da tek seferlik ömür boyu satın alımla kullanılabilir. Abonelikler, dönem bitmeden en az 24 saat önce iptal edilmezse otomatik olarak yenilenir.
 Kullanım Koşulları: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1850,13 +1873,13 @@ https://m1zz.github.io/ClipKeyboard/tr/privacy.html
 ### 이름
 
 ```
-ClipKeyboard: Dán nhanh
+Clip Keyboard: Gõ nhanh cụm từ
 ```
 
 ### 부제
 
 ```
-Văn bản quen, một phím tắt
+Bàn phím sao chép, dán nhanh
 ```
 
 ### 설명
@@ -1897,8 +1920,9 @@ Miễn phí, Plus và Pro
 Tải miễn phí và dùng mọi tính năng cho đến lần dán thứ 100. Sau đó, các đoạn văn bản bạn đã tạo vẫn dùng được, và bản miễn phí cho tạo 10 đoạn văn bản, 3 mẫu, 5 đoạn hình ảnh, kèm 50 mục trong lịch sử bộ nhớ tạm.
 Plus cho bạn tạo đoạn văn bản, mẫu và đoạn hình ảnh thoải mái, và lưu 100 mục lịch sử.
 Pro bổ sung sao lưu iCloud với điểm khôi phục, đồng bộ với iPhone theo thời gian thực, cùng ngăn xếp và đoạn văn bản bảo mật.
-Plus và Pro có gói đăng ký theo tuần, tháng hoặc năm, hoặc mua một lần dùng trọn đời. Gói đăng ký tự động gia hạn trừ khi được hủy ít nhất 24 giờ trước khi kỳ hạn kết thúc.
+Plus và Pro có gói đăng ký theo tháng hoặc năm, hoặc mua một lần dùng trọn đời. Gói đăng ký tự động gia hạn trừ khi được hủy ít nhất 24 giờ trước khi kỳ hạn kết thúc.
 Điều khoản sử dụng: https://m1zz.github.io/ClipKeyboard/terms.html
+EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드

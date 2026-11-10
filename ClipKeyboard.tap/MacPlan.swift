@@ -2,18 +2,18 @@
 //  MacPlan.swift
 //  ClipKeyboard.tap
 //
-//  무료 · Plus · Pro 세 칸. 이 맥 앱이 **스스로 파는** 상품(StoreKit 2)과, 그 상품이 여는 것.
+//  무료 · Plus · Pro 세 칸. 아이폰 클립키보드와 **같은 상품**(StoreKit 2)과, 그 상품이 맥에서 여는 것.
 //
 //  - 무료: 단축어를 100번 붙여넣을 때까지 모든 기능. 그 뒤로는 새로 만들기 단축어 10 · 템플릿 3 ·
 //          이미지 단축어 5, 클립보드 기록 50개. 이미 만든 것은 한도를 넘어도 그대로 쓰고 지운다.
 //  - Plus: 만들기 무제한, 클립보드 기록 100개.
 //  - Pro:  + iCloud 백업 · 되돌리기, 아이폰과 실시간 동기화, 스택 · 보안 단축어 꺼내기.
 //
-//  ⚠️ 5.0.5(20)은 Guideline 2.1(b) 로 거절됐다 — 화면에 Pro 가 있는데 **이 앱 레코드에 제출된 IAP 가
-//     없었다**(아이폰 결제를 iCloud 로 비춰 잠그던 시절). 그래서 여기는 아이폰 구매를 보지 않는다.
-//     이 앱이 파는 상품만 권한이 되고, 상품을 불러오지 못하면 Pro 라는 말도 페이월도 보이지 않는다.
-//     심사에 낼 때는 아래 상품을 **같은 버전과 함께 제출**해야 한다.
-//  ⚠️ 상품 ID 에는 하이픈을 쓸 수 없어 번들 ID(`com.ysoup.TokenMemo-tap`)의 `-` 를 `.` 으로 바꿨다(팁과 같다).
+//  아이폰 앱과 번들 ID 가 같다(`com.Ysoup.TokenMemo`, App Store 레코드 하나 · 유니버설 구매).
+//  그래서 상품도 아이폰 것 그대로다. 아이폰에서 산 칸은 맥에서 열리고, 맥에서 사도 아이폰에서 열린다.
+//  ⚠️ 상품 ID 는 아이폰 `AccessTier` 와 같아야 한다. Plus 평생의 ID 는 예전 칸 상품 `slots5` 다.
+//  ⚠️ 예전 맥 앱(`com.ysoup.TokenMemo-tap`, 유료 다운로드)을 산 사람은 이 앱에서 자동으로 확인되지 않는다.
+//     레코드가 달라 `AppTransaction` 이 그 구매를 모른다. 구매 내역을 보내 주면 Pro 평생 코드를 보낸다.
 //
 
 import AppKit
@@ -36,7 +36,7 @@ enum MacPlanFeature {
     case longHistory
     /// iCloud 백업 · 되돌리기
     case cloudBackup
-    /// 아이폰과 실시간 동기화
+    /// 아이폰과 실시간 동기화. 예전에 따로 판 '두 대째'(`twodevice`)를 산 사람에게도 열린다.
     case sync
     /// 아이폰에서 만든 스택 · 보안 단축어 꺼내기
     case stacksAndSecure
@@ -71,7 +71,7 @@ enum MacItemKind {
 
 /// 상품 기간.
 enum MacTerm: CaseIterable {
-    case weekly, monthly, yearly, lifetime
+    case monthly, yearly, lifetime
 }
 
 @MainActor
@@ -81,12 +81,11 @@ final class MacPlan: ObservableObject {
     // MARK: 상품
 
     enum ID {
-        static let prefix = "com.ysoup.TokenMemo.tap."
-        static let plusWeekly = prefix + "plus.weekly"
+        static let prefix = "com.Ysoup.TokenMemo."
         static let plusMonthly = prefix + "plus.monthly"
         static let plusYearly = prefix + "plus.yearly"
-        static let plusLifetime = prefix + "plus"
-        static let proWeekly = prefix + "pro.weekly"
+        /// Plus 평생. 아이폰이 예전 칸 상품의 뜻을 넓혀 쓰는 그 상품이다.
+        static let plusLifetime = prefix + "slots5"
         static let proMonthly = prefix + "pro.monthly"
         static let proYearly = prefix + "pro.yearly"
         static let proLifetime = prefix + "pro"
@@ -94,67 +93,54 @@ final class MacPlan: ObservableObject {
         static let proUpgrade = prefix + "pro.upgrade"
         /// 구독하던 사람의 Pro 평생(구독 졸업).
         static let proGraduate = prefix + "pro.graduate"
+        /// 더 팔지 않는 반값 Pro. 산 사람의 Pro 는 그대로다.
+        static let proRetired = prefix + "pro.halfoff"
+        /// 더 팔지 않는 '두 대째'. 산 사람에게 동기화만 연다(칸이 아니다).
+        static let twoDevice = prefix + "twodevice"
     }
 
-    static let subscriptionIDs: Set<String> = [
-        ID.plusWeekly, ID.plusMonthly, ID.plusYearly, ID.proWeekly, ID.proMonthly, ID.proYearly,
-    ]
-    /// 팔고 권한이 되는 상품 전부. 팁은 넣지 않는다(기능을 열지 않는다).
+    static let subscriptionIDs: Set<String> = [ID.plusMonthly, ID.plusYearly, ID.proMonthly, ID.proYearly]
+    /// 여기서 파는 상품 전부. 팁은 넣지 않는다(기능을 열지 않는다).
     static let allProductIDs: [String] = [
-        ID.plusWeekly, ID.plusMonthly, ID.plusYearly, ID.plusLifetime,
-        ID.proWeekly, ID.proMonthly, ID.proYearly, ID.proLifetime,
+        ID.plusMonthly, ID.plusYearly, ID.plusLifetime,
+        ID.proMonthly, ID.proYearly, ID.proLifetime,
         ID.proUpgrade, ID.proGraduate,
     ]
 
     static func productID(_ tier: MacTier, _ term: MacTerm) -> String {
         switch (tier, term) {
-        case (.plus, .weekly): return ID.plusWeekly
         case (.plus, .monthly): return ID.plusMonthly
         case (.plus, .yearly): return ID.plusYearly
         case (.plus, .lifetime): return ID.plusLifetime
-        case (_, .weekly): return ID.proWeekly
         case (_, .monthly): return ID.proMonthly
         case (_, .yearly): return ID.proYearly
         case (_, .lifetime): return ID.proLifetime
         }
     }
 
+    /// 상품이 여는 칸. 팔지 않는 상품(반값 Pro)도 산 사람에게는 그대로 연다.
     static func tier(of productID: String) -> MacTier? {
         switch productID {
-        case ID.plusWeekly, ID.plusMonthly, ID.plusYearly, ID.plusLifetime: return .plus
-        case ID.proWeekly, ID.proMonthly, ID.proYearly, ID.proLifetime, ID.proUpgrade, ID.proGraduate: return .pro
+        case ID.plusMonthly, ID.plusYearly, ID.plusLifetime: return .plus
+        case ID.proMonthly, ID.proYearly, ID.proLifetime, ID.proUpgrade, ID.proGraduate, ID.proRetired: return .pro
         default: return nil
         }
-    }
-
-    // MARK: 유료 다운로드였던 시절에 산 사람
-
-    /// 페이월이 없던(유료 다운로드) 마지막 판. 이 판까지 받은 사람은 앱을 산 사람이라 Pro 평생이다.
-    /// 맥의 `originalAppVersion` 은 `CFBundleShortVersionString` 이다. 빌드 번호로 오면 그쪽으로 비교한다.
-    /// ⚠️ 무료로 바꾸는 판은 반드시 이보다 높은 버전이어야 한다(5.1.9 는 이미 나가 있어 다시 쓸 수 없다).
-    static let lastPaidVersion = "5.1.9"
-    static let lastPaidBuild = 36
-
-    static func boughtBeforeFree(originalAppVersion version: String) -> Bool {
-        let trimmed = version.trimmingCharacters(in: .whitespaces)
-        if let build = Int(trimmed) { return build <= lastPaidBuild }
-        return trimmed.compare(lastPaidVersion, options: .numeric) != .orderedDescending
     }
 
     // MARK: 상태
 
     /// 불러온 상품(ID → 상품). 스토어에 아직 없는 상품은 빠진다 — 그 상품 버튼은 서지 않는다.
     @Published private(set) var products: [String: Product] = [:]
-    /// 산 것(구독 · 평생 · 유료로 받은 앱)이 여는 칸. 다음 실행이 확인을 마치기 전까지 쓰려고 남겨 둔다.
+    /// 산 것(구독 · 평생 · 언제나 패스)이 여는 칸. 다음 실행이 확인을 마치기 전까지 쓰려고 남겨 둔다.
     @Published private(set) var owned: MacTier
     /// Plus 평생을 샀다 — Pro 평생은 올리기 값으로 판다.
     @Published private(set) var ownsPlusLifetime = false
-    /// 평생 Pro(평생 · 올리기 · 졸업 · 유료 다운로드)를 가졌다.
+    /// 평생 Pro(평생 · 올리기 · 졸업)를 가졌다.
     @Published private(set) var ownsLifetimePro = false
     /// 지금 살아 있는 구독.
     @Published private(set) var subscription: LeeoGraduation.Subscription?
-    /// 유료 다운로드 시절에 앱을 산 사람(App Store 가 서명한 첫 구매 판으로 확인).
-    @Published private(set) var isPaidDownloadOwner: Bool
+    /// '두 대째'를 샀다. 칸과 상관없이 동기화가 열린다.
+    @Published private(set) var ownsTwoDevice: Bool
     /// 이 기기가 유료 칸 상품을 한 번이라도 불러왔다. 그 전에는 무료 한도로 막지 않는다 —
     /// 상품을 만들기 전에 나간 빌드에서 살 수도 없는데 막히는 사람이 없게.
     @Published private(set) var hasSeenStore: Bool
@@ -164,17 +150,19 @@ final class MacPlan: ObservableObject {
     private let defaults = UserDefaults.standard
     private enum Key {
         static let owned = "plan.owned"
-        static let paidDownload = "plan.paidDownloadOwner"
+        static let twoDevice = "plan.twoDevice"
         static let seenStore = "plan.seenStore"
         static let pastes = "plan.pastes"
         static let firstPasteAt = "plan.firstPasteAt"
         static let receiptShown = "plan.receiptShown"
     }
     private var updates: Task<Void, Never>?
+    /// 언제나 평생 패스. 어느 앱에서 샀든 열려 있으면 Pro 다(아이폰과 같다).
+    private let foreverPass = LeeoForeverPass(containerIdentifier: "iCloud.com.Ysoup.FeedbackHub")
 
     private init() {
         owned = MacTier(rawValue: defaults.integer(forKey: Key.owned)) ?? .free
-        isPaidDownloadOwner = defaults.bool(forKey: Key.paidDownload)
+        ownsTwoDevice = defaults.bool(forKey: Key.twoDevice)
         hasSeenStore = defaults.bool(forKey: Key.seenStore)
         pastes = defaults.integer(forKey: Key.pastes)
     }
@@ -190,7 +178,9 @@ final class MacPlan: ObservableObject {
         return owned
     }
 
-    func allows(_ feature: MacPlanFeature) -> Bool { tier >= feature.tier }
+    func allows(_ feature: MacPlanFeature) -> Bool {
+        tier >= feature.tier || (feature == .sync && ownsTwoDevice)
+    }
 
     /// 막혔으면 페이월을 띄우고 false.
     @discardableResult
@@ -272,36 +262,25 @@ final class MacPlan: ObservableObject {
         var best = MacTier.free
         var plusLifetime = false
         var proLifetime = false
+        var twoDevice = false
         for await result in Transaction.currentEntitlements {
-            guard case .verified(let tx) = result, tx.revocationDate == nil,
-                  let tier = Self.tier(of: tx.productID) else { continue }
+            guard case .verified(let tx) = result, tx.revocationDate == nil else { continue }
+            if tx.productID == ID.twoDevice { twoDevice = true }
+            guard let tier = Self.tier(of: tx.productID) else { continue }
             best = max(best, tier)
             if tx.productType == .nonConsumable {
                 if tier == .pro { proLifetime = true } else { plusLifetime = true }
             }
         }
-        await checkPaidDownload()
-        if isPaidDownloadOwner {
-            best = .pro
-            proLifetime = true
-        }
+        await foreverPass.refresh()
+        if foreverPass.isActive { best = .pro }
         owned = best
         ownsPlusLifetime = plusLifetime
         ownsLifetimePro = proLifetime
+        ownsTwoDevice = twoDevice
         defaults.set(best.rawValue, forKey: Key.owned)
+        defaults.set(twoDevice, forKey: Key.twoDevice)
         subscription = await LeeoGraduation.currentSubscription(among: Self.subscriptionIDs)
-    }
-
-    /// 유료 다운로드 시절에 산 사람인가. App Store 가 서명한 첫 구매 판으로만 판단한다.
-    /// 시험 환경(Xcode · 샌드박스 · TestFlight)은 첫 판이 늘 "1.0" 이라 보지 않는다 — 심사도 페이월을 본다.
-    private func checkPaidDownload() async {
-        guard !isPaidDownloadOwner,
-              let result = try? await AppTransaction.shared,
-              case .verified(let app) = result,
-              app.environment == .production,
-              Self.boughtBeforeFree(originalAppVersion: app.originalAppVersion) else { return }
-        isPaidDownloadOwner = true
-        defaults.set(true, forKey: Key.paidDownload)
     }
 
     func restore() async {
