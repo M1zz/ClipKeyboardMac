@@ -236,7 +236,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 #if DEBUG
 /// 앱스토어 스크린샷 촬영 모드 (Debug 빌드에만 있다).
 ///
-///     ClipKeyboard.tap -ClipShotScreen panel|popover|list|clipboard|prefs|backup [-ClipShotSize 460x530]
+///     ClipKeyboard.tap -ClipShotScreen panel|popover|list|clipboard|prefs|backup|live [-ClipShotSize 460x530]
 ///                      -ClipShotDemoMemos '<json>' -ClipShotDemoClips '<json>' …
 ///
 /// 단축어·클립보드 기록은 실행 인자(`-ClipShotDemoMemos` · `-ClipShotDemoClips`)로 받은 데모를 보여 주고
@@ -270,6 +270,10 @@ enum MacShotMode {
             case "clipboard": WindowManager.shared.openClipboardHistoryWindow()
             case "prefs": WindowManager.shared.openSettingsWindow()
             case "backup": WindowManager.shared.openCloudBackupWindow()
+            case "live":
+                // 시연 영상 - 창을 찍고 끝내지 않고 떠 있는다. ⌃⇧V 로 패널을 여는 장면이 있어 단축키만 세운다.
+                GlobalHotkeyManager.shared.registerGlobalHotkey()
+                return
             default: break
             }
             NSApp.activate(ignoringOtherApps: true)
