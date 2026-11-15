@@ -23,6 +23,8 @@ extension Notification.Name {
     /// 기존 사용자가 데모 샘플 체험을 수락해 샘플이 삽입됨 → 리스트 리로드 트리거
     static let demoSamplesInserted = Notification.Name("demoSamplesInserted")
     static let draftsChanged = Notification.Name("draftsChanged")
+    /// 설정 ▸ 기능 더하기의 스위치가 바뀌었다(`FeatureSet`). 목록 · 새 단축어가 그 자리를 다시 그린다
+    static let featureSetChanged = Notification.Name("featureSetChanged")
     static let filterChanged = Notification.Name("filterChanged")
     static let memoDataChanged = Notification.Name("MemoDataChanged")
     /// 단축어를 **방금 저장했다.** `object` 에 저장된 단축어의 `UUID`.
@@ -60,7 +62,7 @@ extension Notification.Name {
     static let captureClipboard = Notification.Name("captureClipboard")
     static let reviewTriggerClipSaved = Notification.Name("reviewTriggerClipSaved")
     static let reviewTriggerStackCompleted = Notification.Name("reviewTriggerComboCompleted")
-    /// 사용 기록 탭을 연다. 새 단장 안내가 "내가 아낀 시간 보기"로 데려갈 때 쓴다.
+    /// 사용 기록을 연다(시트). 새 단장 안내가 "내가 아낀 시간 보기"로 데려갈 때 쓴다.
     ///
     /// ⚠️ 탭 선택은 `MainTabView` 안에만 있는 상태라, 시트를 띄우는 쪽에서 직접 못 바꾼다.
     ///    알림 한 줄이 두 화면을 잇는 가장 얇은 길이다.
