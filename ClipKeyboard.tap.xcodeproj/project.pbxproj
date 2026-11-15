@@ -50,6 +50,7 @@
 		CA7EG0R00000000000000B02 /* CategorySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7EG0R00000000000000F02 /* CategorySnapshot.swift */; };
 		CKG00012F0000000000000001 /* CloudKitContainerGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CKG00022F0000000000000002 /* CloudKitContainerGate.swift */; };
 		D8206FB63739AFB31882706A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F30E7D05060B1C42D48E /* ContentView.swift */; };
+		6B2F8D1EAC304F7B9D4E2C01 /* SunsetNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F8D1EAC304F7B9D4E2C02 /* SunsetNotice.swift */; };
 		DF2935B8B734E7B7134A62C4 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = C13ECA2339D9B7376D4D6960 /* LeeoKit */; };
 		DF31A3D6B52A5BE814942C51 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87D1CE6CB6C35EE73A1D01D6 /* InfoPlist.strings */; };
 		E38A0D1010E36B6B8F378C7F /* ClipKeyboard_macApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D314A4F6B4E1F7BA131DE8C0 /* ClipKeyboard_macApp.swift */; };
@@ -95,6 +96,7 @@
 		68B582B78619B4D53228F182 /* MacAccessibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacAccessibility.swift; sourceTree = "<group>"; };
 		70498394D673D364C09E4E57 /* MacPreferencesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacPreferencesView.swift; sourceTree = "<group>"; };
 		7271F30E7D05060B1C42D48E /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6B2F8D1EAC304F7B9D4E2C02 /* SunsetNotice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunsetNotice.swift; sourceTree = "<group>"; };
 		8C81B85D608D7A57A5D8739F /* MemoSyncEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoSyncEngine.swift; sourceTree = "<group>"; };
 		8E307EF1A65000000000F003 /* RemoteFlagsService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteFlagsService.swift; sourceTree = "<group>"; };
 		9270D7D17DB60EE8FCA1E6D0 /* ClipKeyboardTapSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClipKeyboardTapSpec.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				18105C29D13C26218DF64528 /* CloudBackupView.swift */,
 				1693B0D87C921C0A31612F63 /* CloudKitBackupService.swift */,
 				7271F30E7D05060B1C42D48E /* ContentView.swift */,
+				6B2F8D1EAC304F7B9D4E2C02 /* SunsetNotice.swift */,
 				A1C26372726AFC85F4249E6A /* GlobalHotkeyManager.swift */,
 				68B582B78619B4D53228F182 /* MacAccessibility.swift */,
 				70498394D673D364C09E4E57 /* MacPreferencesView.swift */,
@@ -397,6 +400,7 @@
 				F442D56543A806BE084AA493 /* CloudBackupView.swift in Sources */,
 				C6DC7281371022A682A44A7E /* CloudKitBackupService.swift in Sources */,
 				D8206FB63739AFB31882706A /* ContentView.swift in Sources */,
+				6B2F8D1EAC304F7B9D4E2C01 /* SunsetNotice.swift in Sources */,
 				49F90EA9F13435C44575F117 /* GlobalHotkeyManager.swift in Sources */,
 				C8F43A667B85EDD352FA00E2 /* MacAccessibility.swift in Sources */,
 				440FB5EB7F1AF97C5D000781 /* MacPreferencesView.swift in Sources */,
@@ -722,7 +726,7 @@
 			repositoryURL = "https://github.com/M1zz/LeeoKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.38.1;
+				minimumVersion = 3.44.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

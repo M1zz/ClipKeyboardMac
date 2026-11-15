@@ -106,6 +106,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             MenuBarManager.shared.setupMenuBar()
         }
 
+        // 이 맥 앱은 곧 내려간다 — 켤 때마다 맨 먼저 클립키보드로 옮겨 달라고 알린다 (→ SunsetNotice.swift).
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+            SunsetNotice.present()
+        }
+
         // 전역 핫키 등록
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             GlobalHotkeyManager.shared.registerGlobalHotkey()
