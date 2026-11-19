@@ -282,9 +282,6 @@ enum DefaultsKey {
     /// 붙여넣기 칩을 **이미 쓴** 복사 번호(`UIPasteboard.changeCount`). App Group.
     /// 넣었거나 키보드가 스스로 복사한 번호면 칩을 다시 세우지 않는다. 키보드는 뜰 때마다 새로 만들어진다.
     static let keyboardPasteOfferConsumedCount = "keyboardPasteOfferConsumedCount.v1"
-    /// 붙여넣기 칩이 처음 본 복사 번호와 그 시각(`[번호, 초]`). App Group.
-    /// 복사한 시각은 알 수 없어서, 키보드가 처음 본 때부터 잰다(`CopiedPasteOffer.lifetime`).
-    static let keyboardPasteOfferSeen = "keyboardPasteOfferSeen.v1"
     /// 위줄에 **숫자 판으로 건너가는 키**를 세울지 (App Group). 값이 없으면 켜짐.
     ///
     /// 숫자만 몇 자 넣으려고 다른 키보드로 건너갔다 오는 일을 없애려고 둔 키다.
@@ -347,6 +344,8 @@ enum DefaultsKey {
     ///
     /// ⚠️ `keyboardTypingLang` 과 따로 둔다. 그쪽은 검색칸 자판이 "english" · "korean" 으로 쓰고 있다.
     static let keyboardTypingCurrent = "keyboardTypingCurrent.v1"
+    /// 한자 후보에서 고른 낱말(읽기별 최근 3개). 언어마다 하나. 다음에 같은 읽기를 치면 앞에 세운다.
+    static func typingLearnedConversions(_ language: String) -> String { "keyboardTypingLearned.\(language).v1" }
     /// 키보드를 열면 먼저 보일 판(`KeyboardInputMode`: typing · snippets). 마지막에 보던 판을 따른다.
     static let keyboardInputMode = "keyboardInputMode.v1"
     /// 단축어를 넣은 뒤 쓰던 키보드로 돌아갈지. App Group. **기본 켬**(`KeyboardPrefs.returnAfterSnippet`).
