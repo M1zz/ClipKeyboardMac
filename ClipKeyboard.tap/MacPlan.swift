@@ -106,6 +106,9 @@ final class MacPlan: ObservableObject {
         ID.proUpgrade, ID.proGraduate,
     ]
 
+    /// 내려가는 앱이라 판매를 껐다. 이 값 하나가 상품 불러오기를 막는다.
+    static let sellsProducts = false
+
     static func productID(_ tier: MacTier, _ term: MacTerm) -> String {
         switch (tier, term) {
         case (.plus, .weekly): return ID.plusWeekly
@@ -185,10 +188,8 @@ final class MacPlan: ObservableObject {
     static let freeUsePastes = 100
 
     /// 지금 열려 있는 칸. 산 칸, 그리고 체험(100번까지 · 상품을 아직 못 본 기기)은 Pro.
-    var tier: MacTier {
-        if !hasSeenStore || pastes < Self.freeUsePastes { return .pro }
-        return owned
-    }
+    /// ⚠️ 이 앱은 곧 내려간다(→ SunsetNotice.swift). 마지막 판은 아무것도 팔지 않고 모든 기능을 연다.
+    var tier: MacTier { .pro }
 
     func allows(_ feature: MacPlanFeature) -> Bool { tier >= feature.tier }
 
@@ -213,7 +214,8 @@ final class MacPlan: ObservableObject {
     var historyLimit: Int { allows(.longHistory) ? 100 : 50 }
 
     /// 페이월을 보일 수 있는가 — 이 기기에서 유료 칸 상품을 불러왔을 때만. 못 불러왔으면 Pro 라는 말도 꺼내지 않는다.
-    var isSelling: Bool { !products.isEmpty }
+    /// 내려가는 앱이라 팔지 않는다 — 상품을 부르지 않으니 늘 false 다.
+    var isSelling: Bool { false }
 
     // MARK: 붙여넣기 세기
 
@@ -255,6 +257,8 @@ final class MacPlan: ObservableObject {
     }
 
     func loadProducts() async {
+        // 내려가는 앱은 상품을 부르지 않는다 — 페이월 · 요금제 줄이 서지 않는다.
+        guard Self.sellsProducts else { return }
         guard let loaded = try? await Product.products(for: Self.allProductIDs), !loaded.isEmpty else { return }
         products = Dictionary(uniqueKeysWithValues: loaded.map { ($0.id, $0) })
         if !hasSeenStore {

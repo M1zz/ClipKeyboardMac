@@ -41,7 +41,7 @@ enum MacPaywallReason: Equatable {
 enum MacPaywall {
     /// 페이월 창을 연다. 이 기기에서 상품을 한 번도 못 불러왔으면 열지 않는다(그때는 막지도 않는다).
     static func present(_ reason: MacPaywallReason) {
-        guard MacPlan.shared.hasSeenStore else { return }
+        guard MacPlan.shared.isSelling else { return }
         WindowManager.shared.openPaywallWindow(reason)
     }
 }
@@ -462,7 +462,7 @@ struct MacPlanSettingsSection: View {
     @State private var restoring = false
 
     var body: some View {
-        if plan.isSelling || plan.owned > .free {
+        if plan.isSelling {
             Section {
                 LabeledContent(NSLocalizedString("지금 쓰는 칸", comment: "Paywall/Settings: the plan you are on"), value: status)
                 Button(NSLocalizedString("요금제 보기", comment: "Settings: open the plans")) { MacPaywall.present(.settings) }
