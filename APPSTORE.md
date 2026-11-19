@@ -59,6 +59,8 @@ Plus는 단축어와 템플릿, 이미지 단축어를 마음껏 만들고 클�
 Pro는 여기에 iCloud 백업과 되돌리기, 아이폰과 실시간 동기화, 스택과 보안 단축어를 더합니다.
 Plus와 Pro는 주, 월, 연 구독이나 평생 구매로 쓸 수 있습니다. 구독은 기간이 끝나기 24시간 전까지 해지하지 않으면 자동으로 갱신됩니다.
 이용약관: https://m1zz.github.io/ClipKeyboard/terms.html
+
+이용약관(EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -139,6 +141,8 @@ Plus lets you make as many snippets, templates and image snippets as you like, a
 Pro adds iCloud backup with restore points, live sync with your iPhone, and stacks and secure snippets.
 Plus and Pro are available as weekly, monthly or yearly subscriptions, or as a one-time lifetime purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period.
 Terms of Use: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -219,6 +223,8 @@ Plus lets you make as many snippets, templates and image snippets as you like, a
 Pro adds iCloud backup with restore points, live sync with your iPhone, and stacks and secure snippets.
 Plus and Pro are available as weekly, monthly or yearly subscriptions, or as a one-off lifetime purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period.
 Terms of Use: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -299,6 +305,8 @@ Plus 可随意新建短语、模板和图片短语，并保留 100 条剪贴板�
 Pro 在此基础上加入 iCloud 备份与恢复点、与 iPhone 实时同步，以及短语堆和安全短语。
 Plus 和 Pro 可按周、按月、按年订阅，也可一次买断永久使用。除非在当前周期结束前至少 24 小时取消，订阅将自动续订。
 使用条款：https://m1zz.github.io/ClipKeyboard/terms.html
+
+使用条款（EULA）: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -379,6 +387,8 @@ Plus 可隨意新增短語、範本和圖片短語，並保留 100 筆剪貼板�
 Pro 在此之上加入 iCloud 備份與還原點、與 iPhone 即時同步，以及短語堆和安全短語。
 Plus 和 Pro 可按週、按月、按年訂閱，也可一次買斷永久使用。除非在目前週期結束前至少 24 小時取消，訂閱將自動續訂。
 使用條款：https://m1zz.github.io/ClipKeyboard/terms.html
+
+使用條款（EULA）: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -459,6 +469,8 @@ Plusではスニペット、テンプレート、画像スニペットを好き�
 Proではさらに、iCloudバックアップと復元ポイント、iPhoneとのリアルタイム同期、スタックと保護されたスニペットが使えます。
 PlusとProは週額・月額・年額のサブスクリプション、または買い切りで利用できます。サブスクリプションは期間終了の24時間前までに解約しない限り自動更新されます。
 利用規約：https://m1zz.github.io/ClipKeyboard/terms.html
+
+利用規約（EULA）: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -539,6 +551,8 @@ Mit Plus legst du so viele Textbausteine, Vorlagen und Bild-Textbausteine an, wi
 Pro ergänzt iCloud-Backup mit Wiederherstellungspunkten, Echtzeit-Synchronisierung mit dem iPhone sowie Stapel und geschützte Textbausteine.
 Plus und Pro gibt es als Wochen-, Monats- oder Jahresabo oder als einmaligen Kauf auf Lebenszeit. Abos verlängern sich automatisch, wenn sie nicht mindestens 24 Stunden vor Ablauf gekündigt werden.
 Nutzungsbedingungen: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Nutzungsbedingungen (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -619,6 +633,8 @@ Plus te permite crear todos los fragmentos, plantillas y fragmentos de imagen qu
 Pro añade copias en iCloud con puntos de restauración, sincronización en tiempo real con el iPhone, y pilas y fragmentos protegidos.
 Plus y Pro están disponibles como suscripción semanal, mensual o anual, o como compra única de por vida. Las suscripciones se renuevan automáticamente salvo que se cancelen al menos 24 horas antes de que termine el periodo.
 Condiciones de uso: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Términos de uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -699,6 +715,8 @@ Plus permet de créer autant d’extraits, de modèles et d’extraits image que
 Pro ajoute la sauvegarde iCloud avec points de restauration, la synchronisation en temps réel avec l’iPhone, ainsi que les piles et les extraits protégés.
 Plus et Pro sont proposés en abonnement hebdomadaire, mensuel ou annuel, ou en achat unique à vie. Les abonnements se renouvellent automatiquement, sauf résiliation au moins 24 heures avant la fin de la période.
 Conditions d’utilisation : https://m1zz.github.io/ClipKeyboard/terms.html
+
+Conditions d'utilisation (EULA) : https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -779,6 +797,8 @@ Con Plus crei tutti i frammenti, i modelli e i frammenti immagine che vuoi, e la
 Pro aggiunge il backup su iCloud con punti di ripristino, la sincronizzazione in tempo reale con iPhone, gli stack e i frammenti protetti.
 Plus e Pro sono disponibili con abbonamento settimanale, mensile o annuale, oppure con acquisto unico a vita. Gli abbonamenti si rinnovano automaticamente se non vengono disdetti almeno 24 ore prima della fine del periodo.
 Termini di utilizzo: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Condizioni d'uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -859,6 +879,8 @@ Com o Plus, você cria quantos trechos, modelos e trechos de imagem quiser, e o 
 O Pro adiciona backup no iCloud com pontos de restauração, sincronização em tempo real com o iPhone, além de pilhas e trechos protegidos.
 Plus e Pro estão disponíveis como assinatura semanal, mensal ou anual, ou como compra única vitalícia. As assinaturas são renovadas automaticamente, a menos que sejam canceladas pelo menos 24 horas antes do fim do período.
 Termos de Uso: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Termos de Uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -939,6 +961,8 @@ ClipKeyboard: быстрая вставка
 Pro добавляет резервные копии в iCloud с точками восстановления, синхронизацию с iPhone в реальном времени, наборы и защищённые заготовки.
 Plus и Pro доступны по подписке на неделю, месяц или год либо разовой покупкой навсегда. Подписка продлевается автоматически, если не отменить её минимум за 24 часа до конца периода.
 Условия использования: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Условия использования (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1019,6 +1043,8 @@ S Plus vytvoříte libovolný počet úryvků, šablon i obrázkových úryvků 
 Pro přidává zálohu na iCloud s body obnovení, synchronizaci s iPhonem v reálném čase, sady a zabezpečené úryvky.
 Plus a Pro jsou k dispozici jako týdenní, měsíční nebo roční předplatné, nebo jako jednorázový doživotní nákup. Předplatné se automaticky obnovuje, pokud ho nezrušíte alespoň 24 hodin před koncem období.
 Podmínky použití: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Podmínky použití (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1099,6 +1125,8 @@ Med Plus opretter du lige så mange tekststykker, skabeloner og billedstykker, d
 Pro tilføjer iCloud-sikkerhedskopi med gendannelsespunkter, synkronisering med iPhone i realtid samt stakke og beskyttede tekststykker.
 Plus og Pro fås som ugentligt, månedligt eller årligt abonnement eller som et engangskøb for livstid. Abonnementer fornyes automatisk, medmindre de opsiges mindst 24 timer før periodens udløb.
 Vilkår for brug: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Brugsvilkår (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1179,6 +1207,8 @@ ClipKeyboard: έτοιμα κείμενα
 Το Pro προσθέτει αντίγραφα ασφαλείας iCloud με σημεία επαναφοράς, συγχρονισμό με το iPhone σε πραγματικό χρόνο, σύνολα και ασφαλή αποσπάσματα.
 Τα Plus και Pro διατίθενται με εβδομαδιαία, μηνιαία ή ετήσια συνδρομή ή με εφάπαξ αγορά εφ’ όρου ζωής. Οι συνδρομές ανανεώνονται αυτόματα, εκτός αν ακυρωθούν τουλάχιστον 24 ώρες πριν από τη λήξη της περιόδου.
 Όροι χρήσης: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Όροι χρήσης (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1259,6 +1289,8 @@ Plus-tasolla luot tekstinpätkiä, pohjia ja kuvapätkiä niin paljon kuin halua
 Pro lisää iCloud-varmuuskopioinnin palautuspisteineen, reaaliaikaisen synkronoinnin iPhonen kanssa sekä pinot ja suojatut tekstinpätkät.
 Plus ja Pro ovat saatavilla viikko-, kuukausi- tai vuositilauksena tai kertaostona ikuisiksi ajoiksi. Tilaus uusiutuu automaattisesti, ellei sitä peruta vähintään 24 tuntia ennen jakson päättymistä.
 Käyttöehdot: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Käyttöehdot (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1339,6 +1371,8 @@ Plus memungkinkan Anda membuat cuplikan, templat, dan cuplikan gambar sebanyak y
 Pro menambahkan cadangan iCloud dengan titik pemulihan, sinkronisasi langsung dengan iPhone, serta tumpukan dan cuplikan aman.
 Plus dan Pro tersedia sebagai langganan mingguan, bulanan, atau tahunan, atau pembelian sekali seumur hidup. Langganan diperpanjang otomatis kecuali dibatalkan paling lambat 24 jam sebelum periode berakhir.
 Ketentuan Penggunaan: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Ketentuan Penggunaan (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1419,6 +1453,8 @@ Med Plus lager du så mange tekstbiter, maler og bildebiter du vil, og historikk
 Pro legger til iCloud-sikkerhetskopi med gjenopprettingspunkter, sanntidssynkronisering med iPhone samt stabler og beskyttede tekstbiter.
 Plus og Pro finnes som ukentlig, månedlig eller årlig abonnement, eller som et engangskjøp for livstid. Abonnementer fornyes automatisk med mindre de sies opp minst 24 timer før perioden er over.
 Bruksvilkår: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Bruksvilkår (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1499,6 +1535,8 @@ Met Plus maak je zoveel fragmenten, sjablonen en afbeeldingsfragmenten als je wi
 Pro voegt iCloud-reservekopieën met herstelpunten toe, realtime synchronisatie met je iPhone, en stapels en beveiligde fragmenten.
 Plus en Pro zijn beschikbaar als week-, maand- of jaarabonnement, of als eenmalige aankoop voor altijd. Abonnementen worden automatisch verlengd, tenzij je ten minste 24 uur voor het einde van de periode opzegt.
 Gebruiksvoorwaarden: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Gebruiksvoorwaarden (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1579,6 +1617,8 @@ Plus pozwala tworzyć dowolnie wiele fragmentów, szablonów i fragmentów z obr
 Pro dodaje kopię zapasową w iCloud z punktami przywracania, synchronizację z iPhonem w czasie rzeczywistym oraz zestawy i chronione fragmenty.
 Plus i Pro są dostępne w subskrypcji tygodniowej, miesięcznej lub rocznej albo jako jednorazowy zakup dożywotni. Subskrypcja odnawia się automatycznie, jeśli nie zostanie anulowana co najmniej 24 godziny przed końcem okresu.
 Warunki korzystania: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Warunki korzystania (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1659,6 +1699,8 @@ Med Plus skapar du så många textsnuttar, mallar och bildsnuttar du vill, och h
 Pro lägger till säkerhetskopiering till iCloud med återställningspunkter, synkning med iPhone i realtid samt staplar och skyddade textsnuttar.
 Plus och Pro finns som vecko-, månads- eller årsabonnemang, eller som ett engångsköp för livstid. Abonnemang förnyas automatiskt om de inte sägs upp minst 24 timmar innan perioden tar slut.
 Användarvillkor: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Användarvillkor (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1739,6 +1781,8 @@ Plus สร้างข้อความ เทมเพลต และข้�
 Pro เพิ่มการสำรองข้อมูล iCloud พร้อมจุดกู้คืน การซิงค์กับ iPhone แบบเรียลไทม์ รวมถึงสแต็กและข้อความแบบปกป้อง
 Plus และ Pro มีทั้งแบบสมัครสมาชิกรายสัปดาห์ รายเดือน รายปี หรือซื้อครั้งเดียวใช้ตลอดชีพ การสมัครสมาชิกจะต่ออายุอัตโนมัติ เว้นแต่จะยกเลิกอย่างน้อย 24 ชั่วโมงก่อนสิ้นสุดรอบ
 ข้อกำหนดการใช้งาน: https://m1zz.github.io/ClipKeyboard/terms.html
+
+ข้อกำหนดการใช้งาน (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1819,6 +1863,8 @@ Plus ile istediğiniz kadar hazır metin, şablon ve görüntü hazır metni olu
 Pro bunlara geri yükleme noktalı iCloud yedeklemeyi, iPhone ile gerçek zamanlı eşzamanlamayı, grupları ve güvenli hazır metinleri ekler.
 Plus ve Pro haftalık, aylık veya yıllık abonelikle ya da tek seferlik ömür boyu satın alımla kullanılabilir. Abonelikler, dönem bitmeden en az 24 saat önce iptal edilmezse otomatik olarak yenilenir.
 Kullanım Koşulları: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Kullanım Koşulları (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
@@ -1899,6 +1945,8 @@ Plus cho bạn tạo đoạn văn bản, mẫu và đoạn hình ảnh thoải m
 Pro bổ sung sao lưu iCloud với điểm khôi phục, đồng bộ với iPhone theo thời gian thực, cùng ngăn xếp và đoạn văn bản bảo mật.
 Plus và Pro có gói đăng ký theo tuần, tháng hoặc năm, hoặc mua một lần dùng trọn đời. Gói đăng ký tự động gia hạn trừ khi được hủy ít nhất 24 giờ trước khi kỳ hạn kết thúc.
 Điều khoản sử dụng: https://m1zz.github.io/ClipKeyboard/terms.html
+
+Điều khoản sử dụng (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 ### 키워드
