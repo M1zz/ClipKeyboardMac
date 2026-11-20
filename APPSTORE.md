@@ -64,7 +64,7 @@ iCloud 백업과 복원, 최근 15개 시점으로 되돌리기, 파일로 내�
 ### 프로모션 텍스트
 
 ```
-이제 23개 언어로 씁니다. 일본어, 독일어, 프랑스어, 스페인어 등을 새로 지원하고, 처음 켤 때 드리는 예시 단축어도 그 언어로 나옵니다.
+계좌번호, 주소, 메일 서명처럼 매번 다시 치는 글은 한 번만 저장하세요. ⌃⇧V를 누르면 쓰던 앱 위에 바로 뜨고, 고른 다음 ⌘V로 붙여넣으면 끝입니다.
 ```
 
 ### 지원 URL
@@ -138,7 +138,7 @@ history,clipboard,replies,text,signature,snippet,template,boilerplate,canned,exp
 ### 프로모션 텍스트
 
 ```
-Now in 23 languages. Japanese, German, French, Spanish and more are new, and the starter snippets you get on first launch now speak your language too.
+Save the text you keep retyping, like your address, bank details or email sign-off, just once. Press Control-Shift-V and it pops up over any app, ready to paste.
 ```
 
 ### 지원 URL
@@ -212,7 +212,7 @@ history,clipboard,replies,text,signature,snippet,template,boilerplate,canned,exp
 ### 프로모션 텍스트
 
 ```
-Now in 24 languages, with British English joining. Your first-launch starter snippets now speak your language too.
+Save the text you keep retyping, like your address, bank details or email sign-off, just once. Press Control-Shift-V and it pops up over any app, ready to paste.
 ```
 
 ### 지원 URL
@@ -286,7 +286,7 @@ ClipKeyboard - 菜单栏快捷粘贴
 ### 프로모션 텍스트
 
 ```
-现已支持 23 种语言，新增日语、德语、法语、西班牙语等。第一次打开时附带的示例短语，也会按你的语言显示。
+地址、银行账号、邮件签名这些总要重打的内容，只存一次就好。按下 ⌃⇧V，短语面板就浮在正在用的 App 上，选好直接粘贴。
 ```
 
 ### 지원 URL
@@ -360,7 +360,7 @@ ClipKeyboard - 選單列快捷貼上
 ### 프로모션 텍스트
 
 ```
-現在支援 23 種語言，新增日文、德文、法文、西班牙文等。第一次開啟時附帶的範例短語，也會依你的語言顯示。
+地址、銀行帳號、郵件簽名這些老是要重打的內容，只要存一次。按下 ⌃⇧V，短語面板就浮在正在用的 App 上，選好直接貼上。
 ```
 
 ### 지원 URL
@@ -434,7 +434,7 @@ iCloudへのバックアップと復元、直近15件の時点への巻き戻し
 ### 프로모션 텍스트
 
 ```
-23の言語に対応しました。日本語もそのひとつです。はじめて起動したときに入っているサンプルのスニペットも、Macの言語に合わせて表示されます。
+住所、口座番号、メールの署名。何度も打ち直す文章は一度だけ保存しましょう。⌃⇧Vを押せば使っているアプリの手前にパネルが開き、選んで貼り付けるだけです。
 ```
 
 ### 지원 URL
@@ -508,7 +508,7 @@ zwischenablage,verlauf,snippets,vorlagen,copy,paste,kopieren,signatur,produktivi
 ### 프로모션 텍스트
 
 ```
-Jetzt in 23 Sprachen – auch auf Deutsch. Und die Beispiel-Textbausteine beim ersten Start erscheinen gleich in deiner Sprache.
+Adresse, IBAN, E-Mail-Signatur: Was du ständig neu tippst, speicherst du einmal. Mit ⌃⇧V erscheinen deine Textbausteine über jeder App, bereit zum Einfügen.
 ```
 
 ### 지원 URL
@@ -582,7 +582,7 @@ portapapeles,historial,fragmentos,plantillas,copiar,pegar,firma,correo,respuesta
 ### 프로모션 텍스트
 
 ```
-Ahora en 23 idiomas, incluido el español. Y los fragmentos de ejemplo que aparecen la primera vez que abres la app también están en tu idioma.
+Tu dirección, tu número de cuenta, tu firma de correo: guarda una sola vez lo que siempre vuelves a escribir. Pulsa ⌃⇧V y aparece sobre cualquier app, listo para pegar.
 ```
 
 ### 지원 URL
@@ -656,7 +656,7 @@ presse-papiers,historique,extraits,modèles,copier,coller,signature,réponse,pro
 ### 프로모션 텍스트
 
 ```
-Désormais en 23 langues, dont le français. Et les extraits d’exemple proposés au premier lancement s’affichent eux aussi dans votre langue.
+Adresse, RIB, signature d'e-mail : enregistrez une fois ce que vous retapez sans cesse. Appuyez sur ⌃⇧V et vos extraits s'affichent sur toute app, prêts à coller.
 ```
 
 ### 지원 URL
@@ -730,7 +730,7 @@ appunti,cronologia,frammenti,modelli,copia,scorciatoie,firma,email,risposte,prod
 ### 프로모션 텍스트
 
 ```
-Ora in 23 lingue, italiano compreso. E i frammenti di esempio che trovi al primo avvio sono anche loro nella tua lingua.
+Indirizzo, IBAN, firma email: salva una volta sola ciò che riscrivi di continuo. Premi ⌃⇧V e i tuoi frammenti compaiono sopra qualsiasi app, pronti da incollare.
 ```
 
 ### 지원 URL
@@ -804,7 +804,7 @@ Termos de Uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/s
 ### 프로모션 텍스트
 
 ```
-Agora em 23 idiomas, incluindo português. E os trechos de exemplo que aparecem na primeira vez que você abre o app também vêm no seu idioma.
+Endereço, dados bancários, assinatura de e-mail: salve uma vez o que você vive redigitando. Pressione ⌃⇧V e seus trechos aparecem sobre qualquer app, prontos para colar.
 ```
 
 ### 지원 URL
@@ -878,7 +878,7 @@ ClipKeyboard: быстрая вставка
 ### 프로모션 텍스트
 
 ```
-Теперь на 23 языках, включая русский. Примеры заготовок, которые появляются при первом запуске, тоже будут на вашем языке.
+Адрес, реквизиты, подпись в письме: сохраните один раз то, что набираете снова и снова. Нажмите ⌃⇧V, и заготовки появятся поверх любого приложения, готовые к вставке.
 ```
 
 ### 지원 URL
@@ -952,7 +952,7 @@ schránka,historie,úryvky,šablony,kopírovat,vložit,podpis,zkratky,klávesov�
 ### 프로모션 텍스트
 
 ```
-Nově ve 23 jazycích, včetně češtiny. Ukázkové úryvky, které uvidíte při prvním spuštění, se také zobrazí ve vašem jazyce.
+Adresa, číslo účtu, podpis e-mailu: co píšete pořád dokola, uložte jen jednou. Stiskněte ⌃⇧V a úryvky se objeví nad jakoukoli aplikací, připravené k vložení.
 ```
 
 ### 지원 URL
@@ -1026,7 +1026,7 @@ udklipsholder,kopiér,skabeloner,snippets,tekst,signatur,standardtekst,historik,
 ### 프로모션 텍스트
 
 ```
-Nu på 23 sprog, også dansk. Og de eksempler på tekststykker, du får ved første start, kommer nu på dit eget sprog.
+Adresse, kontonummer, mailsignatur: Gem det, du skriver igen og igen, én gang. Tryk på ⌃⇧V, så svæver dine tekststykker over enhver app, klar til at indsætte.
 ```
 
 ### 지원 URL
@@ -1100,7 +1100,7 @@ ClipKeyboard: έτοιμα κείμενα
 ### 프로모션 텍스트
 
 ```
-Τώρα σε 23 γλώσσες, ανάμεσά τους και τα ελληνικά. Τα δείγματα αποσπασμάτων που βλέπετε στην πρώτη εκκίνηση εμφανίζονται κι αυτά στη γλώσσα σας.
+Διεύθυνση, αριθμός λογαριασμού, υπογραφή email: αποθηκεύστε μία φορά ό,τι γράφετε ξανά και ξανά. Πατήστε ⌃⇧V και εμφανίζονται πάνω από κάθε εφαρμογή, έτοιμα για χρήση.
 ```
 
 ### 지원 URL
@@ -1174,7 +1174,7 @@ leikepöytä,kopioi,pohjat,snippets,teksti,allekirjoitus,historia,pikanäppäin,
 ### 프로모션 텍스트
 
 ```
-Nyt 23 kielellä, myös suomeksi. Ja ensimmäisellä käynnistyskerralla saatavat esimerkkipätkät näkyvät nyt omalla kielelläsi.
+Osoite, tilinumero, sähköpostin allekirjoitus: tallenna kerran se, mitä kirjoitat yhä uudelleen. Paina ⌃⇧V, niin pätkät ilmestyvät minkä tahansa sovelluksen päälle.
 ```
 
 ### 지원 URL
@@ -1248,7 +1248,7 @@ clipboard,papan,klip,riwayat,salin,copy,paste,templat,snippet,tanda,tangan,email
 ### 프로모션 텍스트
 
 ```
-Kini tersedia dalam 23 bahasa, termasuk Bahasa Indonesia. Contoh cuplikan yang muncul saat pertama kali dibuka pun kini memakai bahasa Anda.
+Alamat, nomor rekening, tanda tangan email: simpan sekali saja teks yang terus Anda ketik ulang. Tekan ⌃⇧V dan cuplikan muncul di atas aplikasi apa pun, siap ditempel.
 ```
 
 ### 지원 URL
@@ -1322,7 +1322,7 @@ utklippstavle,kopier,maler,snippets,tekst,signatur,historikk,hurtigtast,produkti
 ### 프로모션 텍스트
 
 ```
-Nå på 23 språk, også norsk. Og eksemplene på tekstbiter du får ved første oppstart, vises nå på ditt eget språk.
+Adresse, kontonummer, e-postsignatur: Lagre det du skriver om og om igjen, én gang. Trykk på ⌃⇧V, så svever tekstbitene over hvilken som helst app, klare til å lime inn.
 ```
 
 ### 지원 URL
@@ -1396,7 +1396,7 @@ klembord,kopiëren,sjablonen,snippets,tekst,handtekening,standaardtekst,geschied
 ### 프로모션 텍스트
 
 ```
-Nu in 23 talen, ook in het Nederlands. En de voorbeeldfragmenten die je bij de eerste start krijgt, verschijnen meteen in jouw taal.
+Adres, rekeningnummer, mailhandtekening: bewaar één keer wat je steeds opnieuw typt. Druk op ⌃⇧V en je fragmenten verschijnen boven elke app, klaar om te plakken.
 ```
 
 ### 지원 URL
@@ -1470,7 +1470,7 @@ schowek,historia,fragmenty,szablony,kopiuj,wklej,podpis,skróty,klawiszowe,produ
 ### 프로모션 텍스트
 
 ```
-Teraz w 23 językach, także po polsku. Przykładowe fragmenty, które widzisz przy pierwszym uruchomieniu, też pojawią się w Twoim języku.
+Adres, numer konta, podpis e-maila: zapisz raz to, co wpisujesz w kółko. Naciśnij ⌃⇧V, a fragmenty pojawią się nad dowolną aplikacją, gotowe do wklejenia.
 ```
 
 ### 지원 URL
@@ -1544,7 +1544,7 @@ urklipp,kopiera,klistra,mallar,snippets,text,signatur,historik,produktivitet,men
 ### 프로모션 텍스트
 
 ```
-Nu på 23 språk, även svenska. Och exemplen på textsnuttar som du får vid första start visas nu på ditt eget språk.
+Adress, kontonummer, mejlsignatur: spara en gång det du skriver om och om igen. Tryck på ⌃⇧V så svävar textsnuttarna ovanpå valfri app, redo att klistras in.
 ```
 
 ### 지원 URL
@@ -1618,7 +1618,7 @@ ClipKeyboard: วางข้อความด่วน
 ### 프로모션 텍스트
 
 ```
-ตอนนี้รองรับ 23 ภาษา รวมถึงภาษาไทย และข้อความตัวอย่างที่มีให้ตอนเปิดแอปครั้งแรกก็แสดงเป็นภาษาของคุณด้วย
+ที่อยู่ เลขบัญชี ลายเซ็นอีเมล ข้อความที่ต้องพิมพ์ซ้ำบ่อย ๆ บันทึกไว้ครั้งเดียวพอ กด ⌃⇧V แผงข้อความจะลอยขึ้นเหนือแอปที่ใช้อยู่ พร้อมวางได้ทันที
 ```
 
 ### 지원 URL
@@ -1692,7 +1692,7 @@ pano,geçmiş,kopyala,şablon,imza,kısayol,klavye,notlar,genişletme,verimlilik
 ### 프로모션 텍스트
 
 ```
-Artık Türkçe dahil 23 dilde. İlk açılışta gördüğünüz örnek hazır metinler de artık kendi dilinizde geliyor.
+Adres, IBAN, e-posta imzası: Tekrar tekrar yazdığınız metni bir kez kaydedin. ⌃⇧V'ye basın, hazır metinleriniz her uygulamanın üzerinde belirsin, yapıştırmaya hazır.
 ```
 
 ### 지원 URL
@@ -1766,7 +1766,7 @@ clipboard,bộ,nhớ,tạm,sao,chép,lịch,sử,mẫu,câu,trả,lời,chữ,k�
 ### 프로모션 텍스트
 
 ```
-Nay đã có 23 ngôn ngữ, trong đó có tiếng Việt. Các đoạn văn bản mẫu xuất hiện khi mở ứng dụng lần đầu cũng hiển thị bằng ngôn ngữ của bạn.
+Địa chỉ, số tài khoản, chữ ký email: những gì bạn cứ gõ đi gõ lại, chỉ cần lưu một lần. Nhấn ⌃⇧V, bảng văn bản hiện ngay trên mọi ứng dụng, sẵn sàng để dán.
 ```
 
 ### 지원 URL
