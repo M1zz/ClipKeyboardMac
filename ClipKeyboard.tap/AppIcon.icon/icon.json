@@ -46,11 +46,7 @@
           "glass": true,
           "image-name-specializations": [
             {
-              "value": "clip-black.svg"
-            },
-            {
-              "appearance": "dark",
-              "value": "clip-black-dark.svg"
+              "value": "clip-white.svg"
             }
           ],
           "name": "Clip"
@@ -59,18 +55,18 @@
           "glass": true,
           "image-name-specializations": [
             {
-              "value": "square-gray.svg"
+              "value": "key-top.svg"
             },
             {
               "appearance": "dark",
-              "value": "square-gray-dark.svg"
+              "value": "key-top-dark.svg"
             }
           ],
-          "name": "Square"
+          "name": "Key top"
         }
       ],
       "lighting": "individual",
-      "name": "Clip in square",
+      "name": "Key top",
       "shadow": {
         "kind": "neutral",
         "opacity": 0.5
@@ -78,7 +74,35 @@
       "specular": true,
       "translucency": {
         "enabled": true,
-        "value": 0.45
+        "value": 0.35
+      }
+    },
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name-specializations": [
+            {
+              "value": "key-base.svg"
+            },
+            {
+              "appearance": "dark",
+              "value": "key-base-dark.svg"
+            }
+          ],
+          "name": "Key base"
+        }
+      ],
+      "lighting": "individual",
+      "name": "Key base",
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "specular": true,
+      "translucency": {
+        "enabled": false,
+        "value": 0.35
       }
     }
   ],
