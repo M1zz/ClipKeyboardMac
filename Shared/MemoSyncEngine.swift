@@ -285,7 +285,14 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     /// 이 기기의 단축어 전부(샘플 포함). 읽지 못하면 nil.
     private func allLocalMemos() -> [Memo]? {
         do {
-            return try MemoStore.shared.load(type: .memo)
+            let memos = try MemoStore.shared.load(type: .memo)
+            // 깨진 파일은 던지지 않고 빈 목록으로 온다(격리 사본을 남기고). 그것도 못 읽은 것이다.
+            // 빈 목록으로 받으면 모든 단축어의 삭제가 올라가고, 받은 것만 남긴 목록이 그 파일을 덮는다.
+            if memos.isEmpty, MemoStore.storedFileHasContent(type: .memo) {
+                log.error("local memos file has content but decoded empty, skipping this sync step")
+                return nil
+            }
+            return memos
         } catch {
             log.error("local memos unreadable, skipping this sync step: \(error.localizedDescription)")
             return nil
@@ -302,6 +309,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
             current: current, shadow: loadShadow(),
             knownTombstones: loadTombstones(), now: Date())
         guard !changes.isEmpty else { return }
+        // 제목 · 본문만 건진 사본은 올리지 않는다(`MemoStore.SalvageHold`). 섀도에도 안 들어가 매번 여기서 걸러진다.
+        let held = MemoStore.SalvageHold.heldIDs(in: changes.upserts)
+        let upserts = changes.upserts.filter { !held.contains($0.id) }
+        if !held.isEmpty { log.error("holding back \(held.count) salvaged memos from upload") }
 
         var tombstones = loadTombstones()
         for (id, at) in changes.newTombstones { tombstones[id] = at }
@@ -312,14 +323,14 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         saveTombstones(tombstones)
 
         var pending: [CKSyncEngine.PendingRecordZoneChange] = []
-        for memo in changes.upserts { pending.append(.saveRecord(recordID(memo.id))) }
+        for memo in upserts { pending.append(.saveRecord(recordID(memo.id))) }
         for id in changes.newTombstones.keys { pending.append(.saveRecord(recordID(id))) }
         engine.state.add(pendingRecordZoneChanges: pending)
 
         // ⚠️ 여기서 섀도를 갱신하지 않는다 - 서버 저장이 확정된 뒤(confirmSent)에만 기록한다.
         // 예전엔 큐에 넣자마자 갱신해서, 전송 전에 앱이 종료되면 큐는 사라지고 섀도는 "보냄"으로
         // 남아 그 변경이 **영영 재전송되지 않았다**(메모를 다시 고치기 전까지 조용히 누락).
-        log.info("enqueued \(changes.upserts.count) upserts, \(changes.newTombstones.count) deletes")
+        log.info("enqueued \(upserts.count) upserts, \(changes.newTombstones.count) deletes")
     }
 
     // MARK: - CKSyncEngineDelegate
@@ -379,6 +390,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         let byId = Dictionary(current.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let tombstones = loadTombstones()
         let categoryItems = CategoryItemStore.load()
+        // 어느 길로 큐에 들어왔든(편집 · 병합 재업로드 · 충돌 재시도) 건진 사본은 여기서 막는다.
+        let held = MemoStore.SalvageHold.heldIDs(in: current)
 
         return await CKSyncEngine.RecordZoneChangeBatch(pendingChanges: pending) { [weak self] recordID in
             guard let self else { return nil }
@@ -396,7 +409,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
                 return self.makeCategoryItemRecord(recordID, item: item)
             }
             guard let id = UUID(uuidString: recordID.recordName) else { return nil }
-            if let memo = byId[id] {
+            if held.contains(id) {
+                syncEngine.state.remove(pendingRecordZoneChanges: [.saveRecord(recordID)])
+                return nil
+            } else if let memo = byId[id] {
                 return self.makeRecord(id: recordID, memo: memo, deletedAt: nil)
             } else if let at = tombstones[id] {
                 return self.makeRecord(id: recordID, memo: nil, deletedAt: at)
@@ -485,7 +501,8 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
 
         // 못 읽은 채로 병합하면 받은 것만 남은 목록이 저장된다. 저장소도 거절하지만 여기서 먼저 멈춘다.
         guard let local = allLocalMemos() else { return }
-        let result = MemoSyncCore.merge(local: local, localTombstones: loadTombstones(), remote: remotes)
+        let result = MemoSyncCore.merge(local: local, localTombstones: loadTombstones(), remote: remotes,
+                                        heldBack: MemoStore.SalvageHold.heldIDs(in: local))
 
         isApplyingRemoteChanges = true
         // ⚠️ 저장이 보내는 .memoDataChanged 는 **메인 큐에 예약**돼 이 함수가 끝난 뒤 도착한다.
@@ -900,7 +917,10 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
         guard let all = allLocalMemos(), let local = syncableMemos() else { throw AuthorityError.localUnreadable }
         // 지울 것은 **샘플까지 포함한** 이 기기 목록으로 가른다 - 샘플은 올리지 않을 뿐 여기 있다.
         let localIDs = Set(all.map(\.id))
+        // 건진 사본은 "이 기기를 정본으로" 에서도 올리지 않는다. 지금 시각을 붙이면 붙잡은 것이 풀린다.
+        let held = MemoStore.SalvageHold.heldIDs(in: local)
         let updates = local.filter { memo in
+            guard !held.contains(memo.id) else { return false }
             guard let remote = remoteAlive[memo.id] else { return true }   // 없거나 지워진 것으로 있음
             return MemoSyncCore.fingerprint(remote) != MemoSyncCore.fingerprint(memo)
         }.map(\.id)
@@ -1228,20 +1248,22 @@ final class MemoSyncEngine: NSObject, CKSyncEngineDelegate {
     private func loadShadow() -> [UUID: String] {
         guard let data = defaults?.data(forKey: DefaultsKey.syncShadow),
               let raw = try? JSONDecoder().decode([String: String].self, from: data) else { return [:] }
-        return Dictionary(uniqueKeysWithValues: raw.compactMap { k, v in UUID(uuidString: k).map { ($0, v) } })
+        // ⚠️ `uniqueKeysWithValues` 를 쓰지 않는다. 대소문자만 다른 두 열쇠는 같은 UUID 가 되어 그 자리에서 죽는다.
+        return Dictionary(raw.compactMap { k, v in UUID(uuidString: k).map { ($0, v) } }, uniquingKeysWith: { first, _ in first })
     }
     private func saveShadow(_ shadow: [UUID: String]) {
-        let raw = Dictionary(uniqueKeysWithValues: shadow.map { ($0.key.uuidString, $0.value) })
+        let raw = Dictionary(shadow.map { ($0.key.uuidString, $0.value) }, uniquingKeysWith: { first, _ in first })
         defaults?.set(try? JSONEncoder().encode(raw), forKey: DefaultsKey.syncShadow)
     }
 
     private func loadTombstones() -> [UUID: Date] {
         guard let data = defaults?.data(forKey: DefaultsKey.syncTombstones),
               let raw = try? JSONDecoder().decode([String: Date].self, from: data) else { return [:] }
-        return Dictionary(uniqueKeysWithValues: raw.compactMap { k, v in UUID(uuidString: k).map { ($0, v) } })
+        // ⚠️ `uniqueKeysWithValues` 를 쓰지 않는다. 대소문자만 다른 두 열쇠는 같은 UUID 가 되어 그 자리에서 죽는다.
+        return Dictionary(raw.compactMap { k, v in UUID(uuidString: k).map { ($0, v) } }, uniquingKeysWith: { first, _ in first })
     }
     private func saveTombstones(_ tombstones: [UUID: Date]) {
-        let raw = Dictionary(uniqueKeysWithValues: tombstones.map { ($0.key.uuidString, $0.value) })
+        let raw = Dictionary(tombstones.map { ($0.key.uuidString, $0.value) }, uniquingKeysWith: { first, _ in first })
         defaults?.set(try? JSONEncoder().encode(raw), forKey: DefaultsKey.syncTombstones)
     }
 }

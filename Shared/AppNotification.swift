@@ -51,6 +51,9 @@ extension Notification.Name {
     /// 키보드 '최근' 줄의 + → 그 글을 단축어로 저장하는 시트를 띄운다. object = 복사 기록 id(`UUID.uuidString`).
     /// 앱 안 미리보기에서는 앱 루트가 바로 받고, 진짜 키보드에서는 키보드가 앱을 연다(`clipkeyboard://saveclip?id=`).
     static let saveRecentClipAsSnippet = Notification.Name("saveRecentClipAsSnippet")
+    /// 키보드 '임시 저장' 줄의 연필 → 그 만들다 만 단축어를 앱에서 이어 쓴다. object = 드래프트 id(`UUID.uuidString`).
+    /// 앱 안 미리보기에서는 앱 목록이 바로 받고, 진짜 키보드에서는 키보드가 앱을 연다(`clipkeyboard://draft?id=`).
+    static let resumeDraft = Notification.Name("resumeDraft")
     /// 빠른 메모(Inbox) 보관함이 변경됨(추가/삭제/승격) → 열려 있는 화면·배지 새로고침.
     static let quickNotesChanged = Notification.Name("quickNotesChanged")
     static let openMemoListWindow = Notification.Name("openMemoListWindow")
@@ -62,7 +65,7 @@ extension Notification.Name {
     static let captureClipboard = Notification.Name("captureClipboard")
     static let reviewTriggerClipSaved = Notification.Name("reviewTriggerClipSaved")
     static let reviewTriggerStackCompleted = Notification.Name("reviewTriggerComboCompleted")
-    /// 사용 기록 탭을 연다. 새 단장 안내가 "내가 아낀 시간 보기"로 데려갈 때 쓴다.
+    /// 사용 기록을 연다(시트). 새 단장 안내가 "내가 아낀 시간 보기"로 데려갈 때 쓴다.
     ///
     /// ⚠️ 탭 선택은 `MainTabView` 안에만 있는 상태라, 시트를 띄우는 쪽에서 직접 못 바꾼다.
     ///    알림 한 줄이 두 화면을 잇는 가장 얇은 길이다.

@@ -296,4 +296,26 @@ class MemoStore: ObservableObject {
         guard let outfile = try Self.combosFileURL() else { return }
         try data.write(to: outfile, options: .atomic)
     }
+
+    // MARK: - 동기화가 보는 것 (아이폰 `MemoStore` 와 같은 이름 · 뜻. 공유 파일 `MemoSyncEngine` 이 부른다)
+
+    /// 저장 파일에 **내용이 있는가**(빈 목록 `[]` 보다 큰가). 파일이 없으면 false.
+    /// 깨진 파일을 빈 목록으로 읽고 "전부 지웠다" 로 올리지 않게 동기화가 이걸로 가른다.
+    static func storedFileHasContent(type: MemoType) -> Bool {
+        guard let url = try? fileURL(type: type),
+              let size = (try? FileManager.default.attributesOfItem(atPath: url.path))?[.size] as? Int else { return false }
+        return size > 2
+    }
+
+    /// 제목 · 본문만 건진 단축어를 동기화로 올리지 않게 붙잡아 둔 것.
+    /// 맥은 칸마다 건지는 읽기를 하지 않아 스스로 붙잡지 않는다. 같은 App Group 의 기록만 읽는다.
+    enum SalvageHold {
+        static let key = "memo.sync.salvageHold"
+        static var store: UserDefaults? = AppGroup.defaults
+
+        static func heldIDs(in memos: [Memo]) -> Set<UUID> {
+            guard let held = store?.dictionary(forKey: key) as? [String: Double], !held.isEmpty else { return [] }
+            return Set(memos.filter { held[$0.id.uuidString] == $0.lastEdited.timeIntervalSinceReferenceDate }.map(\.id))
+        }
+    }
 }

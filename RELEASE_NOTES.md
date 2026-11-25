@@ -9,6 +9,152 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 
 확인: `DeployBar --reponotes 탭클립키보드 5.1.9`
 
+## 5.1.11
+
+### 앱스토어 (한국어)
+
+이전 맥 앱을 쓰셨다면 설정을 그대로 이어받아요
+이전 맥 앱을 사신 분은 모든 기능이 그대로 열려요
+동기화할 때 단축어를 더 안전하게 지켜요
+
+### App Store (English)
+
+Coming from the old Mac app? Your settings carry over.
+Bought the old Mac app? Everything stays unlocked.
+Syncing now protects your snippets better.
+
+### App Store (en-GB)
+
+Coming from the old Mac app? Your settings carry over.
+Bought the old Mac app? Everything stays unlocked.
+Syncing now protects your snippets better.
+
+### 앱스토어 (중국어 간체)
+
+用过旧版 Mac 应用？设置会原样沿用
+买过旧版 Mac 应用的用户，所有功能照常开放
+同步时更好地保护你的短语
+
+### 앱스토어 (중국어 번체)
+
+用過舊版 Mac App？設定會原樣沿用
+買過舊版 Mac App 的用戶，所有功能照常開放
+同步時更妥善地保護你的短語
+
+### 앱스토어 (일본어, ja)
+
+以前のMacアプリの設定をそのまま引き継ぎます
+以前のMacアプリを購入した方は全機能そのまま
+同期の際にフレーズをより安全に守ります
+
+### 앱스토어 (독일어, de)
+
+Einstellungen der alten Mac-App werden übernommen.
+Alte Mac-App gekauft? Alles bleibt freigeschaltet.
+Beim Sync sind deine Phrasen besser geschützt.
+
+### 앱스토어 (스페인어, es)
+
+Tus ajustes de la app anterior para Mac se conservan.
+¿Compraste la app anterior? Todo sigue abierto.
+La sincronización protege mejor tus frases.
+
+### 앱스토어 (프랑스어, fr)
+
+Vos réglages de l'ancienne app Mac sont repris.
+Ancienne app Mac achetée ? Tout reste débloqué.
+La synchro protège mieux vos phrases.
+
+### 앱스토어 (이탈리아어, it)
+
+Le impostazioni della vecchia app Mac restano.
+Hai comprato la vecchia app? Tutto resta sbloccato.
+La sincronizzazione protegge meglio le frasi.
+
+### 앱스토어 (포르투갈어(브라질), pt-BR)
+
+Seus ajustes do app antigo para Mac continuam.
+Comprou o app antigo? Tudo continua liberado.
+A sincronização protege melhor suas frases.
+
+### 앱스토어 (러시아어, ru)
+
+Настройки старого Mac-приложения сохранятся.
+Купили старое приложение? Всё остаётся открытым.
+Синхронизация лучше бережёт ваши фразы.
+
+### 앱스토어 (체코어, cs)
+
+Nastavení ze staré aplikace pro Mac zůstane.
+Koupili jste starou aplikaci? Vše zůstane odemčené.
+Synchronizace lépe chrání vaše fráze.
+
+### 앱스토어 (덴마크어, da)
+
+Indstillinger fra den gamle Mac-app følger med.
+Købt den gamle Mac-app? Alt forbliver låst op.
+Synkronisering beskytter dine sætninger bedre.
+
+### 앱스토어 (그리스어, el)
+
+Οι ρυθμίσεις της παλιάς εφαρμογής Mac μεταφέρονται.
+Αγοράσατε την παλιά εφαρμογή; Όλα μένουν ανοιχτά.
+Ο συγχρονισμός προστατεύει καλύτερα τις φράσεις.
+
+### 앱스토어 (핀란드어, fi)
+
+Vanhan Mac-apin asetukset siirtyvät mukana.
+Ostitko vanhan Mac-apin? Kaikki pysyy auki.
+Synkronointi suojaa fraasejasi paremmin.
+
+### 앱스토어 (인도네시아어, id)
+
+Pengaturan dari app Mac lama tetap terbawa.
+Membeli app Mac lama? Semua fitur tetap terbuka.
+Sinkronisasi kini lebih menjaga frasa Anda.
+
+### 앱스토어 (노르웨이어(보크말), nb)
+
+Innstillingene fra den gamle Mac-appen følger med.
+Kjøpt den gamle Mac-appen? Alt forblir åpent.
+Synkronisering beskytter frasene dine bedre.
+
+### 앱스토어 (네덜란드어, nl)
+
+Instellingen van de oude Mac-app gaan mee.
+Oude Mac-app gekocht? Alles blijft ontgrendeld.
+Synchronisatie beschermt je zinnen beter.
+
+### 앱스토어 (폴란드어, pl)
+
+Ustawienia ze starej aplikacji na Maca zostają.
+Kupiona stara aplikacja? Wszystko zostaje otwarte.
+Synchronizacja lepiej chroni Twoje frazy.
+
+### 앱스토어 (스웨덴어, sv)
+
+Inställningarna från den gamla Mac-appen följer med.
+Köpt den gamla Mac-appen? Allt förblir upplåst.
+Synkroniseringen skyddar dina fraser bättre.
+
+### 앱스토어 (태국어, th)
+
+ใช้แอป Mac เดิมอยู่ การตั้งค่าจะตามมาครบ
+เคยซื้อแอป Mac เดิม ทุกฟีเจอร์ยังเปิดอยู่
+ซิงค์แล้ววลีของคุณปลอดภัยขึ้น
+
+### 앱스토어 (튀르키예어, tr)
+
+Eski Mac uygulamasının ayarları aynen geçer.
+Eski uygulamayı aldıysanız her şey açık kalır.
+Eşitleme ifadelerinizi daha iyi korur.
+
+### 앱스토어 (베트남어, vi)
+
+Cài đặt từ ứng dụng Mac cũ được giữ nguyên.
+Đã mua ứng dụng Mac cũ? Mọi tính năng vẫn mở.
+Đồng bộ giờ bảo vệ cụm từ của bạn tốt hơn.
+
 ## 5.1.10
 
 ### 앱스토어 (한국어)

@@ -641,11 +641,12 @@ enum CategoryItemStore {
     static func loadShadow() -> [UUID: String] {
         guard let data = defaults?.data(forKey: shadowKey),
               let raw = try? JSONDecoder().decode([String: String].self, from: data) else { return [:] }
-        return Dictionary(uniqueKeysWithValues: raw.compactMap { k, v in UUID(uuidString: k).map { ($0, v) } })
+        // ⚠️ `uniqueKeysWithValues` 를 쓰지 않는다. 대소문자만 다른 두 열쇠는 같은 UUID 가 되어 그 자리에서 죽는다.
+        return Dictionary(raw.compactMap { k, v in UUID(uuidString: k).map { ($0, v) } }, uniquingKeysWith: { first, _ in first })
     }
 
     static func saveShadow(_ shadow: [UUID: String]) {
-        let raw = Dictionary(uniqueKeysWithValues: shadow.map { ($0.key.uuidString, $0.value) })
+        let raw = Dictionary(shadow.map { ($0.key.uuidString, $0.value) }, uniquingKeysWith: { first, _ in first })
         defaults?.set(try? JSONEncoder().encode(raw), forKey: shadowKey)
     }
 

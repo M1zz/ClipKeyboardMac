@@ -25,6 +25,14 @@ enum DefaultsKey {
     /// ⚠️ 기본값은 **꺼짐**이다. 목록을 훑는 동안 카드마다 글이 맺혔다 흩어지면 눈이 쉴 곳이
     ///    없다. 보고 싶은 사람은 설정 > 화면과 표시에서 켠다.
     static let contentHintEnabled = "contentHintEnabled"
+    /// 칸 안에 내용을 어떻게 보일지(`ContentPreviewMode` 의 rawValue, App Group). 비어 있으면 위 옛 값에서 읽는다.
+    static let contentPreviewMode = "content.preview.mode.v1"
+    /// 앱 목록을 격자로 볼지 리스트로 볼지(`MemoListLayout` 의 rawValue). 표준 UserDefaults (앱 전용).
+    static let memoListLayout = "memoListLayout.v1"
+    /// 홈의 카테고리 칸에 그 안의 단축어 이름 두 줄을 보일지. 표준 UserDefaults (앱 전용). 기본 끔.
+    static let categoryTilePreview = "categoryTilePreview.v1"
+    /// '최근' 페이지에 복사한 때를 어떻게 적을지(`RecentTimeStyle`). 표준 UD, 앱에서만 쓴다.
+    static let recentTimeStyle = "recentTimeStyle.v1"
     /// 단축어별로 배운 "넣은 뒤 캐럿이 설 자리"(App Group, `[UUID문자열: CursorMemory.Learned]` JSON).
     /// ⚠️ 사용자의 본문에는 아무것도 안 쓴다. 배운 값은 전부 여기 따로 있다.
     ///    자세한 이유: ClipKeyboard/Service/CursorMemory.swift
@@ -137,6 +145,13 @@ enum DefaultsKey {
     ///    소급해서 복원하려고 날짜를 따로 남긴다. 자세한 건 `KeyboardDayLedger`.
     static let kbBeaconDayCounts = "kb.beacon.dayCounts"
     static let keyboardExtensionDidLoad = "keyboard_extension_did_load"
+    /// 키보드가 뜨는 길의 어디까지 갔는가(App Group, `KeyboardLaunchStage` rawValue).
+    /// 끝까지 못 뜬 실행이 **어디서** 멈췄는지 다음 실행이 읽는다(`KeyboardLaunchTrail`).
+    static let keyboardLaunchStage = "keyboardLaunchStage.v1"
+    /// 가장 최근에 끝까지 못 뜬 실행이 멈춘 단계. 세이프 모드로 열지 정할 때 본다.
+    static let keyboardLastIncompleteStage = "keyboardLastIncompleteStage.v1"
+    /// 아직 허브로 안 보낸 "끝까지 못 뜬 실행" 의 단계들(App Group, [String]). 앱이 꺼내 보낸다.
+    static let keyboardIncompleteStages = "keyboardIncompleteStages.v1"
     static let keyboardKoreanEnabled = "keyboardKoreanEnabled"
     /// 생활 레이어 프리셋(LivingSkin rawValue) - 카드 위에 사는 것. 값이 없으면 `.none`.
     /// ⚠️ 앱 전용이다. 키보드 익스텐션은 메모리 상한 때문에 이 레이어를 그리지 않는다.
@@ -268,6 +283,12 @@ enum DefaultsKey {
     /// 입력칸이 무엇을 받는 칸인지 알려 주면(카드번호 · 이메일 · 주소) 맞는 단축어를 빠른 줄 맨 앞에 세울지.
     /// App Group. **기본 켬.** 칸이 말해 줄 때만 서므로 그 밖의 자리에서는 아무것도 달라지지 않는다(`FieldFit`).
     static let keyboardSuggestForField = "keyboardSuggestForField.v1"
+    /// 방금 복사한 글이 있으면 키보드 맨 위 띠에 붙여넣기 칩을 세울지. App Group. **기본 켬.**
+    /// 사용자 요청(2026-11): 복사해 왔으면 키보드 위에 떠 달라. 전체 접근이 있어야 읽을 수 있다.
+    static let keyboardPasteOfferEnabled = "keyboardPasteOfferEnabled.v1"
+    /// 붙여넣기 칩을 **이미 쓴** 복사 번호(`UIPasteboard.changeCount`). App Group.
+    /// 넣었거나 키보드가 스스로 복사한 번호면 칩을 다시 세우지 않는다. 키보드는 뜰 때마다 새로 만들어진다.
+    static let keyboardPasteOfferConsumedCount = "keyboardPasteOfferConsumedCount.v1"
     /// 위줄에 **숫자 판으로 건너가는 키**를 세울지 (App Group). 값이 없으면 켜짐.
     ///
     /// 숫자만 몇 자 넣으려고 다른 키보드로 건너갔다 오는 일을 없애려고 둔 키다.
@@ -300,6 +321,12 @@ enum DefaultsKey {
     /// 갈래 번호(`keyboardLastCategoryPage`)와 **따로 둔다.** '최근' 을 0번에 끼워 넣으면
     /// 이미 저장된 번호가 모두 한 칸씩 밀려, 업데이트한 날 모두가 엉뚱한 갈래에서 열린다.
     static let keyboardShowsRecentClips = "keyboardShowsRecentClips.v1"
+    /// 키보드를 마지막으로 닫을 때 '임시 저장'(만들다 만 단축어) 탭을 보고 있었는가. App Group.
+    /// '최근' 과 같은 이유로 갈래 번호와 따로 둔다.
+    static let keyboardShowsDrafts = "keyboardShowsDrafts.v1"
+    /// '최근' 에서 같은 글을 몇 번 넣었는가(`FrequentClips.Ledger`, JSON). App Group.
+    /// 글은 남기지 않고 지문만 센다.
+    static let keyboardFrequentClips = "keyboardFrequentClips.v1"
     /// '최근' 탭에 마지막으로 담은 클립보드의 복사 번호(`UIPasteboard.changeCount`). App Group.
     ///
     /// 키보드는 뜰 때마다 새로 만들어진다. 번호를 기억해 두지 않으면 사람이 밀어서 지운 글이
@@ -315,6 +342,8 @@ enum DefaultsKey {
     static let keyboardCustomBgHex = "keyboardCustomBgHex"
     static let keyboardCustomKeyHex = "keyboardCustomKeyHex"
     static let keyboardKoreanLayout = "keyboardKoreanLayout"
+    /// 일본어 자판 모양(`JapaneseTypingLayout.rawValue`: romaji · flick). 없으면 로마자(지금까지의 자판).
+    static let keyboardJapaneseLayout = "keyboardJapaneseLayout"
     /// 자판에 켜 둔 언어들(순서대로, 쉼표로 이은 `TypingLanguage.rawValue`). 비어 있으면 그 사람의 언어 + 영어.
     static let keyboardTypingLanguages = "keyboardTypingLanguages.v1"
     /// 기존 사용자의 입력 언어를 저장해 두는 일을 마쳤는가(App Group, Bool). `TypingPrefs.keepLegacyDefaultIfNeeded`.
@@ -328,6 +357,8 @@ enum DefaultsKey {
     ///
     /// ⚠️ `keyboardTypingLang` 과 따로 둔다. 그쪽은 검색칸 자판이 "english" · "korean" 으로 쓰고 있다.
     static let keyboardTypingCurrent = "keyboardTypingCurrent.v1"
+    /// 한자 후보에서 고른 낱말(읽기별 최근 3개). 언어마다 하나. 다음에 같은 읽기를 치면 앞에 세운다.
+    static func typingLearnedConversions(_ language: String) -> String { "keyboardTypingLearned.\(language).v1" }
     /// 키보드를 열면 먼저 보일 판(`KeyboardInputMode`: typing · snippets). 마지막에 보던 판을 따른다.
     static let keyboardInputMode = "keyboardInputMode.v1"
     /// 단축어를 넣은 뒤 쓰던 키보드로 돌아갈지. App Group. **기본 켬**(`KeyboardPrefs.returnAfterSnippet`).
@@ -384,6 +415,8 @@ enum DefaultsKey {
     /// Control Center 빠른 메모 컨트롤·quicknote 딥링크가 켠 "빠른 메모 입력 시트 열기" 보류 플래그.
     /// 위젯 타겟은 같은 문자열 리터럴 사용(QuickNoteControl.swift).
     static let pendingQuickNoteAdd = "pendingQuickNoteAdd"
+    /// 키보드 '임시 저장' 의 연필(`clipkeyboard://draft?id=`)이 남긴 "이 드래프트를 이어 쓰기" 보류 값(드래프트 id).
+    static let pendingDraftResume = "pendingDraftResume"
     /// 동작 버튼 · 제어 센터의 '클립보드 담기'(`CaptureClipboardIntent`)가 켠 "복사한 글 담기" 보류 플래그.
     /// 콜드 런치에서는 알림보다 목록이 늦게 뜨므로 목록이 활성화될 때 소비한다(`ClipboardCapture`).
     static let pendingClipboardCapture = "pendingClipboardCapture"
@@ -706,11 +739,13 @@ enum KeyboardPrefs {
     static let showClipboardKey = Pref(key: DefaultsKey.keyboardShowClipboardKey, fallback: false)
     static let showRecentClipsTab = Pref(key: DefaultsKey.keyboardShowRecentClipsTab, fallback: true)
     static let suggestForField = Pref(key: DefaultsKey.keyboardSuggestForField, fallback: true)
+    static let pasteOffer = Pref(key: DefaultsKey.keyboardPasteOfferEnabled, fallback: true)
 
     // 입력
     static let koreanEnabled = Pref(key: DefaultsKey.keyboardKoreanEnabled, fallback: false)
     static let typingLang = Pref(key: DefaultsKey.keyboardTypingLang, fallback: "english")
     static let koreanLayout = Pref(key: DefaultsKey.keyboardKoreanLayout, fallback: "dubeolsik")
+    static let japaneseLayout = Pref(key: DefaultsKey.keyboardJapaneseLayout, fallback: "romaji")
     /// 단축어를 넣으면 쓰던 키보드로 돌아간다. 기본 켬(앱 주인이 바란 동작). 이유는 `DefaultsKey` 에.
     static let returnAfterSnippet = Pref(key: DefaultsKey.keyboardReturnAfterSnippet, fallback: true)
     /// 키보드 진동. 기본 켬(지금까지의 동작). 이유는 `DefaultsKey` 에.
@@ -723,6 +758,102 @@ enum KeyboardPrefs {
     // 앱과 같이 쓰는 표시 (기본값이 다르면 앱에서는 안 보이고 키보드에서만 보인다)
     static let showVisualCues = Pref(key: DefaultsKey.showVisualCues, fallback: false)
     static let contentHintEnabled = Pref(key: DefaultsKey.contentHintEnabled, fallback: false)
+    /// 칸 안에 내용을 어떻게 보일지. 비어 있으면 아직 고른 적이 없는 것이라 옛 켬/끔을 따른다(`ContentPreviewMode.resolve`).
+    static let contentPreviewMode = Pref(key: DefaultsKey.contentPreviewMode, fallback: "")
+}
+
+/// 단축어 칸 안에 내용을 어떻게 보일지. 앱 카드와 키보드 칸이 같은 값을 읽는다.
+///
+/// 사용자 요청(2026-11): 제목만으로는 찾는 내용이 맞는지 모를 때가 있다.
+/// 예전에는 "잠깐 보였다 사라지기"를 켜고 끄는 것뿐이었다.
+enum ContentPreviewMode: String, CaseIterable, Identifiable {
+    /// 제목 아래에 늘 보인다.
+    case always
+    /// 잠깐 보였다 사라진다(예전의 내용 힌트).
+    case hint
+    /// 제목만 보인다.
+    case off
+
+    var id: String { rawValue }
+
+    /// 고른 적이 없으면(`raw` 가 비었으면) 예전 켬/끔 설정을 그대로 따른다.
+    static func resolve(raw: String, legacyHintEnabled: Bool) -> ContentPreviewMode {
+        ContentPreviewMode(rawValue: raw) ?? (legacyHintEnabled ? .hint : .off)
+    }
+
+    var localizedName: String {
+        switch self {
+        case .always: return NSLocalizedString("항상 보이기", comment: "Content preview mode: the content is always shown under the title")
+        case .hint: return NSLocalizedString("보였다 사라지기", comment: "Content preview mode: the content appears briefly, then fades away")
+        case .off: return NSLocalizedString("안 보이기", comment: "Content preview mode: only the title is shown")
+        }
+    }
+}
+
+/// '최근' 페이지에 복사한 때를 적는 법.
+///
+/// 사용자 요청(2026-11, 중국어): "며칠 전" 은 별 뜻이 없다, 시간으로 보여 달라.
+/// 얼마 전인지가 편한 사람도 있어 고르게 한다. 기본은 예전 그대로 얼마 전.
+enum RecentTimeStyle: String, CaseIterable, Identifiable {
+    /// 3일 전 · 1주 전
+    case relative
+    /// 오늘이면 시각만, 올해면 월 · 일 · 시각, 그 전이면 연도까지.
+    case exact
+
+    var id: String { rawValue }
+
+    var localizedName: String {
+        switch self {
+        case .relative: return NSLocalizedString("얼마 전", comment: "Recent copy time style: relative, like '3 days ago'")
+        case .exact:    return NSLocalizedString("날짜와 시간", comment: "Recent copy time style: exact date and time")
+        }
+    }
+
+    private static let relativeFormatter: RelativeDateTimeFormatter = {
+        let f = RelativeDateTimeFormatter()
+        f.unitsStyle = .short
+        return f
+    }()
+
+    /// `date` 를 이 방식으로 적는다. 언어 · 12/24시간은 기기 설정을 따른다.
+    func text(for date: Date, now: Date = Date(),
+              calendar: Calendar = .current, locale: Locale = .current) -> String {
+        switch self {
+        case .relative:
+            let f = Self.relativeFormatter
+            f.locale = locale
+            f.calendar = calendar
+            return f.localizedString(for: date, relativeTo: now)
+        case .exact:
+            var style = Date.FormatStyle(locale: locale, calendar: calendar, timeZone: calendar.timeZone)
+            if calendar.isDate(date, inSameDayAs: now) {
+                style = style.hour().minute()
+            } else if calendar.isDate(date, equalTo: now, toGranularity: .year) {
+                style = style.month(.abbreviated).day().hour().minute()
+            } else {
+                style = style.year().month(.abbreviated).day().hour().minute()
+            }
+            return date.formatted(style)
+        }
+    }
+}
+
+/// 앱 목록의 모양.
+enum MemoListLayout: String, CaseIterable, Identifiable {
+    case grid
+    case list
+
+    var id: String { rawValue }
+
+    /// 리스트 줄의 최소 높이. 격자 카드 높이(90~220)를 그대로 쓰면 한 줄이 너무 높다.
+    static let listRowHeight: CGFloat = 72
+
+    var localizedName: String {
+        switch self {
+        case .grid: return NSLocalizedString("격자", comment: "List layout option: cards in a grid")
+        case .list: return NSLocalizedString("리스트", comment: "List layout option: one row per snippet")
+        }
+    }
 }
 
 /// 단축어를 넣은 뒤 쓰던 키보드로 넘길지 가르는 곳. 키보드(`KeyboardViewController`)가 부르고 시험이 지킨다.
@@ -751,6 +882,12 @@ enum SnippetReturnPolicy {
 enum AppPrefs {
     /// 목록 카드 최소 높이. 설정 미리보기와 목록이 같은 값을 쓴다.
     static let memoCardHeight = Pref(key: DefaultsKey.memoCardHeight, fallback: 140.0)
+    /// 목록 모양(`MemoListLayout`). 기본은 격자.
+    static let memoListLayout = Pref(key: DefaultsKey.memoListLayout, fallback: MemoListLayout.grid.rawValue)
+    /// 홈의 카테고리 칸에 안에 든 것을 두 줄 보일지. 기본 끔(앱 주인: 이름과 개수면 된다).
+    static let categoryTilePreview = Pref(key: DefaultsKey.categoryTilePreview, fallback: false)
+    /// '최근' 페이지의 복사한 때 표시(`RecentTimeStyle`). 기본은 얼마 전.
+    static let recentTimeStyle = Pref(key: DefaultsKey.recentTimeStyle, fallback: RecentTimeStyle.relative.rawValue)
     /// 목록 카드를 누르면 메뉴, 꾹 누르면 복사로 뒤집는다(표준 UD, 앱 안에서만 쓴다). 기본은 누르면 복사.
     /// 앱은 고치러 들어오는 곳이고 쓰는 일은 키보드에서 한다는 사람을 위한 것(2026-11 사용자 요청).
     static let cardTapOpensMenu = Pref(key: DefaultsKey.cardTapOpensMenu, fallback: false)

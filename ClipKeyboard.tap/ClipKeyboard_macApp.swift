@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ServiceManagement
 import CoreSpotlight
 import LeeoKit
 
@@ -16,6 +17,12 @@ struct ClipKeyboard_macApp: App {
     init() {
         // 백업 금고: 예약된 복원 적용, 업데이트 직전 백업. 저장소를 읽기 전(applicationDidFinishLaunching 보다 앞)에.
         LeeoVault.start(ClipKeyboardTapSpec.self)
+        // 옛 맥 앱(-tap)을 쓰던 사람: 설정 · 산 사람 표시를 이어받는다. 온보딩 판단보다 먼저 (→ MacHandoff.swift).
+        if let adopted = MacHandoff.adopt(), UserDefaults.standard.bool(forKey: "macLaunchAtLogin") {
+            // 설정 값만 옮기면 로그인 항목은 비어 있다. 쓰던 대로 켜 둔다.
+            try? SMAppService.mainApp.register()
+            print("✅ [Handoff] 로그인 시 열기 이어받음 (설정 \(adopted.settingCount)개)")
+        }
     }
 
     var body: some Scene {

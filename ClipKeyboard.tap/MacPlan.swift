@@ -12,8 +12,9 @@
 //  아이폰 앱과 번들 ID 가 같다(`com.Ysoup.TokenMemo`, App Store 레코드 하나 · 유니버설 구매).
 //  그래서 상품도 아이폰 것 그대로다. 아이폰에서 산 칸은 맥에서 열리고, 맥에서 사도 아이폰에서 열린다.
 //  ⚠️ 상품 ID 는 아이폰 `AccessTier` 와 같아야 한다. Plus 평생의 ID 는 예전 칸 상품 `slots5` 다.
-//  ⚠️ 예전 맥 앱(`com.ysoup.TokenMemo-tap`, 유료 다운로드)을 산 사람은 이 앱에서 자동으로 확인되지 않는다.
-//     레코드가 달라 `AppTransaction` 이 그 구매를 모른다. 구매 내역을 보내 주면 Pro 평생 코드를 보낸다.
+//  ⚠️ 예전 맥 앱(`com.ysoup.TokenMemo-tap`, 유료 다운로드)을 산 사람은 이 앱의 `AppTransaction` 이 모른다.
+//     레코드가 다르기 때문이다. 그래서 옛 앱이 App Store 서명으로 확인한 결과를 App Group 으로 넘겨받아
+//     Pro 평생으로 연다(`MacHandoff`). 옛 앱을 이 판 전에 지운 사람은 구매 내역을 보내 주면 코드를 보낸다.
 //
 
 import AppKit
@@ -161,7 +162,7 @@ final class MacPlan: ObservableObject {
     private let foreverPass = LeeoForeverPass(containerIdentifier: "iCloud.com.Ysoup.FeedbackHub")
 
     private init() {
-        owned = MacTier(rawValue: defaults.integer(forKey: Key.owned)) ?? .free
+        owned = MacHandoff.isLegacyPurchaser ? .pro : (MacTier(rawValue: defaults.integer(forKey: Key.owned)) ?? .free)
         ownsTwoDevice = defaults.bool(forKey: Key.twoDevice)
         hasSeenStore = defaults.bool(forKey: Key.seenStore)
         pastes = defaults.integer(forKey: Key.pastes)
@@ -274,6 +275,11 @@ final class MacPlan: ObservableObject {
         }
         await foreverPass.refresh()
         if foreverPass.isActive { best = .pro }
+        // 옛 맥 앱을 산 사람(MacHandoff): 쓰던 대로 모든 기능이 열린 평생.
+        if MacHandoff.isLegacyPurchaser {
+            best = .pro
+            proLifetime = true
+        }
         owned = best
         ownsPlusLifetime = plusLifetime
         ownsLifetimePro = proLifetime
