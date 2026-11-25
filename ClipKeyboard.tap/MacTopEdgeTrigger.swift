@@ -34,11 +34,21 @@ final class MacTopEdgeTrigger {
     private var pendingClose: DispatchWorkItem?
     /// 이 입구로 연 패널만 마우스가 떠나면 닫는다. ⌃⇧V 로 연 패널은 건드리지 않는다.
     private var openedByHover = false
+    /// 화면마다의 입구. 마우스가 움직일 때마다(초당 수십~백 번) 화면 배치를 다시 재지 않게 둔다.
+    /// 화면이 바뀌면(모니터 연결 · 해상도 · 메뉴바 숨김) 새로 잰다.
+    private var zones: [NSRect] = []
+    private var screenObserver: NSObjectProtocol?
 
     /// 설정에 맞춰 지켜보기를 켜거나 끈다. 시작할 때와 스위치를 바꿀 때 부른다.
     func refresh() {
         stop()
         guard Self.isEnabled else { return }
+        zones = Self.currentZones()
+        screenObserver = NotificationCenter.default.addObserver(
+            forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated { self?.zones = Self.currentZones() }
+        }
         let handler: (NSEvent) -> Void = { [weak self] _ in
             MainActor.assumeIsolated { self?.mouseMoved() }
         }
@@ -57,6 +67,8 @@ final class MacTopEdgeTrigger {
     private func stop() {
         monitors.forEach(NSEvent.removeMonitor)
         monitors = []
+        if let screenObserver { NotificationCenter.default.removeObserver(screenObserver) }
+        screenObserver = nil
         pendingOpen?.cancel()
         pendingClose?.cancel()
         pendingOpen = nil
@@ -65,7 +77,10 @@ final class MacTopEdgeTrigger {
 
     private func mouseMoved() {
         let point = NSEvent.mouseLocation
-        let inZone = Self.zone(at: point)?.contains(point) ?? false
+        let inZone = zones.contains { $0.contains(point) }
+
+        // 거의 모든 움직임은 여기서 끝난다 - 입구 밖이고, 패널도 없고, 기다리는 것도 없다.
+        if !inZone, pendingOpen == nil, !openedByHover { return }
 
         if let panelFrame = MemoFloatingPanelController.shared.visibleFrame {
             pendingOpen?.cancel()
@@ -91,7 +106,7 @@ final class MacTopEdgeTrigger {
             pendingOpen = Self.after(Self.dwell) { [weak self] in
                 self?.pendingOpen = nil
                 let point = NSEvent.mouseLocation
-                guard let self, let zone = Self.zone(at: point), zone.contains(point) else { return }
+                guard let self, let zone = self.zones.first(where: { $0.contains(point) }) else { return }
                 self.openedByHover = true
                 MemoFloatingPanelController.shared.show(below: zone)
             }
@@ -107,9 +122,13 @@ final class MacTopEdgeTrigger {
         return item
     }
 
-    /// 마우스가 있는 화면의 입구 - 노치가 있으면 노치 자리, 없으면 메뉴바 가운데.
-    private static func zone(at point: NSPoint) -> NSRect? {
-        guard let screen = NSScreen.screens.first(where: { NSMouseInRect(point, $0.frame, false) }) else { return nil }
+    /// 화면마다의 입구.
+    private static func currentZones() -> [NSRect] {
+        NSScreen.screens.map(zone(for:))
+    }
+
+    /// 한 화면의 입구 - 노치가 있으면 노치 자리, 없으면 메뉴바 가운데.
+    private static func zone(for screen: NSScreen) -> NSRect {
         let frame = screen.frame
         if screen.safeAreaInsets.top > 0,
            let left = screen.auxiliaryTopLeftArea, let right = screen.auxiliaryTopRightArea {

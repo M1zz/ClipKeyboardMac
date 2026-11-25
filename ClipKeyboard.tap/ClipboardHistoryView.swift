@@ -192,6 +192,8 @@ struct ClipboardHistoryView: View {
         clipboardHistory.removeAll { $0.id == item.id }
         do {
             try MemoStore.shared.saveClipboardHistory(history: clipboardHistory)
+            // 그림 파일도 지운다(단축어가 쓰는 것은 남긴다). 예전에는 파일이 남아 쌓였다.
+            MemoStore.shared.deleteHistoryImagesIfUnused(item.imageFileName.map { [$0] } ?? [])
             print("🗑️ [ClipboardHistory] 항목 삭제됨")
         } catch {
             print("❌ [ClipboardHistory] 삭제 실패: \(error)")
@@ -199,9 +201,11 @@ struct ClipboardHistoryView: View {
     }
 
     private func clearAll() {
+        let images = clipboardHistory.compactMap(\.imageFileName)
         clipboardHistory.removeAll()
         do {
             try MemoStore.shared.saveClipboardHistory(history: [])
+            MemoStore.shared.deleteHistoryImagesIfUnused(images)
             print("🗑️ [ClipboardHistory] 전체 삭제됨")
         } catch {
             print("❌ [ClipboardHistory] 전체 삭제 실패: \(error)")
@@ -246,92 +250,16 @@ struct ClipboardItemRow: View {
 
     @State private var isHovering = false
 
+    // 몸통을 나눠 둔다. 한 덩어리일 때는 컴파일러가 이 몸통의 타입을 푸는 데 7초 넘게 걸렸다.
     var body: some View {
         HStack(spacing: MacSpacing.md) {
-            // 콘텐츠
             VStack(alignment: .leading, spacing: MacSpacing.sm) {
-                if item.contentType == .image {
-                    // 이미지 표시
-                    if let imageFileName = item.imageFileName,
-                       let image = MemoStore.shared.loadImage(fileName: imageFileName) {
-                        Image(nsImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 200, maxHeight: 150)
-                            .cornerRadius(MacRadius.sm)
-                    } else {
-                        HStack(spacing: MacSpacing.sm) {
-                            Image(systemName: AppSymbol.photo)
-                            Text(NSLocalizedString("이미지를 불러올 수 없습니다", comment: "Image load error"))
-                        }
-                        .font(MacFont.secondary)
-                        .foregroundStyle(.secondary)
-                    }
-                } else {
-                    // 텍스트 표시
-                    Text(item.content)
-                        .font(MacFont.body)
-                        .lineLimit(3)
-                }
-
-                HStack(spacing: MacSpacing.md) {
-                    Text(formatDate(item.copiedAt))
-
-                    if item.isTemporary {
-                        Text(NSLocalizedString("임시", comment: "Temporary tag"))
-                            .padding(.horizontal, MacSpacing.sm)
-                            .padding(.vertical, 1)
-                            .background(Color.orange.opacity(0.15), in: Capsule())
-                    }
-
-                    if item.contentType == .image {
-                        Text(NSLocalizedString("이미지", comment: "Image tag"))
-                            .padding(.horizontal, MacSpacing.sm)
-                            .padding(.vertical, 1)
-                            .background(MacColor.surface, in: Capsule())
-                    }
-                }
-                .font(MacFont.secondary)
-                .foregroundStyle(.secondary)
+                content
+                meta
             }
-
             Spacer()
-
             // 액션 버튼들 (hover 시에만 표시)
-            if isHovering {
-                HStack(spacing: MacSpacing.md) {
-                    Button {
-                        onSave()
-                    } label: {
-                        Image(systemName: AppSymbol.squareAndArrowDown)
-                            .foregroundStyle(.secondary)
-                    }
-                    .buttonStyle(.plain)
-                    .help(NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip"))
-                    .accessibilityLabel(NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip"))
-
-                    Button {
-                        onCopy()
-                    } label: {
-                        Image(systemName: AppSymbol.docOnDoc)
-                            .foregroundStyle(.tint)
-                    }
-                    .buttonStyle(.plain)
-                    .help(NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"))
-                    .accessibilityLabel(NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"))
-
-                    Button {
-                        onDelete()
-                    } label: {
-                        Image(systemName: AppSymbol.trash)
-                            .foregroundStyle(.red)
-                    }
-                    .buttonStyle(.plain)
-                    .help(NSLocalizedString("삭제", comment: "Delete tooltip"))
-                    .accessibilityLabel(NSLocalizedString("삭제", comment: "Delete tooltip"))
-                }
-                .font(MacFont.body)
-            }
+            if isHovering { actions }
         }
         .padding(.vertical, MacSpacing.md)
         .padding(.horizontal, MacSpacing.md)
@@ -343,23 +271,109 @@ struct ClipboardItemRow: View {
         .onTapGesture {
             onCopy()
         }
-        // 누르기와 마우스를 올려야 보이는 단추뿐이라, VoiceOver 에서는 한 줄을 단추로 읽고 동작을 단다.
-        .accessibilityElement(children: .ignore)
-        .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(item.contentType == .image ? NSLocalizedString("이미지", comment: "Image type") : item.content)
-        .accessibilityValue(item.isTemporary
-                            ? formatDate(item.copiedAt) + ", " + NSLocalizedString("임시", comment: "Temporary tag")
-                            : formatDate(item.copiedAt))
-        .accessibilityHint(NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"))
-        .accessibilityAction { onCopy() }
-        .accessibilityAction(named: Text(NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip")), onSave)
-        .accessibilityAction(named: Text(NSLocalizedString("삭제", comment: "Delete tooltip")), onDelete)
+        .modifier(RowAccessibility(item: item, dateText: dateText, onCopy: onCopy, onSave: onSave, onDelete: onDelete))
     }
 
-    private func formatDate(_ date: Date) -> String {
+    @ViewBuilder
+    private var content: some View {
+        if item.contentType == .image {
+            if let imageFileName = item.imageFileName,
+               let image = MemoStore.shared.loadImage(fileName: imageFileName) {
+                Image(nsImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: 200, maxHeight: 150)
+                    .cornerRadius(MacRadius.sm)
+            } else {
+                HStack(spacing: MacSpacing.sm) {
+                    Image(systemName: AppSymbol.photo)
+                    Text(NSLocalizedString("이미지를 불러올 수 없습니다", comment: "Image load error"))
+                }
+                .font(MacFont.secondary)
+                .foregroundStyle(.secondary)
+            }
+        } else {
+            Text(item.content)
+                .font(MacFont.body)
+                .lineLimit(3)
+        }
+    }
+
+    private var meta: some View {
+        HStack(spacing: MacSpacing.md) {
+            Text(dateText)
+            if item.isTemporary {
+                tag(NSLocalizedString("임시", comment: "Temporary tag"), background: Color.orange.opacity(0.15))
+            }
+            if item.contentType == .image {
+                tag(NSLocalizedString("이미지", comment: "Image tag"), background: MacColor.surface)
+            }
+        }
+        .font(MacFont.secondary)
+        .foregroundStyle(.secondary)
+    }
+
+    private func tag(_ title: String, background: Color) -> some View {
+        Text(title)
+            .padding(.horizontal, MacSpacing.sm)
+            .padding(.vertical, 1)
+            .background(background, in: Capsule())
+    }
+
+    private var actions: some View {
+        HStack(spacing: MacSpacing.md) {
+            actionButton(AppSymbol.squareAndArrowDown, style: AnyShapeStyle(.secondary),
+                         title: NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip"), action: onSave)
+            actionButton(AppSymbol.docOnDoc, style: AnyShapeStyle(.tint),
+                         title: NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"), action: onCopy)
+            actionButton(AppSymbol.trash, style: AnyShapeStyle(Color.red),
+                         title: NSLocalizedString("삭제", comment: "Delete tooltip"), action: onDelete)
+        }
+        .font(MacFont.body)
+    }
+
+    private func actionButton(_ symbol: String, style: AnyShapeStyle, title: String,
+                              action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: symbol)
+                .foregroundStyle(style)
+        }
+        .buttonStyle(.plain)
+        .help(title)
+        .accessibilityLabel(title)
+    }
+
+    private var dateText: String { Self.dateFormatter.string(from: item.copiedAt) }
+
+    /// 줄마다 · 그릴 때마다 새로 만들던 것을 하나로.
+    private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd HH:mm"
-        return formatter.string(from: date)
+        return formatter
+    }()
+}
+
+/// 누르기와 마우스를 올려야 보이는 단추뿐이라, VoiceOver 에서는 한 줄을 단추로 읽고 동작을 단다.
+private struct RowAccessibility: ViewModifier {
+    let item: ClipboardHistory
+    let dateText: String
+    let onCopy: () -> Void
+    let onSave: () -> Void
+    let onDelete: () -> Void
+
+    func body(content: Content) -> some View {
+        let temporary = NSLocalizedString("임시", comment: "Temporary tag")
+        let label = item.contentType == .image ? NSLocalizedString("이미지", comment: "Image type") : item.content
+        let value = item.isTemporary ? dateText + ", " + temporary : dateText
+        return content
+            .accessibilityElement(children: .ignore)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityLabel(label)
+            .accessibilityValue(value)
+            .accessibilityHint(NSLocalizedString("클립보드에 복사", comment: "Copy to clipboard tooltip"))
+            .accessibilityAction { onCopy() }
+            .accessibilityAction(named: Text(NSLocalizedString("단축어로 저장", comment: "Save as memo tooltip")), onSave)
+            .accessibilityAction(named: Text(NSLocalizedString("삭제", comment: "Delete tooltip")), onDelete)
     }
 }
 

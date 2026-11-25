@@ -585,23 +585,43 @@ class MemoStore: ObservableObject {
     func addToClipboardHistory(content: String) throws {
         var history = try loadClipboardHistory()
 
-        // 중복 제거
-        history.removeAll { $0.content == content }
+        // 중복 제거 (글만 - 그림 항목의 content 는 "이미지" 라는 이름표라 같은 글을 복사하면 함께 지워졌다)
+        history.removeAll { $0.content == content && $0.imageFileName == nil }
 
         // 새 항목 추가
         let newItem = ClipboardHistory(content: content)
         history.insert(newItem, at: 0)
 
-        // 최대 100개까지만 유지
+        trimClipboardHistory(&history)
+        try saveClipboardHistory(history: history)
+    }
+
+    /// 100개까지만, 7일 지난 임시 항목은 뺀다. **빠지는 그림 항목의 파일도 지운다** - 예전에는
+    /// 글 복사로 밀려난 그림 파일이 App Group 에 그대로 남아 쌓였다.
+    private func trimClipboardHistory(_ history: inout [ClipboardHistory]) {
+        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        var dropped: [ClipboardHistory] = []
         if history.count > 100 {
+            dropped += history[100...]
             history = Array(history.prefix(100))
         }
-
-        // 7일 이상 된 임시 항목 자동 삭제
-        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        dropped += history.filter { $0.isTemporary && $0.copiedAt < sevenDaysAgo }
         history.removeAll { $0.isTemporary && $0.copiedAt < sevenDaysAgo }
+        deleteHistoryImagesIfUnused(dropped.compactMap(\.imageFileName))
+    }
 
-        try saveClipboardHistory(history: history)
+    /// 히스토리에서 빠진 그림 파일을 지운다. **단축어가 쓰는 그림은 남긴다.**
+    ///
+    /// ⚠️ '단축어로 저장'은 히스토리의 그림 파일을 그대로 함께 쓴다. 예전에는 히스토리에서
+    ///    밀려나거나 지울 때 단축어의 그림까지 사라졌다.
+    func deleteHistoryImagesIfUnused(_ names: [String]) {
+        guard !names.isEmpty else { return }
+        let memos = (try? load(type: .memo)) ?? []
+        var inUse = Set(memos.flatMap(\.imageFileNames))
+        for memo in memos { if let single = memo.imageFileName, !single.isEmpty { inUse.insert(single) } }
+        for name in names where !inUse.contains(name) {
+            try? deleteImage(fileName: name)
+        }
     }
 
     // 이미지와 함께 클립보드 히스토리 추가
@@ -621,28 +641,7 @@ class MemoStore: ObservableObject {
             contentType: .image
         )
         history.insert(newItem, at: 0)
-
-        // 최대 100개까지만 유지
-        if history.count > 100 {
-            // 삭제되는 항목의 이미지 파일도 삭제
-            for item in history[100...] {
-                if let imageFileName = item.imageFileName {
-                    try? deleteImage(fileName: imageFileName)
-                }
-            }
-            history = Array(history.prefix(100))
-        }
-
-        // 7일 이상 된 임시 항목 자동 삭제
-        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
-        let itemsToDelete = history.filter { $0.isTemporary && $0.copiedAt < sevenDaysAgo }
-        for item in itemsToDelete {
-            if let imageFileName = item.imageFileName {
-                try? deleteImage(fileName: imageFileName)
-            }
-        }
-        history.removeAll { $0.isTemporary && $0.copiedAt < sevenDaysAgo }
-
+        trimClipboardHistory(&history)
         try saveClipboardHistory(history: history)
     }
 
@@ -685,12 +684,25 @@ class MemoStore: ObservableObject {
 
         let fileURL = containerURL.appendingPathComponent("Images", isDirectory: true).appendingPathComponent(fileName)
 
-        guard FileManager.default.fileExists(atPath: fileURL.path) else {
+        // 목록 줄은 다시 그릴 때마다(마우스만 올려도) 이 함수를 부른다. 그때마다 파일을 읽지 않게
+        // 메모리에 둔다. 열쇠에 수정 시각을 넣어, 복원 등으로 같은 이름의 파일이 바뀌면 새로 읽는다.
+        guard let attributes = try? FileManager.default.attributesOfItem(atPath: fileURL.path) else {
             return nil
         }
-
-        return NSImage(contentsOf: fileURL)
+        let modified = (attributes[.modificationDate] as? Date)?.timeIntervalSince1970 ?? 0
+        let key = "\(fileName)|\(modified)" as NSString
+        if let cached = Self.imageCache.object(forKey: key) { return cached }
+        guard let image = NSImage(contentsOf: fileURL) else { return nil }
+        Self.imageCache.setObject(image, forKey: key, cost: (attributes[.size] as? Int) ?? 0)
+        return image
     }
+
+    /// 읽은 그림. 64MB 까지 - 넘치면 시스템이 오래된 것부터 버린다.
+    private static let imageCache: NSCache<NSString, NSImage> = {
+        let cache = NSCache<NSString, NSImage>()
+        cache.totalCostLimit = 64 * 1024 * 1024
+        return cache
+    }()
 
     // 이미지 삭제
     func deleteImage(fileName: String) throws {

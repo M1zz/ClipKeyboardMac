@@ -521,18 +521,10 @@ struct CompactMemoItemRow: View {
         .padding(.trailing, MacSpacing.xs)
     }
 
-    private var copyButton: some View {
-        // Button(.plain)으로 감싸야 macOS List의 드래그 순서변경(.onMove)과 클릭-복사가
-        // 공존한다. .onTapGesture 는 List의 reorder 드래그 제스처를 가로채 드래그가 안 먹는다.
-        Button(action: onCopy) {
+    // 몸통을 나눠 둔다. 한 덩어리일 때는 컴파일러가 타입을 푸는 데 2초 가까이 걸렸다.
+    private var rowContent: some View {
         HStack(spacing: MacSpacing.md) {
-            // 아이콘 — 즐겨찾기만 색으로 강조하고 나머지는 무채색으로 통일.
-            Image(systemName: memo.contentType == .image ? "photo" :
-                  memo.isFavorite ? "star.fill" :
-                  memo.isSecure ? "lock.fill" : "doc.text")
-                .foregroundStyle(memo.isFavorite ? AnyShapeStyle(Color.yellow) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
-                .font(MacFont.body)
-                .frame(width: MacIcon.glyph)
+            rowIcon
 
             // 콘텐츠
             VStack(alignment: .leading, spacing: MacSpacing.xs / 2) {
@@ -556,26 +548,7 @@ struct CompactMemoItemRow: View {
                         ? [memo.imageFileName!]
                         : memo.imageFileNames
 
-                    if !imageFileNames.isEmpty {
-                        HStack(spacing: MacSpacing.xs) {
-                            ForEach(Array(imageFileNames.prefix(3).enumerated()), id: \.offset) { _, fileName in
-                                if let image = MemoStore.shared.loadImage(fileName: fileName) {
-                                    Image(nsImage: image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 32, height: 32)
-                                        .clipped()
-                                        .cornerRadius(MacRadius.xs)
-                                }
-                            }
-
-                            if imageFileNames.count > 3 {
-                                Text("+\(imageFileNames.count - 3)")
-                                    .font(MacFont.secondary)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
-                    }
+                    imageStrip(imageFileNames)
 
                     if memo.contentType == .mixed && !memo.value.isEmpty {
                         Text(memo.isSecure ? AttributedString(MacSecureAccess.maskedPreview(memo)) : memo.value.templateChipAttributed())
@@ -595,7 +568,48 @@ struct CompactMemoItemRow: View {
         .padding(.horizontal, MacSpacing.sm)
         .background(isHovering ? MacColor.hover : Color.clear)
         .cornerRadius(MacRadius.xs)
-        .contentShape(Rectangle())
+    }
+
+    private var rowIcon: some View {
+        // 아이콘 — 즐겨찾기만 색으로 강조하고 나머지는 무채색으로 통일.
+        Image(systemName: memo.contentType == .image ? "photo" :
+              memo.isFavorite ? "star.fill" :
+              memo.isSecure ? "lock.fill" : "doc.text")
+            .foregroundStyle(memo.isFavorite ? AnyShapeStyle(Color.yellow) : AnyShapeStyle(HierarchicalShapeStyle.secondary))
+            .font(MacFont.body)
+            .frame(width: MacIcon.glyph)
+    }
+
+    @ViewBuilder
+    private func imageStrip(_ imageFileNames: [String]) -> some View {
+        if !imageFileNames.isEmpty {
+            HStack(spacing: MacSpacing.xs) {
+                ForEach(Array(imageFileNames.prefix(3).enumerated()), id: \.offset) { _, fileName in
+                    if let image = MemoStore.shared.loadImage(fileName: fileName) {
+                        Image(nsImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 32, height: 32)
+                            .clipped()
+                            .cornerRadius(MacRadius.xs)
+                    }
+                }
+
+                if imageFileNames.count > 3 {
+                    Text("+\(imageFileNames.count - 3)")
+                        .font(MacFont.secondary)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+
+    private var copyButton: some View {
+        // Button(.plain)으로 감싸야 macOS List의 드래그 순서변경(.onMove)과 클릭-복사가
+        // 공존한다. .onTapGesture 는 List의 reorder 드래그 제스처를 가로채 드래그가 안 먹는다.
+        Button(action: onCopy) {
+            rowContent
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .accessibilityElement(children: .ignore)

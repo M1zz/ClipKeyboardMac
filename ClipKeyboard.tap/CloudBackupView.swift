@@ -365,6 +365,8 @@ struct CloudBackupView: View {
         case .nothingToBackUp:
             alertTitle = NSLocalizedString("백업할 것이 없습니다", comment: "Nothing to back up title")
             alertMessage = NSLocalizedString("저장된 단축어가 없어 백업하지 않았습니다.", comment: "Nothing to back up body")
+        case .unchanged:
+            return   // 자동 백업에서만 나온다. 수동 백업은 늘 올린다.
         case .skippedToProtectExisting(let existing, let new):
             alertTitle = NSLocalizedString("기존 백업을 지켰습니다", comment: "Backup skipped title")
             alertMessage = String(format: NSLocalizedString("이 기기의 단축어가 %2$d개뿐이라 %1$d개짜리 기존 백업을 덮어쓰지 않았습니다.", comment: "Backup skipped body"), existing, new)

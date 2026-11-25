@@ -43,7 +43,7 @@ enum MacRecentClips {
         do {
             try MemoStore.shared.saveClipboardHistory(history: all)
             if let fileName = clip.imageFileName {
-                try? MemoStore.shared.deleteImage(fileName: fileName)
+                MemoStore.shared.deleteHistoryImagesIfUnused([fileName])
             }
             print("🗑️ [MacRecentClips.delete] 최근 항목 1개 삭제")
         } catch {
