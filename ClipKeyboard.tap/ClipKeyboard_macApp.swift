@@ -157,6 +157,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // 무료 · Plus · Pro — 산 것을 먼저 읽는다. iCloud 복원 · 동기화가 그 권한을 본다.
             await MacPlan.shared.start()
             if MacPlan.shared.takeGraduationOfferIfDue() { MacPaywall.present(.graduation) }
+            // 클립키보드로 건너갈 것을 적어 두고(산 사람 여부는 방금 읽었다), 클립키보드가 뜨면 물러난다.
+            await MainActor.run {
+                MacHandoff.write(paid: MacPlan.shared.isPaidDownloadOwner)
+                SunsetNotice.watchForClipKeyboard()
+            }
 
             // 방금 비운 실행에서는 백업 자동 복원·예시 심기를 건너뛴다. 비운 자리는
             // 동기화가 채워야 하고, 여기서 백업을 덮어쓰면 무엇이 들어왔는지 알 수 없다.
@@ -214,6 +219,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        // 끄기 전 설정이 마지막으로 넘어가게.
+        MacHandoff.write(paid: MacPlan.shared.isPaidDownloadOwner)
         print("🛑 [APP] 앱 종료 중...")
 
         // 클립보드 모니터링 중지

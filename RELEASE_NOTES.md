@@ -9,6 +9,152 @@ DeployBar 가 배포할 때 아래 `### 앱스토어` 절을 읽어 간다.
 
 확인: `DeployBar --reponotes 탭클립키보드 5.1.9`
 
+## 5.1.12
+
+### 앱스토어 (한국어)
+
+이 앱은 곧 App Store 에서 내려갑니다
+클립키보드 맥 앱으로 설정과 구매가 그대로 이어져요
+클립키보드를 켜면 이 앱은 스스로 닫혀요
+
+### App Store (English)
+
+This app will soon leave the App Store
+Your settings and purchase carry over to ClipKeyboard
+This app closes itself once ClipKeyboard opens
+
+### App Store (en-GB)
+
+This app will soon leave the App Store
+Your settings and purchase carry over to ClipKeyboard
+This app closes itself once ClipKeyboard opens
+
+### 앱스토어 (중국어 간체)
+
+本应用即将从 App Store 下架
+设置和已购功能会原样转到剪贴键盘
+打开剪贴键盘后，本应用会自动关闭
+
+### 앱스토어 (중국어 번체)
+
+本 App 即將從 App Store 下架
+設定和已購功能會原樣轉到剪貼鍵盤
+打開剪貼鍵盤後，本 App 會自動關閉
+
+### 앱스토어 (일본어, ja)
+
+このアプリはまもなくApp Storeから削除されます
+設定と購入はClipKeyboardにそのまま引き継がれます
+ClipKeyboardを開くとこのアプリは自動で閉じます
+
+### 앱스토어 (독일어, de)
+
+Diese App verlässt bald den App Store
+Einstellungen und Käufe gehen auf ClipKeyboard über
+Die App schließt sich, sobald ClipKeyboard startet
+
+### 앱스토어 (스페인어, es)
+
+Esta app saldrá pronto del App Store
+Tus ajustes y compras pasan a ClipKeyboard
+Esta app se cierra sola al abrir ClipKeyboard
+
+### 앱스토어 (프랑스어, fr)
+
+Cette app va bientôt quitter l'App Store
+Réglages et achats passent à ClipKeyboard
+L'app se ferme d'elle-même à l'ouverture de ClipKeyboard
+
+### 앱스토어 (이탈리아어, it)
+
+Questa app lascerà presto l'App Store
+Impostazioni e acquisti passano a ClipKeyboard
+L'app si chiude da sola quando apri ClipKeyboard
+
+### 앱스토어 (포르투갈어(브라질), pt-BR)
+
+Este app sairá em breve da App Store
+Ajustes e compras continuam no ClipKeyboard
+O app se fecha sozinho ao abrir o ClipKeyboard
+
+### 앱스토어 (러시아어, ru)
+
+Приложение скоро исчезнет из App Store
+Настройки и покупки перейдут в ClipKeyboard
+Приложение закроется само при запуске ClipKeyboard
+
+### 앱스토어 (체코어, cs)
+
+Tato aplikace brzy zmizí z App Storu
+Nastavení i nákup přejdou do ClipKeyboard
+Po spuštění ClipKeyboard se aplikace sama zavře
+
+### 앱스토어 (덴마크어, da)
+
+Appen forsvinder snart fra App Store
+Indstillinger og køb følger med til ClipKeyboard
+Appen lukker selv, når ClipKeyboard åbner
+
+### 앱스토어 (그리스어, el)
+
+Η εφαρμογή σύντομα αποσύρεται από το App Store
+Ρυθμίσεις και αγορές μεταφέρονται στο ClipKeyboard
+Κλείνει μόνη της όταν ανοίγει το ClipKeyboard
+
+### 앱스토어 (핀란드어, fi)
+
+Tämä appi poistuu pian App Storesta
+Asetukset ja ostokset siirtyvät ClipKeyboardiin
+Appi sulkeutuu itse, kun ClipKeyboard avautuu
+
+### 앱스토어 (인도네시아어, id)
+
+Aplikasi ini akan segera keluar dari App Store
+Pengaturan dan pembelian terbawa ke ClipKeyboard
+Aplikasi ini menutup sendiri saat ClipKeyboard dibuka
+
+### 앱스토어 (노르웨이어(보크말), nb)
+
+Appen forsvinner snart fra App Store
+Innstillinger og kjøp følger med til ClipKeyboard
+Appen lukker seg selv når ClipKeyboard åpnes
+
+### 앱스토어 (네덜란드어, nl)
+
+Deze app verdwijnt binnenkort uit de App Store
+Instellingen en aankopen gaan mee naar ClipKeyboard
+De app sluit zichzelf zodra ClipKeyboard opent
+
+### 앱스토어 (폴란드어, pl)
+
+Ta aplikacja wkrótce zniknie z App Store
+Ustawienia i zakupy przejdą do ClipKeyboard
+Aplikacja sama się zamknie po otwarciu ClipKeyboard
+
+### 앱스토어 (스웨덴어, sv)
+
+Appen försvinner snart från App Store
+Inställningar och köp följer med till ClipKeyboard
+Appen stänger sig själv när ClipKeyboard öppnas
+
+### 앱스토어 (태국어, th)
+
+แอปนี้จะถูกนำออกจาก App Store เร็วๆ นี้
+การตั้งค่าและสิ่งที่ซื้อไว้ย้ายไป ClipKeyboard ครบ
+เปิด ClipKeyboard แล้วแอปนี้จะปิดเอง
+
+### 앱스토어 (튀르키예어, tr)
+
+Bu uygulama yakında App Store'dan kalkıyor
+Ayarlar ve satın alımlar ClipKeyboard'a geçer
+ClipKeyboard açılınca bu uygulama kendini kapatır
+
+### 앱스토어 (베트남어, vi)
+
+Ứng dụng này sắp rời App Store
+Cài đặt và phần đã mua chuyển sang ClipKeyboard
+Ứng dụng tự đóng khi ClipKeyboard được mở
+
 ## 5.1.11
 
 ### 앱스토어 (한국어)
