@@ -23,13 +23,13 @@ DeployBar 가 이 파일을 읽어 맥 앱(com.ysoup.TokenMemo-tap) 레코드의
 
 ```
 자주 쓰는 말을 저장해 두고, 메뉴바에서 한 번에 꺼내 씁니다.
-⌃⇧V 한 번이면 쓰던 앱 위에 단축어 패널이 뜹니다.
+Control+Shift+V 한 번이면 쓰던 앱 위에 단축어 패널이 뜹니다.
 
 계좌번호, 주소, 메일 서명, 자기소개, 매일 보내는 답장. 하루에도 몇 번씩 다시 치는 글은 한 번만 저장해 두세요. 고르면 클립보드에 담기고, 쓰던 자리에서 ⌘V로 붙여넣으면 끝입니다.
 
 주요 기능
 
-빠른 붙여넣기 패널: ⌃⇧V를 누르면 쓰던 앱의 포커스를 빼앗지 않고 그 위에 뜹니다.
+빠른 붙여넣기 패널: Control+Shift+V를 누르면 쓰던 앱의 포커스를 빼앗지 않고 그 위에 뜹니다.
 메뉴바 상주: Dock을 차지하지 않습니다. 메뉴바 아이콘에서 검색하거나 ⌘1~9로 바로 고릅니다.
 카테고리와 즐겨찾기: 업무, 개인, 여행처럼 나눠 두고 자주 쓰는 것은 즐겨찾기로 올립니다. 순서는 끌어서 정합니다.
 템플릿: 바뀌는 자리를 { }로 비워 두면 복사할 때 채우는 창이 열립니다. 날짜, 시간, 타임존, 통화, 인사말, 도시는 자동으로 채워집니다.
@@ -64,7 +64,7 @@ iCloud 백업과 복원, 최근 15개 시점으로 되돌리기, 파일로 내�
 ### 프로모션 텍스트
 
 ```
-계좌번호, 주소, 메일 서명처럼 매번 다시 치는 글은 한 번만 저장하세요. ⌃⇧V를 누르면 쓰던 앱 위에 바로 뜨고, 고른 다음 ⌘V로 붙여넣으면 끝입니다.
+이제 23개 언어로 씁니다. 일본어, 독일어, 프랑스어, 스페인어 등을 새로 지원하고, 처음 켤 때 드리는 예시 단축어도 그 언어로 나옵니다.
 ```
 
 ### 지원 URL
@@ -138,7 +138,7 @@ history,clipboard,replies,text,signature,snippet,template,boilerplate,canned,exp
 ### 프로모션 텍스트
 
 ```
-Save the text you keep retyping, like your address, bank details or email sign-off, just once. Press Control-Shift-V and it pops up over any app, ready to paste.
+Now in 23 languages. Japanese, German, French, Spanish and more are new, and the starter snippets you get on first launch now speak your language too.
 ```
 
 ### 지원 URL
@@ -212,7 +212,7 @@ history,clipboard,replies,text,signature,snippet,template,boilerplate,canned,exp
 ### 프로모션 텍스트
 
 ```
-Save the text you keep retyping, like your address, bank details or email sign-off, just once. Press Control-Shift-V and it pops up over any app, ready to paste.
+Now in 24 languages, with British English joining. Your first-launch starter snippets now speak your language too.
 ```
 
 ### 지원 URL
@@ -245,13 +245,13 @@ ClipKeyboard - 菜单栏快捷粘贴
 
 ```
 把常打的话存起来，在菜单栏里一下就能取出来。
-按下 ⌃⇧V，短语面板就会浮在你正在用的 App 上面。
+按下 Control+Shift+V，短语面板就会浮在你正在用的 App 上面。
 
 银行账号、地址、邮件签名、自我介绍、每天都要发的回复，存一次就够了。选中一条，内容就进了剪贴板，回到刚才打字的地方按 ⌘V 就贴好了。
 
 主要功能
 
-快速粘贴面板：按 ⌃⇧V，面板浮在当前 App 之上，不会抢走焦点。
+快速粘贴面板：按 Control+Shift+V，面板浮在当前 App 之上，不会抢走焦点。
 常驻菜单栏：不占用 Dock。从菜单栏图标里搜索，或按 ⌘1 到 9 直接选取。
 分类与收藏：按工作、个人、旅行等分好类，常用的加入收藏，拖动即可调整顺序。
 模板：把每次会变的地方用 { } 空出来，复制时弹出填写窗口。日期、时间、时区、货币、问候语、城市会自动填好。
@@ -286,7 +286,7 @@ ClipKeyboard - 菜单栏快捷粘贴
 ### 프로모션 텍스트
 
 ```
-地址、银行账号、邮件签名这些总要重打的内容，只存一次就好。按下 ⌃⇧V，短语面板就浮在正在用的 App 上，选好直接粘贴。
+现已支持 23 种语言，新增日语、德语、法语、西班牙语等。第一次打开时附带的示例短语，也会按你的语言显示。
 ```
 
 ### 지원 URL
@@ -319,13 +319,13 @@ ClipKeyboard - 選單列快捷貼上
 
 ```
 把常打的字存起來，從選單列一下就能拿出來用。
-按下 ⌃⇧V，短語面板就會浮在你正在使用的 App 上方。
+按下 Control+Shift+V，短語面板就會浮在你正在使用的 App 上方。
 
 銀行帳號、地址、郵件簽名、自我介紹、每天都要回的訊息，存一次就夠了。點選一則，內容就進了剪貼簿，回到剛才打字的地方按 ⌘V 就貼好了。
 
 主要功能
 
-快速貼上面板：按 ⌃⇧V，面板浮在目前的 App 上方，不會搶走焦點。
+快速貼上面板：按 Control+Shift+V，面板浮在目前的 App 上方，不會搶走焦點。
 常駐選單列：不佔用 Dock。從選單列圖像搜尋，或按 ⌘1 到 9 直接選取。
 分類與收藏：依工作、個人、旅行等分類整理，常用的加入收藏，拖移即可調整順序。
 範本：把每次會變的地方用 { } 空下來，複製時跳出填寫視窗。日期、時間、時區、貨幣、問候語、城市會自動填好。
@@ -360,7 +360,7 @@ ClipKeyboard - 選單列快捷貼上
 ### 프로모션 텍스트
 
 ```
-地址、銀行帳號、郵件簽名這些老是要重打的內容，只要存一次。按下 ⌃⇧V，短語面板就浮在正在用的 App 上，選好直接貼上。
+現在支援 23 種語言，新增日文、德文、法文、西班牙文等。第一次開啟時附帶的範例短語，也會依你的語言顯示。
 ```
 
 ### 지원 URL
@@ -393,13 +393,13 @@ ClipKeyboard: 定型文をすぐ貼り付け
 
 ```
 よく使う文章を保存して、メニューバーからすぐに取り出せます。
-⌃⇧Vを押せば、いま使っているアプリの手前にスニペットのパネルが開きます。
+Control+Shift+Vを押せば、いま使っているアプリの手前にスニペットのパネルが開きます。
 
 振込先、住所、メールの署名、自己紹介、毎日送る返信。何度も打ち直している文章は、一度保存しておくだけ。選べばクリップボードにコピーされ、入力していた場所で⌘Vを押せば完了です。
 
 主な機能
 
-クイックペーストパネル：⌃⇧Vで、使っているアプリのフォーカスを奪わずに手前に開きます。
+クイックペーストパネル：Control+Shift+Vで、使っているアプリのフォーカスを奪わずに手前に開きます。
 メニューバーに常駐：Dockを占領しません。メニューバーのアイコンから検索したり、⌘1〜9ですぐに選べます。
 カテゴリとお気に入り：仕事、プライベート、旅行のように分けておき、よく使うものはお気に入りに。並び順はドラッグで決められます。
 テンプレート：毎回変わる部分を{ }で空けておくと、コピーするときに入力欄が開きます。日付、時刻、タイムゾーン、通貨、あいさつ、都市は自動で入ります。
@@ -434,7 +434,7 @@ iCloudへのバックアップと復元、直近15件の時点への巻き戻し
 ### 프로모션 텍스트
 
 ```
-住所、口座番号、メールの署名。何度も打ち直す文章は一度だけ保存しましょう。⌃⇧Vを押せば使っているアプリの手前にパネルが開き、選んで貼り付けるだけです。
+23の言語に対応しました。日本語もそのひとつです。はじめて起動したときに入っているサンプルのスニペットも、Macの言語に合わせて表示されます。
 ```
 
 ### 지원 URL
@@ -467,13 +467,13 @@ Ein Kürzel, überall eingefügt
 
 ```
 Speichere Texte, die du immer wieder tippst, und hol sie dir in Sekunden aus der Menüleiste.
-Ein Druck auf ⌃⇧V, und deine Textbausteine erscheinen über der App, in der du gerade arbeitest.
+Ein Druck auf Control+Shift+V, und deine Textbausteine erscheinen über der App, in der du gerade arbeitest.
 
 Bankverbindung, Adresse, E-Mail-Signatur, eine kurze Vorstellung, die Antwort, die du jeden Tag schreibst: Einmal sichern genügt. Wähl einen Baustein aus, er liegt sofort in der Zwischenablage, und mit ⌘V setzt du ihn genau dort ein, wo du gerade schreibst.
 
 Das kann ClipKeyboard
 
-Schnelleinfügen-Fenster: ⌃⇧V öffnet es über deiner aktuellen App, ohne ihr den Fokus zu nehmen.
+Schnelleinfügen-Fenster: Control+Shift+V öffnet es über deiner aktuellen App, ohne ihr den Fokus zu nehmen.
 In der Menüleiste zu Hause: kein Symbol im Dock. Durchsuche deine Bausteine über das Menüleistensymbol oder greif mit ⌘1 bis 9 direkt zu.
 Kategorien und Favoriten: Sortiere nach Arbeit, Privat, Reisen oder wie du magst, markiere häufig Genutztes als Favorit und leg die Reihenfolge per Drag & Drop fest.
 Vorlagen: Lass wechselnde Stellen in { } frei und füll sie beim Kopieren aus. Datum, Uhrzeit, Zeitzone, Währung, Begrüßung und Stadt werden automatisch eingesetzt.
@@ -508,7 +508,7 @@ zwischenablage,verlauf,snippets,vorlagen,copy,paste,kopieren,signatur,produktivi
 ### 프로모션 텍스트
 
 ```
-Adresse, IBAN, E-Mail-Signatur: Was du ständig neu tippst, speicherst du einmal. Mit ⌃⇧V erscheinen deine Textbausteine über jeder App, bereit zum Einfügen.
+Jetzt in 23 Sprachen, auch auf Deutsch. Und die Beispiel-Textbausteine beim ersten Start erscheinen gleich in deiner Sprache.
 ```
 
 ### 지원 URL
@@ -541,13 +541,13 @@ Tus textos con un solo atajo
 
 ```
 Guarda los textos que escribes una y otra vez y recupéralos en un segundo desde la barra de menús.
-Pulsa ⌃⇧V y tus fragmentos aparecen sobre la app que estés usando.
+Pulsa Control+Shift+V y tus fragmentos aparecen sobre la app que estés usando.
 
 Datos bancarios, direcciones, firmas de correo, una breve presentación, la respuesta que envías todos los días. Guárdalos una sola vez. Elige uno y ya está en el portapapeles, listo para pegarlo con ⌘V justo donde estabas escribiendo.
 
 Qué puedes hacer
 
-Panel de pegado rápido: ⌃⇧V lo abre sobre la app actual sin quitarle el foco.
+Panel de pegado rápido: Control+Shift+V lo abre sobre la app actual sin quitarle el foco.
 Vive en la barra de menús: sin icono en el Dock. Busca desde el icono de la barra de menús o pulsa ⌘1 a 9 para copiar un fragmento al momento.
 Categorías y favoritos: agrupa tus fragmentos en Trabajo, Personal, Viajes o como prefieras, marca como favoritos los que más usas y ordénalos arrastrando.
 Plantillas: deja entre { } las partes que cambian y rellénalas al copiar. La fecha, la hora, la zona horaria, la moneda, el saludo y la ciudad se completan solos.
@@ -582,7 +582,7 @@ portapapeles,historial,fragmentos,plantillas,copiar,pegar,firma,correo,respuesta
 ### 프로모션 텍스트
 
 ```
-Tu dirección, tu número de cuenta, tu firma de correo: guarda una sola vez lo que siempre vuelves a escribir. Pulsa ⌃⇧V y aparece sobre cualquier app, listo para pegar.
+Ahora en 23 idiomas, incluido el español. Y los fragmentos de ejemplo que aparecen la primera vez que abres la app también están en tu idioma.
 ```
 
 ### 지원 URL
@@ -615,13 +615,13 @@ Vos textes en un raccourci
 
 ```
 Enregistrez les textes que vous tapez sans cesse et retrouvez-les en une seconde depuis la barre des menus.
-Appuyez sur ⌃⇧V : vos extraits s’affichent par-dessus l’app que vous utilisez.
+Appuyez sur Control+Shift+V : vos extraits s’affichent par-dessus l’app que vous utilisez.
 
 RIB, adresse, signature d’e-mail, courte présentation, la réponse que vous envoyez tous les jours. Enregistrez-les une fois pour toutes. Choisissez-en un, il est aussitôt dans le presse-papiers, prêt à être collé avec ⌘V là où vous écriviez.
 
 Ce que vous pouvez faire
 
-Panneau de collage rapide : ⌃⇧V l’ouvre par-dessus l’app en cours, sans lui voler le focus.
+Panneau de collage rapide : Control+Shift+V l’ouvre par-dessus l’app en cours, sans lui voler le focus.
 Dans la barre des menus : aucune icône dans le Dock. Cherchez depuis l’icône de la barre des menus ou appuyez sur ⌘1 à 9 pour copier un extrait.
 Catégories et favoris : classez vos extraits par Travail, Perso, Voyage ou comme vous voulez, mettez en favori ceux que vous utilisez le plus et réorganisez-les par glisser-déposer.
 Modèles : laissez entre { } les parties qui changent et remplissez-les au moment de copier. La date, l’heure, le fuseau horaire, la devise, la salutation et la ville se remplissent toutes seules.
@@ -656,7 +656,7 @@ presse-papiers,historique,extraits,modèles,copier,coller,signature,réponse,pro
 ### 프로모션 텍스트
 
 ```
-Adresse, RIB, signature d'e-mail : enregistrez une fois ce que vous retapez sans cesse. Appuyez sur ⌃⇧V et vos extraits s'affichent sur toute app, prêts à coller.
+Désormais en 23 langues, dont le français. Et les extraits d’exemple proposés au premier lancement s’affichent eux aussi dans votre langue.
 ```
 
 ### 지원 URL
@@ -689,13 +689,13 @@ I tuoi testi con un solo tasto
 
 ```
 Salva i testi che digiti di continuo e richiamali in un attimo dalla barra dei menu.
-Premi ⌃⇧V e i tuoi frammenti compaiono sopra l’app che stai usando.
+Premi Control+Shift+V e i tuoi frammenti compaiono sopra l’app che stai usando.
 
 Coordinate bancarie, indirizzi, firme email, una breve presentazione, la risposta che invii ogni giorno. Salvali una volta sola. Scegline uno ed è subito negli appunti, pronto da incollare con ⌘V proprio dove stavi scrivendo.
 
 Cosa puoi fare
 
-Pannello Incolla rapido: ⌃⇧V lo apre sopra l’app corrente senza toglierle il focus.
+Pannello Incolla rapido: Control+Shift+V lo apre sopra l’app corrente senza toglierle il focus.
 Sta nella barra dei menu: nessuna icona nel Dock. Cerca dall’icona nella barra dei menu oppure premi ⌘1–9 per copiare subito un frammento.
 Categorie e preferiti: raggruppa i frammenti in Lavoro, Personale, Viaggi o come preferisci, metti tra i preferiti quelli che usi di più e riordinali trascinandoli.
 Modelli: lascia tra { } le parti che cambiano e compilale al momento della copia. Data, ora, fuso orario, valuta, saluto e città si compilano da soli.
@@ -730,7 +730,7 @@ appunti,cronologia,frammenti,modelli,copia,scorciatoie,firma,email,risposte,prod
 ### 프로모션 텍스트
 
 ```
-Indirizzo, IBAN, firma email: salva una volta sola ciò che riscrivi di continuo. Premi ⌃⇧V e i tuoi frammenti compaiono sopra qualsiasi app, pronti da incollare.
+Ora in 23 lingue, italiano compreso. E i frammenti di esempio che trovi al primo avvio sono anche loro nella tua lingua.
 ```
 
 ### 지원 URL
@@ -763,13 +763,13 @@ Seus textos em um só atalho
 
 ```
 Salve os textos que você digita toda hora e pegue-os em um segundo na barra de menus.
-Pressione ⌃⇧V e seus trechos aparecem sobre o app que você está usando.
+Pressione Control+Shift+V e seus trechos aparecem sobre o app que você está usando.
 
 Dados bancários, endereços, assinaturas de e-mail, uma apresentação curta, aquela resposta que você manda todo dia. Salve uma vez só. Escolha um e ele já vai para a área de transferência, pronto para colar com ⌘V bem onde você estava digitando.
 
 O que dá para fazer
 
-Painel de colagem rápida: ⌃⇧V abre o painel sobre o app atual sem tirar o foco dele.
+Painel de colagem rápida: Control+Shift+V abre o painel sobre o app atual sem tirar o foco dele.
 Fica na barra de menus: nada de ícone no Dock. Busque pelo ícone da barra de menus ou pressione ⌘1 a 9 para copiar um trecho na hora.
 Categorias e favoritos: separe seus trechos em Trabalho, Pessoal, Viagem ou do jeito que quiser, marque como favoritos os que mais usa e reordene arrastando.
 Modelos: deixe entre { } as partes que mudam e preencha na hora de copiar. Data, hora, fuso horário, moeda, saudação e cidade são preenchidos sozinhos.
@@ -804,7 +804,7 @@ Termos de Uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/s
 ### 프로모션 텍스트
 
 ```
-Endereço, dados bancários, assinatura de e-mail: salve uma vez o que você vive redigitando. Pressione ⌃⇧V e seus trechos aparecem sobre qualquer app, prontos para colar.
+Agora em 23 idiomas, incluindo português. E os trechos de exemplo que aparecem na primeira vez que você abre o app também vêm no seu idioma.
 ```
 
 ### 지원 URL
@@ -837,13 +837,13 @@ ClipKeyboard: быстрая вставка
 
 ```
 Сохраните текст, который набираете снова и снова, и доставайте его из строки меню за секунду.
-Нажмите ⌃⇧V, и заготовки появятся поверх приложения, в котором вы работаете.
+Нажмите Control+Shift+V, и заготовки появятся поверх приложения, в котором вы работаете.
 
 Реквизиты, адрес, подпись письма, пара строк о себе, ответ, который вы пишете каждый день. Сохраните их один раз. Выберите заготовку, и она уже в буфере обмена: остаётся нажать ⌘V там, где вы печатали.
 
 Возможности
 
-Панель быстрой вставки: ⌃⇧V открывает её поверх текущего приложения, не перехватывая фокус.
+Панель быстрой вставки: Control+Shift+V открывает её поверх текущего приложения, не перехватывая фокус.
 Живёт в строке меню: никакого значка в Dock. Ищите заготовки через значок в строке меню или берите нужную сочетанием ⌘1–9.
 Категории и избранное: разложите заготовки по категориям «Работа», «Личное», «Путешествия» или любым другим, отметьте самые нужные и расставьте их в удобном порядке перетаскиванием.
 Шаблоны: оставьте меняющиеся места в { } и заполните их при копировании. Дата, время, часовой пояс, валюта, приветствие и город подставляются автоматически.
@@ -878,7 +878,7 @@ ClipKeyboard: быстрая вставка
 ### 프로모션 텍스트
 
 ```
-Адрес, реквизиты, подпись в письме: сохраните один раз то, что набираете снова и снова. Нажмите ⌃⇧V, и заготовки появятся поверх любого приложения, готовые к вставке.
+Теперь на 23 языках, включая русский. Примеры заготовок, которые появляются при первом запуске, тоже будут на вашем языке.
 ```
 
 ### 지원 URL
@@ -911,13 +911,13 @@ Hotové texty z řádku nabídek
 
 ```
 Uložte si texty, které píšete pořád dokola, a vytáhněte je z řádku nabídek během vteřiny.
-Stiskněte ⌃⇧V a vaše úryvky se objeví nad aplikací, ve které právě pracujete.
+Stiskněte Control+Shift+V a vaše úryvky se objeví nad aplikací, ve které právě pracujete.
 
 Číslo účtu, adresa, podpis e-mailu, krátké představení, odpověď, kterou posíláte každý den. Uložte je jednou. Vyberte úryvek a je hned ve schránce. Pak už jen stisknete ⌘V tam, kde jste psali.
 
 Co ClipKeyboard umí
 
-Panel rychlého vkládání: ⌃⇧V ho otevře nad aktuální aplikací, aniž by jí bral fokus.
+Panel rychlého vkládání: Control+Shift+V ho otevře nad aktuální aplikací, aniž by jí bral fokus.
 Žije na řádku nabídek: žádná ikona v Docku. Hledejte úryvky z ikony na řádku nabídek nebo je vyberte zkratkou ⌘1–9.
 Kategorie a oblíbené: rozdělte úryvky do kategorií Práce, Osobní, Cestování nebo jakýchkoli jiných, nejpoužívanější označte jako oblíbené a pořadí určete přetažením.
 Šablony: měnící se místa nechte ve { } a vyplňte je při kopírování. Datum, čas, časové pásmo, měna, pozdrav a město se doplní samy.
@@ -952,7 +952,7 @@ schránka,historie,úryvky,šablony,kopírovat,vložit,podpis,zkratky,klávesov�
 ### 프로모션 텍스트
 
 ```
-Adresa, číslo účtu, podpis e-mailu: co píšete pořád dokola, uložte jen jednou. Stiskněte ⌃⇧V a úryvky se objeví nad jakoukoli aplikací, připravené k vložení.
+Nově ve 23 jazycích, včetně češtiny. Ukázkové úryvky, které uvidíte při prvním spuštění, se také zobrazí ve vašem jazyce.
 ```
 
 ### 지원 URL
@@ -985,13 +985,13 @@ Tekststykker fra menulinjen
 
 ```
 Gem den tekst, du skriver igen og igen, og hent den fra menulinjen på et øjeblik.
-Tryk på ⌃⇧V, så svæver dine tekststykker over den app, du arbejder i.
+Tryk på Control+Shift+V, så svæver dine tekststykker over den app, du arbejder i.
 
 Bankoplysninger, adresser, e-mailsignaturer, en kort præsentation, det svar, du sender hver dag. Gem dem én gang. Vælg et, så ligger det på udklipsholderen, klar til at blive indsat med ⌘V lige der, hvor du skrev.
 
 Det får du
 
-Panel til hurtig indsætning: ⌃⇧V åbner det over den app, du bruger, uden at tage fokus.
+Panel til hurtig indsætning: Control+Shift+V åbner det over den app, du bruger, uden at tage fokus.
 Bor på menulinjen: intet symbol i Dock. Søg fra symbolet på menulinjen, eller tryk på ⌘1 til 9 for at hente et tekststykke.
 Kategorier og favoritter: del dine tekststykker op i Arbejde, Privat, Rejser eller hvad du vil, marker dem, du bruger mest, som favoritter, og træk for at bestemme rækkefølgen.
 Skabeloner: lad de dele, der skifter, stå i { }, og udfyld dem, når du kopierer. Dato, klokkeslæt, tidszone, valuta, hilsen og by udfyldes automatisk.
@@ -1026,7 +1026,7 @@ udklipsholder,kopiér,skabeloner,snippets,tekst,signatur,standardtekst,historik,
 ### 프로모션 텍스트
 
 ```
-Adresse, kontonummer, mailsignatur: Gem det, du skriver igen og igen, én gang. Tryk på ⌃⇧V, så svæver dine tekststykker over enhver app, klar til at indsætte.
+Nu på 23 sprog, også dansk. Og de eksempler på tekststykker, du får ved første start, kommer nu på dit eget sprog.
 ```
 
 ### 지원 URL
@@ -1059,13 +1059,13 @@ ClipKeyboard: έτοιμα κείμενα
 
 ```
 Αποθηκεύστε τα κείμενα που πληκτρολογείτε ξανά και ξανά και πάρτε τα από τη γραμμή μενού σε ένα δευτερόλεπτο.
-Πατήστε ⌃⇧V και τα αποσπάσματά σας εμφανίζονται πάνω από την εφαρμογή όπου δουλεύετε.
+Πατήστε Control+Shift+V και τα αποσπάσματά σας εμφανίζονται πάνω από την εφαρμογή όπου δουλεύετε.
 
 Τραπεζικά στοιχεία, διευθύνσεις, υπογραφή email, μια σύντομη παρουσίαση, η απάντηση που στέλνετε κάθε μέρα. Αποθηκεύστε τα μία φορά. Επιλέξτε ένα απόσπασμα και βρίσκεται ήδη στο πρόχειρο, έτοιμο για επικόλληση με ⌘V εκεί που γράφατε.
 
 Τι προσφέρει
 
-Πλαίσιο γρήγορης επικόλλησης: το ⌃⇧V το ανοίγει πάνω από την τρέχουσα εφαρμογή χωρίς να της παίρνει την εστίαση.
+Πλαίσιο γρήγορης επικόλλησης: το Control+Shift+V το ανοίγει πάνω από την τρέχουσα εφαρμογή χωρίς να της παίρνει την εστίαση.
 Ζει στη γραμμή μενού: χωρίς εικονίδιο στο Dock. Κάντε αναζήτηση από το εικονίδιο της γραμμής μενού ή πατήστε ⌘1 έως 9 για να πάρετε ένα απόσπασμα.
 Κατηγορίες και αγαπημένα: χωρίστε τα αποσπάσματα σε Δουλειά, Προσωπικά, Ταξίδια ή ό,τι άλλο θέλετε, σημειώστε όσα χρησιμοποιείτε συχνά ως αγαπημένα και ορίστε τη σειρά σύροντάς τα.
 Πρότυπα: αφήστε τα σημεία που αλλάζουν μέσα σε { } και συμπληρώστε τα όταν αντιγράφετε. Ημερομηνία, ώρα, ζώνη ώρας, νόμισμα, χαιρετισμός και πόλη συμπληρώνονται μόνα τους.
@@ -1100,7 +1100,7 @@ ClipKeyboard: έτοιμα κείμενα
 ### 프로모션 텍스트
 
 ```
-Διεύθυνση, αριθμός λογαριασμού, υπογραφή email: αποθηκεύστε μία φορά ό,τι γράφετε ξανά και ξανά. Πατήστε ⌃⇧V και εμφανίζονται πάνω από κάθε εφαρμογή, έτοιμα για χρήση.
+Τώρα σε 23 γλώσσες, ανάμεσά τους και τα ελληνικά. Τα δείγματα αποσπασμάτων που βλέπετε στην πρώτη εκκίνηση εμφανίζονται κι αυτά στη γλώσσα σας.
 ```
 
 ### 지원 URL
@@ -1133,13 +1133,13 @@ Yksi näppäin, liitä minne vain
 
 ```
 Tallenna teksti, jota kirjoitat yhä uudelleen, ja ota se valikkoriviltä hetkessä.
-Paina ⌃⇧V, niin tekstinpätkäsi ilmestyvät käyttämäsi sovelluksen päälle.
+Paina Control+Shift+V, niin tekstinpätkäsi ilmestyvät käyttämäsi sovelluksen päälle.
 
 Pankkitiedot, osoitteet, sähköpostin allekirjoitukset, lyhyt esittely, vastaus, jonka lähetät joka päivä. Tallenna ne kerran. Valitse yksi, niin se on leikepöydällä valmiina sijoitettavaksi ⌘V:llä juuri siihen kohtaan, jossa kirjoitit.
 
 Mitä saat
 
-Pikasijoituspaneeli: ⌃⇧V avaa sen käyttämäsi sovelluksen päälle viemättä siltä fokusta.
+Pikasijoituspaneeli: Control+Shift+V avaa sen käyttämäsi sovelluksen päälle viemättä siltä fokusta.
 Asuu valikkorivillä: ei kuvaketta Dockissa. Etsi valikkorivin symbolin kautta tai nappaa tekstinpätkä painamalla ⌘1–9.
 Kategoriat ja suosikit: jaa tekstinpätkät esimerkiksi ryhmiin Työ, Oma ja Matkat, merkitse eniten käyttämäsi suosikeiksi ja määritä järjestys vetämällä.
 Pohjat: jätä muuttuvat kohdat { }-merkkien sisään ja täytä ne kopioidessasi. Päivämäärä, aika, aikavyöhyke, valuutta, tervehdys ja kaupunki täyttyvät itsestään.
@@ -1174,7 +1174,7 @@ leikepöytä,kopioi,pohjat,snippets,teksti,allekirjoitus,historia,pikanäppäin,
 ### 프로모션 텍스트
 
 ```
-Osoite, tilinumero, sähköpostin allekirjoitus: tallenna kerran se, mitä kirjoitat yhä uudelleen. Paina ⌃⇧V, niin pätkät ilmestyvät minkä tahansa sovelluksen päälle.
+Nyt 23 kielellä, myös suomeksi. Ja ensimmäisellä käynnistyskerralla saatavat esimerkkipätkät näkyvät nyt omalla kielelläsi.
 ```
 
 ### 지원 URL
@@ -1207,13 +1207,13 @@ Teks rutin cukup satu pintasan
 
 ```
 Simpan teks yang sering Anda ketik berulang kali, lalu ambil dari bar menu dalam sekejap.
-Tekan ⌃⇧V dan cuplikan Anda muncul di atas aplikasi yang sedang dipakai.
+Tekan Control+Shift+V dan cuplikan Anda muncul di atas aplikasi yang sedang dipakai.
 
 Nomor rekening, alamat, tanda tangan email, perkenalan singkat, balasan yang Anda kirim setiap hari. Cukup simpan sekali. Pilih satu, langsung masuk ke papan klip, siap ditempel dengan ⌘V tepat di tempat Anda mengetik.
 
 Fitur utama
 
-Panel tempel cepat: ⌃⇧V membukanya di atas aplikasi yang sedang dipakai tanpa mengambil fokus.
+Panel tempel cepat: Control+Shift+V membukanya di atas aplikasi yang sedang dipakai tanpa mengambil fokus.
 Tinggal di bar menu: tidak ada ikon di Dock. Cari lewat ikon bar menu, atau tekan ⌘1 sampai 9 untuk langsung menyalin cuplikan.
 Kategori dan favorit: kelompokkan cuplikan ke Kerja, Pribadi, Perjalanan, atau sesuka Anda, tandai yang paling sering dipakai sebagai favorit, dan atur urutannya dengan seret.
 Templat: biarkan bagian yang berubah di dalam { } dan isi saat menyalin. Tanggal, waktu, zona waktu, mata uang, salam, dan kota terisi otomatis.
@@ -1248,7 +1248,7 @@ clipboard,papan,klip,riwayat,salin,copy,paste,templat,snippet,tanda,tangan,email
 ### 프로모션 텍스트
 
 ```
-Alamat, nomor rekening, tanda tangan email: simpan sekali saja teks yang terus Anda ketik ulang. Tekan ⌃⇧V dan cuplikan muncul di atas aplikasi apa pun, siap ditempel.
+Kini tersedia dalam 23 bahasa, termasuk Bahasa Indonesia. Contoh cuplikan yang muncul saat pertama kali dibuka pun kini memakai bahasa Anda.
 ```
 
 ### 지원 URL
@@ -1281,13 +1281,13 @@ Tekstbiter fra menylinjen
 
 ```
 Lagre teksten du skriver om og om igjen, og hent den fra menylinjen på et øyeblikk.
-Trykk på ⌃⇧V, så svever tekstbitene dine over appen du jobber i.
+Trykk på Control+Shift+V, så svever tekstbitene dine over appen du jobber i.
 
 Bankopplysninger, adresser, e-postsignaturer, en kort presentasjon, svaret du sender hver dag. Lagre dem én gang. Velg én, så ligger den på utklippstavlen, klar til å limes inn med ⌘V akkurat der du skrev.
 
 Dette får du
 
-Panel for rask innliming: ⌃⇧V åpner det over appen du bruker, uten å ta fokus.
+Panel for rask innliming: Control+Shift+V åpner det over appen du bruker, uten å ta fokus.
 Bor i menylinjen: ingen symbol i Dock. Søk fra symbolet i menylinjen, eller trykk på ⌘1 til 9 for å hente en tekstbit.
 Kategorier og favoritter: del inn tekstbitene i Jobb, Privat, Reise eller hva du vil, merk dem du bruker mest, som favoritter, og dra for å bestemme rekkefølgen.
 Maler: la delene som endres, stå i { }, og fyll dem inn når du kopierer. Dato, klokkeslett, tidssone, valuta, hilsen og by fylles inn automatisk.
@@ -1322,7 +1322,7 @@ utklippstavle,kopier,maler,snippets,tekst,signatur,historikk,hurtigtast,produkti
 ### 프로모션 텍스트
 
 ```
-Adresse, kontonummer, e-postsignatur: Lagre det du skriver om og om igjen, én gang. Trykk på ⌃⇧V, så svever tekstbitene over hvilken som helst app, klare til å lime inn.
+Nå på 23 språk, også norsk. Og eksemplene på tekstbiter du får ved første oppstart, vises nå på ditt eget språk.
 ```
 
 ### 지원 URL
@@ -1355,13 +1355,13 @@ Tekstfragmenten in je menubalk
 
 ```
 Bewaar tekst die je steeds opnieuw typt en haal hem in een tel uit de menubalk.
-Druk op ⌃⇧V en je fragmenten verschijnen boven de app waarin je werkt.
+Druk op Control+Shift+V en je fragmenten verschijnen boven de app waarin je werkt.
 
 Bankgegevens, adressen, e-mailhandtekeningen, een korte introductie, het antwoord dat je elke dag stuurt. Bewaar ze één keer. Kies er een, en hij staat op je klembord, klaar om met ⌘V te plakken precies waar je aan het typen was.
 
 Wat je krijgt
 
-Paneel Snel plakken: ⌃⇧V opent het boven je huidige app zonder de focus over te nemen.
+Paneel Snel plakken: Control+Shift+V opent het boven je huidige app zonder de focus over te nemen.
 Woont in de menubalk: geen symbool in het Dock. Zoek via het menubalksymbool of pak een fragment met ⌘1 tot en met 9.
 Categorieën en favorieten: deel je fragmenten in als Werk, Privé, Reizen of wat je maar wilt, markeer de fragmenten die je het vaakst gebruikt als favoriet en sleep om de volgorde te bepalen.
 Sjablonen: laat de delen die veranderen open tussen { } en vul ze in tijdens het kopiëren. Datum, tijd, tijdzone, valuta, begroeting en stad worden automatisch ingevuld.
@@ -1396,7 +1396,7 @@ klembord,kopiëren,sjablonen,snippets,tekst,handtekening,standaardtekst,geschied
 ### 프로모션 텍스트
 
 ```
-Adres, rekeningnummer, mailhandtekening: bewaar één keer wat je steeds opnieuw typt. Druk op ⌃⇧V en je fragmenten verschijnen boven elke app, klaar om te plakken.
+Nu in 23 talen, ook in het Nederlands. En de voorbeeldfragmenten die je bij de eerste start krijgt, verschijnen meteen in jouw taal.
 ```
 
 ### 지원 URL
@@ -1429,13 +1429,13 @@ Gotowe teksty z paska menu
 
 ```
 Zapisz teksty, które wpisujesz w kółko, i wyciągaj je z paska menu w sekundę.
-Naciśnij ⌃⇧V, a Twoje fragmenty pojawią się nad aplikacją, w której właśnie pracujesz.
+Naciśnij Control+Shift+V, a Twoje fragmenty pojawią się nad aplikacją, w której właśnie pracujesz.
 
 Numer konta, adres, podpis w e-mailu, krótkie przedstawienie się, odpowiedź, którą wysyłasz codziennie. Zapisz je raz. Wybierz fragment, a od razu trafi do schowka. Wystarczy nacisnąć ⌘V tam, gdzie piszesz.
 
 Co potrafi ClipKeyboard
 
-Panel szybkiego wklejania: ⌃⇧V otwiera go nad bieżącą aplikacją bez przejmowania fokusu.
+Panel szybkiego wklejania: Control+Shift+V otwiera go nad bieżącą aplikacją bez przejmowania fokusu.
 Mieszka na pasku menu: bez ikony w Docku. Szukaj fragmentów z ikony na pasku menu albo sięgaj po nie skrótem ⌘1–9.
 Kategorie i ulubione: podziel fragmenty na Pracę, Prywatne, Podróże albo dowolne inne kategorie, oznacz najczęściej używane jako ulubione i ustal kolejność przeciąganiem.
 Szablony: zostaw zmieniające się miejsca w { } i uzupełnij je przy kopiowaniu. Data, godzina, strefa czasowa, waluta, powitanie i miasto wpisują się same.
@@ -1470,7 +1470,7 @@ schowek,historia,fragmenty,szablony,kopiuj,wklej,podpis,skróty,klawiszowe,produ
 ### 프로모션 텍스트
 
 ```
-Adres, numer konta, podpis e-maila: zapisz raz to, co wpisujesz w kółko. Naciśnij ⌃⇧V, a fragmenty pojawią się nad dowolną aplikacją, gotowe do wklejenia.
+Teraz w 23 językach, także po polsku. Przykładowe fragmenty, które widzisz przy pierwszym uruchomieniu, też pojawią się w Twoim języku.
 ```
 
 ### 지원 URL
@@ -1503,13 +1503,13 @@ Ett kortkommando, överallt
 
 ```
 Spara texten du skriver om och om igen, och hämta den från menyraden på ett ögonblick.
-Tryck på ⌃⇧V så svävar dina textsnuttar ovanpå appen du arbetar i.
+Tryck på Control+Shift+V så svävar dina textsnuttar ovanpå appen du arbetar i.
 
 Bankuppgifter, adresser, e-postsignaturer, en kort presentation, svaret du skickar varje dag. Spara dem en gång. Välj en så ligger den i urklipp, redo att klistras in med ⌘V precis där du skrev.
 
 Det här får du
 
-Panel för snabb inklistring: ⌃⇧V öppnar den ovanpå appen du använder utan att ta fokus.
+Panel för snabb inklistring: Control+Shift+V öppnar den ovanpå appen du använder utan att ta fokus.
 Bor i menyraden: ingen symbol i Dock. Sök via symbolen i menyraden eller tryck på ⌘1 till 9 för att hämta en textsnutt.
 Kategorier och favoriter: dela in dina textsnuttar i Jobb, Privat, Resor eller vad du vill, markera dem du använder mest som favoriter och dra för att bestämma ordningen.
 Mallar: lämna det som ändras inom { } och fyll i det när du kopierar. Datum, tid, tidszon, valuta, hälsning och stad fylls i automatiskt.
@@ -1544,7 +1544,7 @@ urklipp,kopiera,klistra,mallar,snippets,text,signatur,historik,produktivitet,men
 ### 프로모션 텍스트
 
 ```
-Adress, kontonummer, mejlsignatur: spara en gång det du skriver om och om igen. Tryck på ⌃⇧V så svävar textsnuttarna ovanpå valfri app, redo att klistras in.
+Nu på 23 språk, även svenska. Och exemplen på textsnuttar som du får vid första start visas nu på ditt eget språk.
 ```
 
 ### 지원 URL
@@ -1577,13 +1577,13 @@ ClipKeyboard: วางข้อความด่วน
 
 ```
 บันทึกข้อความที่ต้องพิมพ์ซ้ำบ่อย ๆ แล้วหยิบมาใช้จากแถบเมนูได้ในพริบตา
-กด ⌃⇧V แผงข้อความจะลอยขึ้นเหนือแอปที่คุณใช้อยู่ทันที
+กด Control+Shift+V แผงข้อความจะลอยขึ้นเหนือแอปที่คุณใช้อยู่ทันที
 
 เลขบัญชี ที่อยู่ ลายเซ็นอีเมล คำแนะนำตัว ข้อความตอบกลับที่ส่งทุกวัน บันทึกไว้แค่ครั้งเดียวก็พอ เลือกข้อความแล้วจะถูกคัดลอกไปยังคลิปบอร์ดทันที จากนั้นกด ⌘V ตรงที่กำลังพิมพ์อยู่ก็เสร็จ
 
 ทำอะไรได้บ้าง
 
-แผงวางด่วน: กด ⌃⇧V แผงจะเปิดเหนือแอปที่ใช้อยู่โดยไม่แย่งโฟกัส
+แผงวางด่วน: กด Control+Shift+V แผงจะเปิดเหนือแอปที่ใช้อยู่โดยไม่แย่งโฟกัส
 อยู่บนแถบเมนู: ไม่กินพื้นที่ใน Dock ค้นหาจากไอคอนบนแถบเมนู หรือกด ⌘1 ถึง 9 เพื่อคัดลอกข้อความได้ทันที
 หมวดหมู่และรายการโปรด: แยกข้อความเป็น งาน ส่วนตัว เดินทาง หรือแบบที่คุณชอบ ปักรายการโปรดสำหรับข้อความที่ใช้บ่อย และลากเพื่อจัดลำดับ
 เทมเพลต: เว้นส่วนที่เปลี่ยนไว้ใน { } แล้วกรอกตอนคัดลอก วันที่ เวลา เขตเวลา สกุลเงิน คำทักทาย และเมือง จะถูกกรอกให้อัตโนมัติ
@@ -1618,7 +1618,7 @@ ClipKeyboard: วางข้อความด่วน
 ### 프로모션 텍스트
 
 ```
-ที่อยู่ เลขบัญชี ลายเซ็นอีเมล ข้อความที่ต้องพิมพ์ซ้ำบ่อย ๆ บันทึกไว้ครั้งเดียวพอ กด ⌃⇧V แผงข้อความจะลอยขึ้นเหนือแอปที่ใช้อยู่ พร้อมวางได้ทันที
+ตอนนี้รองรับ 23 ภาษา รวมถึงภาษาไทย และข้อความตัวอย่างที่มีให้ตอนเปิดแอปครั้งแรกก็แสดงเป็นภาษาของคุณด้วย
 ```
 
 ### 지원 URL
@@ -1651,13 +1651,13 @@ Hazır metinler menü çubuğunda
 
 ```
 Tekrar tekrar yazdığınız metinleri kaydedin, menü çubuğundan bir saniyede alın.
-⌃⇧V’ye basın, hazır metinleriniz çalıştığınız uygulamanın üzerinde belirsin.
+Control+Shift+V’ye basın, hazır metinleriniz çalıştığınız uygulamanın üzerinde belirsin.
 
 Banka bilgileri, adres, e-posta imzası, kısa bir tanıtım, her gün gönderdiğiniz yanıt. Bir kez kaydedin. Birini seçin, hemen panoya kopyalansın; yazdığınız yerde ⌘V’ye basmanız yeterli.
 
 Neler sunuyor
 
-Hızlı yapıştırma paneli: ⌃⇧V, paneli geçerli uygulamanın üzerinde odağı almadan açar.
+Hızlı yapıştırma paneli: Control+Shift+V, paneli geçerli uygulamanın üzerinde odağı almadan açar.
 Menü çubuğunda yaşar: Dock’ta simgesi yoktur. Menü çubuğu simgesinden arayın ya da ⌘1–9 ile bir hazır metni hemen alın.
 Kategoriler ve favoriler: Hazır metinleri İş, Kişisel, Seyahat ya da istediğiniz başka kategorilere ayırın, en sık kullandıklarınızı favorilere ekleyin ve sırayı sürükleyerek belirleyin.
 Şablonlar: Değişen kısımları { } içinde bırakın, kopyalarken doldurun. Tarih, saat, saat dilimi, para birimi, selamlama ve şehir kendiliğinden doldurulur.
@@ -1692,7 +1692,7 @@ pano,geçmiş,kopyala,şablon,imza,kısayol,klavye,notlar,genişletme,verimlilik
 ### 프로모션 텍스트
 
 ```
-Adres, IBAN, e-posta imzası: Tekrar tekrar yazdığınız metni bir kez kaydedin. ⌃⇧V'ye basın, hazır metinleriniz her uygulamanın üzerinde belirsin, yapıştırmaya hazır.
+Artık Türkçe dahil 23 dilde. İlk açılışta gördüğünüz örnek hazır metinler de artık kendi dilinizde geliyor.
 ```
 
 ### 지원 URL
@@ -1725,13 +1725,13 @@ Văn bản quen, một phím tắt
 
 ```
 Lưu những đoạn văn bản bạn gõ đi gõ lại, rồi lấy ra từ thanh menu chỉ trong tích tắc.
-Nhấn ⌃⇧V, bảng đoạn văn bản sẽ hiện ngay trên ứng dụng bạn đang dùng.
+Nhấn Control+Shift+V, bảng đoạn văn bản sẽ hiện ngay trên ứng dụng bạn đang dùng.
 
 Số tài khoản, địa chỉ, chữ ký email, lời giới thiệu ngắn, câu trả lời bạn gửi mỗi ngày. Chỉ cần lưu một lần. Chọn một đoạn là nó đã nằm trong bộ nhớ tạm, sẵn sàng dán bằng ⌘V đúng chỗ bạn đang gõ.
 
 Tính năng chính
 
-Bảng dán nhanh: ⌃⇧V mở bảng trên ứng dụng hiện tại mà không lấy mất tiêu điểm.
+Bảng dán nhanh: Control+Shift+V mở bảng trên ứng dụng hiện tại mà không lấy mất tiêu điểm.
 Nằm trên thanh menu: không chiếm chỗ trên Dock. Tìm kiếm từ biểu tượng trên thanh menu hoặc nhấn ⌘1 đến 9 để sao chép ngay.
 Danh mục và mục ưa thích: chia đoạn văn bản thành Công việc, Cá nhân, Du lịch hay theo ý bạn, đánh dấu ưa thích những đoạn hay dùng và kéo để sắp xếp thứ tự.
 Mẫu: để trống phần thay đổi trong { } và điền khi sao chép. Ngày, giờ, múi giờ, tiền tệ, lời chào và thành phố được điền tự động.
@@ -1766,7 +1766,7 @@ clipboard,bộ,nhớ,tạm,sao,chép,lịch,sử,mẫu,câu,trả,lời,chữ,k�
 ### 프로모션 텍스트
 
 ```
-Địa chỉ, số tài khoản, chữ ký email: những gì bạn cứ gõ đi gõ lại, chỉ cần lưu một lần. Nhấn ⌃⇧V, bảng văn bản hiện ngay trên mọi ứng dụng, sẵn sàng để dán.
+Nay đã có 23 ngôn ngữ, trong đó có tiếng Việt. Các đoạn văn bản mẫu xuất hiện khi mở ứng dụng lần đầu cũng hiển thị bằng ngôn ngữ của bạn.
 ```
 
 ### 지원 URL
