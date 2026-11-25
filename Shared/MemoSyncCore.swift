@@ -116,9 +116,12 @@ enum MemoSyncCore {
     /// - local: 현재 로컬 메모.
     /// - localTombstones: 로컬이 알고 있는 삭제 [id: deletedAt].
     /// - remote: 원격에서 받은 레코드들(살아있는 메모/툼스톤 혼재).
+    /// - heldBack: 제목 · 본문만 건진 로컬 사본(`MemoStore.SalvageHold`). 원격 사본이 오면 시각과 상관없이
+    ///   원격이 이기고, 이 사본은 절대 다시 올리지 않는다. 쪼그라든 사본이 온전한 사본을 덮으면 안 된다.
     static func merge(local: [Memo],
                       localTombstones: [UUID: Date],
-                      remote: [RemoteMemo]) -> MergeResult {
+                      remote: [RemoteMemo],
+                      heldBack: Set<UUID> = []) -> MergeResult {
         var alive: [UUID: Memo] = [:]
         for memo in local { alive[memo.id] = memo }
         var tombstones = localTombstones
@@ -131,7 +134,7 @@ enum MemoSyncCore {
 
             if r.isTombstone {
                 // 원격 삭제. 로컬 살아있는 메모가 더 최신이면 로컬 편집이 이김(되살림 + 재업로드).
-                if let lm = localMemo,
+                if let lm = localMemo, !heldBack.contains(lm.id),
                    isNewer(lm.lastEdited, idLhs: lm.id, than: r.lastEdited, idRhs: r.id) {
                     toReupload.append(lm)               // 로컬 alive 유지
                 } else {
@@ -146,7 +149,9 @@ enum MemoSyncCore {
                     continue
                 }
                 if let lm = localMemo {
-                    if isNewer(rm.lastEdited, idLhs: rm.id, than: lm.lastEdited, idRhs: lm.id) {
+                    if heldBack.contains(lm.id) {
+                        alive[r.id] = rm                // 건진 사본은 온전한 원격 사본으로 바꾼다
+                    } else if isNewer(rm.lastEdited, idLhs: rm.id, than: lm.lastEdited, idRhs: lm.id) {
                         alive[r.id] = rm
                     } else if isNewer(lm.lastEdited, idLhs: lm.id, than: rm.lastEdited, idRhs: rm.id) {
                         // 로컬이 더 최신 → 유지하고 **다시 올린다.**

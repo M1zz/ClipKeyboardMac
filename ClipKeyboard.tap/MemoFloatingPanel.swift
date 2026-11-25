@@ -367,7 +367,7 @@ private struct FloatingMemoRow: View {
                 Spacer(minLength: 0)
 
                 if MacPasteFlow.needsInput(memo) {
-                    Image(systemName: AppSymbol.chevronRight)
+                    Image(systemName: AppSymbol.chevronForward)
                         .font(MacFont.body)
                         .foregroundStyle(.tertiary)
                 }

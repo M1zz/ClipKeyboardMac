@@ -14,7 +14,8 @@ enum AppSymbol {
     static let arrowClockwise = "arrow.clockwise"
     static let arrowCounterclockwise = "arrow.counterclockwise"
     static let arrowDownDocFill = "arrow.down.doc.fill"
-    static let arrowLeftCircleFill = "arrow.left.circle.fill"
+    /// 오른쪽에서 왼쪽으로 쓰는 언어에서 저절로 뒤집힌다.
+    static let arrowBackwardCircleFill = "arrow.backward.circle.fill"
     static let arrowTriangle2CirclepathCircle = "arrow.triangle.2.circlepath.circle"
     static let arrowDown = "arrow.down"
     static let arrowUp = "arrow.up"
@@ -45,8 +46,7 @@ enum AppSymbol {
     static let chevronBackward = "chevron.backward"
     static let chevronDown = "chevron.down"
     static let chevronForward = "chevron.forward"
-    static let chevronRight = "chevron.right"
-    static let chevronRightCircleFill = "chevron.right.circle.fill"
+    static let chevronForwardCircleFill = "chevron.forward.circle.fill"
     static let chevronUp = "chevron.up"
     /// 단축어 마트 - 차려 둔 것에서 골라 담는 자리.
     static let bagFill = "bag.fill"

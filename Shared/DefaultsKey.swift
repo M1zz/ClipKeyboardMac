@@ -145,6 +145,13 @@ enum DefaultsKey {
     ///    소급해서 복원하려고 날짜를 따로 남긴다. 자세한 건 `KeyboardDayLedger`.
     static let kbBeaconDayCounts = "kb.beacon.dayCounts"
     static let keyboardExtensionDidLoad = "keyboard_extension_did_load"
+    /// 키보드가 뜨는 길의 어디까지 갔는가(App Group, `KeyboardLaunchStage` rawValue).
+    /// 끝까지 못 뜬 실행이 **어디서** 멈췄는지 다음 실행이 읽는다(`KeyboardLaunchTrail`).
+    static let keyboardLaunchStage = "keyboardLaunchStage.v1"
+    /// 가장 최근에 끝까지 못 뜬 실행이 멈춘 단계. 세이프 모드로 열지 정할 때 본다.
+    static let keyboardLastIncompleteStage = "keyboardLastIncompleteStage.v1"
+    /// 아직 허브로 안 보낸 "끝까지 못 뜬 실행" 의 단계들(App Group, [String]). 앱이 꺼내 보낸다.
+    static let keyboardIncompleteStages = "keyboardIncompleteStages.v1"
     static let keyboardKoreanEnabled = "keyboardKoreanEnabled"
     /// 생활 레이어 프리셋(LivingSkin rawValue) - 카드 위에 사는 것. 값이 없으면 `.none`.
     /// ⚠️ 앱 전용이다. 키보드 익스텐션은 메모리 상한 때문에 이 레이어를 그리지 않는다.
@@ -314,6 +321,12 @@ enum DefaultsKey {
     /// 갈래 번호(`keyboardLastCategoryPage`)와 **따로 둔다.** '최근' 을 0번에 끼워 넣으면
     /// 이미 저장된 번호가 모두 한 칸씩 밀려, 업데이트한 날 모두가 엉뚱한 갈래에서 열린다.
     static let keyboardShowsRecentClips = "keyboardShowsRecentClips.v1"
+    /// 키보드를 마지막으로 닫을 때 '임시 저장'(만들다 만 단축어) 탭을 보고 있었는가. App Group.
+    /// '최근' 과 같은 이유로 갈래 번호와 따로 둔다.
+    static let keyboardShowsDrafts = "keyboardShowsDrafts.v1"
+    /// '최근' 에서 같은 글을 몇 번 넣었는가(`FrequentClips.Ledger`, JSON). App Group.
+    /// 글은 남기지 않고 지문만 센다.
+    static let keyboardFrequentClips = "keyboardFrequentClips.v1"
     /// '최근' 탭에 마지막으로 담은 클립보드의 복사 번호(`UIPasteboard.changeCount`). App Group.
     ///
     /// 키보드는 뜰 때마다 새로 만들어진다. 번호를 기억해 두지 않으면 사람이 밀어서 지운 글이
@@ -402,6 +415,8 @@ enum DefaultsKey {
     /// Control Center 빠른 메모 컨트롤·quicknote 딥링크가 켠 "빠른 메모 입력 시트 열기" 보류 플래그.
     /// 위젯 타겟은 같은 문자열 리터럴 사용(QuickNoteControl.swift).
     static let pendingQuickNoteAdd = "pendingQuickNoteAdd"
+    /// 키보드 '임시 저장' 의 연필(`clipkeyboard://draft?id=`)이 남긴 "이 드래프트를 이어 쓰기" 보류 값(드래프트 id).
+    static let pendingDraftResume = "pendingDraftResume"
     /// 동작 버튼 · 제어 센터의 '클립보드 담기'(`CaptureClipboardIntent`)가 켠 "복사한 글 담기" 보류 플래그.
     /// 콜드 런치에서는 알림보다 목록이 늦게 뜨므로 목록이 활성화될 때 소비한다(`ClipboardCapture`).
     static let pendingClipboardCapture = "pendingClipboardCapture"
