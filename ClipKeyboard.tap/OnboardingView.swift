@@ -89,6 +89,10 @@ struct OnboardingView: View {
     }
 
     private func completeOnboarding() {
+        // 처음 마칠 때 한 번만 허브로 (품질 탭의 온보딩 칸). 메뉴에서 다시 연 안내는 세지 않는다.
+        if !UserDefaults.standard.bool(forKey: DefaultsKey.hasCompletedOnboarding) {
+            MacUsageReporting.record(event: "onboarding_completed", countsAsEngagement: false)
+        }
         UserDefaults.standard.set(true, forKey: DefaultsKey.hasCompletedOnboarding)
         onComplete()
     }
